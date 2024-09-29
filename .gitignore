@@ -1,0 +1,19 @@
+# Ignorar dependencias de Composer
+/vendor/
+
+# Ignorar archivos de configuración de entorno
+.env
+config.php
+
+# Ignorar archivos de caché
+*.cache
+/tmp/
+.idea/
+*.log
+
+# Ignorar dependencias de Node.js (si usas npm o yarn en tu proyecto)
+/node_modules/
+
+# Ignorar archivos de XAMPP
+*.ini
+*.log
