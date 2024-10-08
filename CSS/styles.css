@@ -1,0 +1,377 @@
+/*.logokuday {
+    text-size-adjust: px;
+}
+/*header {
+    /*background-color: black;*/
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+/*=====================================*/
+/*========= BARRA NAV =================*/
+/*=====================================*/
+
+.barranav {
+  width: 100%;
+  background-color: rgba(247, 168, 223, 1);
+  
+  height: auto;
+}
+
+.marca {
+  align-self: center;
+  width: 250px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: white;
+  /* text-shadow: -2px 2px black;*/
+  font-size: 20px;
+}
+
+.nav-item {
+  margin-left: 50px;
+}
+
+.boton-nav {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 16px;
+  color: white !important;
+}
+
+/*=====================================*/
+/*========= SECCION PROMOCIONES =======*/
+/*=====================================*/
+
+#promociones {
+  padding: 20px 0 120px 0;
+}
+.titulo {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.grid-images {
+  justify-content: space-evenly;
+}
+
+.fondo-card-promociones {
+  background-color: rgb(187, 183, 183);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+.img-promo-promociones {
+  max-height: 400px;
+  object-fit: cover;
+  filter: drop-shadow(1px 1px 10px rgb(208, 255, 0));
+}
+
+.card {
+  border: none;
+  padding: 0px 0;
+  margin-top: 25px;
+}
+/*=====================================*/
+/*========= SECCION INICIO ============*/
+/*=====================================*/
+#inicio {
+  margin: 50px 0 50px 0;
+  padding-top: 50px;
+
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("../images/fondos/fondo1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#logo_texto {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+div#presentacion {
+  align-self: center;
+}
+.logo {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#texto_presentacion {
+  width: auto;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  border-top: 2px dotted black;
+  border-bottom: 2px dotted black;
+}
+p#eslogan {
+  box-sizing: border-box;
+  font-family: "Dancing Script", cursive;
+  color: #0c0c0c;
+  font-size: 20px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/*=====================================*/
+/*========= CARRUSEL =================*/
+/*=====================================*/
+
+.carusel-index {
+  max-height: 600px;
+  box-shadow: 2px -2px 300px rgba(255, 18, 1, 0.959),
+    -25px 25px 26px -3px rgba(0, 0, 0, 0.75);
+}
+
+.foto-carousel {
+  height: 500px;
+}
+
+/*=====================================*/
+/*========= SECCION FOOTER ============*/
+/*=====================================*/
+
+footer {
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.h6-footer {
+  padding: 20px;
+}
+.redes-icons-footer {
+  padding: 10px;
+}
+.redes-icons-footer a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: rgba(231, 120, 198, 1);
+  text-decoration: none;
+  font-size: 45px;
+}
+
+.contenedor_footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+
+  gap: 10px;
+}
+
+.contenedor-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-evenly;
+}
+
+.contenedor-cards img {
+  width: 65px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#mask {
+  mask-image: linear-gradient(black 80%, transparent);
+}
+
+/*=====================================*/
+/*========= CARTUCHERAS.PHP ==========*/
+/*====================================*/
+#cartucheras {
+  height: auto;
+  /*background-image: linear-gradient(
+      rgba(228, 152, 243, 0.425),
+      rgba(241, 250, 117, 0.685)
+    ),
+    url("../images/fondos/fondo4.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;*/
+  background-color: #fcd6ef;
+  /*clip-path: polygon(0 9%, 17% 2%, 28% 0, 76% 0, 92% 5%, 100% 6%, 100% 93%, 91% 98%, 66% 100%, 15% 100%, 4% 97%, 0% 85%);*/
+}
+
+.slide {
+  margin-top: 250px;
+}
+
+.pic-slide-tienda {
+  object-fit: cover;
+  height: 350px;
+}
+
+.fondo-card-tienda {
+  background-color: rgb(255, 254, 254);
+  border-radius: 20px;
+  max-height: auto;
+
+}
+
+.img-promo-tienda {
+  max-height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  filter: drop-shadow(1px 1px 10px rgb(252, 252, 94));
+}
+
+
+.card-body-tienda {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+.item-card {
+  border: 1px solid gray;
+
+  background-color: rgb(233, 225, 117);
+}
+
+
+
+.img3 {
+  display: block;
+  width: 300px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: auto;
+  border-radius: 10px; /* Bordes redondeados */
+  border: 5px solid transparent; /* Borde inicial transparente */
+  transition: border-color 2s ease-in-out; /* Transición suave */
+}
+
+/* Efecto de borde brillante con animación */
+.img3:hover {
+  border-color: #FF5733; /* Color inicial del borde */
+  animation: bordeBrillante 5s infinite alternate; /* Animación infinita */
+}
+
+@keyframes bordeBrillante {
+  0% {
+    border-color: #FF5733; /* Color rojo anaranjado */
+  }
+  25% {
+    border-color: #FFC300; /* Color amarillo */
+  }
+  50% {
+    border-color: #28A745; /* Color verde */
+  }
+  75% {
+    border-color: #3498DB; /* Color azul */
+  }
+  100% {
+    border-color: #9B59B6; /* Color púrpura */
+  }
+}
+
+
+
+
+
+/*=====================================*/
+/*===== PANEL - AGREGAR PRODUCTOS ===*/
+/*====================================*/
+
+#body_agregar_producto {
+  min-height: 100vh;
+ /* background-image: linear-gradient(
+      rgba(94, 252, 46, 0.425),
+      rgba(250, 100, 113, 0.685)
+    ),
+    url("../images/fondos/fondo1.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  */
+  ba
+}
+
+#session-adm {
+  margin-top: 110px;
+  padding: 20px;
+  padding-bottom: 40px;
+  background-color: rgb(132, 209, 245);
+}
+
+#panel {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  height: auto;
+}
+
+.panel-adm {
+    
+  padding-top: 10px;
+  background-color: gainsboro;
+}
+
+.fondo-panel {
+  background-color: rgb(255, 255, 255);
+  max-height: auto;
+  padding-bottom: 10px;
+  margin-top: 20px;
+
+}
+
+ .celda_func{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+.celda_func button{
+  margin: 5px;
+}
+ 
+
+.anchor_boton{
+  color: #28A745;
+  text-decoration: none;
+  font-weight: bold;
+}
+.img-fetched {
+    
+  border-radius: 5px;
+  margin: 2px;
+  vertical-align: middle;
+  /*box-shadow: 0 0 5px rgba(241, 240, 240, 0.2);*/
+}
+
+ th, td {
+  vertical-align: middle;
+  text-align: center;
+ }
+
+ .table-responsive {
+  padding: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Mejor experiencia de scroll en dispositivos táctiles */
+}
+
+.table {
+  width: 100%; /* Asegura que la tabla tome el 100% del ancho disponible */
+  margin-bottom: 1rem;
+  
+  background-color: transparent;
+  
+}
+
+#tabla-resultado {
+  min-width: 100%; /* Asegura que la tabla ocupe el espacio completo disponible */
+}
