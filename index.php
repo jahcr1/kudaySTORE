@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,13 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kuday Argentina</title>
-  
+
   <!-- ICONOS DE BOOTSTRAP -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- CSS DE BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
+
   <!-- CSS PROPIO-->
   <link rel="stylesheet" href="CSS/styles.css">
 
@@ -21,12 +19,12 @@
 
 <body>
 
-<header>
+  <header>
 
     <nav class="navbar navbar-expand-lg barranav fixed-top border rounded">
       <div class="container-fluid">
-      <a class="navbar-brand marca align-self-center text-center ms-auto" href="index.php#inicio">Kuday Artesanias</a>
-        
+        <a class="navbar-brand marca align-self-center text-center ms-auto" href="index.php#inicio">Kuday Artesanias</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,18 +41,18 @@
                 Productos
               </a>
               <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="cartucheras.php">Cartucheras / Neceser</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="setmatero.php">Sets Materos</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item " href="billeteras.php">Billeteras</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="bolsomatero.php">Bolso Matero</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="varios.php">Varios</a></li>
-                            </ul>
+                <li><a class="dropdown-item" href="cartucheras.php">Cartucheras / Neceser</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="setmatero.php">Sets Materos</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item " href="billeteras.php">Billeteras</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="bolsomatero.php">Bolso Matero</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="varios.php">Varios</a></li>
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link active boton-nav" href="#">Contactános</a>
@@ -64,7 +62,7 @@
       </div>
     </nav>
 
-</header>
+  </header>
 
   <section id="inicio">
     <div class="container text-center mx-auto">
@@ -90,7 +88,7 @@
   </section>
 
   <section id="tienda-index">
-    
+
   </section>
 
   <section class="carrusel" style="margin-top: 100px;">
@@ -117,8 +115,8 @@
     <h3 class="text-center titulo" style="margin-top: 150px;">Nuestras promociones</h3>
     <div class="container text-center" style="margin-top: 50px;">
       <div class="grid-images row p-2">
-        
-      <div class="col-md-3 fondo-card-promociones justify-content-evenly">
+
+        <div class="col-md-3 fondo-card-promociones justify-content-evenly">
           <img src="./images/promociones/promo1.png" style="padding: 10px" class="img-promo-promociones img-fluid">
           <div class="card mb-3">
             <div class="card-body">
@@ -154,14 +152,14 @@
 
   <section id="info">
     <div class="container-fluid row">
-          
+
     </div>
   </section>
 
-<footer>
-  
-  <?php include("foot.php"); ?>
-</footer>
+  <footer>
+
+    <?php include("foot.php"); ?>
+  </footer>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

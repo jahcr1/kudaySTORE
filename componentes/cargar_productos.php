@@ -5,13 +5,7 @@ $id_producto = $_POST['id_producto'];
 $precio_producto = $_POST['precio'];
 $descripcion_producto = $_POST['descripcion'];
 
-/**
- * La superglobal $_FILES es un array de 2 dimensiones, asique
- * guardamos en variables todas las partes del archivo por
- * separado, el nombre original del archivo, el formato del archivo,
- * el tamanio en bytes del archivo y su ubicacion temporal donde fue
- * creado ese archivo.
- */
+//La superglobal $_FILES es un array de 2 dimensiones, asique guardamos en variables todas las partes del archivo por separado, el nombre original del archivo, el formato del archivo, el tamanio en bytes del archivo y su ubicacion temporal donde fue creado ese archivo.
 $nombre_archivo = $_FILES['foto_producto']['name'];
 $tipo_archivo = $_FILES['foto_producto']['type'];
 $peso_archivo = $_FILES['foto_producto']['size'];
@@ -36,27 +30,13 @@ if ($tipo_archivo != 'image/png' && $tipo_archivo != 'image/gif' && $tipo_archiv
   header("Location: panel.php?error_peso");
 } else {
 
-  /**   cambiar explicacion del metodo actualizado!!
-   * 
-   * la funcion move_uploeaded_file de php sirve para
-   * enviar un archivo de imagen q subo desde el form a un
-   * directorio raiz, pero yo quiero subirla a la bd, asique aplico
-   * otro metodo.
-  
-   * move_uploaded_file($tmp_archivo, $carpeta . $nombre_archivo_nuevo . $id_producto . '.' . $extension);
-    
-   */
-  
-
   include("conexion.php");
 
   $imagen = fopen($tmp_archivo, "r+");
   $contenido_imagen = fread($imagen, $peso_archivo);
   $img_tabla = addslashes($contenido_imagen);
 
-
-
-
+  // Insertamos el producto en la tabla
   mysqli_query($conexion, "INSERT INTO productos VALUES ($id_producto, '$nombre_producto', '$categoria_producto', $precio_producto, '$descripcion_producto', '$img_tabla', '$tipo_archivo')");
 
   header("Location: ../panel.php?ok");

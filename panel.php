@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TIENDA Kuday | ADD PRODUCTO</title>
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
     <!-- Datatables CSS -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-6 mb-1 p-1">
                             <label for="inputNombre" class="col-form-label fs-6 fw-semibold ps-1">Nombre del Producto</label>
-                            <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required>
+                            <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
                         </div>
                         <div class="col-6 mb-1 p-1">
                             <label for="inputId" class="col-form-label fs-6 fw-semibold ps-1">ID del Producto</label>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-6 mb-1 p-1">
                             <label for="inputprecio" class="col-form-label fs-6 fw-semibold ps-1">Precio del Producto:</label>
-                            <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" min="5000" max="450000" required>
+                            <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" min="5000" max="450000" autocomplete="off" required>
                         </div>
                         <div class="col-6 mb-1 p-1">
                             <label for="descripcion" class="col-form-label fs-6 fw-semibold ps-1">Descripción del Producto</label>
@@ -222,9 +222,19 @@
                                         <td><?php echo $producto['descripcion_producto']; ?></td>
                                         <td>$<?php echo $producto['precio_producto']; ?></td>
                                         <td class="img-fetched">
-                                            <?php $img_data = base64_encode($producto['ci_imagen_producto']);
-                                                  $img_type = $producto['formato_imagen'];
-                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='100' height='100'>"; ?></td>
+
+                                            <?php if (!empty($producto['ci_imagen_producto'])): ?>
+
+                                                <?php
+                                                // Convertir los datos binarios de la imagen a base64 para mostrar en HTML
+                                                $img_data = base64_encode($producto['ci_imagen_producto']);
+                                                $img_type = $producto['formato_imagen'];
+                                                echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='100' height='100'>";
+                                                ?>
+                                            <?php else: ?>
+                                                <p>Sin imagen</p>
+                                            <?php endif; ?>
+                                        </td>
                                         <td>
                                             <div class="celda_func">
                                                 <!-- Botón para modificar -->
@@ -241,18 +251,33 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form method="POST" action="modificar_producto.php">
+                                                                <form method="POST" action="modificar_producto.php" enctype="multipart/form-data" id="modalmod">
                                                                     <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
-                                                                    
-                                                                    <label for="nombre_producto<?php echo $producto['id_producto']; ?>">Nombre</label>
+
+                                                                    <label for="nombre_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Nombre</label>
                                                                     <input type="text" name="nombre" id="nombre_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['nombre_producto']; ?>">
-                                                                    
-                                                                    <label for="precio_producto<?php echo $producto['id_producto']; ?>">Precio</label>
-                                                                    <input type="text" name="precio" id="precio_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['precio_producto']; ?>">
-                                                                    
-                                                                    <label for="descripcion_producto<?php echo $producto['id_producto']; ?>">Descripción</label>
+
+                                                                    <label for="precio_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Precio</label>
+                                                                    <input type="number" step="0.01" name="precio" id="precio_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['precio_producto']; ?>">
+
+                                                                    <label for="descripcion_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Descripción</label>
                                                                     <textarea name="descripcion" id="descripcion_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2"><?php echo $producto['descripcion_producto']; ?></textarea>
-                                                                
+
+                                                                    <label for="modificarFoto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Subir Foto (.jpg, .gif, .png)</label>
+                                                                    <div>
+                                                                        <?php if (!empty($producto['ci_imagen_producto'])): ?>
+                                                                            <?php
+                                                                            $img_data = base64_encode($producto['ci_imagen_producto']);
+                                                                            $img_type = $producto['formato_imagen'];
+                                                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='100' height='100'>";
+                                                                            ?>
+                                                                        <?php else: ?>
+                                                                            <p>Sin imagen disponible</p>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <input type="file" name="foto_producto" id="modificarFoto<?php echo $producto['id_producto']; ?>" class="form-control form-control-sm mb-2" accept=".jpg, .jpeg, .png, .gif">
+
+
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
                                                                         <button type="submit" class="btn btn-primary">Modificar</button>
@@ -291,29 +316,28 @@
                                                 </div>
 
                                             </div>
-                </td>
-            </tr>
-        <?php }
-        unset($_SESSION['productos']);
-    } else {
-        echo 'No hay productos para mostrar.';
-    }
-    ?>
-</tbody>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } else {
+                                echo 'No hay productos para mostrar.';
+                            }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
     <?php  } ?>
-      
+
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- DataTables JS -->
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    
+
     <!-- Configuracion de la datatable x script -->
     <script>
         $(document).ready(function() {
@@ -323,7 +347,7 @@
                 "lengthMenu": [5, 10, 20, 50], // Opciones de elementos por página
                 "searching": true, // Activar la barra de búsqueda
                 "responsive": true, // Activa el modo responsive de DataTables
-                "scrollX": true,    // Habilita el scroll horizontal si es necesario
+                "scrollX": true, // Habilita el scroll horizontal si es necesario
                 "ordering": true, // Activar ordenamiento de columnas
                 "order": [
                     [0, "asc"]
@@ -344,7 +368,7 @@
                         "previous": "Anterior"
                     }
                 }
-                
+
             });
         });
     </script>
