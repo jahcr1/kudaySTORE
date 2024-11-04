@@ -107,9 +107,9 @@
 
                 <div class="row m-2 p-2" style="max-height: auto;">
 
-                    <form action="componentes/cargar_productos.php" class="form-group" method="POST" enctype="multipart/form-data">
+                    <form action="componentes/cargar_productos.php" class="form-group" method="POST" enctype="multipart/form-data" id="formulario-carga">
                         <div class="col-4 mb-1 p-1">
-                            <label for="seleccionProducto" class="col-form-label fs-6 fw-semibold ps-1">Elija que Producto quiere agregar al carrito:</label>
+                            <label for="seleccionProducto" class="col-form-label fs-6 fw-semibold">Elija que Producto quiere agregar al carrito:</label>
                             <select name="producto" id="seleccionProducto" class="form-select" required>
                                 <option value="" disabled selected>Selecciona una opción</option>
                                 <option value="Cartuchera">Cartuchera</option>
@@ -122,23 +122,23 @@
                             </select>
                         </div>
                         <div class="col-6 mb-1 p-1">
-                            <label for="inputNombre" class="col-form-label fs-6 fw-semibold ps-1">Nombre del Producto</label>
+                            <label for="inputNombre" class="col-form-label fs-6 fw-semibold">Nombre del Producto</label>
                             <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
                         </div>
                         <div class="col-6 mb-1 p-1">
-                            <label for="inputId" class="col-form-label fs-6 fw-semibold ps-1">ID del Producto</label>
+                            <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
                             <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="Cartucheras 1-100 Set Materos 101-200 etc" min="1" max="10000" required>
                         </div>
                         <div class="col-6 mb-1 p-1">
-                            <label for="inputprecio" class="col-form-label fs-6 fw-semibold ps-1">Precio del Producto:</label>
-                            <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" min="5000" max="450000" autocomplete="off" required>
+                            <label for="inputprecio" class="col-form-label fs-6 fw-semibold">Precio del Producto:</label>
+                            <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
                         </div>
                         <div class="col-6 mb-1 p-1">
-                            <label for="descripcion" class="col-form-label fs-6 fw-semibold ps-1">Descripción del Producto</label>
+                            <label for="descripcion" class="col-form-label fs-6 fw-semibold">Descripción del Producto</label>
                             <textarea name="descripcion" id="descripcion" rows="5" placeholder="Descripción del Producto, medidas, colores, etc..." class="form-control" required></textarea>
                         </div>
                         <div class="col-8 mb-2 p-1">
-                            <label for="subirfoto" class="col-form-label fs-6 fw-semibold ps-1">Subir Foto: (.jpg, .gif, .png) (Max: 200KB)</label>
+                            <label for="subirfoto" class="col-form-label fs-6 fw-semibold">Subir Foto: (.jpg, .gif, .png) (Max: 1024KB = 1MB)</label>
                             <input type="file" name="foto_producto" id="subirfoto" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-8 mb-2 p-1">
@@ -146,16 +146,15 @@
                         </div>
                     </form>
                     <?php
-                    if (isset($_GET['error_formato'])) {
-                        echo "<p>El formato del archivo no coincide con el pedido. La imagen tiene que ser .png, .gif, .jpg</p>";
-                    }
-
-                    if (isset($_GET['error_peso'])) {
-                        echo "<p>El peso del archivo EXCEDE lo especificado. El peso de la imagen debe ser menor a 200KB.</p>";
-                    }
-
-                    if (isset($_GET['ok'])) {
-                        echo "<p>Producto cargado correctamente.</p>";
+                    
+                    if (isset($_GET['mensaje'])) {
+                        if ($_GET['mensaje'] === 'error-peso') {
+                            echo '<div class="alerta peso">¡La imagen es demasiado grande. Debe ser menor a 1 MB!</div>';
+                        } if ($_GET['mensaje'] === 'exito') {
+                            echo '<div class="alerta exito">¡Producto cargado correctamente!</div>';
+                        } elseif ($_GET['mensaje'] === 'error') {
+                            echo '<div class="alerta error">Hubo un problema al cargar el producto. Intenta nuevamente.</div>';
+                        }
                     }
 
                     ?>
@@ -171,10 +170,10 @@
             <div class="container fondo-panel">
 
                 <div class="show-details row justify-content-evenly">
-                    <div class="col text-center align-content-center">
-                        <form action="componentes/listar_productos.php" method="POST">
+                    <div class="col align-content-center">
+                        <form action="componentes/listar_productos.php" method="POST" id=formulario-mod>
 
-                            <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold ps-1">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
+                            <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
                             <select name="categoria" id="seleccionCategoria" class="form-select" required>
                                 <option value="" disabled selected>Selecciona una opción</option>
                                 <option value="Cartuchera">Cartuchera</option>
@@ -190,49 +189,47 @@
                         </form>
                     </div>
                     <div class="col text-center align-content-center">
-                        <button class="btn btn-dark"><a href="panel.php#listar-productos" class="anchor_boton">Borrar lista</a></button>
+                        <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="anchor_boton">Borrar lista</a></button>
                     </div>
 
                 </div>
                 <div class="col-12 table-responsive">
-                    <table class="table table-striped table-bordered table-sm tabla-listas display" id="tabla-resultado">
+                    <table class="table table-striped table-bordered table-sm tabla-listas" id="tabla-resultado">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>ID del Producto</th>
                                 <th>Categoria</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
-                                <th>IMG</th>
-                                <th>FUNCIONES</th>
+                                <th>Imagen del producto</th>
+                                <th>Modificar/Borrar Producto</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
 
-                            if (isset($_SESSION['productos'])) { ?>
+                            if (isset($_SESSION['productos']) && !empty($_SESSION['productos'])) { ?>
 
                                 <?php
-                                $productos = $_SESSION['productos'];
-                                foreach ($productos as $producto) { ?>
+
+                                foreach ($_SESSION['productos'] as $producto) { ?>
+
                                     <tr>
                                         <td><?php echo $producto['id_producto']; ?></td>
                                         <td><?php echo $producto['categoria_producto']; ?></td>
                                         <td><?php echo $producto['nombre_producto']; ?></td>
                                         <td><?php echo $producto['descripcion_producto']; ?></td>
-                                        <td>$<?php echo $producto['precio_producto']; ?></td>
+                                        <td>$ <?php echo $producto['precio_producto']; ?></td>
                                         <td class="img-fetched">
-
                                             <?php if (!empty($producto['ci_imagen_producto'])): ?>
-
                                                 <?php
-                                                // Convertir los datos binarios de la imagen a base64 para mostrar en HTML
                                                 $img_data = base64_encode($producto['ci_imagen_producto']);
                                                 $img_type = $producto['formato_imagen'];
-                                                echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='100' height='100'>";
+                                                echo "<img width='100' height='100' src='data:$img_type;base64,$img_data' alt='Imagen del producto'>";
                                                 ?>
                                             <?php else: ?>
-                                                <p>Sin imagen</p>
+                                                <p>Sin imagen disponible</p>
                                             <?php endif; ?>
                                         </td>
                                         <td>
@@ -251,8 +248,12 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
+                                                                
                                                                 <form method="POST" action="modificar_producto.php" enctype="multipart/form-data" id="modalmod">
+                                                                    <!-- Campo oculto de ID del producto -->
                                                                     <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
+                                                                    <!-- Campo oculto de categoría -->
+                                                                    <input type="hidden" name="categoria" value="<?php echo $producto['categoria_producto']; ?>">
 
                                                                     <label for="nombre_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Nombre</label>
                                                                     <input type="text" name="nombre" id="nombre_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['nombre_producto']; ?>">
@@ -264,12 +265,12 @@
                                                                     <textarea name="descripcion" id="descripcion_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2"><?php echo $producto['descripcion_producto']; ?></textarea>
 
                                                                     <label for="modificarFoto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Subir Foto (.jpg, .gif, .png)</label>
-                                                                    <div>
+                                                                    <div class="img-modal">
                                                                         <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                                             <?php
                                                                             $img_data = base64_encode($producto['ci_imagen_producto']);
                                                                             $img_type = $producto['formato_imagen'];
-                                                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='100' height='100'>";
+                                                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='300' height='300'>";
                                                                             ?>
                                                                         <?php else: ?>
                                                                             <p>Sin imagen disponible</p>
@@ -320,9 +321,10 @@
                                     </tr>
                             <?php }
                             } else {
-                                echo 'No hay productos para mostrar.';
+                                echo 'No hay productos por mostrar';
                             }
                             ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -331,6 +333,7 @@
 
     <?php  } ?>
 
+    ?>
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->

@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-include_once('conexion.php');
+require_once('conexion.php');
 
 
 if (isset($_SESSION['administrador'])) {
 
-  if (!empty($_POST)) {
+  if (isset($_POST['categoria'])) {
 
     $categoria = mysqli_real_escape_string($conexion, $_POST['categoria']);
     $resultado = null;
@@ -41,11 +41,13 @@ if (isset($_SESSION['administrador'])) {
     if ($resultado) {
       $_SESSION['productos'] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
       header("Location: ../panel.php?eaea#tabla-resultado");
-      exit;
+      exit();
     } else {
       echo 'No se encontraron productos.';
     }
   }
 } else {
-  echo 'Error de usuario invalido';
+  $_SESSION['error'] = "Por favor, selecciona una categoría para listar los productos.";
+    header("Location: ../panel.php");
+    exit();
 }

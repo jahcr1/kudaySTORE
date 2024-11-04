@@ -321,7 +321,7 @@ footer {
 }
 
 .fondo-panel {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(239, 138, 138);
   max-height: auto;
   padding-bottom: 10px;
   margin-top: 20px;
@@ -381,4 +381,61 @@ label.label_listar_modal {
   justify-content: flex-start;
   margin: 5px 0 0 0;
   font-weight: bold;
+}
+
+.alerta {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alerta.exito {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alerta.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.alerta.peso {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+label.col-form-label {
+  padding: 10px 0px 5px 0px;
+}
+
+#formulario-mod {
+  margin: 20px;
+}
+
+div.img-modal {
+background-color: rgba(0, 0, 0, 0.25);
+}
+
+td.img-fetched {
+
+}
+
+div.dataTables_length,
+div.dataTables_filter {
+  margin: 10px 0px;
+  text-align: start !important;
+}
+
+a.paginate_button.current {
+  background-color: #28A745 !important;
+}
+
+div.dataTables_length select,
+div.dataTables_filter input {
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 10px !important;
 }
