@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TIENDA Kuday | ADD PRODUCTO</title>
+    <title>TIENDA Kuday | PANEL ADMINISTRATIVO</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -19,30 +19,30 @@
 
 </head>
 
-<body id="body_agregar_producto">
+<body id="body-panel">
 
     <header>
 
-        <nav class="navbar fixed-top navbar-expand-lg barranav border rounded">
-            <div class="container-fluid">
+        <nav class="navbar fixed-top navbar-expand-lg panel-nav">
+            <div class="container-fluid contenedor-barra">
 
                 <a class="navbar-brand marca align-self-center text-center" href="index.php#inicio">Kuday Artesanias</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#panel-navbarScroll" aria-controls="panel-navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px; margin-right:50px;">
+                <div class="collapse navbar-collapse" id="panel-navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px;">
                         <li class="nav-item">
                             <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active boton-nav" aria-current="page" href="#promociones">Promociones</a>
+                            <a class="nav-link active boton-nav" aria-current="page" href="#panel">Agregar Producto</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Productos
+                                Tienda
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="cartucheras.php">Cartucheras / Neceser</a></li>
@@ -69,14 +69,11 @@
 
     <section id="session-adm">
 
-        <div class="container" style="max-height: auto;">
-
-
+        <div class="container login">
             <div class="row">
-                <div class="col-10 text-center">
+                <div class="text-center">
                     <h2>Inicio de Sesion al panel</h2>
                 </div>
-
             </div>
 
             <form action="componentes/acceder.php" method="POST">
@@ -86,7 +83,7 @@
                 <label for="pass" class="form-label">Contraseña:</label>
                 <input type="password" name="pass-admin" id="pass" class="form-control mb-3" placeholder="Password">
                 <input type="submit" value="Acceder" class="btn btn-success m-1">
-                <a href="componentes/salir.php" class="btn btn-dark m-1">Salir</a>
+                <a href="componentes/salir.php" class="btn btn-dark btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
 
             </form>
             <div id="msj-session"></div>
@@ -101,65 +98,74 @@
 
             <div class="container panel-adm">
 
-                <div class="row m-2 p-1">
-                    <h3 class="text-center p-3">Agregar Productos a tienda kuday</h3>
+                <div class="row m-2 titulo-panel-carga">
+                    <h3 class="p-3">Agregar Productos a Tienda kuday</h3>
                 </div>
+                <div class="row paneles">
+                    <div class="col-7 panel-carga">
 
-                <div class="row m-2 p-2" style="max-height: auto;">
-
-                    <form action="componentes/cargar_productos.php" class="form-group" method="POST" enctype="multipart/form-data" id="formulario-carga">
-                        <div class="col-4 mb-1 p-1">
-                            <label for="seleccionProducto" class="col-form-label fs-6 fw-semibold">Elija que Producto quiere agregar al carrito:</label>
-                            <select name="producto" id="seleccionProducto" class="form-select" required>
-                                <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="Cartuchera">Cartuchera</option>
-                                <option value="Neceser">Neceser</option>
-                                <option value="Bolso Matero">Bolso Matero</option>
-                                <option value="Set Matero">Set Matero</option>
-                                <option value="Billetera">Billetera</option>
-                                <option value="Bandolera">Bandolera</option>
-                                <option value="Varios">Varios</option>
-                            </select>
-                        </div>
-                        <div class="col-6 mb-1 p-1">
-                            <label for="inputNombre" class="col-form-label fs-6 fw-semibold">Nombre del Producto</label>
-                            <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
-                        </div>
-                        <div class="col-6 mb-1 p-1">
-                            <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
-                            <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="Cartucheras 1-100 Set Materos 101-200 etc" min="1" max="10000" required>
-                        </div>
-                        <div class="col-6 mb-1 p-1">
-                            <label for="inputprecio" class="col-form-label fs-6 fw-semibold">Precio del Producto:</label>
-                            <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
-                        </div>
-                        <div class="col-6 mb-1 p-1">
-                            <label for="descripcion" class="col-form-label fs-6 fw-semibold">Descripción del Producto</label>
-                            <textarea name="descripcion" id="descripcion" rows="5" placeholder="Descripción del Producto, medidas, colores, etc..." class="form-control" required></textarea>
-                        </div>
-                        <div class="col-8 mb-2 p-1">
-                            <label for="subirfoto" class="col-form-label fs-6 fw-semibold">Subir Foto: (.jpg, .gif, .png) (Max: 1024KB = 1MB)</label>
-                            <input type="file" name="foto_producto" id="subirfoto" class="form-control form-control-sm" required>
-                        </div>
-                        <div class="col-8 mb-2 p-1">
-                            <input type="submit" class="form-control btn btn-primary w-50" value="Cargar PRODUCTO">
-                        </div>
-                    </form>
-                    <?php
-                    
-                    if (isset($_GET['mensaje'])) {
-                        if ($_GET['mensaje'] === 'error-peso') {
-                            echo '<div class="alerta peso">¡La imagen es demasiado grande. Debe ser menor a 1 MB!</div>';
-                        } if ($_GET['mensaje'] === 'exito') {
-                            echo '<div class="alerta exito">¡Producto cargado correctamente!</div>';
-                        } elseif ($_GET['mensaje'] === 'error') {
-                            echo '<div class="alerta error">Hubo un problema al cargar el producto. Intenta nuevamente.</div>';
+                        <form action="componentes/cargar_productos.php" class="form-group" method="POST" enctype="multipart/form-data" id="formulario-carga">
+                            <div class="mb-1 p-1">
+                                <label for="seleccionProducto" class="col-form-label fs-6 fw-semibold">Elija que Producto quiere agregar al carrito:</label>
+                                <select name="producto" id="seleccionProducto" class="form-select" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="Cartuchera">Cartuchera</option>
+                                    <option value="Neceser">Neceser</option>
+                                    <option value="Bolso Matero">Bolso Matero</option>
+                                    <option value="Set Matero">Set Matero</option>
+                                    <option value="Billetera">Billetera</option>
+                                    <option value="Bandolera">Bandolera</option>
+                                    <option value="Varios">Varios</option>
+                                </select>
+                            </div>
+                            <div class="mb-1 p-1">
+                                <label for="inputNombre" class="col-form-label fs-6 fw-semibold">Nombre del Producto</label>
+                                <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
+                            </div>
+                            <div class=" mb-1 p-1">
+                                <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
+                                <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="Cartucheras 1-100 Set Materos 101-200 etc" min="1" max="10000" required>
+                            </div>
+                            <div class="mb-1 p-1">
+                                <label for="inputprecio" class="col-form-label fs-6 fw-semibold">Precio del Producto:</label>
+                                <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
+                            </div>
+                            <div class="mb-1 p-1">
+                                <label for="descripcion" class="col-form-label fs-6 fw-semibold">Descripción del Producto</label>
+                                <textarea name="descripcion" id="descripcion" rows="5" placeholder="Descripción del Producto, medidas, colores, etc..." class="form-control" required></textarea>
+                            </div>
+                            <div class="mb-2 p-1">
+                                <label for="subirfoto" class="col-form-label fs-6 fw-semibold">Subir Foto: (.jpg, .gif, .png) (Max: 1024KB = 1MB)</label>
+                                <input type="file" name="foto_producto" id="subirfoto" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="mb-2 p-1">
+                                <input type="submit" class="form-control btn btn-primary" value="Cargar PRODUCTO">
+                            </div>
+                        </form>
+                        <?php
+                        
+                        if (isset($_GET['mensaje'])) {
+                            if ($_GET['mensaje'] === 'error-peso') {
+                                echo '<div class="alerta peso">¡La imagen es demasiado grande. Debe ser menor a 1 MB!</div>';
+                            } if ($_GET['mensaje'] === 'exito') {
+                                echo '<div class="alerta exito">¡Producto cargado correctamente!</div>';
+                            } elseif ($_GET['mensaje'] === 'error') {
+                                echo '<div class="alerta error">Hubo un problema al cargar el producto. Intenta nuevamente.</div>';
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
+                    </div>
+                    <div class="col-5 panel-muestra">
+                        <p>Cosas a tener en cuenta al momento de cargar productos : </p>       
+                        <p>Estos datos se guardan directamente en la base de datos, esto significa que una vez que se suben a la BD se muestran automáticamente en todas las páginas activas de la tienda.</p>       
+                        <p>Dentro de la categoria VARIOS van todos los productos sin una categoría especifica, asique acá se podrían guardar productos randoms.</p>       
+                        <p>Dentro de la categoria PROMOCIONES van todos los productos que se van a mostrar en la sección PROMOS dentro de la pagina principal index.html. Asique aca pueden ir productos lindos o productos con descuentos.</p>       
+                        <p>El valor del precio minimo que existe para cualquier producto es de $5000 pesos y el máximo es de $450000 (Se pueden poner hasta 2 números decimales para los centavos).</p>       
+                        <p>Listas de IDs de cada producto para un mejor orden :</p>       
+                        <p>ID Cartucheras : entre 1 y 100.<br>ID Neceseres : entre 101 y 200.<br>ID Bolsos materos : entre 201 y 300.<br>ID Sets Materos : entre 301 y 400.<br>ID Billeteras : entre 401 y 500.<br>ID Bandoleras : entre 501 y 600.<br>ID Varios : entre 601 y 800.<br>ID Promociones : entre 801 y 1000.<br></p>              
+                    </div>
                 </div>
-
             </div>
 
 
@@ -169,10 +175,10 @@
 
             <div class="container fondo-panel">
 
-                <div class="show-details row justify-content-evenly">
-                    <div class="col align-content-center">
-                        <form action="componentes/listar_productos.php" method="POST" id=formulario-mod>
-
+                <div class="show-details row">
+                    <div class="col-12 caja-form-add">
+                        
+                        <form action="componentes/listar_productos.php" method="POST" id=formulario-categoria>
                             <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
                             <select name="categoria" id="seleccionCategoria" class="form-select" required>
                                 <option value="" disabled selected>Selecciona una opción</option>
@@ -184,12 +190,9 @@
                                 <option value="Bandolera">Bandolera</option>
                                 <option value="Varios">Varios</option>
                             </select>
-                            <input type="submit" class="btn btn-danger form-control ms-auto mt-2 mb-2 w-50" value="Buscar">
-
+                            <input type="submit" class="btn btn-danger btn-buscar form-control ms-auto mt-2 mb-2 w-50" value="Buscar">
+                            <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
                         </form>
-                    </div>
-                    <div class="col text-center align-content-center">
-                        <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="anchor_boton">Borrar lista</a></button>
                     </div>
 
                 </div>
@@ -203,7 +206,7 @@
                                 <th>Descripción</th>
                                 <th>Precio</th>
                                 <th>Imagen del producto</th>
-                                <th>Modificar/Borrar Producto</th>
+                                <th>Modificar / Borrar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -216,11 +219,11 @@
                                 foreach ($_SESSION['productos'] as $producto) { ?>
 
                                     <tr>
-                                        <td><?php echo $producto['id_producto']; ?></td>
+                                        <td style="font-weight: 500;"><?php echo $producto['id_producto']; ?></td>
                                         <td><?php echo $producto['categoria_producto']; ?></td>
                                         <td><?php echo $producto['nombre_producto']; ?></td>
                                         <td><?php echo $producto['descripcion_producto']; ?></td>
-                                        <td>$ <?php echo $producto['precio_producto']; ?></td>
+                                        <td style="white-space: nowrap;">$ <?php echo $producto['precio_producto']; ?></td>
                                         <td class="img-fetched">
                                             <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                 <?php
@@ -333,7 +336,7 @@
 
     <?php  } ?>
 
-    ?>
+    
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
