@@ -45,7 +45,7 @@
                                 Tienda
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="cartucheras.php">Cartucheras / Neceser</a></li>
+                                <li><a class="dropdown-item" href="vistas/cartucheras.php">Cartucheras / Neceser</a></li>
                                 <hr class="dropdown-divider">
                                 <li><a class="dropdown-item" href="setsmateros.php">Sets Materos</a></li>
                                 <hr class="dropdown-divider">
@@ -116,6 +116,7 @@
                                     <option value="Billetera">Billetera</option>
                                     <option value="Bandolera">Bandolera</option>
                                     <option value="Varios">Varios</option>
+                                    <option value="Promociones">Promociones</option>
                                 </select>
                             </div>
                             <div class="mb-1 p-1">
@@ -124,11 +125,15 @@
                             </div>
                             <div class=" mb-1 p-1">
                                 <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
-                                <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="Cartucheras 1-100 Set Materos 101-200 etc" min="1" max="10000" required>
+                                <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="133" min="1" max="10000" required>
                             </div>
                             <div class="mb-1 p-1">
                                 <label for="inputprecio" class="col-form-label fs-6 fw-semibold">Precio del Producto:</label>
                                 <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
+                            </div>
+                            <div class=" mb-1 p-1">
+                                <label for="inputstock" class="col-form-label fs-6 fw-semibold">Stock del Producto</label>
+                                <input type="number" name="stock" id="inputstock" class="form-control fw-light fst-italic" placeholder="6" min="1" max="10000" required>
                             </div>
                             <div class="mb-1 p-1">
                                 <label for="descripcion" class="col-form-label fs-6 fw-semibold">Descripción del Producto</label>
@@ -189,6 +194,7 @@
                                 <option value="Billetera">Billetera</option>
                                 <option value="Bandolera">Bandolera</option>
                                 <option value="Varios">Varios</option>
+                                <option value="Promociones">Promociones</option>
                             </select>
                             <input type="submit" class="btn btn-danger btn-buscar form-control ms-auto mt-2 mb-2 w-50" value="Buscar">
                             <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
@@ -219,11 +225,11 @@
                                 foreach ($_SESSION['productos'] as $producto) { ?>
 
                                     <tr>
-                                        <td style="font-weight: 500;"><?php echo $producto['id_producto']; ?></td>
-                                        <td><?php echo $producto['categoria_producto']; ?></td>
-                                        <td><?php echo $producto['nombre_producto']; ?></td>
-                                        <td><?php echo $producto['descripcion_producto']; ?></td>
-                                        <td style="white-space: nowrap;">$ <?php echo $producto['precio_producto']; ?></td>
+                                        <td style="font-weight: 500;"><?php echo $producto['id']; ?></td>
+                                        <td><?php echo $producto['categoria']; ?></td>
+                                        <td><?php echo $producto['nombre']; ?></td>
+                                        <td><?php echo $producto['descripcion']; ?></td>
+                                        <td style="white-space: nowrap;">$ <?php echo $producto['precio']; ?></td>
                                         <td class="img-fetched">
                                             <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                 <?php
@@ -238,36 +244,39 @@
                                         <td>
                                             <div class="celda_func">
                                                 <!-- Botón para modificar -->
-                                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modificarModal<?php echo $producto['id_producto']; ?>">
+                                                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modificarModal<?php echo $producto['id']; ?>">
                                                     Modificar
                                                 </button>
 
                                                 <!-- Modal de modificar -->
-                                                <div class="modal fade" id="modificarModal<?php echo $producto['id_producto']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarLabel<?php echo $producto['id_producto']; ?>" aria-hidden="true">
+                                                <div class="modal fade" id="modificarModal<?php echo $producto['id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarLabel<?php echo $producto['id']; ?>" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="modificarLabel<?php echo $producto['id_producto']; ?>">Modificar Producto</h1>
+                                                                <h1 class="modal-title fs-5" id="modificarLabel<?php echo $producto['id']; ?>">Modificar Producto</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 
                                                                 <form method="POST" action="modificar_producto.php" enctype="multipart/form-data" id="modalmod">
                                                                     <!-- Campo oculto de ID del producto -->
-                                                                    <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
+                                                                    <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
                                                                     <!-- Campo oculto de categoría -->
-                                                                    <input type="hidden" name="categoria" value="<?php echo $producto['categoria_producto']; ?>">
+                                                                    <input type="hidden" name="categoria" value="<?php echo $producto['categoria']; ?>">
 
-                                                                    <label for="nombre_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Nombre</label>
-                                                                    <input type="text" name="nombre" id="nombre_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['nombre_producto']; ?>">
+                                                                    <label for="nombre_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Nombre</label>
+                                                                    <input type="text" name="nombre" id="nombre_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['nombre']; ?>">
 
-                                                                    <label for="precio_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Precio</label>
-                                                                    <input type="number" step="0.01" name="precio" id="precio_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2" value="<?php echo $producto['precio_producto']; ?>">
+                                                                    <label for="precio_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Precio</label>
+                                                                    <input type="number" step="0.01" name="precio" id="precio_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['precio']; ?>">
+                                                                    
+                                                                    <label for="stock_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Stock</label>
+                                                                    <input type="number" name="stock" min="0" id="stock_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['stock']; ?>">
 
-                                                                    <label for="descripcion_producto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Descripción</label>
-                                                                    <textarea name="descripcion" id="descripcion_producto<?php echo $producto['id_producto']; ?>" class="form-control mb-2"><?php echo $producto['descripcion_producto']; ?></textarea>
+                                                                    <label for="descripcion_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Descripción</label>
+                                                                    <textarea name="descripcion" id="descripcion_producto<?php echo $producto['id']; ?>" class="form-control mb-2"><?php echo $producto['descripcion']; ?></textarea>
 
-                                                                    <label for="modificarFoto<?php echo $producto['id_producto']; ?>" class="label_listar_modal">Subir Foto (.jpg, .gif, .png)</label>
+                                                                    <label for="modificarFoto<?php echo $producto['id']; ?>" class="label_listar_modal">Subir Foto (.jpg, .gif, .png)</label>
                                                                     <div class="img-modal">
                                                                         <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                                             <?php
@@ -279,7 +288,7 @@
                                                                             <p>Sin imagen disponible</p>
                                                                         <?php endif; ?>
                                                                     </div>
-                                                                    <input type="file" name="foto_producto" id="modificarFoto<?php echo $producto['id_producto']; ?>" class="form-control form-control-sm mb-2" accept=".jpg, .jpeg, .png, .gif">
+                                                                    <input type="file" name="foto_producto" id="modificarFoto<?php echo $producto['id']; ?>" class="form-control form-control-sm mb-2" accept=".jpg, .jpeg, .png, .gif">
 
 
                                                                     <div class="modal-footer">
@@ -293,25 +302,25 @@
                                                 </div>
 
                                                 <!-- Botón para eliminar -->
-                                                <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#eliminarModal<?php echo $producto['id_producto']; ?>">
+                                                <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#eliminarModal<?php echo $producto['id']; ?>">
                                                     Eliminar
                                                 </button>
 
                                                 <!-- Modal de eliminar -->
-                                                <div class="modal fade" id="eliminarModal<?php echo $producto['id_producto']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarLabel<?php echo $producto['id_producto']; ?>" aria-hidden="true">
+                                                <div class="modal fade" id="eliminarModal<?php echo $producto['id']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarLabel<?php echo $producto['id']; ?>" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="eliminarLabel<?php echo $producto['id_producto']; ?>">Eliminar Producto</h1>
+                                                                <h1 class="modal-title fs-5" id="eliminarLabel<?php echo $producto['id']; ?>">Eliminar Producto</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>¿Estás seguro que deseas eliminar el producto "<?php echo $producto['nombre_producto']; ?>"?</p>
+                                                                <p>¿Estás seguro que deseas eliminar el producto "<?php echo $producto['nombre']; ?>"?</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                                 <form method="POST" action="eliminar_producto.php" style="display:inline;">
-                                                                    <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
+                                                                    <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
                                                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                                                 </form>
                                                             </div>

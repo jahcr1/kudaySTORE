@@ -58,7 +58,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  
 }
 .img-promo-promociones {
   max-height: 400px;
@@ -215,12 +214,56 @@ footer {
   height: 350px;
 }
 
-.fondo-card-tienda {
+div.listas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 50px 0 50px 0;
+  gap: 10px;
+}
+
+.contenedor-foto {
+  display: flex;
   background-color: rgb(255, 254, 254);
   border-radius: 20px;
-  max-height: auto;
+  padding: 10px;
+  width: 400px;
+  height: auto;
+  max-height: 400px;
+  justify-content: center;
+}
+
+img.imagen-render {
+  width: 300px !important;
+  height: auto;
+}
+
+div.contenedor-detalle {
+  width: 600px;
+}
+
+.card-body-tienda {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 250px;
+  width: 100%;
+}
+
+.item-card {
+  border: 1px solid gray;
+  background-color: rgb(233, 225, 117);
+}
+
+span.dato {
+  padding-left: 20px;
+}
+
+a.add-carrito {
 
 }
+
 
 .img-promo-tienda {
   max-height: 400px;
@@ -229,21 +272,6 @@ footer {
   object-fit: cover;
   filter: drop-shadow(1px 1px 10px rgb(252, 252, 94));
 }
-
-
-.card-body-tienda {
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-}
-.item-card {
-  border: 1px solid gray;
-
-  background-color: rgb(233, 225, 117);
-}
-
-
 
 .img3 {
   display: block;
@@ -256,31 +284,27 @@ footer {
 
 /* Efecto de borde brillante con animación */
 .img3:hover {
-  border-color: #FF5733; /* Color inicial del borde */
+  border-color: #ff5733; /* Color inicial del borde */
   animation: bordeBrillante 5s infinite alternate; /* Animación infinita */
 }
 
 @keyframes bordeBrillante {
   0% {
-    border-color: #FF5733; /* Color rojo anaranjado */
+    border-color: #ff5733; /* Color rojo anaranjado */
   }
   25% {
-    border-color: #FFC300; /* Color amarillo */
+    border-color: #ffc300; /* Color amarillo */
   }
   50% {
-    border-color: #28A745; /* Color verde */
+    border-color: #28a745; /* Color verde */
   }
   75% {
-    border-color: #3498DB; /* Color azul */
+    border-color: #3498db; /* Color azul */
   }
   100% {
-    border-color: #9B59B6; /* Color púrpura */
+    border-color: #9b59b6; /* Color púrpura */
   }
 }
-
-
-
-
 
 /*=======================================*/
 /*===== PANEL.PHP - AGREGAR PRODUCTOS ===*/
@@ -305,12 +329,9 @@ button.navbar-toggler {
   margin-right: 10px;
 }
 
-
-
-
 body#body-panel {
   min-height: 100vh;
- background-image: linear-gradient(
+  background-image: linear-gradient(
       rgba(94, 252, 46, 0.425),
       rgba(250, 100, 113, 0.685)
     ),
@@ -318,8 +339,6 @@ body#body-panel {
   background-repeat: repeat;
   background-size: contain;
   background-position: center;
-  
-  
 }
 
 /*************************************/
@@ -448,7 +467,6 @@ div.panel-muestra p {
   border: 1px solid #f5c6cb;
 }
 
-
 /***************************************/
 /*******  SECCIÓN DATATABLE  *******/
 /***************************************/
@@ -481,16 +499,17 @@ input.btn-buscar {
   border: 1px solid white;
 }
 
-button a.btn-borrar-lista{
+button a.btn-borrar-lista {
   color: red;
   text-decoration: none;
   font-weight: 500;
 }
 
 div.table-responsive {
- padding: 10px;
- overflow-x: auto;
- -webkit-overflow-scrolling: touch; /* Mejor experiencia de scroll en dispositivos táctiles */
+  padding: 10px;
+  overflow-x: auto;
+  /* Mejor experiencia de scroll en dispositivos táctiles */
+  -webkit-overflow-scrolling: touch;
 }
 
 table#tabla-resultado {
@@ -499,33 +518,33 @@ table#tabla-resultado {
   background-color: transparent;
 }
 
-th, td {
+td {
   vertical-align: middle;
   text-align: center;
- }
- 
+}
+
 th {
+  vertical-align: middle;
+  text-align: center;
   font-weight: 500 !important;
   text-align: center !important;
 }
 
-
- .celda_func{
+.celda_func {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
- }
- 
-.celda_func button{
+}
+
+.celda_func button {
   margin: 5px;
 }
- 
+
 td.img-fetched {
   vertical-align: middle;
   /*box-shadow: 0 0 5px rgba(241, 240, 240, 0.2);*/
 }
-
 
 label.label_listar_modal {
   display: flex;
@@ -535,7 +554,7 @@ label.label_listar_modal {
 }
 
 div.img-modal {
-background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 div.dataTables_length,
@@ -550,7 +569,6 @@ a.paginate_button.current {
 }
 a.paginate_button {
   border-radius: 10px !important;
-  
 }
 
 div.dataTables_length select,

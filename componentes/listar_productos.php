@@ -13,25 +13,28 @@ if (isset($_SESSION['administrador'])) {
 
     switch ($categoria) {
       case 'Cartuchera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Cartuchera'");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Cartuchera'");
         break;
         case 'Neceser':
-          $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Neceser'");
+          $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Neceser'");
           break;
       case 'Bolso Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Bolso Matero'");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Bolso Matero'");
         break;
       case 'Set Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Set Matero'");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Set Matero'");
         break;
       case 'Billetera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Billetera'");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Billetera'");
         break;
       case 'Bandolera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Bandolera'");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Bandolera'");
         break;
       case 'Varios':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria_producto = 'Varios' ORDER BY nombre_producto ASC");
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria = 'Varios' ORDER BY nombre ASC");
+        break;
+      case 'Promociones':
+        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria = 'Promociones' ORDER BY nombre ASC");
         break;
       default:
       echo 'Categoria no valida';

@@ -8,6 +8,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       $id_producto = $_POST['id_producto'];
       $precio_producto = $_POST['precio'];
       $descripcion_producto = $_POST['descripcion'];
+      $stock_producto = $_POST['stock'];
 
       // Manejo de Imagen
       if(isset($_FILES['foto_producto']) && $_FILES['foto_producto']['error'] === UPLOAD_ERR_OK) {
@@ -18,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           exit();
 
         }
-
+        
         $imagenData = file_get_contents($_FILES['foto_producto']['tmp_name']);
         $imagenTipo = mime_content_type($_FILES['foto_producto']['tmp_name']); //guardar el tipo de la imagen
       } else {
@@ -26,8 +27,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           $imagenTipo = null;
         }
 
-      $stmt = $conexion->prepare("INSERT INTO productos (id_producto, nombre_producto, precio_producto, descripcion_producto, categoria_producto, ci_imagen_producto, formato_imagen) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      $stmt->bind_param("isdssss", $id_producto, $nombre_producto, $precio_producto, $descripcion_producto, $categoria_producto, $imagenData, $imagenTipo);
+      $stmt = $conexion->prepare("INSERT INTO productos (id, nombre, precio, descripcion, categoria, stock, ci_imagen_producto, formato_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("isdssiss", $id_producto, $nombre_producto, $precio_producto, $descripcion_producto, $categoria_producto, $stock_producto, $imagenData, $imagenTipo);
       
       if($stmt->execute()) {
         $stmt->close();

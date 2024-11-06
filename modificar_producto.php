@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
     $precio = $_POST['precio'];
+    $stock = $_POST['stock'];
     $descripcion = $_POST['descripcion'];
     
 
@@ -33,18 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Crear el SQL para actualizar el producto
     if ($imagenData !== null && $imagenTipo !== null) {
         // Si hay una imagen nueva, actualiza todos los campos incluyendo la imagen
-        $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, ci_imagen_producto = ?, formato_imagen = ? WHERE id_producto = ?";
+        $sql = "UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, stock = ?, ci_imagen_producto = ?, formato_imagen = ? WHERE id = ?";
 
         // Preparar y ejecutar la sentencia
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('sdsssi', $nombre, $precio, $descripcion, $imagenData, $imagenTipo, $id);
+        $stmt->bind_param('sdsissi', $nombre, $precio, $descripcion, $stock, $imagenData, $imagenTipo, $id);
     } else {
         // Si no hay imagen nueva, solo actualiza los campos que se requieren
-        $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ? WHERE id_producto = ?";
+        $sql = "UPDATE productos SET nombre = ?, precio = ?, descripcion = ?, stock = ? WHERE id = ?";
 
         // Preparar y ejecutar la sentencia
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param('sdsi', $nombre, $precio, $descripcion, $id);
+        $stmt->bind_param('sdsii', $nombre, $precio, $descripcion, $stock, $id);
     }
 
     if ($stmt->execute()) {

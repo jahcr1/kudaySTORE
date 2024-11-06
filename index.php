@@ -34,24 +34,26 @@
               <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active boton-nav" aria-current="page" href="#promociones">Promociones</a>
+              <a class="nav-link active boton-nav" aria-current="page" href="vistas/promociones.php">Promociones</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Productos
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="cartucheras.php">Cartucheras / Neceser</a></li>
+                <li><a class="dropdown-item" href="vistas/cartucheras.php">Cartucheras</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item" href="setmatero.php">Sets Materos</a></li>
+                <li><a class="dropdown-item" href="vistas/neceser.php">Neceser</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item " href="billeteras.php">Billeteras</a></li>
+                <li><a class="dropdown-item" href="vistas/setmatero.php">Sets Materos</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item" href="bolsomatero.php">Bolso Matero</a></li>
+                <li><a class="dropdown-item " href="vistas/billeteras.php">Billeteras</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
+                <li><a class="dropdown-item" href="vistas/bolsomatero.php">Bolso Matero</a></li>
                 <hr class="dropdown-divider">
-                <li><a class="dropdown-item" href="varios.php">Varios</a></li>
+                <li><a class="dropdown-item" href="vistas/bandoleras.php">Bandoleras</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="vistas/varios.php">Varios</a></li>
               </ul>
             </li>
             <li class="nav-item">
