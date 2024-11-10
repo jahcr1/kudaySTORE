@@ -27,8 +27,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           $imagenTipo = null;
         }
 
-      $stmt = $conexion->prepare("INSERT INTO productos (id, nombre, precio, descripcion, categoria, stock, ci_imagen_producto, formato_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-      $stmt->bind_param("isdssiss", $id_producto, $nombre_producto, $precio_producto, $descripcion_producto, $categoria_producto, $stock_producto, $imagenData, $imagenTipo);
+      // Comprobando si el ID ya existe
+      $stmt_check = $conexion->prepare("SELECT COUNT(*) FROM productos WHERE id = ?");
+      $stmt_check->bind_param("i", $id_producto);
+      $stmt_check->execute();
+      $stmt_check->bind_result($count);
+      $stmt_check->fetch();
+      $stmt_check->close();
+
+      if ($count > 0) {
+          // Si ya existe el ID, redirige con un mensaje de error
+          header("Location: ../panel.php?mensaje=error-duplicado#formulario-carga");
+          exit();
+      }
+
+      $stmt = $conexion->prepare("INSERT INTO productos (id, nombre, precio, descripcion, categoria_id, stock, ci_imagen_producto, formato_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+      $stmt->bind_param("isdsiiss", $id_producto, $nombre_producto, $precio_producto, $descripcion_producto, $categoria_producto, $stock_producto, $imagenData, $imagenTipo);
       
       if($stmt->execute()) {
         $stmt->close();

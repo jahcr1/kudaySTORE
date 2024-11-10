@@ -109,14 +109,14 @@
                                 <label for="seleccionProducto" class="col-form-label fs-6 fw-semibold">Elija que Producto quiere agregar al carrito:</label>
                                 <select name="producto" id="seleccionProducto" class="form-select" required>
                                     <option value="" disabled selected>Selecciona una opción</option>
-                                    <option value="Cartuchera">Cartuchera</option>
-                                    <option value="Neceser">Neceser</option>
-                                    <option value="Bolso Matero">Bolso Matero</option>
-                                    <option value="Set Matero">Set Matero</option>
-                                    <option value="Billetera">Billetera</option>
-                                    <option value="Bandolera">Bandolera</option>
-                                    <option value="Varios">Varios</option>
-                                    <option value="Promociones">Promociones</option>
+                                    <option value="1">Cartuchera</option>
+                                    <option value="2">Neceser</option>
+                                    <option value="3">Bolso Matero</option>
+                                    <option value="4">Set Matero</option>
+                                    <option value="5">Billetera</option>
+                                    <option value="6">Bandolera</option>
+                                    <option value="7">Varios</option>
+                                    <option value="8">Promociones</option>
                                 </select>
                             </div>
                             <div class="mb-1 p-1">
@@ -125,15 +125,15 @@
                             </div>
                             <div class=" mb-1 p-1">
                                 <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
-                                <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="133" min="1" max="10000" required>
+                                <input type="number" name="id_producto" id="inputId" class="form-control fw-light fst-italic" placeholder="Escribí el N° de Id.." min="1" max="10000" required>
                             </div>
                             <div class="mb-1 p-1">
                                 <label for="inputprecio" class="col-form-label fs-6 fw-semibold">Precio del Producto:</label>
-                                <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$8500" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
+                                <input type="number" name="precio" id="inputprecio" class="form-control fw-light fst-italic" placeholder="$" step="0.01" min="5000.00" max="450000.00" autocomplete="off" required>
                             </div>
                             <div class=" mb-1 p-1">
                                 <label for="inputstock" class="col-form-label fs-6 fw-semibold">Stock del Producto</label>
-                                <input type="number" name="stock" id="inputstock" class="form-control fw-light fst-italic" placeholder="6" min="1" max="10000" required>
+                                <input type="number" name="stock" id="inputstock" class="form-control fw-light fst-italic" placeholder="Escribí la cantidad de stock para el producto..." min="1" max="10000" required>
                             </div>
                             <div class="mb-1 p-1">
                                 <label for="descripcion" class="col-form-label fs-6 fw-semibold">Descripción del Producto</label>
@@ -152,14 +152,16 @@
                         if (isset($_GET['mensaje'])) {
                             if ($_GET['mensaje'] === 'error-peso') {
                                 echo '<div class="alerta peso">¡La imagen es demasiado grande. Debe ser menor a 1 MB!</div>';
+                            } if ($_GET['mensaje'] === 'error-duplicado') {
+                                echo '<div class="alerta peso">¡El ID que ingresaste ya existe!</div>';
                             } if ($_GET['mensaje'] === 'exito') {
                                 echo '<div class="alerta exito">¡Producto cargado correctamente!</div>';
-                            } elseif ($_GET['mensaje'] === 'error') {
+                            } else if ($_GET['mensaje'] === 'error') {
                                 echo '<div class="alerta error">Hubo un problema al cargar el producto. Intenta nuevamente.</div>';
                             }
                         }
-
                         ?>
+                    
                     </div>
                     <div class="col-5 panel-muestra">
                         <p>Cosas a tener en cuenta al momento de cargar productos : </p>       
@@ -187,14 +189,14 @@
                             <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
                             <select name="categoria" id="seleccionCategoria" class="form-select" required>
                                 <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="Cartuchera">Cartuchera</option>
-                                <option value="Neceser">Neceser</option>
-                                <option value="Bolso Matero">Bolso Matero</option>
-                                <option value="Set Matero">Set Matero</option>
-                                <option value="Billetera">Billetera</option>
-                                <option value="Bandolera">Bandolera</option>
-                                <option value="Varios">Varios</option>
-                                <option value="Promociones">Promociones</option>
+                                <option value="1">Cartuchera</option>
+                                <option value="2">Neceser</option>
+                                <option value="3">Bolso Matero</option>
+                                <option value="4">Set Matero</option>
+                                <option value="5">Billetera</option>
+                                <option value="6">Bandolera</option>
+                                <option value="7">Varios</option>
+                                <option value="8">Promociones</option>
                             </select>
                             <input type="submit" class="btn btn-danger btn-buscar form-control ms-auto mt-2 mb-2 w-50" value="Buscar">
                             <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
@@ -211,6 +213,7 @@
                                 <th>Nombre</th>
                                 <th>Descripción</th>
                                 <th>Precio</th>
+                                <th>Stock</th>
                                 <th>Imagen del producto</th>
                                 <th>Modificar / Borrar</th>
                             </tr>
@@ -226,10 +229,11 @@
 
                                     <tr>
                                         <td style="font-weight: 500;"><?php echo $producto['id']; ?></td>
-                                        <td><?php echo $producto['categoria']; ?></td>
+                                        <td><?php echo $producto['categoria_nombre']; ?></td>
                                         <td><?php echo $producto['nombre']; ?></td>
                                         <td><?php echo $producto['descripcion']; ?></td>
                                         <td style="white-space: nowrap;">$ <?php echo $producto['precio']; ?></td>
+                                        <td style="font-weight: 500;"><?php echo $producto['stock']; ?></td>
                                         <td class="img-fetched">
                                             <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                 <?php
@@ -261,8 +265,6 @@
                                                                 <form method="POST" action="modificar_producto.php" enctype="multipart/form-data" id="modalmod">
                                                                     <!-- Campo oculto de ID del producto -->
                                                                     <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
-                                                                    <!-- Campo oculto de categoría -->
-                                                                    <input type="hidden" name="categoria" value="<?php echo $producto['categoria']; ?>">
 
                                                                     <label for="nombre_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Nombre</label>
                                                                     <input type="text" name="nombre" id="nombre_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['nombre']; ?>">

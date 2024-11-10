@@ -11,30 +11,31 @@ if (isset($_SESSION['administrador'])) {
     $categoria = mysqli_real_escape_string($conexion, $_POST['categoria']);
     $resultado = null;
 
+    //La consulta JOIN crea un alias categoria_nombre y le asigna el join de ambas tablas usando punteros, luego de la instruccion FROM hay q declarar el puntero productos p
     switch ($categoria) {
-      case 'Cartuchera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Cartuchera'");
+      case '1':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '1'");
         break;
-        case 'Neceser':
-          $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Neceser'");
-          break;
-      case 'Bolso Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Bolso Matero'");
+      case'2':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '2'");
         break;
-      case 'Set Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Set Matero'");
+      case '3':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '3'");
         break;
-      case 'Billetera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Billetera'");
+      case '4':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '4'");
         break;
-      case 'Bandolera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria = 'Bandolera'");
+      case '5':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '5'");
         break;
-      case 'Varios':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria = 'Varios' ORDER BY nombre ASC");
+      case '6':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '6'");
         break;
-      case 'Promociones':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria = 'Promociones' ORDER BY nombre ASC");
+      case '7':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '7'");
+        break;
+      case '8':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8'");
         break;
       default:
       echo 'Categoria no valida';

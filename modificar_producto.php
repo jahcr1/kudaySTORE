@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stock = $_POST['stock'];
     $descripcion = $_POST['descripcion'];
     
+    
 
     // Manejo de Imagen
     if (isset($_FILES['foto_producto']) && $_FILES['foto_producto']['error'] === UPLOAD_ERR_OK) {
@@ -50,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         // Consulta para recargar todos los productos y actualizar la sesión
-        $consulta = "SELECT * FROM productos";
+        $consulta = "SELECT productos.*, categorias.nombre AS categoria_nombre FROM productos JOIN categorias ON productos.categoria_id = categorias.id";
+        
         $resultado = $conexion->query($consulta);
 
         if ($resultado->num_rows > 0) {
