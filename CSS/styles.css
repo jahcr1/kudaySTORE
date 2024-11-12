@@ -1,8 +1,8 @@
-/*.logokuday {
-    text-size-adjust: px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-/*header {
-    /*background-color: black;*/
 
 body {
   background-color: rgb(255, 255, 255);
@@ -191,7 +191,65 @@ footer {
 /*=====================================*/
 /*========= CARTUCHERAS.PHP ==========*/
 /*====================================*/
-#cartucheras {
+
+body.cartuchera-body {
+  min-height: 100vh;
+  height: auto;
+  background-image: url('../images/fondos/p5.jpg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: repeat;
+  
+  
+}
+
+/* Aplica un contenedor sobre el fondo para hacerlo borroso*/
+body.cartuchera-body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  background-position: inherit;
+  background-size: cover;
+  background-repeat: repeat;
+  filter: blur(10px) contrast(50%); /* Controla el nivel de desenfoque */
+  z-index: -1;
+  box-sizing: border-box;
+}
+
+
+nav.cartuchera-nav {
+  width: 100%;
+  background-color: rgba(247, 168, 223, 1);
+  height: auto;
+}
+
+section#slide-cartuchera {
+  
+}
+
+div.contenedor-slide-cartuchera {
+  background-color: #28a745;
+  max-width: 100%;
+  height: 200px;
+  margin-top: 70px;
+
+}
+
+img.img-slide {
+  margin-top: 250px;
+}
+
+.pic-slide-tienda {
+  object-fit: cover;
+  height: 350px;
+}
+
+
+section#cartucheras {
   height: auto;
   /*background-image: linear-gradient(
       rgba(228, 152, 243, 0.425),
@@ -201,17 +259,8 @@ footer {
   background-repeat: repeat;
   background-size: contain;
   background-position: center;*/
-  background-color: #fcd6ef;
+  background-color: transparent;
   /*clip-path: polygon(0 9%, 17% 2%, 28% 0, 76% 0, 92% 5%, 100% 6%, 100% 93%, 91% 98%, 66% 100%, 15% 100%, 4% 97%, 0% 85%);*/
-}
-
-.slide {
-  margin-top: 250px;
-}
-
-.pic-slide-tienda {
-  object-fit: cover;
-  height: 350px;
 }
 
 div.listas {
@@ -225,8 +274,8 @@ div.listas {
 
 .contenedor-foto {
   display: flex;
-  background-color: rgb(255, 254, 254);
-  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
   padding: 10px;
   width: 400px;
   height: auto;
@@ -234,10 +283,13 @@ div.listas {
   justify-content: center;
 }
 
-img.imagen-render {
+img.imagen-render-vistas {
   width: 300px !important;
   height: auto;
+
 }
+
+
 
 div.contenedor-detalle {
   width: 600px;
@@ -354,10 +406,11 @@ body#body-panel {
   margin-right: auto;
   padding: 20px;
   padding-bottom: 40px;
+  border-radius: 20px;
   /*background-color: rgb(239, 138, 138);*/
   background-image: linear-gradient(
-      rgba(255, 48, 245, 0.425),
-      rgba(252, 248, 3, 0.87)
+      rgba(0, 0, 0, 0.425),
+      rgba(255, 255, 255, 0.87)
     ),
     url("../images/panelimg/nina2.png");
   background-repeat: no-repeat;
@@ -369,6 +422,18 @@ div.container.login {
   width: 100%;
   max-width: 50%;
   min-width: 250px;
+}
+
+h2.titulo-loginpanel {
+  text-shadow:
+  -2px 2px 5px white,
+  -2px -2px 5px rgb(13, 255, 243);
+}
+
+form#form-loginpanel input.logininput {
+  
+  background-color: transparent;
+  backdrop-filter: blur(10px);
 }
 
 btn-salir {
@@ -391,6 +456,7 @@ btn-salir {
 #panel {
   margin: 50px auto 10px auto;
   height: auto;
+  padding: 25px;
   width: 100%;
   max-width: 85vw;
 }

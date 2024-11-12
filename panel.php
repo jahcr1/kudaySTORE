@@ -72,16 +72,16 @@
         <div class="container login">
             <div class="row">
                 <div class="text-center">
-                    <h2>Inicio de Sesion al panel</h2>
+                    <h2 class="titulo-loginpanel">Inicio de Sesion al panel</h2>
                 </div>
             </div>
 
-            <form action="componentes/acceder.php" method="POST">
+            <form action="componentes/acceder.php" method="POST" id="form-loginpanel">
 
-                <label for="adm" class="form-label">Usuario:</label>
-                <input type="text" name="usuario-admin" id="adm" class="form-control mb-3" placeholder="Usuario" autocomplete="off">
-                <label for="pass" class="form-label">Contraseña:</label>
-                <input type="password" name="pass-admin" id="pass" class="form-control mb-3" placeholder="Password">
+                <label for="adm" class="form-label loginlabel text-center" >Usuario:</label>
+                <input type="text" name="usuario-admin" id="adm" class="form-control mb-3 logininput" placeholder="Usuario" autocomplete="off">
+                <label for="pass" class="form-label loginlabel">Contraseña:</label>
+                <input type="password" name="pass-admin" id="pass" class="form-control mb-3 logininput" placeholder="Password">
                 <input type="submit" value="Acceder" class="btn btn-success m-1">
                 <a href="componentes/salir.php" class="btn btn-dark btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
 
@@ -94,7 +94,7 @@
 
     <?php if (isset($_SESSION['administrador'])) { ?>
 
-        <section id="panel">
+    <section id="panel">
 
             <div class="container panel-adm">
 
@@ -121,7 +121,7 @@
                             </div>
                             <div class="mb-1 p-1">
                                 <label for="inputNombre" class="col-form-label fs-6 fw-semibold">Nombre del Producto</label>
-                                <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
+                                <input type="text" name="nombre" id="inputNombre" class="form-control fw-light fst-italic" placeholder="Ej: Cartuchera Psicodélica" maxlength="50" required autocomplete="off">
                             </div>
                             <div class=" mb-1 p-1">
                                 <label for="inputId" class="col-form-label fs-6 fw-semibold">ID del Producto</label>
@@ -176,9 +176,9 @@
             </div>
 
 
-        </section>
+    </section>
 
-        <section id="listar-productos">
+    <section id="listar-productos">
 
             <div class="container fondo-panel">
 
@@ -343,7 +343,7 @@
                     </table>
                 </div>
             </div>
-        </section>
+    </section>
 
     <?php  } ?>
 
