@@ -272,50 +272,67 @@ nav.cartuchera-nav {
   width: 100%;
   background-color: rgb(255, 151, 173);
   height: auto;
+  border-bottom: 2px dashed black;
+  border-top: 1px dashed black;
 }
 
+
+.nav-item .cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 div.contenedor-slide-cartuchera {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  background-color: rgba(255, 255, 255, 0.85);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.95);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   max-width: 100%;
   height: 50vh;
   margin-top: 100px;
-  border-top: 3px dotted black;
-  border-bottom: 3px dotted black;
+  border-top: 3px dashed black;
+  border-bottom: 3px dashed black;
 }
 
 .box1 {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  background-color: transparent;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   padding: 20px;
   width: 30%;
 }
 .box2 {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
-  background-color: transparent;
+  flex-direction: row;
+  justify-content: start;
   padding: 20px;
-  width: 45%;
+  width: 60%;
 }
 
-p.propaganda1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: rgb(255, 151, 173);
-  text-shadow: -2px 2px #0c0c0c;
-  animation: fadeIn 6s ease-in-out infinite;
-}
 a.propaganda2 {
   font-size: 2.8rem;
   font-weight: bold;
@@ -330,27 +347,11 @@ a.propaganda2:hover {
   color: #ffd700; /* Cambia el color en hover */
 }
 
-p.propaganda3 {
-  font-size: 2rem;
-  color: rgb(255, 151, 173);
-  font-weight: bold;
-  text-shadow: -2px 2px #0c0c0c;
-  animation: fadeIn 2s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-img.img-slide {
-  margin-top: 250px;
+div.imagen-logo {
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
 }
 
 .pic-slide-tienda {
@@ -363,8 +364,14 @@ section#cartucheras {
 }
 
 h3.titulo-categoria {
+  color: black;
+  font-family: "Barrio", serif;
   font-size: 6rem;
+  font-weight: normal;
   text-align: center !important;
+  text-shadow:
+   -2px -2px rgb(255, 151, 173),
+   -3px -3px grey;
 }
 
 /* Configuración de la grid responsiva */
@@ -413,7 +420,7 @@ img.imagen-producto {
 
 img.imagen-producto:hover {
   transform: scale(1.1);
-  filter: brightness(120%) contrast(150%)
+  filter: brightness(120%) contrast(130%)
     drop-shadow(-2px 2px 10px rgb(65, 65, 65));
 }
 
@@ -424,6 +431,7 @@ img.imagen-producto:hover {
 }
 
 h5.item-card {
+  font-family: "Pacifico", serif;
   font-size: 1.8rem;
   text-align: center;
   border: 1px solid gray;
@@ -439,16 +447,41 @@ span.dato {
   font-weight: 500;
 }
 
+div.botonera-producto {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+a.ver-producto {
+  display: flex;
+  justify-content: center;
+  color: black;
+  align-items: center;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+  background-color: rgb(255, 151, 173);
+  border: 2px dashed black;
+}
+
+a.ver-producto:hover {
+  background-color: rgb(247, 87, 121);
+  border: 3px dashed black;
+}
+
 /* Botón de agregar al carrito */
 a.add-carrito {
   display: flex;
   justify-content: center;
   color: black;
+  align-items: center;
   font-weight: bold;
   width: 100%;
   margin-top: 10px;
   background-color: rgb(255, 151, 173);
-  border: 3px dashed black;
+  border: 2px dashed black;
 }
 
 a.add-carrito:hover {
@@ -783,4 +816,123 @@ div.dataTables_length select,
 div.dataTables_filter input {
   background-color: rgb(255, 255, 255) !important;
   border-radius: 10px !important;
+}
+
+/*=======================================*/
+/*=== PRODUCTO.PHP - DETALLE PRODUCTOS ==*/
+/*=======================================*/
+
+section#ver_producto {
+  margin: 80px auto 20px auto;
+  padding: 20px;
+}
+
+div#details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background-color: rgb(201, 197, 197);
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 10px;
+}
+
+div.detalle-img {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  flex: 2 1 300px;
+  border: 1px solid black;
+}
+
+div.detalle-img img {
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 120px;
+  height: auto;
+}
+
+div.detalle-producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  
+  flex: 1 1 150px;
+}
+
+div.detalle-main {
+
+}
+
+div.detalle-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Contenedor principal del controlador de cantidad */
+.quantity-controller {
+  display: flex; /* Usa flexbox para alinear los elementos */
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  gap: 10px; /* Espacio entre los elementos */
+  width: 200px; /* Ajusta el tamaño del contenedor */
+  margin: 0 auto; /* Centra el contenedor en su contenedor principal */
+}
+
+/* Estilo para los botones */
+.quantity-controller button {
+  background-color: rgb(209, 120, 139); /* Color de fondo del botón */
+  color: white; /* Color de texto blanco */
+  font-size: 18px; /* Tamaño de la fuente */
+  padding: 10px 15px; /* Espaciado dentro del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor en forma de mano */
+  transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+/* Estilo de los botones cuando se pasa el ratón */
+.quantity-controller button:hover {
+  background-color: rgb(196, 74, 100); /* Color de fondo al pasar el ratón */
+}
+
+/* Estilo del campo de cantidad */
+#product-quantity {
+  text-align: center; /* Centra el texto (el número) dentro del campo */
+  width: 50px; /* Ancho fijo para el campo */
+  padding: 5px; /* Espaciado interno */
+  font-size: 18px; /* Tamaño de la fuente */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px; /* Bordes redondeados */
+  outline: none; /* Sin borde al hacer clic */
+  transition: border-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+/* Estilo del campo de cantidad cuando se enfoca */
+#product-quantity:focus {
+  border-color: rgb(196, 74, 100); /* Color de borde cuando el campo está enfocado */
+}
+
+/* Asegura que los botones y el campo de cantidad sean del mismo tamaño */
+.quantity-controller input[type="number"] {
+  -moz-appearance: textfield; /* Para Firefox */
+  -webkit-appearance: none;   /* Para Safari y Chrome */
+  appearance: none;           /* Para otros navegadores modernos */
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+}
+
+button#add-to-cart {
+  background-color: rgb(209, 120, 139);
 }

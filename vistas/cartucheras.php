@@ -1,5 +1,6 @@
 <?php
 session_start();
+$cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -65,6 +66,17 @@ session_start();
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="#">Contactános</a>
                             </li>
+                            <li class="nav-item align-self-center">
+                                <a href="../carrito.php" class="cart-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a1 1 0 0 0 1 .86h9.72a1 1 0 0 0 1-.76l2.54-9.24a1 1 0 0 0-.96-1.24H5.21"></path>
+                                    </svg>
+                                    <span id="cart-count"><?php echo $cartCount; ?></span>
+                                </a>
+                            </li>
+
                        </ul>
                  </div>
             </div>
@@ -75,36 +87,11 @@ session_start();
 
         <div class="container contenedor-slide-cartuchera">
             <div class="box1">
-                <div class="box1-index">
-                    <p class="propaganda1">En Kuday vas a encontrar promos, articulos unicos y más...</p>
-                </div>
-                <a id="cartuchera-bounce" class="propaganda2" href="../vistas/promociones.php" target="_blank">Ver Promociones..</a>
+                <a id="cartuchera-bounce" class="propaganda2" href="../vistas/promociones.php" target="_blank">Ver Promociones</a>
             </div>
             <div class="box2">
                 <div class="imagen-logo">
-                    <img src="../images/logo/logo.png" alt="">
-                </div>
-                <div style="display: none;">
-                    <svg viewBox="0 0 250 80" xmlns="http://www.w3.org/2000/svg">
-                        <style>
-                        .small {
-                            font: italic 13px sans-serif;
-                         }
-                        .heavy {
-                            font: bold 25px sans-serif;
-                          }
-
-                        .Rrrrr {
-                            font: italic 32px serif;
-                            fill: red;
-                         }
-                        </style>
-
-                        <text x="20" y="35" class="small">En</text>
-                        <text x="40" y="35" class="heavy">Kuday</text>
-                        <text x="25" y="55" class="small">festejamos</text>
-                        <text x="85" y="65" class="Rrrrr">El Verano!</text>
-                    </svg>
+                    <img src="../images/logo/logo.png" class="img-logo-slide">
                 </div>
             </div>
             
@@ -144,8 +131,14 @@ session_start();
                                 <h5 class="card-title p-2 item-card"><?php echo $listar_productos['nombre']; ?></h5>
                                 <p class="text-start p-3"><strong>Articulo : </strong><span class="dato"><?php echo $listar_productos['categoria_nombre']; ?></span></p>
                                 <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Precio : </strong><span class="dato">$<?php echo $listar_productos['precio']; ?></span></p>
+                                <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Cantidad : </strong><span class="dato"><?php echo $listar_productos['stock']; ?></span></p>
                                 <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Descripción : </strong><span class="dato"><?php echo $listar_productos['descripcion']; ?></span></p>
-                                <a href="./index.php" class="btn btn-danger add-carrito">Agregar al carrito</a>
+                                <div class="botonera-producto">
+                                    <!-- Botón para Ver Producto -->
+                                    <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="btn btn-danger ver-producto">Ver producto</a>
+                                    <a href="../carrito.php" class="btn btn-danger add-carrito" data-id="<?php echo $listar_productos['id']; ?>">Agregar al carrito</a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -197,11 +190,15 @@ session_start();
 
         <p style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> COPYRIGHT KUDAY ARTESANIAS & DEVCR1 2021. TODOS LOS DERECHOS RESERVADOS.</p>
     </footer>
-
+    
+    
+    <!-- Incluyendo BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     <!-- Incluyendo GSAP desde un CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    
+    <!-- Incluyendo GSAP BOUNCE -->
     <script>
         gsap.to("#cartuchera-bounce", {
             duration: 1.5,
@@ -221,6 +218,56 @@ session_start();
             tl.from(el, {text: "", duration: el.innerHTML.length * timePerCharacter, ease: "none"});
         });
     </script>
+
+    <!-- Script JS para sumar productos al carrito dinamicamente -->
+    <script>
+        // Obtén todos los botones de agregar al carrito
+        const addToCartButtons = document.querySelectorAll('.add-carrito');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Evita que la página se recargue al hacer clic
+
+                const productId = button.getAttribute('data-id'); // Obtén el ID del producto
+
+                // Envío de los datos al servidor
+                fetch('../componentes/add_to_cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        quantity: 1
+                    })
+                })
+                .then(response => response.text()) // Usamos text() en lugar de json() para ver la respuesta completa
+                .then(responseText => {
+                    console.log('Respuesta del servidor:', responseText);
+                    try {
+                        const data = JSON.parse(responseText);
+                        if (data.success) {
+                            document.getElementById('cart-count').textContent = data.cartCount;
+                            console.log('Producto agregado correctamente');
+                        } else {
+                            console.error('Error al agregar al carrito:', data.error);
+                        }
+                    } catch (error) {
+                        console.error('Error al parsear JSON:', error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al hacer la solicitud:', error);
+                });
+
+        });
+    });
+
+    </script>
+
+
+
+
 
 </body>
 
