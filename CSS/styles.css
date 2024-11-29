@@ -1,6 +1,8 @@
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -73,7 +75,6 @@ li.nav-item a.nav-link {
   color: black !important;
   font-size: 1.4rem;
   font-family: "Barrio", serif;
-
 }
 
 li.nav-item a.nav-link:hover {
@@ -86,40 +87,6 @@ li.nav-item a.nav-link:hover {
   color: white !important;
 }
 
-/*=====================================*/
-/*========= SECCION PROMOCIONES =======*/
-/*=====================================*/
-
-#promociones {
-  padding: 20px 0 120px 0;
-}
-.titulo {
-  text-align: center;
-  font-size: 3rem;
-}
-
-.grid-images {
-  justify-content: space-evenly;
-}
-
-.fondo-card-promociones {
-  background-color: rgb(187, 183, 183);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.img-promo-promociones {
-  max-height: 400px;
-  object-fit: cover;
-  filter: drop-shadow(1px 1px 10px rgb(208, 255, 0));
-}
-
-.card {
-  border: none;
-  padding: 0px 0;
-  margin-top: 25px;
-}
 /*=====================================*/
 /*========= SECCION INICIO ============*/
 /*=====================================*/
@@ -182,6 +149,573 @@ p#eslogan {
 .foto-carousel {
   height: 500px;
 }
+
+/*=====================================*/
+/*========= SECCION TIENDA ============*/
+/*=====================================*/
+
+/* Contenedor principal CARTUCHERAS con gradiente */
+.fondo-store1 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(255, 134, 21, 0.76), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen1 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store1:hover .imagen1 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store1 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal NECESER con gradiente */
+.fondo-store2 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(214, 238, 129, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen2 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store2:hover .imagen2 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store2 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal BILLETERAS con gradiente */
+.fondo-store3 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(127, 255, 238, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen3 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store3:hover .imagen3 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store3 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal BANDOLERA con gradiente */
+.fondo-store4 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(80, 144, 240, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen4 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store4:hover .imagen4 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store4 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal BOLSO MATERO con gradiente */
+.fondo-store5 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(184, 63, 214, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen5 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store5:hover .imagen5 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store5 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal SET MATERO con gradiente */
+.fondo-store6 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(223, 223, 223, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor6 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen6 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store6:hover .imagen6 {
+  transform: scale(1.3); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store6 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal VARIOS con gradiente */
+.fondo-store7 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(247, 168, 223, 1), rgba(0, 0, 0, 0.5));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor7 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen7 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store7:hover .imagen7 {
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store7 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/* Contenedor principal PROMOCIONES con gradiente */
+.fondo-store8 {
+  height: 220px; /* Altura fija */
+  position: relative;
+  border: 2px dashed black;
+  border-radius: 20px;
+  overflow: hidden; /* Evita que algo sobresalga del contenedor */
+  display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa de gradiente */
+.gradiente8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
+  height: 100%;
+  background: linear-gradient(rgba(159, 189, 255, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1; /* Debajo de la imagen y el texto */
+}
+
+/* Contenedor para la imagen */
+.imagen-contenedor8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Por encima del gradiente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Limita la imagen al área del contenedor */
+}
+
+/* Imagen dentro del contenedor */
+.imagen8 {
+  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 90%; /* Respeta las proporciones de la imagen */
+  transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Hover para agrandar la imagen */
+.fondo-store8:hover .imagen8 {
+  transform: scale(2.2); /* Agranda la imagen ligeramente */
+}
+
+/* Texto en el centro */
+.texto-store8 {
+  position: relative; /* Por encima del resto */
+  z-index: 3;
+  color: white;
+  text-decoration: none;
+  font-size: 3rem;
+  font-weight: normal;
+  text-shadow: -2px 2px black;
+  text-align: center;
+}
+
+/*=====================================*/
+/*========= SECCION PROMOCIONES =======*/
+/*=====================================*/
+
+/* Encapsulado para la sección del slider */
+#promociones {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.slider-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Contenedor para centrar y limitar el slider */
+.slider-wrapper {
+  display: flex;
+  justify-content: center; /* Centra el slider horizontalmente */
+  align-items: center;
+  overflow: hidden; /* Ocultar contenido que desborde */
+  width: 100%;
+}
+
+/* Slider principal */
+.slider {
+  position: relative;
+  width: 80vw; /* El slider ocupa el 80% del viewport */
+  height: 400px; /* Altura fija */
+  overflow: hidden;
+}
+
+/* Pista del slider */
+.slider-track {
+  display: flex;
+  will-change: transform;
+}
+
+/* Elementos individuales */
+.slider-item {
+  flex-shrink: 0;
+  width: 25vw; /* Cada elemento ocupa una fracción del slider */
+  height: 350px; /* Igual a la altura del slider */
+}
+
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ajuste proporcional */
+}
+
+/* Gradientes de desvanecimiento */
+.slider::before,
+.slider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 10%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.slider::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.slider::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
 
 /*=====================================*/
 /*========= SECCION FOOTER ============*/
@@ -276,7 +810,6 @@ nav.cartuchera-nav {
   border-top: 1px dashed black;
 }
 
-
 .nav-item .cart-icon {
   position: relative;
   display: flex;
@@ -369,9 +902,7 @@ h3.titulo-categoria {
   font-size: 6rem;
   font-weight: normal;
   text-align: center !important;
-  text-shadow:
-   -2px -2px rgb(255, 151, 173),
-   -3px -3px grey;
+  text-shadow: -2px -2px rgb(255, 151, 173), -3px -3px grey;
 }
 
 /* Configuración de la grid responsiva */
@@ -861,12 +1392,11 @@ div.detalle-producto {
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
-  
+
   flex: 1 1 150px;
 }
 
 div.detalle-main {
-
 }
 
 div.detalle-botones {
@@ -917,14 +1447,18 @@ div.detalle-botones {
 
 /* Estilo del campo de cantidad cuando se enfoca */
 #product-quantity:focus {
-  border-color: rgb(196, 74, 100); /* Color de borde cuando el campo está enfocado */
+  border-color: rgb(
+    196,
+    74,
+    100
+  ); /* Color de borde cuando el campo está enfocado */
 }
 
 /* Asegura que los botones y el campo de cantidad sean del mismo tamaño */
 .quantity-controller input[type="number"] {
   -moz-appearance: textfield; /* Para Firefox */
-  -webkit-appearance: none;   /* Para Safari y Chrome */
-  appearance: none;           /* Para otros navegadores modernos */
+  -webkit-appearance: none; /* Para Safari y Chrome */
+  appearance: none; /* Para otros navegadores modernos */
   padding: 5px 10px;
   font-size: 16px;
   border: 2px solid #ddd;
