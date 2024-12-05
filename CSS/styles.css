@@ -44,7 +44,25 @@ body.index-body {
 /*=====================================*/
 /*========= BARRA NAV =================*/
 /*=====================================*/
-
+/* 
+font-family: "Birthstone", serif; c 8
+font-family: "Ms Madi", serif; c 8
+font-family: "Gwendolyn", serif; c 8
+font-family: "Vibur", serif; c 7
+font-family: "Pacifico", serif; c 7
+font-family: "Playwrite IT Moderna", serif; c 6
+font-family: "Homemade Apple", serif; c 5
+font-family: "Unkempt", serif; 6
+font-family: "Kablammo", serif; 6 
+font-family: "Just Me Again Down Here", serif; 6
+font-family: "Yomogi", serif; 7
+font-family: "Delius Unicase", serif; 7 
+font-family: "Teko", sans-serif; 9
+font-family: "Klee One", serif; 8
+font-family: "Mystery Quest", serif; 8
+font-family: "Fuzzy Bubbles", serif; 8
+font-family: "Poiret One", sans-serif; 8
+*/
 .index-nav {
   width: 100%;
   background-color: rgba(247, 168, 223, 1);
@@ -56,29 +74,34 @@ a.marca {
   align-self: center;
   width: 100%;
   max-width: 350px;
-  font-family: "Barrio", serif;
+  font-family: "Birthstone", serif;
   color: black;
   /*text-shadow: -1px 1px white;*/
-  font-size: 1.9rem;
-  transition: 0.8s ease-in-out;
+  font-size: 2.5rem;
+  transition: 0.3s ease-in-out;
 }
 
 a.marca:hover {
   transform: scale(1.1);
+  color: #ffffff;
+  text-shadow: -2px 2px black;
+
 }
 
 .nav-item {
   margin-left: 50px;
 }
+
 li.nav-item a.nav-link {
   display: inline-block;
   color: black !important;
-  font-size: 1.4rem;
-  font-family: "Barrio", serif;
+  font-size: 1.6rem;
+  font-family: "Poiret One", sans-serif;
+  font-weight: bold;
 }
 
 li.nav-item a.nav-link:hover {
-  text-transform: uppercase;
+  color: white !important;
 }
 
 .boton-nav {
@@ -136,14 +159,46 @@ p#eslogan {
   text-align: center;
 }
 
+.icon-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.icon-box i {
+  font-size: 3rem;
+  color: #007bff;
+}
+
+.icon-box p {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-wrap:pretty ;
+}
+
+.carousel-control-prev-icon {
+  background-color: #e079ee; /* Cambia el color de fondo */
+  width: 40px;              /* Cambia el ancho del icono */
+  height: 40px;             /* Cambia la altura del icono */
+  border-radius: 50%;       /* Haz que el icono sea circular */
+  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
+}
+
+/* Estilo para el icono "Siguiente" */
+.carousel-control-next-icon {
+  background-color: #e079ee; /* Cambia el color de fondo */
+  width: 40px;              /* Cambia el ancho del icono */
+  height: 40px;             /* Cambia la altura del icono */
+  border-radius: 50%;       /* Haz que el icono sea circular */
+  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
+}
+
 /*=====================================*/
 /*========= CARRUSEL =================*/
 /*=====================================*/
 
 .carusel-index {
   max-height: 600px;
-  box-shadow: 2px -2px 300px rgba(255, 18, 1, 0.959),
-    -25px 25px 26px -3px rgba(0, 0, 0, 0.75);
+  
 }
 
 .foto-carousel {
@@ -153,12 +208,36 @@ p#eslogan {
 /*=====================================*/
 /*========= SECCION TIENDA ============*/
 /*=====================================*/
+/* 
+font-family: "Birthstone", serif; c 8
+font-family: "Ms Madi", serif; c 8
+font-family: "Gwendolyn", serif; c 8
+font-family: "Vibur", serif; c 7
+font-family: "Pacifico", serif; c 7
+font-family: "Playwrite IT Moderna", serif; c 6
+font-family: "Homemade Apple", serif; c 5
+font-family: "Unkempt", serif; 6
+font-family: "Kablammo", serif; 6 
+font-family: "Just Me Again Down Here", serif; 6
+font-family: "Yomogi", serif; 7
+font-family: "Delius Unicase", serif; 7 
+font-family: "Teko", sans-serif; 9
+font-family: "Klee One", serif; 8
+font-family: "Mystery Quest", serif; 8
+font-family: "Fuzzy Bubbles", serif; 8
+font-family: "Poiret One", sans-serif; 8
+*/
+h3.titulo {
+  font-size: 3.5rem;
+  font-family: "Teko", sans-serif; 
+  font-weight: normal;
+}
 
 /* Contenedor principal CARTUCHERAS con gradiente */
 .fondo-store1 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -173,7 +252,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(255, 134, 21, 0.76), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(248, 207, 169, 0.76), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -219,7 +298,7 @@ p#eslogan {
 .fondo-store2 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -234,7 +313,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(214, 238, 129, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(214, 238, 129, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -280,7 +359,7 @@ p#eslogan {
 .fondo-store3 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -295,7 +374,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(127, 255, 238, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(127, 255, 238, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -341,7 +420,7 @@ p#eslogan {
 .fondo-store4 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -356,7 +435,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(80, 144, 240, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(80, 144, 240, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -402,7 +481,7 @@ p#eslogan {
 .fondo-store5 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -417,7 +496,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(184, 63, 214, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(184, 63, 214, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -463,7 +542,7 @@ p#eslogan {
 .fondo-store6 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -478,7 +557,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(223, 223, 223, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(223, 223, 223, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -524,7 +603,7 @@ p#eslogan {
 .fondo-store7 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px solid black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -539,7 +618,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(247, 168, 223, 1), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(rgba(247, 168, 223, 1), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -585,7 +664,7 @@ p#eslogan {
 .fondo-store8 {
   height: 220px; /* Altura fija */
   position: relative;
-  border: 2px dashed black;
+  border: 0px solid black;
   border-radius: 20px;
   overflow: hidden; /* Evita que algo sobresalga del contenedor */
   display: flex; /* Asegura que el contenido interno (imagen y texto) esté bien alineado */
@@ -600,7 +679,7 @@ p#eslogan {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(159, 189, 255, 0.7), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(159, 189, 255, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -653,7 +732,7 @@ p#eslogan {
 }
 
 .slider-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   color: #333;
 }
@@ -678,6 +757,7 @@ p#eslogan {
 /* Pista del slider */
 .slider-track {
   display: flex;
+  transition: none; /* No usar transición porque se reorganiza dinámicamente */
   will-change: transform;
 }
 
@@ -723,7 +803,7 @@ p#eslogan {
 
 footer {
   background-color: rgb(209, 120, 139);
-  color: white;
+  color: black;
   text-align: center;
   padding: 20px;
   bottom: 0;
@@ -731,27 +811,56 @@ footer {
   height: auto;
 }
 
-.h6-footer {
-  padding: 20px;
-}
-.redes-icons-footer {
-  padding: 10px;
-}
-.redes-icons-footer a {
-  display: inline-block;
-  padding: 10px 20px;
-  color: rgba(231, 120, 198, 1);
-  text-decoration: none;
-  font-size: 45px;
-}
-
 .contenedor_footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   text-align: center;
-
   gap: 10px;
+}
+
+div.box_1 {
+  display: flex;
+  flex-direction: column;
+}
+
+div.box_1 p {
+  text-align: center;
+}
+
+i.pinguin {
+  font-size: 2.2rem;
+  color: #000000;
+  text-shadow: 1px 1px 12px white;
+}
+
+i.tel,
+i.wsp,
+i.ubic {
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+i.fb,
+i.ig,
+i.prest {
+  font-size: 4rem;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.h6-footer {
+  font-family: "Teko", sans-serif;
+  padding: 10px;
+  font-size: 1.7rem;
+  text-wrap: nowrap;
+  margin: 15px 0 20px 0;
+}
+
+p.p-footer{
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 .contenedor-cards {
@@ -768,8 +877,21 @@ footer {
   border-radius: 5px;
 }
 
-#mask {
-  mask-image: linear-gradient(black 80%, transparent);
+.redes-icons-footer {
+  padding: 10px;
+}
+
+.redes-icons-footer a {
+  display: inline-block;
+  padding: 5px 20px 20px 20px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 45px;
+  transition: 0.5s ease-in-out;
+}
+
+.redes-icons-footer a:hover {
+  transform: scale(1.2);
 }
 
 /*=====================================*/
@@ -1469,4 +1591,19 @@ div.detalle-botones {
 
 button#add-to-cart {
   background-color: rgb(209, 120, 139);
+}
+
+
+
+
+@media (min-width: 768px) {
+  .carousel-container {
+      display: none; /* Oculta el carrusel en pantallas grandes */
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-container {
+      display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
+  }
 }

@@ -8,8 +8,8 @@
 
   <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bangers&family=Barrio&family=Chango&family=Chewy&family=Chicle&family=Delius+Unicase:wght@400;700&family=Flavors&family=Gwendolyn:wght@400;700&family=Ingrid+Darling&family=Just+Me+Again+Down+Here&family=Kablammo&family=Lumanosimo&family=Martian+Mono:wght@100..800&family=Mystery+Quest&family=Pacifico&family=Rubik+Puddles&family=Shrikhand&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
 
   <!-- ICONOS DE BOOTSTRAP -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -39,7 +39,7 @@
               <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active boton-nav" aria-current="page" href="vistas/promociones.php">Promociones</a>
+              <a class="nav-link active boton-nav" aria-current="page" href="vistas/promociones.php">Tienda</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,6 +87,60 @@
       </div>
       <article id="texto_presentacion" class="text-center mx-auto">
         <p id="eslogan">Visita nuestra tienda online para encontrar las mejores creaciones del mercado regional.</p>
+        
+        <!-- Contenedor para pantallas grandes -->
+        <div class="row desktop-container justify-content-evenly">
+          <div class="col-md-3 icon-box">
+              <i class="bi bi-truck"></i>
+              <p>Envíos Gratis</p>
+              <p>En tus compras superiores a $100.000</p>
+          </div>
+          <div class="col-md-3 icon-box">
+              <i class="bi bi-credit-card"></i>
+              <p>Cuotas sin interés</p>
+              <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+          </div>
+          <a href="https://wa.me/1234567890" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black">
+              <i class="bi bi-whatsapp"></i>
+              <p>Soporte por WhatsApp</p>
+              <p>Hacé click acá y comunicate con nosotros</p>
+          </a>
+        </div>
+
+        <!-- Carrusel para pantallas pequeñas -->
+        <div id="iconCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="text-center icon-box">
+                      <i class="bi bi-truck"></i>
+                      <p>Envíos Gratis</p>
+                      <p>En tus compras superiores a $100.000</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="text-center icon-box">
+                      <i class="bi bi-credit-card"></i>
+                      <p>Cuotas sin interés</p>
+                      <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://wa.me/1234567890" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
+                      <i class="bi bi-whatsapp"></i>
+                      <p>Soporte por WhatsApp</p>
+                      <p>Hacé click acá y comunicate con nosotros</p>
+                    </a>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
       </article>
       <div class="w-100 text-center mx-auto" id="promo">
         <h2 class="fs-5 p-3"><span class="text-primary">KUDAY</span> es una tienda unica donde vas a encontrar las mejores <span class="text-primary text-center"> Promociones</span> todos los meses.</h2>
@@ -116,7 +170,7 @@
   
   
   <section id="tienda-index">
-    <h3 class="text-center titulo" style="margin-top: 150px;">Tienda Kuday</h3>
+    <h3 class="text-center titulo" style="margin-top: 100px;">Tienda Kuday</h3>
     <div class="container" style="margin-top: 50px; padding-bottom:150px;">
 
       <div class="mainbox-store row justify-content-evenly">
@@ -192,7 +246,7 @@
 
   
   <section id="promociones" class="slider-container">
-    <h3 class="slider-title">Nuestras promociones</h3>
+    <h3 class="titulo">Nuestras promociones</h3>
     
     <div class="slider-wrapper">
       <div class="slider">
@@ -206,11 +260,6 @@
     </div>
   </section>
 
-
-  <section>
-    
-  </section>
-
   <section id="info">
     <div class="container-fluid row">
 
@@ -218,17 +267,19 @@
   </section>
 
   
-  <footer class="cartuchera-footer">
+  <footer class="footer">
       <main class="container-fluid">
-            <div class="row contenedor_footer-cartuchera">  
+            <div class="row contenedor_footer">  
                 <div class="col-xl-3 col-md-3 col-sm-10 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  CONTÁCTANOS</h6>
-                    <p class="p-footer-cartuchera"><i class="bi bi-telephone-fill"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-whatsapp"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-geo-alt-fill"></i>   Gral. Araóz de Lamadrid 425</p>
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i>  CONTÁCTANOS</h6>
+                    <div class="box_1">
+                      <p class="p-footer"><i class="bi bi-telephone-fill tel"></i>   +54 9 0297 432-1429</p>
+                      <p class="p-footer"><i class="bi bi-whatsapp wsp"></i>   +54 9 0297 432-1429</p>
+                      <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i>   Gral. Araóz de Lamadrid 425</p>
+                    </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  MEDIOS DE PAGO</h6>
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i>  MEDIOS DE PAGO</h6>
                     <div class="contenedor-cards p-2">
                         <img src="./images/cards/visa.png"  alt="mp">
                         <img src="./images/cards/naranja.png" alt="visa">
@@ -239,18 +290,18 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  FORMAS DE ENVIO</h6>
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i>  FORMAS DE ENVIO</h6>
                     <div class="contenedor-cards p-2">
                         <img src="./images/cards/andreani.png" alt="">
                         <img src="./images/cards/correoarg.png" alt="">
                     </div>
                 </div>
                 <div class="row d-flex">
-                    <h4>Seguinos en nuestras redes!</h4>
-                    <div class="redes-icons-footer-cartuchera ">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest"></i></a>
+                    <h6 class="h6-footer">SEGUINOS EN NUESTRAS REDES!</h6>
+                    <div class="redes-icons-footer">
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
                     </div>
                 </div>
             </div>
@@ -264,54 +315,65 @@
 
   <script>
       // Seleccionar los elementos del slider
-        const sliderTrack = document.querySelector('#promociones .slider-track');
-        const sliderItems = Array.from(document.querySelectorAll('#promociones .slider-item'));
-        const slider = document.querySelector('#promociones .slider');
-        const sliderWidth = slider.offsetWidth;
+      const sliderTrack = document.querySelector('#promociones .slider-track');
+      const sliderItems = Array.from(document.querySelectorAll('#promociones .slider-item'));
+      const slider = document.querySelector('#promociones .slider');
 
-        // Clonación de los elementos para que el movimiento sea infinito
-        sliderItems.forEach(item => {
-          const cloneStart = item.cloneNode(true);  // Clonamos para el inicio
-          const cloneEnd = item.cloneNode(true);    // Clonamos para el final
-          sliderTrack.appendChild(cloneEnd);        // Clonamos al final
-          sliderTrack.insertBefore(cloneStart, sliderTrack.firstChild); // Clonamos al inicio
-        });
+      let sliderWidth = slider.offsetWidth; // Ancho del slider visible
+      let itemWidth = sliderItems[0].offsetWidth; // Ancho de un elemento
+      let totalItems = sliderTrack.children.length; // Total de elementos (incluidos clones)
+      let currentPosition = 0; // Posición inicial
+      let animationFrameId; // ID del requestAnimationFrame para control
 
-        // Variables de control
-        let currentPosition = -sliderWidth; // Comenzamos con el primer clon visible
-        const totalItems = sliderTrack.children.length;
+      // Ajustar el ancho total de la pista dinámicamente
+      sliderTrack.style.width = `${totalItems * itemWidth}px`;
 
-        // Ajustamos el ancho de la pista del slider dinámicamente
-        sliderTrack.style.width = `${totalItems * sliderWidth}px`;
+      // Función para reorganizar los elementos dinámicamente
+      function rearrangeItems() {
+        if (Math.abs(currentPosition) >= itemWidth) {
+          currentPosition += itemWidth; // Ajustar la posición para evitar saltos
+          const firstItem = sliderTrack.firstElementChild;
+          sliderTrack.appendChild(firstItem); // Mover el primer elemento al final
+          sliderTrack.style.transform = `translateX(${currentPosition}px)`; // Ajustar la posición
+        }
+      }
 
-        // Posicionamos el slider en la posición inicial (detrás del primer clon)
+      // Función para animar el slider
+      function animateSlider() {
+        currentPosition -= 2; // Control de velocidad
+        sliderTrack.style.transform = `translateX(${currentPosition}px)`; // Mover la pista
+        rearrangeItems(); // Reorganizar los elementos si es necesario
+        animationFrameId = requestAnimationFrame(animateSlider); // Continuar la animación
+      }
+
+      // Función para reiniciar el slider en caso de redimensionamiento
+      function resetSlider() {
+        // Cancelamos la animación temporalmente
+        cancelAnimationFrame(animationFrameId);
+
+        // Recalcular dimensiones críticas
+        sliderWidth = slider.offsetWidth;
+        itemWidth = sliderItems[0].offsetWidth;
+        totalItems = sliderTrack.children.length;
+
+        // Ajustar el ancho total de la pista
+        sliderTrack.style.width = `${totalItems * itemWidth}px`;
+
+        // Reiniciar la posición
+        currentPosition = 0;
         sliderTrack.style.transform = `translateX(${currentPosition}px)`;
 
-        // Función para animar el slider utilizando requestAnimationFrame
-        function animateSlider() {
-          currentPosition -= 2; // Control de velocidad del deslizamiento (más grande = más rápido)
-
-          // Cuando llegue al final de la pista, reiniciamos la posición sin interrupciones
-          if (Math.abs(currentPosition) >= sliderWidth * (totalItems - sliderItems.length)) {
-            currentPosition = -sliderWidth; // Reinicia el desplazamiento para dar continuidad
-          }
-
-          // Usamos requestAnimationFrame para asegurar que la animación sea suave
-          sliderTrack.style.transform = `translateX(${currentPosition}px)`;
-
-          // Llamar a la función para la siguiente animación
-          requestAnimationFrame(animateSlider);
-        }
-
-        // Iniciar la animación con requestAnimationFrame
+        // Reiniciar la animación
         requestAnimationFrame(animateSlider);
+      }
 
-        // Reajustar el ancho del slider al cambiar el tamaño de la ventana
-        window.addEventListener('resize', () => {
-          const sliderWidth = slider.offsetWidth;  // Vuelve a calcular el ancho
-          sliderTrack.style.width = `${totalItems * sliderWidth}px`; // Ajustamos el ancho de la pista
-          currentPosition = -sliderWidth;  // Reseteamos la posición al nuevo ancho
-        });
+      // Iniciar la animación
+      requestAnimationFrame(animateSlider);
+
+      // Detectar cambios en el tamaño de la ventana
+      window.addEventListener('resize', resetSlider);
+
+
 
   </script>
 
