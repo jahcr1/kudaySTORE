@@ -39,11 +39,13 @@
 
 body.index-body {
   background-color: rgb(255, 255, 255);
+
 }
 
 /*=====================================*/
 /*========= BARRA NAV =================*/
 /*=====================================*/
+
 /* 
 font-family: "Birthstone", serif; c 8
 font-family: "Ms Madi", serif; c 8
@@ -65,7 +67,7 @@ font-family: "Poiret One", sans-serif; 8
 */
 .index-nav {
   width: 100%;
-  background-color: rgba(247, 168, 223, 1);
+  background-color: rgb(209, 120, 139);
   height: auto;
 }
 
@@ -93,7 +95,7 @@ a.marca:hover {
 }
 
 li.nav-item a.nav-link {
-  display: inline-block;
+  
   color: black !important;
   font-size: 1.6rem;
   font-family: "Poiret One", sans-serif;
@@ -104,17 +106,44 @@ li.nav-item a.nav-link:hover {
   color: white !important;
 }
 
-.boton-nav {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 16px;
-  color: white !important;
+
+/* Estilo base para todos los nav-items */
+.navbar-nav .nav-item {
+  display: flex; /* Asegura que todos los elementos se alineen correctamente */
+  align-items: center; /* Centra verticalmente el contenido dentro del contenedor */
+  justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+  margin: 10px 0 0 20px; /* Evita márgenes adicionales que puedan desalinear */
 }
+
+/* Estilo específico para el ícono del carrito */
+.cart-item .cart-icon {
+  display: flex; /* Asegura que el ícono y el contador estén en línea */
+  align-items: center; /* Centra verticalmente el ícono y el contador */
+  gap: 0.5rem; /* Añade un espacio uniforme entre el ícono y el contador */
+  text-decoration: none; /* Elimina subrayado en el enlace */
+}
+
+/* Ajustes del contador */
+#cart-count {
+  display: inline-block; /* Asegura que el contador se mantenga al lado del ícono */
+  background-color: #f00; /* Fondo rojo para destacarlo (opcional) */
+  color: #fff; /* Texto blanco */
+  border-radius: 50%; /* Forma de círculo */
+  padding: 0.2rem 0.5rem; /* Espaciado interno */
+  font-size: 0.8rem; /* Tamaño ajustado */
+  font-weight: bold; /* Destaca el número */
+  line-height: 1; /* Ajusta la altura del texto */
+  text-align: center; /* Centra el texto dentro del círculo */
+  
+}
+
+
 
 /*=====================================*/
 /*========= SECCION INICIO ============*/
 /*=====================================*/
 #inicio {
-  margin: 50px 0 50px 0;
+  margin: 80px 0 50px 0;
   padding-top: 50px;
 
   background-image: linear-gradient(
@@ -126,6 +155,15 @@ li.nav-item a.nav-link:hover {
   background-size: cover;
   background-position: center;
 }
+
+div#box_inicio {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+}
+
 
 #logo_texto {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -141,55 +179,9 @@ div#presentacion {
   align-items: center;
 }
 
-#texto_presentacion {
-  width: auto;
-  height: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-  border-top: 2px dotted black;
-  border-bottom: 2px dotted black;
-}
-p#eslogan {
-  box-sizing: border-box;
-  font-family: "Dancing Script", cursive;
-  color: #0c0c0c;
-  font-size: 20px;
-  padding: 40px 0;
-  text-align: center;
-}
-
-.icon-box {
-  text-align: center;
-  padding: 20px;
-}
-
-.icon-box i {
-  font-size: 3rem;
-  color: #007bff;
-}
-
-.icon-box p {
-  margin-top: 10px;
-  font-size: 1rem;
-  text-wrap:pretty ;
-}
-
-.carousel-control-prev-icon {
-  background-color: #e079ee; /* Cambia el color de fondo */
-  width: 40px;              /* Cambia el ancho del icono */
-  height: 40px;             /* Cambia la altura del icono */
-  border-radius: 50%;       /* Haz que el icono sea circular */
-  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
-}
-
-/* Estilo para el icono "Siguiente" */
-.carousel-control-next-icon {
-  background-color: #e079ee; /* Cambia el color de fondo */
-  width: 40px;              /* Cambia el ancho del icono */
-  height: 40px;             /* Cambia la altura del icono */
-  border-radius: 50%;       /* Haz que el icono sea circular */
-  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
+#minibanner {
+  background-color: #e9e092;
+  
 }
 
 /*=====================================*/
@@ -227,8 +219,17 @@ font-family: "Mystery Quest", serif; 8
 font-family: "Fuzzy Bubbles", serif; 8
 font-family: "Poiret One", sans-serif; 8
 */
+
+section#tienda-index {
+  margin: 150px 0 0 0;
+}
+
+#titulo_tienda {
+  scroll-margin-top: 100px;
+}
+
 h3.titulo {
-  font-size: 3.5rem;
+  font-size: 4.8rem;
   font-family: "Teko", sans-serif; 
   font-weight: normal;
 }
@@ -618,7 +619,7 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(247, 168, 223, 1), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(rgb(245, 103, 103), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -679,7 +680,7 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(159, 189, 255, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(rgba(69, 255, 69, 0.7), rgba(255, 255, 255, 0.9));
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -727,14 +728,17 @@ h3.titulo {
 
 /* Encapsulado para la sección del slider */
 #promociones {
+ 
+  height: auto;
   padding: 20px 0;
   text-align: center;
+  margin: 120px 0 0 0;
+  
 }
 
-.slider-title {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #333;
+
+#titulo_promociones{
+  scroll-margin: 90px;
 }
 
 /* Contenedor para centrar y limitar el slider */
@@ -750,7 +754,7 @@ h3.titulo {
 .slider {
   position: relative;
   width: 80vw; /* El slider ocupa el 80% del viewport */
-  height: 400px; /* Altura fija */
+  height: 500px; /* Altura fija */
   overflow: hidden;
 }
 
@@ -789,12 +793,82 @@ h3.titulo {
 .slider::before {
   left: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  
 }
 
 .slider::after {
   right: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 }
+
+/*=====================================*/
+/*========= SECCION INFO ==============*/
+/*=====================================*/
+
+section#info {
+  margin: 100px 0;
+}
+
+#texto_presentacion {
+  overflow-x: hidden;
+  width: auto;
+  height: 450px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  border-top: 0px dotted black;
+  border-bottom: 0px dotted black;
+
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('../images/fondos/p2.jpg');
+  background-size: cover; /* Escala la imagen para cubrir todo el área */
+  background-repeat: no-repeat;
+  background-position: center; 
+  filter: grayscale(0%); /* Convierte la imagen en blanco y negro */
+  
+}
+p#eslogan {
+  box-sizing: border-box;
+  font-family: "Dancing Script", cursive;
+  color: #0c0c0c;
+  font-size: 20px;
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.icon-box {
+  text-align: center;
+  padding: 20px;
+}
+
+.icon-box i {
+  font-size: 3rem;
+  color: #007bff;
+}
+
+.icon-box p {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-wrap: pretty;
+  padding: 10px;
+}
+
+.carousel-control-prev-icon {
+  background-color: #e079ee; /* Cambia el color de fondo */
+  width: 40px;              /* Cambia el ancho del icono */
+  height: 40px;             /* Cambia la altura del icono */
+  border-radius: 50%;       /* Haz que el icono sea circular */
+  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
+}
+
+/* Estilo para el icono "Siguiente" */
+.carousel-control-next-icon {
+  background-color: #e079ee; /* Cambia el color de fondo */
+  width: 40px;              /* Cambia el ancho del icono */
+  height: 40px;             /* Cambia la altura del icono */
+  border-radius: 50%;       /* Haz que el icono sea circular */
+  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
+}
+
 
 
 /*=====================================*/
@@ -809,6 +883,10 @@ footer {
   bottom: 0;
   width: 100%;
   height: auto;
+}
+
+footer#seccion_footer {
+  scroll-margin-top: 50px;
 }
 
 .contenedor_footer {
@@ -827,6 +905,34 @@ div.box_1 {
 div.box_1 p {
   text-align: center;
 }
+
+/*  MINIMAPA DE GOOGLE*/
+.map-container {
+  position: relative;
+  width: 100%; /* Mapa se adapta al contenedor */
+  padding-top: 56.25%; /* Relación de aspecto 16:9 */
+  margin-top: 15px; /* Espaciado respecto a otros elementos */
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* Sin bordes extra */
+}
+
+.map-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
 
 i.pinguin {
   font-size: 2.2rem;
@@ -879,6 +985,11 @@ p.p-footer{
 
 .redes-icons-footer {
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+
 }
 
 .redes-icons-footer a {
