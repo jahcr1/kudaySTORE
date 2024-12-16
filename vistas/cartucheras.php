@@ -13,7 +13,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bangers&family=Barrio&family=Chango&family=Chewy&family=Chicle&family=Delius+Unicase:wght@400;700&family=Flavors&family=Gwendolyn:wght@400;700&family=Ingrid+Darling&family=Just+Me+Again+Down+Here&family=Kablammo&family=Lumanosimo&family=Martian+Mono:wght@100..800&family=Mystery+Quest&family=Pacifico&family=Rubik+Puddles&family=Shrikhand&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
     
     <!-- ICONOS DE BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -61,6 +61,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                     <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
                                     <hr class="dropdown-divider">
                                     <li><a class="dropdown-item" href="varios.php">Varios</a></li>
+                                    <hr class="dropdown-divider">
+                                    <li><a class="dropdown-item" href="promociones.php">Promociones</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -99,7 +101,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </section>
 
-
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container">
@@ -135,8 +136,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                 <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Descripción : </strong><span class="dato"><?php echo $listar_productos['descripcion']; ?></span></p>
                                 <div class="botonera-producto">
                                     <!-- Botón para Ver Producto -->
-                                    <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="btn btn-danger ver-producto">Ver producto</a>
-                                    <a href="../carrito.php" class="btn btn-danger add-carrito" data-id="<?php echo $listar_productos['id']; ?>">Agregar al carrito</a>
+                                    <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="btn ver-producto">Ver producto</a>
+                                    <a href="../carrito.php" class="btn add-carrito" data-id="<?php echo $listar_productos['id']; ?>">Agregar al carrito</a>
 
                                 </div>
                             </div>
@@ -148,47 +149,66 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </section>
 
-
-
-    <footer class="cartuchera-footer">
+    <footer class="footer" id="seccion_footer">
         <main class="container-fluid">
-            <div class="row contenedor_footer-cartuchera">  
-                <div class="col-xl-3 col-md-3 col-sm-10 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  CONTÁCTANOS</h6>
-                    <p class="p-footer-cartuchera"><i class="bi bi-telephone-fill"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-whatsapp"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-geo-alt-fill"></i>   Gral. Araóz de Lamadrid 425</p>
-                </div>
-                <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  MEDIOS DE PAGO</h6>
-                    <div class="contenedor-cards p-2">
-                        <img src="../images/cards/visa.png"  alt="mp">
-                        <img src="../images/cards/naranja.png" alt="visa">
-                        <img src="../images/cards/mercadopago2.png" alt="visa">
-                        <img src="../images/cards/pagofacil.png" alt="visa">
-                        <img src="../images/cards/efectivo.png" alt="visa">
-                        <img src="../images/cards/rapipago.png" alt="">
+            <div class="row contenedor_footer">
+                
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 p-2 pb-5">
+                
+                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
+                <div class="box_1">
+                    <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
+
+                    <!-- Mini mapa responsive -->
+                    <div class="map-container">
+                    <a
+                        href="https://www.google.com/maps?q=-31.409736861796983,-64.16100064468557&z=17"
+                        target="_blank"
+                        title="Abrir ubicación en Google Maps">
+                        <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.3467339192976!2d-64.16100064468557!3d-31.409736861796983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2z-31.409736861796983_-64.16100064468557!5e0!3m2!1sen!2sar!4v1696990000000"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </a>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  FORMAS DE ENVIO</h6>
-                    <div class="contenedor-cards p-2">
-                        <img src="../images/cards/andreani.png" alt="">
-                        <img src="../images/cards/correoarg.png" alt="">
-                    </div>
                 </div>
-                <div class="row d-flex">
-                    <h4>Seguinos en nuestras redes!</h4>
-                    <div class="redes-icons-footer-cartuchera ">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest"></i></a>
-                    </div>
+
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2">
+                
+                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
+                <div class="contenedor-cards p-2">
+                    <img src="../images/cards/visa.png" alt="mp">
+                    <img src="../images/cards/naranja.png" alt="visa">
+                    <img src="../images/cards/mercadopago2.png" alt="visa">
+                    <img src="../images/cards/pagofacil.png" alt="visa">
+                    <img src="../images/cards/efectivo.png" alt="visa">
+                    <img src="../images/cards/rapipago.png" alt="">
                 </div>
+
+                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
+                <div class="contenedor-cards p-2">
+                    <img src="../images/cards/andreani.png" alt="">
+                    <img src="../images/cards/correoarg.png" alt="">
+                </div>
+
+                <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
+                <div class="redes-icons-footer">
+                    <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
+                    <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                    <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
+                </div>
+                </div>
+                
             </div>
         </main>
 
         <p style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> COPYRIGHT KUDAY ARTESANIAS & DEVCR1 2021. TODOS LOS DERECHOS RESERVADOS.</p>
+
     </footer>
     
     

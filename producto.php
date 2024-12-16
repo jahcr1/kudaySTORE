@@ -43,6 +43,9 @@ if (!$producto) {
     <!-- ICONOS DE BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- ICONOS DE FONTAWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -110,10 +113,10 @@ if (!$producto) {
 
     <section id="ver_producto">
         <div id="details">
-            <div class="detalle-img">
-                <img src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>" alt="Imagen del Producto">
+            <div class="detalle-img col-xl-5 col-lg-5 col-md-5 col-sm-10">
+                <img src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>" alt="Imagen del Producto" class="img-fluid">
             </div>
-            <div class="detalle-producto">
+            <div class="detalle-producto col-xl-5 col-lg-5 col-md-5 col-sm-10 text-center">
                 <div class="detalle-main">
                     <h1><?php echo $producto['nombre']; ?></h1>
                     <p><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
@@ -121,6 +124,7 @@ if (!$producto) {
                     <p><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
                     <p><strong>Descripción:</strong> <?php echo $producto['descripcion']; ?></p>
                 </div>
+
                 <div class="detalle-botones">
                     <div class="quantity-controller">
                         <button class="btn-decrease" onclick="updateQuantity(-1)">−</button>
@@ -130,6 +134,56 @@ if (!$producto) {
                     <button id="add-to-cart" class="btn btn-danger add-carrito" data-id="<?php echo $producto['id']; ?>">
                         Agregar al carrito
                     </button>
+                </div>
+
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        <i class="fa-solid fa-house-chimney"></i>&nbsp;&nbsp;&nbsp;Nuestro Local
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body">
+                            <strong>Kuday Artesanias</strong> General Araóz de Lamadrid 425 - Barrio General Paz, Cordoba Argentina
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <i class="fa-solid fa-truck-fast"></i></i>&nbsp;&nbsp;&nbsp;Medios de Envio
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Tu código postal">
+                                <button type="button" class="btn btn-outline-secondary">CALCULAR</button>
+                                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">No sé mi Código Postal</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">RESETEAR C.P</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            Accordion Item #3
+                        </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

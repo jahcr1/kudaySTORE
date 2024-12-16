@@ -285,15 +285,32 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store1 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+  
+                
 }
+
+.texto-store1:hover {
+  color: #fd7949;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+               0 0 12px rgba(255, 255, 255, 0.8), 
+               0 0 24px rgba(255, 154, 118, 0.6); 
+}
+
+
 
 /* Contenedor principal NECESER con gradiente */
 .fondo-store2 {
@@ -346,15 +363,29 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store2 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+
+.texto-store2:hover {
+  color: #befd49; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+}
+
 
 /* Contenedor principal BILLETERAS con gradiente */
 .fondo-store3 {
@@ -407,15 +438,29 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store3 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+
+.texto-store3:hover {
+  color: #33ffe4; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+}
+
 
 /* Contenedor principal BANDOLERA con gradiente */
 .fondo-store4 {
@@ -468,14 +513,27 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store4 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.texto-store4:hover {
+  color: rgba(80, 144, 240, 1); /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal BOLSO MATERO con gradiente */
@@ -529,14 +587,28 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store5 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+  text-wrap: nowrap;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.texto-store5:hover {
+  color: #bf55f0; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal SET MATERO con gradiente */
@@ -590,14 +662,28 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store6 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+  text-wrap: nowrap;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.texto-store6:hover {
+  color: #dddddd; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal VARIOS con gradiente */
@@ -651,14 +737,27 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store7 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.texto-store7:hover {
+  color: #f76964; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal PROMOCIONES con gradiente */
@@ -712,14 +811,27 @@ h3.titulo {
 
 /* Texto en el centro */
 .texto-store8 {
-  position: relative; /* Por encima del resto */
+  position: absolute; /* Por encima del resto */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 3rem;
-  font-weight: normal;
-  text-shadow: -2px 2px black;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
+
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
+               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+               transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.texto-store8:hover {
+  color: #55f540; /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
+               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
+               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /*=====================================*/
@@ -1037,10 +1149,8 @@ body.cartuchera-body::before {
 
 nav.cartuchera-nav {
   width: 100%;
-  background-color: rgb(255, 151, 173);
+  background-color: rgb(209, 120, 139);
   height: auto;
-  border-bottom: 2px dashed black;
-  border-top: 1px dashed black;
 }
 
 .nav-item .cart-icon {
@@ -1213,44 +1323,45 @@ span.dato {
 
 div.botonera-producto {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 
 a.ver-producto {
-  display: flex;
-  justify-content: center;
   color: black;
-  align-items: center;
   font-weight: bold;
-  width: 100%;
+  width: 250px;
   margin-top: 10px;
   background-color: rgb(255, 151, 173);
-  border: 2px dashed black;
+  
+  min-width: 200px;
+  max-width: 100%;
+  
 }
 
 a.ver-producto:hover {
   background-color: rgb(247, 87, 121);
-  border: 3px dashed black;
+  color: white;
+  
 }
 
 /* Botón de agregar al carrito */
 a.add-carrito {
-  display: flex;
-  justify-content: center;
   color: black;
-  align-items: center;
   font-weight: bold;
-  width: 100%;
+  width: 250px;
   margin-top: 10px;
   background-color: rgb(255, 151, 173);
-  border: 2px dashed black;
+
+  min-width: 200px;
+  max-width: 100%;
 }
 
 a.add-carrito:hover {
   background-color: rgb(247, 87, 121);
-  border: 3px dashed black;
+  color: white;
 }
 
 footer.cartuchera-footer {
@@ -1587,20 +1698,21 @@ div.dataTables_filter input {
 /*=======================================*/
 
 section#ver_producto {
-  margin: 80px auto 20px auto;
+  margin: 150px auto 150px auto;
   padding: 20px;
+  height: auto;
 }
 
 div#details {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  
   padding: 20px;
-  background-color: rgb(201, 197, 197);
-  justify-content: space-around;
-  align-items: stretch;
+  background-color: rgb(255, 255, 255);
+  justify-content:center;
+  
   gap: 10px;
 }
 
@@ -1608,7 +1720,6 @@ div.detalle-img {
   display: flex;
   justify-content: center;
   padding: 10px;
-  flex: 2 1 300px;
   border: 1px solid black;
 }
 
@@ -1616,7 +1727,7 @@ div.detalle-img img {
   justify-content: center;
   width: 100%;
   max-width: 400px;
-  min-width: 120px;
+  min-width: 200px;
   height: auto;
 }
 
@@ -1625,8 +1736,6 @@ div.detalle-producto {
   flex-direction: column;
   justify-content: space-around;
   padding: 10px;
-
-  flex: 1 1 150px;
 }
 
 div.detalle-main {

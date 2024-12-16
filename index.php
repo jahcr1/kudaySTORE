@@ -87,7 +87,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         </div>
       </div>
     </nav>
-
   </header>
 
   <section id="inicio">
@@ -154,7 +153,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor1">
             <img src="./images/tienda/cartuchera3.png" alt="Cartuchera" class="imagen1">
           </div>
-          <a href="./vistas/cartucheras.php" target="_blank" class="text-center texto-store1">Cartucheras</a>
+          <a href="./vistas/cartucheras.php" target="_blank" class="texto-store1">Cartucheras</a>
         </div>
 
         <div class="col-md-5 fondo-store2 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -162,7 +161,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor2">
             <img src="./images/tienda/cartuchera3.png" alt="Neceser" class="imagen2">
           </div>
-          <a href="./vistas/neceser.php" target="_blank" class="text-center texto-store2">Neceser</a>
+          <a href="./vistas/neceser.php" target="_blank" class="texto-store2">Neceser</a>
         </div>
 
         <div class="col-md-5 fondo-store3 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -170,7 +169,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor3">
             <img src="./images/tienda/cartuchera3.png" alt="Billeteras" class="imagen3">
           </div>
-          <a href="./vistas/billeteras.php" target="_blank" class="text-center texto-store3">Billeteras</a>
+          <a href="./vistas/billeteras.php" target="_blank" class="texto-store3">Billeteras</a>
         </div>
 
         <div class="col-md-5 fondo-store4 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -178,7 +177,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor4">
             <img src="./images/tienda/cartuchera3.png" alt="Bandoleras" class="imagen4">
           </div>
-          <a href="./vistas/bandoleras.php" target="_blank" class="text-center texto-store4">Bandoleras</a>
+          <a href="./vistas/bandoleras.php" target="_blank" class="texto-store4">Bandoleras</a>
         </div>
 
         <div class="col-md-5 fondo-store5 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -186,7 +185,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor5">
             <img src="./images/tienda/cartuchera3.png" alt="Bolsomatero" class="imagen5">
           </div>
-          <a href="./vistas/bolsomatero.php" target="_blank" class="text-center texto-store5">Bolsos Materos</a>
+          <a href="./vistas/bolsomatero.php" target="_blank" class="texto-store5">Bolsos Materos</a>
         </div>
 
         <div class="col-md-5 fondo-store6 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -194,7 +193,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor6">
             <img src="./images/tienda/setv31.png" alt="Set Matero" class="imagen6">
           </div>
-          <a href="./vistas/setmatero.php" target="_blank" class="text-center texto-store6">Set Matero</a>
+          <a href="./vistas/setmatero.php" target="_blank" class="texto-store6">Set Matero</a>
         </div>
 
         <div class="col-md-5 fondo-store7 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -202,7 +201,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor7">
             <img src="./images/tienda/portad1.png" alt="Varios" class="imagen7">
           </div>
-          <a href="./vistas/varios.php" target="_blank" class="text-center texto-store7">Varios</a>
+          <a href="./vistas/varios.php" target="_blank" class="texto-store7">Varios</a>
         </div>
 
         <div class="col-md-5 fondo-store8 d-flex align-items-center justify-content-center g-2 gy-4">
@@ -210,7 +209,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="imagen-contenedor8">
             <img src="./images/tienda/cartuchera3.png" alt="Promociones" class="imagen8">
           </div>
-          <a href="./vistas/promociones.php" target="_blank" class="text-center texto-store8">Promociones</a>
+          <a href="./vistas/promociones.php" target="_blank" class="texto-store8">Promociones</a>
         </div>
 
       </div>
@@ -263,7 +262,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </div>
   </section>
-
 
   <section id="info">
     <div>
