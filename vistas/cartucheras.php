@@ -30,7 +30,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     <header>
         <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
-            <div class="container-fluid">
+            <div class="container-fluid" style="flex-wrap: wrap;">
                     <a class="navbar-brand marca align-self-center text-center" href="../index.php#inicio">Kuday Artesanias</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,7 +103,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
-        <div class="container">
+        <div class="container contenedor-h3">
             <h3 class="text-center titulo-categoria" style="margin-top: 80px;">Cartucheras</h3>
         </div>
 
@@ -219,7 +219,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     
     <!-- Incluyendo GSAP BOUNCE -->
-    <script>
+    <!-- <script>
         gsap.to("#cartuchera-bounce", {
             duration: 1.5,
             y: 50,
@@ -237,7 +237,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         words.forEach(el => {
             tl.from(el, {text: "", duration: el.innerHTML.length * timePerCharacter, ease: "none"});
         });
-    </script>
+    </script> -->
 
     <!-- Script JS para sumar productos al carrito dinamicamente -->
     <script>
