@@ -123,20 +123,29 @@ li.nav-item a.nav-link:hover {
   text-decoration: none; /* Elimina subrayado en el enlace */
 }
 
-/* Ajustes del contador */
-#cart-count {
-  display: inline-block; /* Asegura que el contador se mantenga al lado del ícono */
-  background-color: #f00; /* Fondo rojo para destacarlo (opcional) */
-  color: #fff; /* Texto blanco */
-  border-radius: 50%; /* Forma de círculo */
-  padding: 0.2rem 0.5rem; /* Espaciado interno */
-  font-size: 0.8rem; /* Tamaño ajustado */
-  font-weight: bold; /* Destaca el número */
-  line-height: 1; /* Ajusta la altura del texto */
-  text-align: center; /* Centra el texto dentro del círculo */
-  
+/* Estilos para el icono de carrito */
+.nav-item .cart-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 /*=====================================*/
@@ -1149,40 +1158,15 @@ body.cartuchera-body::before {
   box-sizing: border-box;
 }
 
-
 nav.cartuchera-nav {
   width: 100%;
   background-color: rgb(209, 120, 139);
   height: auto;
 }
-
-.nav-item .cart-icon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-#cart-count {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+ 
 section#slide-cartuchera {
   overflow: hidden; /* Oculta contenido que exceda */
 }
-
 
 div.contenedor-slide-cartuchera {
   display: flex;
@@ -1299,6 +1283,7 @@ h3.titulo-categoria {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   max-width: 600px;
 
@@ -1320,22 +1305,23 @@ h3.titulo-categoria {
   max-height: 500px;
   justify-content: center;
   align-self: center;
+  flex-grow: 1;
 }
 
 /* Imagen del producto */
 img.imagen-producto {
   width: 100%;
-  max-width: 220px;
+  max-width: 300px;
   height: auto;
   max-height: 350px;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
   filter: brightness(100%);
   transition: 0.5s ease-in-out;
 }
 
 img.imagen-producto:hover {
-  transform: scale(1.8);
+  transform: scale(1.1);
   filter: brightness(120%) contrast(105%)
     drop-shadow(-2px 2px 10px rgb(65, 65, 65));
 }

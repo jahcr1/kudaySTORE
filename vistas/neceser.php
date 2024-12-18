@@ -68,8 +68,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="#">Contactános</a>
                             </li>
-                            <li class="nav-item align-self-center">
-                                <a href="../carrito.php" class="cart-icon">
+                            <li class="nav-item cart-item">
+                                <a href="../carrito.php" target="_blank" class="cart-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart">
                                         <circle cx="9" cy="21" r="1"></circle>
                                         <circle cx="20" cy="21" r="1"></circle>
@@ -104,7 +104,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container">
-            <h3 class="text-center titulo-categoria" style="margin-top: 80px;">Cartucheras</h3>
+            <h3 class="text-center titulo-categoria" style="margin-top: 80px;">Neceser</h3>
         </div>
 
         <div style="margin-top: 50px;">
@@ -112,7 +112,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                 <!-- ACA LISTAMOS SOLO LAS CARTUCHERAS DESDE LA BD -->
                 <?php
                 include('../componentes/conexion.php');
-                $consultar_productos = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '1'");
+                $consultar_productos = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8'");
                 while ($listar_productos = mysqli_fetch_assoc($consultar_productos)) {
                 ?>
                     <div class="producto">
