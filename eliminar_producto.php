@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $id = $_POST['id'];
 
   // Aquí debes realizar la conexión a la base de datos y ejecutar la consulta de eliminación.
-  $sql = "DELETE FROM productos WHERE id_producto = ?";
+  $sql = "DELETE FROM productos WHERE id = ?";
   
   // Supongamos que tienes una conexión $conn
   $stmt = $conexion->prepare($sql);

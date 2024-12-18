@@ -1,37 +1,41 @@
 <?php
 session_start();
 
-include_once('conexion.php');
+require_once('conexion.php');
 
 
 if (isset($_SESSION['administrador'])) {
 
-  if (!empty($_POST)) {
+  if (isset($_POST['categoria'])) {
 
     $categoria = mysqli_real_escape_string($conexion, $_POST['categoria']);
     $resultado = null;
 
+    //La consulta JOIN crea un alias categoria_nombre y le asigna el join de ambas tablas usando punteros, luego de la instruccion FROM hay q declarar el puntero productos p
     switch ($categoria) {
-      case 'Cartuchera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Cartuchera'");
+      case '1':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '1'");
         break;
-        case 'Neceser':
-          $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Neceser'");
-          break;
-      case 'Bolso Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Bolso Matero'");
+      case'2':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '2'");
         break;
-      case 'Set Matero':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Set Matero'");
+      case '3':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '3'");
         break;
-      case 'Billetera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Billetera'");
+      case '4':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '4'");
         break;
-      case 'Bandolera':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos WHERE categoria_producto = 'Bandolera'");
+      case '5':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '5'");
         break;
-      case 'Varios':
-        $resultado = mysqli_query($conexion, "SELECT * FROM productos  WHERE categoria_producto = 'Varios' ORDER BY nombre_producto ASC");
+      case '6':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '6'");
+        break;
+      case '7':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '7'");
+        break;
+      case '8':
+        $resultado = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8'");
         break;
       default:
       echo 'Categoria no valida';
@@ -41,11 +45,13 @@ if (isset($_SESSION['administrador'])) {
     if ($resultado) {
       $_SESSION['productos'] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
       header("Location: ../panel.php?eaea#tabla-resultado");
-      exit;
+      exit();
     } else {
       echo 'No se encontraron productos.';
     }
   }
 } else {
-  echo 'Error de usuario invalido';
+  $_SESSION['error'] = "Por favor, selecciona una categoría para listar los productos.";
+    header("Location: ../panel.php");
+    exit();
 }

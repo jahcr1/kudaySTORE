@@ -1,4 +1,3 @@
-
 <main class="container-fluid">
 <div class="row contenedor_footer">  
     <div class="col-xl-3 col-md-3 col-sm-10 p-2">
@@ -10,19 +9,19 @@
     <div class="col-xl-3 col-md-3 col-sm-6 p-2">
           <h6 class="h6-footer"><i class="bi bi-tencent-qq" style="font-size: 30px;"></i>  MEDIOS DE PAGO</h6>
           <div class="contenedor-cards p-2">
-            <img src="images/cards/visa.png"  alt="mp">
-            <img src="images/cards/naranja.png" alt="visa">
-            <img src="images/cards/mercadopago2.png" alt="visa">
-            <img src="images/cards/pagofacil.png" alt="visa">
-            <img src="images/cards/efectivo.png" alt="visa">
-            <img src="images/cards/rapipago.png" alt="">
+            <img src="./images/cards/visa.png"  alt="mp">
+            <img src="./images/cards/naranja.png" alt="visa">
+            <img src="./images/cards/mercadopago2.png" alt="visa">
+            <img src="./images/cards/pagofacil.png" alt="visa">
+            <img src="./images/cards/efectivo.png" alt="visa">
+            <img src="./images/cards/rapipago.png" alt="">
           </div>
     </div>
     <div class="col-xl-3 col-md-3 col-sm-6 p-2">
           <h6 class="h6-footer"><i class="bi bi-tencent-qq" style="font-size: 30px;"></i>  FORMAS DE ENVIO</h6>
           <div class="contenedor-cards p-2">
-            <img src="images/cards/andreani.png" alt="">
-            <img src="images/cards/correoarg.png" alt="">
+            <img src="./images/cards/andreani.png" alt="">
+            <img src="./images/cards/correoarg.png" alt="">
           </div>
     </div>
     <div class="row d-flex">

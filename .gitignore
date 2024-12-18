@@ -3,7 +3,6 @@
 
 # Ignorar archivos de configuración de entorno
 .env
-config.php
 
 # Ignorar archivos de caché
 *.cache
