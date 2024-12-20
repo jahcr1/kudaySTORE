@@ -116,14 +116,14 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       <div id="carouselExampleSlidesOnly" class="carousel slide car pt-2 pb-3" data-bs-ride="carousel">
         <div class="carousel-inner carusel-index">
           <div class="carousel-item active" data-bs-interval="4000">
-            <img src="images/carousel/hilos60003300.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide1">
+            <img src="images/carousel/glaciar2.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide1">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="4000">
-            <img src="images/carousel/baner2.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide2">
+            <img src="images/carousel/glaciar1.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide2">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
