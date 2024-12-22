@@ -101,14 +101,11 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div class="col-xl-6 col-lg-5 col-md-5 col-sm-8" id="presentacion">
           <img src="images/logo/logo.png" class="logo object-fit-cover " alt="logo">
         </div>
-
       </div>
-
-      
     </div>
     <div class="text-center mx-auto" id="minibanner">
         <h2 class="fs-5 p-3"><span class="text-primary">KUDAY</span> es una tienda unica donde vas a encontrar las mejores <span class="text-primary text-center"> Promociones</span> todos los meses.</h2>
-      </div>
+    </div>
   </section>
 
   <section class="carrusel" style="margin-top: 100px;">
@@ -116,21 +113,21 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       <div id="carouselExampleSlidesOnly" class="carousel slide car pt-2 pb-3" data-bs-ride="carousel">
         <div class="carousel-inner carusel-index">
           <div class="carousel-item active" data-bs-interval="4000">
-            <img src="images/carousel/glaciar2.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide1">
+            <img src="images/carousel/glaciar1.jpg" class="foto-carousel " alt="slide1">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="4000">
-            <img src="images/carousel/glaciar1.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide2">
+            <img src="images/carousel/glaciar1.jpg" class="foto-carousel d-block w-100 " alt="slide2">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="4000">
-            <img src="images/carousel/baner3.jpg" class="foto-carousel d-block w-100 img-fluid object-fit-cover" alt="slide3">
+            <img src="images/carousel/baner3.jpg" class="foto-carousel d-block w-100 " alt="slide3">
             <div class="carousel-caption d-none d-md-block">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
