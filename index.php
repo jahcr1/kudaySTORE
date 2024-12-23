@@ -108,32 +108,50 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </div>
   </section>
 
-  <section class="carrusel" style="margin-top: 100px;">
+  <section class="carrusel">
     <div class="container-fluid">
       <div id="carouselExampleSlidesOnly" class="carousel slide car pt-2 pb-3" data-bs-ride="carousel">
-        <div class="carousel-inner carusel-index">
+        <div class="carousel-inner carusel-index mx-auto">
           <div class="carousel-item active" data-bs-interval="4000">
-            <img src="images/carousel/glaciar1.jpg" class="foto-carousel " alt="slide1">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+            <img src="images/carousel/glaciar1.jpg" class="foto-carousel" alt="slide1">
+            <div class="carousel-caption text-start">
+              <h5>SE VIENE EL VERANO CON TODO</h5>
+              <p>Y en Kuday sabemos lo que necesitás</p>
+            </div>
+            <div class="carousel-button">
+              <a href="#" class="btn-invisible">Click Me</a>
+            </div>
+          </div>
+
+          <div class="carousel-item" data-bs-interval="4000">
+            <img src="images/carousel/glaciar2.jpg" class="foto-carousel" alt="slide2">
+            <div class="carousel-caption text-start">
+              <h5>SE VIENE EL VERANO CON TODO</h5>
+              <p>Visita nuestras promociones todo el año</p>
+            </div>
+            <div class="carousel-button">
+              <a href="#" class="btn-invisible">Ver Promos</a>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="4000">
-            <img src="images/carousel/glaciar1.jpg" class="foto-carousel d-block w-100 " alt="slide2">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+            <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
+            <div class="carousel-caption text-start">
+              <h5>SE VIENE EL VERANO CON TODO</h5>
+              <p>Te compro todo mameeeee.</p>
             </div>
-          </div>
-          <div class="carousel-item" data-bs-interval="4000">
-            <img src="images/carousel/baner3.jpg" class="foto-carousel d-block w-100 " alt="slide3">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+            <div class="carousel-button">
+              <a href="#" class="btn-invisible">VER PRODUCTOS</a>
             </div>
           </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
 
     </div>

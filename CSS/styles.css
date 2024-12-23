@@ -39,7 +39,6 @@
 
 body.index-body {
   background-color: rgb(255, 255, 255);
-
 }
 
 /*=====================================*/
@@ -87,7 +86,6 @@ a.marca:hover {
   transform: scale(1.1) translateX(10px);
   color: #ffffff;
   text-shadow: -2px 2px black;
-
 }
 
 .nav-item {
@@ -95,7 +93,6 @@ a.marca:hover {
 }
 
 li.nav-item a.nav-link {
-  
   color: black !important;
   font-size: 1.6rem;
   font-family: "Poiret One", sans-serif;
@@ -105,7 +102,6 @@ li.nav-item a.nav-link {
 li.nav-item a.nav-link:hover {
   color: white !important;
 }
-
 
 /* Estilo base para todos los nav-items */
 .navbar-nav .nav-item {
@@ -147,7 +143,6 @@ li.nav-item a.nav-link:hover {
   justify-content: center;
 }
 
-
 /*=====================================*/
 /*========= SECCION INICIO ============*/
 /*=====================================*/
@@ -171,9 +166,7 @@ div#box_inicio {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  
 }
-
 
 #logo_texto {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -192,35 +185,125 @@ div#presentacion {
 #minibanner {
   background-color: #e9e092;
   margin-top: 250px;
-  
 }
 
 /*=====================================*/
 /*========= CARRUSEL =================*/
 /*=====================================*/
 
+section#carrusel {
+  margin-top: 10px;
+}
+
+.carousel {
+  position: relative;
+}
+
 .carusel-index {
-  max-height: 70vh; /* No exceder la altura de la ventana */
+  height: 80vh;
+  width: 100%; /* No exceder la altura de la ventana */
   overflow: hidden; /* Esconde cualquier exceso */
+  max-height: 100%;
+  min-height: 100%;
+  box-shadow: 2px -2px 15px rgb(14, 14, 14);
+
 }
 
 .carousel-item {
-  height: 70vh; /* Adapta la altura al viewport */
+  height: 100%; /* Adapta la altura al viewport */
   width: 100%;
 }
 
 .foto-carousel {
-  width: 100%;
   height: 100%;
+  width: 100%;
   object-fit: cover; /* Asegura que las imágenes llenen el contenedor */
+  transition: transform 4s ease;
+}
+
+.foto-carousel:hover {
+  transform: scale(1.2);
+}
+
+.carousel-item.active .foto-carousel {
+  animation: scaleEffect 4s ease forwards;
+}
+
+@keyframes scaleEffect {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2); /* Mismo efecto del hover */
+  }
 }
 
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  padding: 10px;
-  border-radius: 5px;
+  position: absolute;
+  top: 10%; /* Espacio desde la parte superior */
+  left: 10%; /* Espacio desde la parte izquierda */
+  color: #fff; /* Color del texto */
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 10; /* Asegura que esté sobre la imagen */
 }
 
+.carousel-button {
+  position: absolute;
+  bottom: 5%; /* Espacio desde la parte inferior */
+  right: 5%; /* Espacio desde la parte derecha */
+  z-index: 10;
+}
+
+.btn-invisible {
+  border: 2px solid #fff; /* Borde blanco visible */
+  padding: 10px 20px;
+  background: transparent; /* Fondo transparente */
+  color: #fff; /* Color del texto */
+  text-decoration: none; /* Quitar subrayado */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-invisible:hover {
+  background: #fff; /* Fondo blanco al hacer hover */
+  color: #000; /* Texto negro al hacer hover */
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px; /* Ancho del área clickeable */
+  height: 50px; /* Altura del área clickeable */
+  display: flex; /* Centra el ícono dentro del botón */
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%; /* Centra verticalmente */
+  transform: translateY(-50%); /* Ajusta el centro exacto */
+  z-index: 10;
+  background: none;
+}
+
+.carousel-control-prev {
+  left: 15px; /* Espacio desde el borde izquierdo */
+}
+
+.carousel-control-next {
+  right: 15px; /* Espacio desde el borde derecho */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #e079ee; /* Fondo violeta del ícono */
+  width: 40px; /* Tamaño del ícono */
+  height: 40px; /* Tamaño del ícono */
+  border-radius: 50%; /* Forma circular */
+  background-size: 50%; /* Tamaño del ícono interno */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: none; /* Sin cambio de fondo al hacer hover */
+}
 
 /*=====================================*/
 /*========= SECCION TIENDA ============*/
@@ -255,7 +338,7 @@ section#tienda-index {
 
 h3.titulo {
   font-size: 4.8rem;
-  font-family: "Teko", sans-serif; 
+  font-family: "Teko", sans-serif;
   font-weight: normal;
 }
 
@@ -278,7 +361,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(248, 207, 169, 0.76), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(248, 207, 169, 0.76),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -321,21 +407,16 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
-  
-                
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store1:hover {
   color: #fd7949;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
-               0 0 12px rgba(255, 255, 255, 0.8), 
-               0 0 24px rgba(255, 154, 118, 0.6); 
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 255, 255, 0.8),
+    0 0 24px rgba(255, 154, 118, 0.6);
 }
-
-
 
 /* Contenedor principal NECESER con gradiente */
 .fondo-store2 {
@@ -356,7 +437,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(214, 238, 129, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(214, 238, 129, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -399,18 +483,17 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store2:hover {
   color: #befd49; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
-
 
 /* Contenedor principal BILLETERAS con gradiente */
 .fondo-store3 {
@@ -431,7 +514,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(127, 255, 238, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(127, 255, 238, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -474,18 +560,17 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store3:hover {
   color: #33ffe4; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
-
 
 /* Contenedor principal BANDOLERA con gradiente */
 .fondo-store4 {
@@ -506,7 +591,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(80, 144, 240, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(80, 144, 240, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -549,16 +637,21 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store4:hover {
-  color: rgba(80, 144, 240, 1); /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  color: rgba(
+    80,
+    144,
+    240,
+    1
+  ); /* Cambia el color a un tono cálido (naranja suave) */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal BOLSO MATERO con gradiente */
@@ -580,7 +673,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(184, 63, 214, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(184, 63, 214, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -624,16 +720,16 @@ h3.titulo {
   text-align: center;
   text-wrap: nowrap;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store5:hover {
   color: #bf55f0; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal SET MATERO con gradiente */
@@ -655,7 +751,10 @@ h3.titulo {
   left: 0;
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
-  background: linear-gradient(rgba(223, 223, 223, 0.7), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(
+    rgba(223, 223, 223, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
   z-index: 1; /* Debajo de la imagen y el texto */
 }
 
@@ -699,16 +798,16 @@ h3.titulo {
   text-align: center;
   text-wrap: nowrap;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store6:hover {
   color: #dddddd; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal VARIOS con gradiente */
@@ -773,16 +872,16 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store7:hover {
   color: #f76964; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /* Contenedor principal PROMOCIONES con gradiente */
@@ -847,16 +946,16 @@ h3.titulo {
   font-weight: bold;
   text-align: center;
 
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), /* Sombra negra intensa */
-               0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
-               transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+    /* Sombra negra intensa */ 0 0 8px rgba(255, 255, 255, 0.6); /* Brillo sutil alrededor del texto */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .texto-store8:hover {
   color: #55f540; /* Cambia el color a un tono cálido (naranja suave) */
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9), /* Sombra negra más profunda */
-               0 0 12px rgba(255, 255, 255, 0.8), /* Brillo más destacado */
-               0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+    /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
+    /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
 }
 
 /*=====================================*/
@@ -865,16 +964,13 @@ h3.titulo {
 
 /* Encapsulado para la sección del slider */
 #promociones {
- 
   height: auto;
   padding: 20px 0;
   text-align: center;
   margin: 120px 0 0 0;
-  
 }
 
-
-#titulo_promociones{
+#titulo_promociones {
   scroll-margin: 90px;
 }
 
@@ -918,7 +1014,7 @@ h3.titulo {
 /* Gradientes de desvanecimiento */
 .slider::before,
 .slider::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   width: 10%;
@@ -929,13 +1025,20 @@ h3.titulo {
 
 .slider::before {
   left: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 .slider::after {
   right: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 /*=====================================*/
@@ -956,12 +1059,15 @@ section#info {
   border-top: 0px dotted black;
   border-bottom: 0px dotted black;
 
-  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('../images/fondos/p2.jpg');
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("../images/fondos/p2.jpg");
   background-size: cover; /* Escala la imagen para cubrir todo el área */
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
   filter: grayscale(0%); /* Convierte la imagen en blanco y negro */
-  
 }
 p#eslogan {
   box-sizing: border-box;
@@ -988,25 +1094,6 @@ p#eslogan {
   text-wrap: pretty;
   padding: 10px;
 }
-
-.carousel-control-prev-icon {
-  background-color: #e079ee; /* Cambia el color de fondo */
-  width: 40px;              /* Cambia el ancho del icono */
-  height: 40px;             /* Cambia la altura del icono */
-  border-radius: 50%;       /* Haz que el icono sea circular */
-  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
-}
-
-/* Estilo para el icono "Siguiente" */
-.carousel-control-next-icon {
-  background-color: #e079ee; /* Cambia el color de fondo */
-  width: 40px;              /* Cambia el ancho del icono */
-  height: 40px;             /* Cambia la altura del icono */
-  border-radius: 50%;       /* Haz que el icono sea circular */
-  background-size: 50%;     /* Ajusta el tamaño del ícono interno */
-}
-
-
 
 /*=====================================*/
 /*========= SECCION FOOTER ============*/
@@ -1070,7 +1157,6 @@ div.box_1 p {
   text-decoration: none;
 }
 
-
 i.pinguin {
   font-size: 2.2rem;
   color: #000000;
@@ -1101,7 +1187,7 @@ i.prest {
   margin: 15px 0 20px 0;
 }
 
-p.p-footer{
+p.p-footer {
   font-size: 0.7rem;
   font-weight: bold;
 }
@@ -1126,7 +1212,6 @@ p.p-footer{
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-
 }
 
 .redes-icons-footer a {
@@ -1153,7 +1238,6 @@ body.cartuchera-body {
   background-position: center;
   background-size: contain;
   background-repeat: repeat;
-  
 }
 
 /* Aplica un contenedor sobre el fondo para hacerlo borroso*/
@@ -1164,8 +1248,11 @@ body.cartuchera-body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
-              url("../images/fondos/p10.png");
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("../images/fondos/p10.png");
   background-position: center;
   background-size: contain;
   background-repeat: repeat;
@@ -1179,7 +1266,7 @@ nav.cartuchera-nav {
   background-color: rgb(209, 120, 139);
   height: auto;
 }
- 
+
 section#slide-cartuchera {
   overflow: hidden; /* Oculta contenido que exceda */
 }
@@ -1190,7 +1277,7 @@ div.contenedor-slide-cartuchera {
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: rgba(240, 238, 135, 0.8);
-  
+
   padding: 10px;
   box-sizing: border-box;
   max-width: 100%;
@@ -1203,7 +1290,7 @@ div.contenedor-slide-cartuchera {
 
 .box1 {
   display: flex;
-  background-image: url('../images/promociones/p6.jpg');
+  background-image: url("../images/promociones/p6.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1215,7 +1302,6 @@ div.contenedor-slide-cartuchera {
   flex: 1 1 50%;
   max-width: 100%;
   border-radius: 40px 5px 40px 5px;
-  
 }
 
 .box2 {
@@ -1257,9 +1343,8 @@ div.imagen-logo {
 
 div.imagen-logo img {
   max-width: 100%; /* Asegura que no exceda el contenedor */
-  height: auto;    /* Mantiene proporciones */
+  height: auto; /* Mantiene proporciones */
 }
-
 
 section#cartucheras {
   height: auto;
@@ -1269,7 +1354,6 @@ div.contenedor-h3 {
   text-align: center; /* Centra el elemento hijo horizontalmente */
   width: 100%; /* Asegura que sea de ancho completo */
 }
-
 
 h3.titulo-categoria {
   display: inline-block;
@@ -1282,7 +1366,6 @@ h3.titulo-categoria {
   text-shadow: -2px 2px rgb(255, 151, 173);
   backdrop-filter: blur(10px);
   border-radius: 25px;
-  
 }
 
 /* Configuración de la grid responsiva */
@@ -1385,16 +1468,14 @@ a.ver-producto {
   width: 250px;
   margin-top: 10px;
   background-color: rgb(255, 151, 173);
-  
+
   min-width: 200px;
   max-width: 100%;
-  
 }
 
 a.ver-producto:hover {
   background-color: rgb(247, 87, 121);
   color: white;
-  
 }
 
 /* Botón de agregar al carrito */
@@ -1758,11 +1839,11 @@ div#details {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  
+
   padding: 20px;
   background-color: rgb(255, 255, 255);
-  justify-content:center;
-  
+  justify-content: center;
+
   gap: 10px;
 }
 
@@ -1863,17 +1944,14 @@ button#add-to-cart {
   background-color: rgb(209, 120, 139);
 }
 
-
-
-
 @media (min-width: 768px) {
   .carousel-container {
-      display: none; /* Oculta el carrusel en pantallas grandes */
+    display: none; /* Oculta el carrusel en pantallas grandes */
   }
 }
 
 @media (max-width: 767px) {
   .desktop-container {
-      display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
+    display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
   }
 }
