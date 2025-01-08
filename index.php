@@ -94,7 +94,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       <div class="d-flex" id="box_inicio">
         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-4 align-self-center mx-auto">
           <h1 class="mx-auto text-center p-2"><span id="logo_texto">Kuday<br>Creaciones Artesanales</span></h1>
-          <p>Buscá lo que necesitás en nuestra tienda Online.</p>
+          <p>Buscá lo que necesitás en nuestra tienda Online</p>
           <p>Envios a todo el país.</p>
         </div>
 

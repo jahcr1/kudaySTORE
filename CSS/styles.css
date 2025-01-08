@@ -184,14 +184,16 @@ div#presentacion {
 
 #minibanner {
   background-color: #e9e092;
-  margin-top: 250px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  
 }
 
 /*=====================================*/
 /*========= CARRUSEL =================*/
 /*=====================================*/
 
-section#carrusel {
+section.carrusel {
   margin-top: 10px;
 }
 
@@ -1952,4 +1954,44 @@ button#add-to-cart {
   .desktop-container {
     display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
   }
+}
+
+
+/*=========================================*/
+/*=== CARRITO.PHP - DETALLES DEL CARRITO ==*/
+/*=========================================*/
+
+body#carrito_body {
+  background-color: #dddddd;
+}
+
+section#tabla-carrito {
+  margin: 50px 0 50px 0;
+  padding: 20px;
+}
+
+table#mi_carrito {
+  border: 1px solid black;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+}
+
+th.mi_carrito {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 800 !important;
+    text-align: center !important;
+    padding: 5px;
+}
+
+td.mi_carrito_envio {
+  text-align: end;
+  padding: 5px;
+  font-weight: bold;
+}
+td.mi_carrito_total {
+  text-align: end;
+  padding: 5px;
+  font-weight: bold;
 }
