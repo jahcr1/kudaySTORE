@@ -112,7 +112,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                 <!-- ACA LISTAMOS SOLO LAS CARTUCHERAS DESDE LA BD -->
                 <?php
                 include('../componentes/conexion.php');
-                $consultar_productos = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8'");
+                $consultar_productos = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '2'");
                 while ($listar_productos = mysqli_fetch_assoc($consultar_productos)) {
                 ?>
                     <div class="producto">
