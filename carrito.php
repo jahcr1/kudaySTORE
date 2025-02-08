@@ -8,9 +8,29 @@ $cart = $_SESSION['cart'] ?? [];
 
 if (empty($cart)) {
     echo "<p>No hay productos en el carrito.</p>";
+
+    // Asegurándote de que el código JS se ejecute en el navegador
+    echo "<script type='text/javascript'>";
+    
+    echo "if (window.opener) {";
+    echo "    // Si la pestaña se abrió con target='_blank', cerramos la ventana después de 5 segundos";
+    echo "    setTimeout(function() {";
+    echo "        window.close();";
+    echo "    }, 5000);";
+    echo "} else {";
+    echo "    // Si no se abrió con target='_blank', redirige atrás después de 5 segundos";
+    echo "    setTimeout(function() {";
+    echo "        window.history.back();";
+    echo "    }, 5000);";
+    echo "}";
+
+    echo "</script>";
+    
     exit();
-    header("Location: ./index.php");
 }
+
+
+
 
 $productIds = implode(',', array_keys($cart));
 $query = "SELECT * FROM productos WHERE id IN ($productIds)";
