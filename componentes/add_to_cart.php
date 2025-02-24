@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica que no se supere el stock disponible
     $availableStock = $product['stock'];
 
-    // Si el producto ya está en el carrito, verifica la cantidad total
+    // Si el producto ya está en el carrito, verificamos la cantidad total
     $currentCartQuantity = isset($_SESSION['cart'][$productId]) ? $_SESSION['cart'][$productId] : 0;
 
     // Verifica si la cantidad total excede el stock
