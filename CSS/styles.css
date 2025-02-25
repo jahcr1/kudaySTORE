@@ -66,7 +66,7 @@ font-family: "Poiret One", sans-serif; 8
 */
 .index-nav {
   width: 100%;
-  background-color: rgb(209, 120, 139);
+  background-color: rgb(240, 165, 181);
   height: auto;
 }
 
@@ -107,7 +107,7 @@ li.nav-item a.nav-link:hover {
 .navbar-nav .nav-item {
   display: flex; /* Asegura que todos los elementos se alineen correctamente */
   align-items: center; /* Centra verticalmente el contenido dentro del contenedor */
-  justify-content: flex-start; /* Alinea el contenido al inicio horizontalmente */
+  justify-content: center; /* Alinea el contenido al inicio horizontalmente */
   margin: 10px 0 0 20px; /* Evita márgenes adicionales que puedan desalinear */
 }
 
@@ -1102,7 +1102,7 @@ p#eslogan {
 /*=====================================*/
 
 footer {
-  background-color: rgb(209, 120, 139);
+  background-color: rgb(240, 165, 181);
   color: black;
   text-align: center;
   padding: 20px;
@@ -1176,7 +1176,7 @@ i.ubic {
 i.fb,
 i.ig,
 i.prest {
-  font-size: 4rem;
+  font-size: 3rem;
   color: white;
   text-shadow: 1px 1px black;
 }
@@ -1186,7 +1186,7 @@ i.prest {
   padding: 10px;
   font-size: 1.7rem;
   text-wrap: nowrap;
-  margin: 15px 0 20px 0;
+  margin: 8px 0 0 0;
 }
 
 p.p-footer {
@@ -1209,7 +1209,7 @@ p.p-footer {
 }
 
 .redes-icons-footer {
-  padding: 10px;
+  padding: 0 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -1258,14 +1258,14 @@ body.cartuchera-body::before {
   background-position: center;
   background-size: contain;
   background-repeat: repeat;
-  filter: grayscale(0.6); /* Controla el nivel de desenfoque */
+  filter: grayscale(0.2); /* Controla el nivel de desenfoque */
   z-index: -1;
   box-sizing: border-box;
 }
 
 nav.cartuchera-nav {
   width: 100%;
-  background-color: rgb(209, 120, 139);
+  background-color: rgb(240, 165, 181);
   height: auto;
 }
 
@@ -1362,11 +1362,10 @@ h3.titulo-categoria {
   padding: 10px;
   color: black;
   font-family: "Poiret One", sans-serif;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: bold;
   text-align: center !important;
   text-shadow: -2px 2px rgb(255, 151, 173);
-  backdrop-filter: blur(10px);
   border-radius: 25px;
 }
 
@@ -1393,12 +1392,11 @@ h3.titulo-categoria {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
   border-radius: 8px;
   overflow: hidden;
-  background-color: #dadada;
+  background-color: #ffffff;
 }
 
 .contenedor-foto {
   display: flex;
-  /*background-color: rgba(0, 0, 0, 0.5);*/
   border-radius: 50%;
   padding: 10px;
   width: 480px;
@@ -1417,7 +1415,7 @@ img.imagen-producto {
   max-height: 350px;
   object-fit: contain;
   cursor: pointer;
-  filter: brightness(100%);
+  filter: brightness(120%);
   transition: 0.5s ease-in-out;
 }
 
@@ -1430,12 +1428,13 @@ img.imagen-producto:hover {
 /* Detalle del producto */
 .contenedor-detalle {
   width: 100%;
-  padding: 15px;
+  padding: 5px;
+  background-color: rgb(241, 241, 241);
 }
 
 div.card-body {
-  height: 100%;
-  max-height: auto;
+  height: auto;
+  max-height: 100%;
 }
 
 h5.item-card {
@@ -1448,6 +1447,7 @@ h5.item-card {
   background-color: rgb(255, 151, 173);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 span.dato {
@@ -1497,45 +1497,6 @@ a.add-carrito:hover {
   color: white;
 }
 
-footer.cartuchera-footer {
-  background-color: rgb(209, 120, 139);
-  color: black;
-  text-align: center;
-  padding: 20px;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-}
-
-h6.h6-footer-cartuchera {
-  font-size: 1.5rem;
-  text-wrap: nowrap;
-  margin: 15px 0 30px 0;
-}
-
-p.p-footer-cartuchera {
-  font-size: 1.2rem;
-}
-
-.redes-icons-footer-cartuchera {
-  padding: 10px;
-}
-.redes-icons-footer-cartuchera a {
-  display: inline-block;
-  padding: 10px 20px;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  font-size: 45px;
-}
-
-.contenedor_footer-cartuchera {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  text-align: center;
-
-  gap: 10px;
-}
 
 /* Responsividad adicional */
 @media (max-width: 600px) {

@@ -8,7 +8,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Neceseres Kuday | Sitio Oficial</title>
+    <title>Neceser Kuday | Sitio Oficial</title>
     
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <!-- ICONOS DE BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- ICONOS DE FONTAWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -26,11 +29,11 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 </head>
 
-<body class="neceser-body">
+<body class="cartuchera-body">
 
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top neceser-nav">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
+            <div class="container-fluid" style="flex-wrap: wrap;">
                     <a class="navbar-brand marca align-self-center text-center" href="../index.php#inicio">Kuday Artesanias</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,18 +41,20 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarScroll">
-                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px; margin-right:50px;">
+                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 620px; margin-right:50px;">
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="../index.php#inicio">Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" aria-current="page" href="promociones.php">Promociones</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Productos
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu mx-2">
+                                    <li><a class="dropdown-item" href="cartucheras.php">Cartucheras</a></li>
+                                    <hr class="dropdown-divider">
                                     <li><a class="dropdown-item" href="neceser.php">Neceser</a></li>
                                     <hr class="dropdown-divider">
                                     <li><a class="dropdown-item" href="setmatero.php">Sets Materos</a></li>
@@ -66,7 +71,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="#">Contactános</a>
+                                <a class="nav-link active boton-nav" href="../contacto.php">Contactános</a>
                             </li>
                             <li class="nav-item cart-item">
                                 <a href="../carrito.php" target="_blank" class="cart-icon">
@@ -84,7 +89,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             </div>
         </nav>
     </header>
-
+<!--
     <section id="slide-cartuchera">
 
         <div class="container contenedor-slide-cartuchera">
@@ -100,16 +105,16 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         </div>
 
     </section>
-
+-->
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
-        <div class="container">
+        <div class="container contenedor-h3">
             <h3 class="text-center titulo-categoria" style="margin-top: 80px;">Neceser</h3>
         </div>
 
         <div style="margin-top: 50px;">
             <div class="grid-container">
-                <!-- ACA LISTAMOS SOLO LAS CARTUCHERAS DESDE LA BD -->
+                <!-- ACA LISTAMOS SOLO LOS NECESERES DESDE LA BD -->
                 <?php
                 include('../componentes/conexion.php');
                 $consultar_productos = mysqli_query($conexion, "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '2'");
@@ -130,10 +135,13 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                         <div class="card contenedor-detalle">
                             <div class="card-body">
                                 <h5 class="card-title p-2 item-card"><?php echo $listar_productos['nombre']; ?></h5>
-                                <p class="text-start p-3"><strong>Articulo : </strong><span class="dato"><?php echo $listar_productos['categoria_nombre']; ?></span></p>
-                                <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Precio : </strong><span class="dato">$<?php echo $listar_productos['precio']; ?></span></p>
-                                <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Cantidad : </strong><span class="dato"><?php echo $listar_productos['stock']; ?></span></p>
-                                <p class="text-start p-3" style="border-top: 1px solid black;"><strong>Descripción : </strong><span class="dato"><?php echo $listar_productos['descripcion']; ?></span></p>
+                                <p class="text-start p-1"><strong>Articulo : </strong><span class="dato"><?php echo $listar_productos['categoria_nombre']; ?></span></p>
+                                <hr class="divider">
+                                <p class="text-start p-1"><strong>Precio : </strong><span class="dato">$<?php echo $listar_productos['precio']; ?></span></p>
+                                <hr class="divider">
+                                <p class="text-start p-1"><strong>Cantidad : </strong><span class="dato"><?php echo $listar_productos['stock']; ?></span></p>
+                                <hr class="divider">
+                                <p class="text-start p-1"><strong>Descripción : </strong><span class="dato"><?php echo $listar_productos['descripcion']; ?></span></p>
                                 <div class="botonera-producto">
                                     <!-- Botón para Ver Producto -->
                                     <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="btn ver-producto">Ver producto</a>
@@ -151,7 +159,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     <footer class="footer" id="seccion_footer">
         <main class="container-fluid">
-            <div class="row contenedor_footer">
+            <div class="row contenedor_footer align-items-center">
                 
                 <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 p-2 pb-5">
                 
@@ -178,36 +186,36 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                 </div>
                 </div>
 
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2" >
                 
-                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
-                <div class="contenedor-cards p-2">
-                    <img src="../images/cards/visa.png" alt="mp">
-                    <img src="../images/cards/naranja.png" alt="visa">
-                    <img src="../images/cards/mercadopago2.png" alt="visa">
-                    <img src="../images/cards/pagofacil.png" alt="visa">
-                    <img src="../images/cards/efectivo.png" alt="visa">
-                    <img src="../images/cards/rapipago.png" alt="">
-                </div>
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
+                    <div class="contenedor-cards p-2">
+                        <img src="../images/cards/visa.png" alt="mp">
+                        <img src="../images/cards/naranja.png" alt="visa">
+                        <img src="../images/cards/mercadopago2.png" alt="visa">
+                        <img src="../images/cards/pagofacil.png" alt="visa">
+                        <img src="../images/cards/efectivo.png" alt="visa">
+                        <img src="../images/cards/rapipago.png" alt="">
+                    </div>
 
-                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
-                <div class="contenedor-cards p-2">
-                    <img src="../images/cards/andreani.png" alt="">
-                    <img src="../images/cards/correoarg.png" alt="">
-                </div>
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
+                    <div class="contenedor-cards p-2">
+                        <img src="../images/cards/andreani.png" alt="">
+                        <img src="../images/cards/correoarg.png" alt="">
+                    </div>
 
-                <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
-                <div class="redes-icons-footer">
-                    <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
-                    <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
-                    <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
-                </div>
+                    <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
+                    <div class="redes-icons-footer">
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
+                    </div>
                 </div>
                 
             </div>
         </main>
 
-        <p style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> COPYRIGHT KUDAY ARTESANIAS & DEVCR1 2021. TODOS LOS DERECHOS RESERVADOS.</p>
+        <p  style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> 2021 Kuday Artesanias & jahcr1. Todos los derechos reservados.</p>
 
     </footer>
     
@@ -219,7 +227,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     
     <!-- Incluyendo GSAP BOUNCE -->
-    <script>
+    <!-- <script>
         gsap.to("#cartuchera-bounce", {
             duration: 1.5,
             y: 50,
@@ -237,7 +245,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         words.forEach(el => {
             tl.from(el, {text: "", duration: el.innerHTML.length * timePerCharacter, ease: "none"});
         });
-    </script>
+    </script> -->
 
     <!-- Script JS para sumar productos al carrito dinamicamente -->
     <script>

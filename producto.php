@@ -33,12 +33,12 @@ if (!$producto) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Detalles del Producto </title>
+    <title>Detalles del Producto | Kuday Store</title>
     
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bangers&family=Barrio&family=Chango&family=Chewy&family=Chicle&family=Delius+Unicase:wght@400;700&family=Flavors&family=Gwendolyn:wght@400;700&family=Ingrid+Darling&family=Just+Me+Again+Down+Here&family=Kablammo&family=Lumanosimo&family=Martian+Mono:wght@100..800&family=Mystery+Quest&family=Pacifico&family=Rubik+Puddles&family=Shrikhand&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
     
     <!-- ICONOS DE BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -58,7 +58,7 @@ if (!$producto) {
     
     <header>
         <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
-            <div class="container-fluid">
+            <div class="container-fluid" style="flex-wrap: wrap;">
                     <a class="navbar-brand marca align-self-center text-center" href="../index.php#inicio">Kuday Artesanias</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,36 +66,40 @@ if (!$producto) {
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarScroll">
-                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px; margin-right:50px;">
+                        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 620px; margin-right:50px;">
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="../index.php#inicio">Inicio</a>
+                                <a class="nav-link active boton-nav" href="./index.php#inicio">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" aria-current="page" href="promociones.php">Promociones</a>
+                                <a class="nav-link active boton-nav" aria-current="page" href="./vistas/promociones.php">Promociones</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Productos
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="neceser.php">Neceser</a></li>
+                                <ul class="dropdown-menu mx-2">
+                                    <li><a class="dropdown-item" href="./vistas/cartucheras.php">Cartucheras</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="setmatero.php">Sets Materos</a></li>
+                                    <li><a class="dropdown-item" href="./vistas/neceser.php">Neceser</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item " href="billeteras.php">Billeteras</a></li>
+                                    <li><a class="dropdown-item" href="./vistas/setmatero.php">Sets Materos</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="bolsomatero.php">Bolso Matero</a></li>
+                                    <li><a class="dropdown-item " href="./vistas/billeteras.php">Billeteras</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
+                                    <li><a class="dropdown-item" href="./vistas/bolsomatero.php">Bolso Matero</a></li>
                                     <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="varios.php">Varios</a></li>
+                                    <li><a class="dropdown-item" href="./vistas/bandoleras.php">Bandoleras</a></li>
+                                    <hr class="dropdown-divider">
+                                    <li><a class="dropdown-item" href="./vistas/varios.php">Varios</a></li>
+                                    <hr class="dropdown-divider">
+                                    <li><a class="dropdown-item" href="./vistas/promociones.php">Promociones</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="#">Contactános</a>
+                                <a class="nav-link active boton-nav" href="./contacto.php">Contactános</a>
                             </li>
-                            <li class="nav-item align-self-center">
-                                <a href="./carrito.php" class="cart-icon">
+                            <li class="nav-item cart-item">
+                                <a href="./carrito.php" target="_blank" class="cart-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-cart">
                                         <circle cx="9" cy="21" r="1"></circle>
                                         <circle cx="20" cy="21" r="1"></circle>
@@ -152,7 +156,7 @@ if (!$producto) {
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                        <i class="fa-solid fa-truck-fast"></i></i>&nbsp;&nbsp;&nbsp;Medios de Envio
+                        <i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Medios de Envio
                         </button>
                         </h2>
                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
@@ -190,45 +194,66 @@ if (!$producto) {
         </div>
     </section>
 
-    <footer class="cartuchera-footer">
+    <footer class="footer" id="seccion_footer">
         <main class="container-fluid">
-            <div class="row contenedor_footer-cartuchera">  
-                <div class="col-xl-3 col-md-3 col-sm-10 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  CONTÁCTANOS</h6>
-                    <p class="p-footer-cartuchera"><i class="bi bi-telephone-fill"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-whatsapp"></i>   +54 9 0297 432-1429</p>
-                    <p class="p-footer-cartuchera"><i class="bi bi-geo-alt-fill"></i>   Gral. Araóz de Lamadrid 425</p>
+            <div class="row contenedor_footer align-items-center">
+                
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 p-2 pb-5">
+                
+                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
+                <div class="box_1">
+                    <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
+
+                    <!-- Mini mapa responsive -->
+                    <div class="map-container">
+                    <a
+                        href="https://www.google.com/maps?q=-31.409736861796983,-64.16100064468557&z=17"
+                        target="_blank"
+                        title="Abrir ubicación en Google Maps">
+                        <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.3467339192976!2d-64.16100064468557!3d-31.409736861796983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2z-31.409736861796983_-64.16100064468557!5e0!3m2!1sen!2sar!4v1696990000000"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </a>
+                    </div>
                 </div>
-                <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  MEDIOS DE PAGO</h6>
+                </div>
+
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2" >
+                
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
                     <div class="contenedor-cards p-2">
-                        <img src="./images/cards/visa.png"  alt="mp">
+                        <img src="./images/cards/visa.png" alt="mp">
                         <img src="./images/cards/naranja.png" alt="visa">
                         <img src="./images/cards/mercadopago2.png" alt="visa">
                         <img src="./images/cards/pagofacil.png" alt="visa">
                         <img src="./images/cards/efectivo.png" alt="visa">
                         <img src="./images/cards/rapipago.png" alt="">
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-3 col-sm-6 p-2">
-                    <h6 class="h6-footer-cartuchera"><i class="bi bi-tencent-qq"></i>  FORMAS DE ENVIO</h6>
+
+                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
                     <div class="contenedor-cards p-2">
                         <img src="./images/cards/andreani.png" alt="">
                         <img src="./images/cards/correoarg.png" alt="">
                     </div>
-                </div>
-                <div class="row d-flex">
-                    <h4>Seguinos en nuestras redes!</h4>
-                    <div class="redes-icons-footer-cartuchera ">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest"></i></a>
+
+                    <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
+                    <div class="redes-icons-footer">
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
                     </div>
                 </div>
+                
             </div>
         </main>
 
-        <p style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> COPYRIGHT KUDAY ARTESANIAS & DEVCR1 2021. TODOS LOS DERECHOS RESERVADOS.</p>
+        <p  style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> 2021 Kuday Artesanias & jahcr1. Todos los derechos reservados.</p>
+
     </footer>
 
     <!-- Incluyendo BOOTSTRAP JS -->
@@ -286,6 +311,7 @@ if (!$producto) {
                     quantityInput.value = 1;
                 } else {
                     console.error('Error al agregar al carrito:', data.error);
+                    alert('Error al agregar al carrito. Posiblemente no hay mas stock ó agregaste el último artículo. Intenta nuevamente.');
                 }
             })
             .catch(error => {

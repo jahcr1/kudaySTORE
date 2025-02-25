@@ -36,6 +36,9 @@ $result = mysqli_query($conexion, $query);
     <!-- ICONOS DE BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- ICONOS DE FONTAWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -45,7 +48,7 @@ $result = mysqli_query($conexion, $query);
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg index-nav fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
             <div class="container-fluid" style="flex-wrap: wrap;">
                 <a class="navbar-brand marca align-self-center text-center" href="index.php#inicio">Kuday Artesanias</a>
 
@@ -53,7 +56,7 @@ $result = mysqli_query($conexion, $query);
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px; margin-right:50px;">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 700px; margin-right:50px;">
                         <li class="nav-item">
                             <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
                         </li>
@@ -63,11 +66,11 @@ $result = mysqli_query($conexion, $query);
                         <li class="nav-item">
                             <a class="nav-link active boton-nav" href="index.php#titulo_promociones">Promociones</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="align-items: flex-start;">
                             <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Productos
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu mx-2">
                                 <li><a class="dropdown-item" href="vistas/cartucheras.php">Cartucheras</a></li>
                                 <hr class="dropdown-divider">
                                 <li><a class="dropdown-item" href="vistas/neceser.php">Neceser</a></li>
@@ -110,7 +113,7 @@ $result = mysqli_query($conexion, $query);
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingCart">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCart" aria-expanded="true" aria-controls="collapseCart">
-                        Mis Productos
+                    <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;&nbsp;Mis Productos
                     </button>
                 </h2>
                 <div id="collapseCart" class="accordion-collapse collapse show" aria-labelledby="headingCart" data-bs-parent="#cartAccordion">
@@ -168,8 +171,7 @@ $result = mysqli_query($conexion, $query);
 
             <div class="accordion-item" id="envioAccordion" style="display: none;">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Datos de Envio
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Datos de Envio
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
