@@ -21,6 +21,10 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <!-- ICONOS DE FONTAWESOME -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
 
+    <!-- Agrega Swiper.js desde CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -106,6 +110,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </section>
 -->
+    
+
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container contenedor-h3">
@@ -155,6 +161,40 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             </div>
         </div>
 
+    </section>
+
+    <section id="productos-relevantes" class="slider-container">
+        <h3 class="titulo-slider" id="titulo_productos">Productos que también llevaron.. </h3>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+                include('../componentes/conexion.php');
+                $query = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8' LIMIT 10";
+                $result = mysqli_query($conexion, $query);
+                while ($producto = mysqli_fetch_assoc($result)) {
+                ?>
+                    <div class="swiper-slide slider-item">
+                        <?php if (!empty($producto['ci_imagen_producto'])): ?>
+                            <?php
+                            $img_data = base64_encode($producto['ci_imagen_producto']);
+                            $img_type = $producto['formato_imagen'];
+                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen de {$producto['nombre']}' class='producto-img'>";
+                            ?>
+                        <?php else: ?>
+                            <p class="no-imagen">Sin imagen disponible</p>
+                        <?php endif; ?>
+                        <h5 class="producto-nombre"><?php echo $producto['nombre']; ?></h5>
+                        <button class="btn btn-primary" onclick="window.location.href='../producto.php?id=<?php echo $producto['id']; ?>'">
+                            Ver más
+                        </button>
+                    </div>
+                <?php } ?>
+            </div>
+            <!-- Agrega navegación y paginación -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
     </section>
 
     <footer class="footer" id="seccion_footer">
@@ -247,6 +287,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         });
     </script> -->
 
+    <!-- Agrega Swiper.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <!-- Script JS para sumar productos al carrito dinamicamente -->
     <script>
         // Obtén todos los botones de agregar al carrito
@@ -292,6 +335,122 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     });
 
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".mySwiper", {
+        loop: true, // Hace que el slider sea infinito
+        slidesPerView: 3,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 3000, // Cambia cada 3 segundos
+            disableOnInteraction: false, // Sigue moviéndose aunque el usuario interactúe
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+            250: {  
+                slidesPerView: 1,  // Muestra 1 slide (ya está igual en 480px)
+                spaceBetween: 5,   // Espacio muy pequeño entre los slides
+            },
+            480: {  
+                slidesPerView: 1, // Muestra solo un slide
+                spaceBetween: 10, // Menor espacio entre los slides
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+        },
+    });
+});
+</script>
+
+<style>
+.slider-container {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+}
+.titulo-slider {
+    font-size: 3rem;
+    font-family: "Teko", sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.swiper {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: stretch; /* Hace que todos los slides tengan la misma altura */
+}
+.slider-item {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: auto; /* Evita que Swiper haga ajustes individuales */
+    min-height: 100%; /* Mantiene la altura uniforme */
+}
+.producto-contenedor {
+    flex-grow: 1; /* Hace que todas las imágenes ocupen el mismo espacio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px; /* Forzar misma altura */
+}
+.producto-img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain; /* Evita que las imágenes se recorten */
+    border-radius: 10px;
+}
+.producto-nombre {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+.no-imagen {
+    color: gray;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn {
+    margin-top: auto;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: center;
+}
+.btn:hover {
+    background: #0056b3;
+}
+</style>
 
 
 

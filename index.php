@@ -21,6 +21,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <!-- ICONOS DE FONTAWESOME -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
 
+  <!-- Agrega Swiper.js desde CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <!-- CSS DE BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -107,7 +110,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </div>
     <div class="text-center mx-auto" id="minibanner">
-        <h2 class="fs-5 p-3"><span class="text-primary">KUDAY</span> es una tienda unica donde vas a encontrar las mejores <span class="text-primary text-center"> Promociones</span> todos los meses.</h2>
+      <h2 class="fs-5 p-3"><span class="text-primary">KUDAY</span> es una tienda unica donde vas a encontrar las mejores <span class="text-primary text-center"> Promociones</span> todos los meses.</h2>
     </div>
   </section>
 
@@ -235,6 +238,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </div>
   </section>
 
+
   <section id="promociones" class="slider-container">
     <h3 class="titulo" id="titulo_promociones">Nuestras promociones</h3>
 
@@ -281,6 +285,43 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </div>
   </section>
 
+
+  <section id="productos-relevantes" class="slider-container-a">
+    <h3 class="titulo-slider-a" id="titulo_productos">Nuestras Promociones </h3>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <?php
+        include('./componentes/conexion.php');
+        $query = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8' LIMIT 10";
+        $result = mysqli_query($conexion, $query);
+        while ($producto = mysqli_fetch_assoc($result)) {
+        ?>
+          <div class="swiper-slide slider-item-a">
+            <?php if (!empty($producto['ci_imagen_producto'])): ?>
+              <?php
+              $img_data = base64_encode($producto['ci_imagen_producto']);
+              $img_type = $producto['formato_imagen'];
+              echo "<img src='data:$img_type;base64,$img_data' alt='Imagen de {$producto['nombre']}' class='producto-img'>";
+              ?>
+            <?php else: ?>
+              <p class="no-imagen">Sin imagen disponible</p>
+            <?php endif; ?>
+            <h5 class="producto-nombre"><?php echo $producto['nombre']; ?></h5>
+            <button class="btn btn-primary" onclick="window.location.href='../producto.php?id=<?php echo $producto['id']; ?>'">
+              Ver más
+            </button>
+          </div>
+        <?php } ?>
+      </div>
+      <!-- Agrega navegación y paginación -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+
+
   <section id="info">
     <div>
       <article id="texto_presentacion" class="text-center mx-auto">
@@ -298,7 +339,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             <p>Cuotas sin interés</p>
             <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
           </div>
-          <a href="https://wa.me/1234567890" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black">
+          <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black">
             <i class="bi bi-whatsapp"></i>
             <p>Soporte por WhatsApp</p>
             <p>Hacé click acá y comunicate con nosotros</p>
@@ -323,7 +364,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               </div>
             </div>
             <div class="carousel-item">
-              <a href="https://wa.me/1234567890" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
+              <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
                 <i class="bi bi-whatsapp"></i>
                 <p>Soporte por WhatsApp</p>
                 <p>Hacé click acá y comunicate con nosotros</p>
@@ -344,68 +385,73 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   </section>
 
   <footer class="footer" id="seccion_footer">
-        <main class="container-fluid">
-            <div class="row contenedor_footer align-items-center">
-                
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 p-2 pb-5">
-                
-                <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
-                <div class="box_1">
-                    <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
-                    <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
-                    <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
+    <main class="container-fluid">
+      <div class="row contenedor_footer align-items-center">
 
-                    <!-- Mini mapa responsive -->
-                    <div class="map-container">
-                    <a
-                        href="https://www.google.com/maps?q=-31.409736861796983,-64.16100064468557&z=17"
-                        target="_blank"
-                        title="Abrir ubicación en Google Maps">
-                        <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.3467339192976!2d-64.16100064468557!3d-31.409736861796983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2z-31.409736861796983_-64.16100064468557!5e0!3m2!1sen!2sar!4v1696990000000"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </a>
-                    </div>
-                </div>
-                </div>
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 p-2 pb-5">
 
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2" >
-                
-                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
-                    <div class="contenedor-cards p-2">
-                        <img src="./images/cards/visa.png" alt="mp">
-                        <img src="./images/cards/naranja.png" alt="visa">
-                        <img src="./images/cards/mercadopago2.png" alt="visa">
-                        <img src="./images/cards/pagofacil.png" alt="visa">
-                        <img src="./images/cards/efectivo.png" alt="visa">
-                        <img src="./images/cards/rapipago.png" alt="">
-                    </div>
+          <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
+          <div class="box_1">
+            <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+            <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
+            <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
 
-                    <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
-                    <div class="contenedor-cards p-2">
-                        <img src="./images/cards/andreani.png" alt="">
-                        <img src="./images/cards/correoarg.png" alt="">
-                    </div>
-
-                    <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
-                    <div class="redes-icons-footer">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
-                    </div>
-                </div>
-                
+            <!-- Mini mapa responsive -->
+            <div class="map-container">
+              <a
+                href="https://www.google.com/maps?q=-31.409736861796983,-64.16100064468557&z=17"
+                target="_blank"
+                title="Abrir ubicación en Google Maps">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3664.3467339192976!2d-64.16100064468557!3d-31.409736861796983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2z-31.409736861796983_-64.16100064468557!5e0!3m2!1sen!2sar!4v1696990000000"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </a>
             </div>
-        </main>
+          </div>
+        </div>
 
-        <p  style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> 2021 Kuday Artesanias & jahcr1. Todos los derechos reservados.</p>
+        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8 p-2">
 
-    </footer>
+          <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> MEDIOS DE PAGO</h6>
+          <div class="contenedor-cards p-2">
+            <img src="./images/cards/visa.png" alt="mp">
+            <img src="./images/cards/naranja.png" alt="visa">
+            <img src="./images/cards/mercadopago2.png" alt="visa">
+            <img src="./images/cards/pagofacil.png" alt="visa">
+            <img src="./images/cards/efectivo.png" alt="visa">
+            <img src="./images/cards/rapipago.png" alt="">
+          </div>
 
+          <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> FORMAS DE ENVIO</h6>
+          <div class="contenedor-cards p-2">
+            <img src="./images/cards/andreani.png" alt="">
+            <img src="./images/cards/correoarg.png" alt="">
+          </div>
+
+          <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
+          <div class="redes-icons-footer">
+            <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
+            <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+            <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <p style="font-size:10px;background-color:white; color:black;width:100%;padding:0 5px;"><i class="bi bi-c-circle"></i> 2021 Kuday Artesanias & jahcr1. Todos los derechos reservados.</p>
+
+  </footer>
+
+  <!-- Incluyendo BOOTSTRAP JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Agrega Swiper.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 
   <script>
     // Seleccionar los elementos del slider
@@ -467,6 +513,140 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     // Detectar cambios en el tamaño de la ventana
     window.addEventListener('resize', resetSlider);
   </script>
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      new Swiper(".mySwiper", {
+        loop: true, // Hace que el slider sea infinito
+        slidesPerView: 3,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 3000, // Cambia cada 3 segundos
+          disableOnInteraction: false, // Sigue moviéndose aunque el usuario interactúe
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          250: {
+            slidesPerView: 1, // Muestra 1 slide (ya está igual en 480px)
+            spaceBetween: 5, // Espacio muy pequeño entre los slides
+          },
+          480: {
+            slidesPerView: 1, // Muestra solo un slide
+            spaceBetween: 10, // Menor espacio entre los slides
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+        },
+      });
+    });
+  </script>
+
+  <style>
+    .slider-container-a {
+      text-align: center;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+
+    .titulo-slider-a {
+      font-size: 4.8rem;
+      font-family: "Teko", sans-serif;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: normal;
+    }
+
+    .swiper {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding-bottom: 40px;
+    }
+
+    .swiper-wrapper {
+      display: flex;
+      align-items: stretch;
+      /* Hace que todos los slides tengan la misma altura */
+    }
+
+    .slider-item-a {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      height: auto;
+      /* Evita que Swiper haga ajustes individuales */
+      min-height: 100%;
+      /* Mantiene la altura uniforme */
+    }
+
+    .producto-contenedor {
+      flex-grow: 1;
+      /* Hace que todas las imágenes ocupen el mismo espacio */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      /* Forzar misma altura */
+    }
+
+    .producto-img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      /* Evita que las imágenes se recorten */
+      border-radius: 10px;
+    }
+
+    .producto-nombre {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      flex-grow: 1;
+    }
+
+    .no-imagen {
+      color: gray;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      margin-top: auto;
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      align-self: center;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
 
 </body>
 

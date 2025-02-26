@@ -996,6 +996,7 @@ h3.titulo {
 /* Pista del slider */
 .slider-track {
   display: flex;
+  align-items: center;
   transition: none; /* No usar transición porque se reorganiza dinámicamente */
   will-change: transform;
 }
@@ -1005,6 +1006,11 @@ h3.titulo {
   flex-shrink: 0;
   width: 25vw; /* Cada elemento ocupa una fracción del slider */
   height: 350px; /* Igual a la altura del slider */
+
+  text-align: center;
+  
+  
+
 }
 
 .slider-item img {
