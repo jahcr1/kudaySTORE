@@ -164,7 +164,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </section>
 
     <section id="productos-relevantes" class="slider-container">
-        <h3 class="titulo-slider" id="titulo_productos">Productos que también llevaron.. </h3>
+        <h3 class="titulo-slider-views" id="titulo_productos">Productos que también llevaron.. </h3>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <?php
@@ -375,85 +375,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     });
 });
 </script>
-
-<style>
-.slider-container {
-    text-align: center;
-    padding: 20px;
-    background: #f8f9fa;
-}
-.titulo-slider {
-    font-size: 3rem;
-    font-family: "Teko", sans-serif;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.swiper {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding-bottom: 40px;
-}
-
-.swiper-wrapper {
-    display: flex;
-    align-items: stretch; /* Hace que todos los slides tengan la misma altura */
-}
-.slider-item {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    height: auto; /* Evita que Swiper haga ajustes individuales */
-    min-height: 100%; /* Mantiene la altura uniforme */
-}
-.producto-contenedor {
-    flex-grow: 1; /* Hace que todas las imágenes ocupen el mismo espacio */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 250px; /* Forzar misma altura */
-}
-.producto-img {
-    width: 100%;
-    max-height: 250px;
-    object-fit: contain; /* Evita que las imágenes se recorten */
-    border-radius: 10px;
-}
-.producto-nombre {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    flex-grow: 1;
-}
-.no-imagen {
-    color: gray;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn {
-    margin-top: auto;
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    align-self: center;
-}
-.btn:hover {
-    background: #0056b3;
-}
-</style>
-
-
-
 
 
 </body>

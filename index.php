@@ -239,55 +239,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   </section>
 
 
-  <section id="promociones" class="slider-container">
-    <h3 class="titulo" id="titulo_promociones">Nuestras promociones</h3>
 
-    <div class="slider-wrapper">
-      <div class="slider">
-        <div class="slider-track">
-          <!-- Consultamos los productos con categoria_id = 8 -->
-          <?php
-          include('./componentes/conexion.php');
-          // Consulta SQL con límite de 10 productos
-          $consultar_productos = mysqli_query(
-            $conexion,
-            "SELECT p.*, c.nombre AS categoria_nombre 
-                     FROM productos p 
-                     JOIN categorias c ON p.categoria_id = c.id 
-                     WHERE p.categoria_id = '8' 
-                     LIMIT 10"
-          );
-
-          // Iteramos los productos
-          while ($listar_productos = mysqli_fetch_assoc($consultar_productos)) {
-          ?>
-            <div class="slider-item">
-              <!-- Verificamos si tiene imagen -->
-              <?php if (!empty($listar_productos['ci_imagen_producto'])): ?>
-                <?php
-                $img_data = base64_encode($listar_productos['ci_imagen_producto']);
-                $img_type = $listar_productos['formato_imagen'];
-                echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto'>";
-                ?>
-              <?php else: ?>
-                <p>Sin imagen disponible</p>
-              <?php endif; ?>
-              <!-- Título del producto -->
-              <h5 class="mt-2"><?php echo $listar_productos['nombre']; ?></h5>
-              <!-- Botón que lleva a la página del producto -->
-              <button class="btn btn-primary mt-2" onclick="window.location.href='./producto.php?id=<?php echo $listar_productos['id']; ?>'">
-                Ver más
-              </button>
-            </div>
-          <?php } ?>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="productos-relevantes" class="slider-container-a">
-    <h3 class="titulo-slider-a" id="titulo_productos">Nuestras Promociones </h3>
+  <section id="productos-relevantes" class="slider-container">
+    <h3 class="titulo-slider" id="titulo_productos">Nuestras Promociones </h3>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <?php
@@ -296,7 +250,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         $result = mysqli_query($conexion, $query);
         while ($producto = mysqli_fetch_assoc($result)) {
         ?>
-          <div class="swiper-slide slider-item-a">
+          <div class="swiper-slide slider-item">
             <?php if (!empty($producto['ci_imagen_producto'])): ?>
               <?php
               $img_data = base64_encode($producto['ci_imagen_producto']);
@@ -307,7 +261,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               <p class="no-imagen">Sin imagen disponible</p>
             <?php endif; ?>
             <h5 class="producto-nombre"><?php echo $producto['nombre']; ?></h5>
-            <button class="btn btn-primary" onclick="window.location.href='../producto.php?id=<?php echo $producto['id']; ?>'">
+            <button class="btn btn-primary" onclick="window.location.href='./producto.php?id=<?php echo $producto['id']; ?>'">
               Ver más
             </button>
           </div>
@@ -453,67 +407,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
-  <script>
-    // Seleccionar los elementos del slider
-    const sliderTrack = document.querySelector('#promociones .slider-track');
-    const sliderItems = Array.from(document.querySelectorAll('#promociones .slider-item'));
-    const slider = document.querySelector('#promociones .slider');
-
-    let sliderWidth = slider.offsetWidth; // Ancho del slider visible
-    let itemWidth = sliderItems[0].offsetWidth; // Ancho de un elemento
-    let totalItems = sliderTrack.children.length; // Total de elementos (incluidos clones)
-    let currentPosition = 0; // Posición inicial
-    let animationFrameId; // ID del requestAnimationFrame para control
-
-    // Ajustar el ancho total de la pista dinámicamente
-    sliderTrack.style.width = `${totalItems * itemWidth}px`;
-
-    // Función para reorganizar los elementos dinámicamente
-    function rearrangeItems() {
-      if (Math.abs(currentPosition) >= itemWidth) {
-        currentPosition += itemWidth; // Ajustar la posición para evitar saltos
-        const firstItem = sliderTrack.firstElementChild;
-        sliderTrack.appendChild(firstItem); // Mover el primer elemento al final
-        sliderTrack.style.transform = `translateX(${currentPosition}px)`; // Ajustar la posición
-      }
-    }
-
-    // Función para animar el slider
-    function animateSlider() {
-      currentPosition -= 2; // Control de velocidad
-      sliderTrack.style.transform = `translateX(${currentPosition}px)`; // Mover la pista
-      rearrangeItems(); // Reorganizar los elementos si es necesario
-      animationFrameId = requestAnimationFrame(animateSlider); // Continuar la animación
-    }
-
-    // Función para reiniciar el slider en caso de redimensionamiento
-    function resetSlider() {
-      // Cancelamos la animación temporalmente
-      cancelAnimationFrame(animationFrameId);
-
-      // Recalcular dimensiones críticas
-      sliderWidth = slider.offsetWidth;
-      itemWidth = sliderItems[0].offsetWidth;
-      totalItems = sliderTrack.children.length;
-
-      // Ajustar el ancho total de la pista
-      sliderTrack.style.width = `${totalItems * itemWidth}px`;
-
-      // Reiniciar la posición
-      currentPosition = 0;
-      sliderTrack.style.transform = `translateX(${currentPosition}px)`;
-
-      // Reiniciar la animación
-      requestAnimationFrame(animateSlider);
-    }
-
-    // Iniciar la animación
-    requestAnimationFrame(animateSlider);
-
-    // Detectar cambios en el tamaño de la ventana
-    window.addEventListener('resize', resetSlider);
-  </script>
-
+  
 
 
   <script>
@@ -556,97 +450,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     });
   </script>
 
-  <style>
-    .slider-container-a {
-      text-align: center;
-      padding: 20px;
-      background: #f8f9fa;
-    }
-
-    .titulo-slider-a {
-      font-size: 4.8rem;
-      font-family: "Teko", sans-serif;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: normal;
-    }
-
-    .swiper {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-      padding-bottom: 40px;
-    }
-
-    .swiper-wrapper {
-      display: flex;
-      align-items: stretch;
-      /* Hace que todos los slides tengan la misma altura */
-    }
-
-    .slider-item-a {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: stretch;
-      height: auto;
-      /* Evita que Swiper haga ajustes individuales */
-      min-height: 100%;
-      /* Mantiene la altura uniforme */
-    }
-
-    .producto-contenedor {
-      flex-grow: 1;
-      /* Hace que todas las imágenes ocupen el mismo espacio */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 250px;
-      /* Forzar misma altura */
-    }
-
-    .producto-img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: contain;
-      /* Evita que las imágenes se recorten */
-      border-radius: 10px;
-    }
-
-    .producto-nombre {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      flex-grow: 1;
-    }
-
-    .no-imagen {
-      color: gray;
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn {
-      margin-top: auto;
-      background: #007bff;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      align-self: center;
-    }
-
-    .btn:hover {
-      background: #0056b3;
-    }
-  </style>
 
 </body>
 

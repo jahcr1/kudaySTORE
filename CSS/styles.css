@@ -964,89 +964,101 @@ h3.titulo {
 /*========= SECCION PROMOCIONES =======*/
 /*=====================================*/
 
-/* Encapsulado para la sección del slider */
-#promociones {
-  height: auto;
-  padding: 20px 0;
+.slider-container {
   text-align: center;
-  margin: 120px 0 0 0;
+  padding: 20px;
+  background: #f8f9fa;
 }
 
-#titulo_promociones {
-  scroll-margin: 90px;
+.titulo-slider {
+  font-size: 4.8rem;
+  font-family: "Teko", sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
 }
 
-/* Contenedor para centrar y limitar el slider */
-.slider-wrapper {
+.titulo-slider-views {
+  font-size: 3rem;
+  font-family: "Teko", sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.swiper {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 40px;
+}
+
+.swiper-wrapper {
   display: flex;
-  justify-content: center; /* Centra el slider horizontalmente */
-  align-items: center;
-  overflow: hidden; /* Ocultar contenido que desborde */
-  width: 100%;
+  align-items: stretch;
+  /* Hace que todos los slides tengan la misma altura */
 }
 
-/* Slider principal */
-.slider {
-  position: relative;
-  width: 80vw; /* El slider ocupa el 80% del viewport */
-  height: 500px; /* Altura fija */
-  overflow: hidden;
-}
-
-/* Pista del slider */
-.slider-track {
-  display: flex;
-  align-items: center;
-  transition: none; /* No usar transición porque se reorganiza dinámicamente */
-  will-change: transform;
-}
-
-/* Elementos individuales */
 .slider-item {
-  flex-shrink: 0;
-  width: 25vw; /* Cada elemento ocupa una fracción del slider */
-  height: 350px; /* Igual a la altura del slider */
-
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  
-  
-
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: auto;
+  /* Evita que Swiper haga ajustes individuales */
+  min-height: 100%;
+  /* Mantiene la altura uniforme */
 }
 
-.slider-item img {
+.producto-contenedor {
+  flex-grow: 1;
+  /* Hace que todas las imágenes ocupen el mismo espacio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  /* Forzar misma altura */
+}
+
+.producto-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ajuste proporcional */
+  max-height: 250px;
+  object-fit: contain;
+  /* Evita que las imágenes se recorten */
+  border-radius: 10px;
 }
 
-/* Gradientes de desvanecimiento */
-.slider::before,
-.slider::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 10%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
+.producto-nombre {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  flex-grow: 1;
 }
 
-.slider::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+.no-imagen {
+  color: gray;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.slider::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+.btn {
+  margin-top: auto;
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.btn:hover {
+  background: #0056b3;
 }
 
 /*=====================================*/
