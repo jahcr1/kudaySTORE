@@ -21,6 +21,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <!-- ICONOS DE FONTAWESOME -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
 
+    <!-- Agrega Swiper.js desde CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
@@ -157,6 +160,40 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </section>
 
+    <section id="productos-relevantes" class="slider-container">
+        <h3 class="titulo-slider-views" id="titulo_productos">Productos que también llevaron.. </h3>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php
+                include('../componentes/conexion.php');
+                $query = "SELECT p.*, c.nombre AS categoria_nombre FROM productos p JOIN categorias c ON p.categoria_id = c.id WHERE p.categoria_id = '8' LIMIT 10";
+                $result = mysqli_query($conexion, $query);
+                while ($producto = mysqli_fetch_assoc($result)) {
+                ?>
+                    <div class="swiper-slide slider-item">
+                        <?php if (!empty($producto['ci_imagen_producto'])): ?>
+                            <?php
+                            $img_data = base64_encode($producto['ci_imagen_producto']);
+                            $img_type = $producto['formato_imagen'];
+                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen de {$producto['nombre']}' class='producto-img'>";
+                            ?>
+                        <?php else: ?>
+                            <p class="no-imagen">Sin imagen disponible</p>
+                        <?php endif; ?>
+                        <h5 class="producto-nombre"><?php echo $producto['nombre']; ?></h5>
+                        <button class="btn btn-primary" onclick="window.location.href='../producto.php?id=<?php echo $producto['id']; ?>'">
+                            Ver más
+                        </button>
+                    </div>
+                <?php } ?>
+            </div>
+            <!-- Agrega navegación y paginación -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
     <footer class="footer" id="seccion_footer">
         <main class="container-fluid">
             <div class="row contenedor_footer align-items-center">
@@ -225,6 +262,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     
     <!-- Incluyendo GSAP desde un CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+
+    <!-- Agrega Swiper.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <!-- Incluyendo GSAP BOUNCE -->
     <!-- <script>
@@ -292,6 +332,46 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     });
 
     </script>
+
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".mySwiper", {
+                loop: true, // Hace que el slider sea infinito
+                slidesPerView: 3,
+                spaceBetween: 10,
+                autoplay: {
+                    delay: 3000, // Cambia cada 3 segundos
+                    disableOnInteraction: false, // Sigue moviéndose aunque el usuario interactúe
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    250: {  
+                        slidesPerView: 1,  // Muestra 1 slide (ya está igual en 480px)
+                        spaceBetween: 5,   // Espacio muy pequeño entre los slides
+                    },
+                    480: {  
+                        slidesPerView: 1, // Muestra solo un slide
+                        spaceBetween: 10, // Menor espacio entre los slides
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 30,
+                    },
+                },
+            });
+        });
+        </script>
 
 
 
