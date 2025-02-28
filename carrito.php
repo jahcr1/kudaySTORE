@@ -113,7 +113,7 @@ $result = mysqli_query($conexion, $query);
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingCart">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCart" aria-expanded="true" aria-controls="collapseCart">
-                    <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;&nbsp;Mis Productos
+                        <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;&nbsp;Mis Productos
                     </button>
                 </h2>
                 <div id="collapseCart" class="accordion-collapse collapse show" aria-labelledby="headingCart" data-bs-parent="#cartAccordion">
@@ -176,7 +176,7 @@ $result = mysqli_query($conexion, $query);
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <form class="p-4 border rounded shadow-sm bg-light">
+                        <form class="p-4 border rounded shadow-sm bg-light" id="formEnvio">
                             <div class="row g-3">
                                 <!-- Nombre -->
                                 <div class="col-md-6">
@@ -195,7 +195,7 @@ $result = mysqli_query($conexion, $query);
                                 <!-- Teléfono -->
                                 <div class="col-md-4">
                                     <div class="form-floating">
-                                        <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="Teléfono" required autocomplete="off">
+                                        <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="Teléfono" required autocomplete="off" pattern="^[\d\s\+\-\(\)]{10,18}$" title="Debe ser un número de teléfono válido (con o sin espacios, guiones, paréntesis).">
                                         <label for="telefono">Teléfono</label>
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@ $result = mysqli_query($conexion, $query);
                                 <div class="col-md-5">
                                     <div class="form-floating">
                                         <select class="form-select form-select-sm" id="provincia" required autocomplete="off">
-                                            <option selected>Seleccione...</option>
+                                            <option value="" selected>Seleccione...</option>
                                             <option value="1">Buenos Aires</option>
                                             <option value="2">Córdoba</option>
                                             <option value="3">Santa Cruz</option>
@@ -261,7 +261,7 @@ $result = mysqli_query($conexion, $query);
                                 </div>
                                 <!-- Botón de envío -->
                                 <div class="col-12 text-center mt-3">
-                                    <button type="button" class="btn btn-primary px-4" onclick="confirmarDatosEnvio()">Confirmar Datos de Envío</button>
+                                    <button type="submit" class="btn btn-primary px-4">Confirmar Datos de Envío</button>
                                 </div>
                             </div>
                         </form>
@@ -382,13 +382,39 @@ $result = mysqli_query($conexion, $query);
         }
 
 
+        // validacion del formulario en front y back
+        document.getElementById("formEnvio").addEventListener("submit", function (event) {
+        const provincia = document.getElementById("provincia");
+
+        // Verifica si la provincia ha sido seleccionada correctamente
+        if (!provincia.value) {
+            provincia.setCustomValidity("Por favor, selecciona una provincia.");
+            provincia.reportValidity();
+            event.preventDefault(); // Detiene el envío
+            return;
+        } else {
+            provincia.setCustomValidity(""); // Limpia el mensaje si es válido
+        }
+
+        // Validación general del formulario
+        if (!this.checkValidity()) {
+            event.preventDefault();
+            this.reportValidity(); // Muestra los errores en pantalla
+            return;
+        }
+
+        // Si todo es válido, ejecutamos confirmarDatosEnvio después de un pequeño retraso
+        event.preventDefault(); 
+        setTimeout(confirmarDatosEnvio, 100); 
+    });
+
+
+
+
         function confirmarDatosEnvio() {
             let provincia = document.getElementById("provincia").value;
 
-            if (provincia === "Seleccione...") {
-                alert("Por favor, selecciona una provincia.");
-                return;
-            }
+            
 
             fetch('./componentes/calcular_envio.php', {
                     method: 'POST',
@@ -422,25 +448,25 @@ $result = mysqli_query($conexion, $query);
                 .catch(error => console.error('Error al calcular el costo de envío:', error));
         }
 
-            // Este script hace que Al cargar la página, recuperar los valores guardados en localStorage
-            document.addEventListener("DOMContentLoaded", function() {
-                let costoGuardado = localStorage.getItem("costoEnvio");
-                let totalGuardado = localStorage.getItem("totalCompra");
+        // Este script hace que Al cargar la página, recuperar los valores guardados en localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            let costoGuardado = localStorage.getItem("costoEnvio");
+            let totalGuardado = localStorage.getItem("totalCompra");
 
-                if (costoGuardado && totalGuardado) {
-                    document.getElementById("costoEnvio").textContent = `$${costoGuardado}`;
-                    document.getElementById("costoEnvioRow").style.display = "table-row";
-                    document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
-                }
-            });
+            if (costoGuardado && totalGuardado) {
+                document.getElementById("costoEnvio").textContent = `$${costoGuardado}`;
+                document.getElementById("costoEnvioRow").style.display = "table-row";
+                document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
+            }
+        });
 
         function finalizarCompra() {
             let nombre = document.getElementById("nombre").value.trim();
-            let apellido = document.getElementById("apellido").value.trim();  // Nuevo campo
-            let telefono = document.getElementById("telefono").value.trim();  // Nuevo campo
+            let apellido = document.getElementById("apellido").value.trim(); // Nuevo campo
+            let telefono = document.getElementById("telefono").value.trim(); // Nuevo campo
             let email = document.getElementById("correo").value.trim();
             let direccion = document.getElementById("direccion").value.trim();
-            let ciudad = document.getElementById("ciudad").value.trim();  // Nuevo campo
+            let ciudad = document.getElementById("ciudad").value.trim(); // Nuevo campo
             let provincia = document.getElementById("provincia").value.trim();
             let codigopostal = document.getElementById("codigoPostal").value.trim();
             let total = parseFloat(localStorage.getItem("totalCompra") || "0");
@@ -452,7 +478,12 @@ $result = mysqli_query($conexion, $query);
                 let name = row.cells[0].textContent;
                 let price = parseFloat(row.cells[1].textContent.replace('$', ''));
                 let cantidad = parseInt(row.querySelector('.cantidad').value);
-                productos.push({ id, name, cantidad, price });
+                productos.push({
+                    id,
+                    name,
+                    cantidad,
+                    price
+                });
             });
 
             // Validación básica (ahora incluye los nuevos campos)
@@ -463,39 +494,40 @@ $result = mysqli_query($conexion, $query);
 
             // Enviar los datos al servidor
             fetch('./componentes/procesar_compra.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    nombre: nombre,
-                    apellido: apellido,  //  Nuevo campo agregado 
-                    telefono: telefono,  //  Nuevo campo agregado 
-                    email: email,
-                    direccion: direccion,
-                    provincia: provincia,
-                    ciudad: ciudad,  //  Nuevo campo agregado 
-                    codigopostal: codigopostal,  //  Nuevo campo agregado 
-                    productos: JSON.stringify(productos),
-                    total: total
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        nombre: nombre,
+                        apellido: apellido, //  Nuevo campo agregado 
+                        telefono: telefono, //  Nuevo campo agregado 
+                        email: email,
+                        direccion: direccion,
+                        provincia: provincia,
+                        ciudad: ciudad, //  Nuevo campo agregado 
+                        codigopostal: codigopostal, //  Nuevo campo agregado 
+                        productos: JSON.stringify(productos),
+                        total: total
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Compra finalizada con éxito. Recibirás un correo de confirmación.");
-                    
-                    // Limpiar carrito y almacenamiento local
-                    localStorage.removeItem("costoEnvio");
-                    localStorage.removeItem("totalCompra");
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Compra finalizada con éxito. Recibirás un correo de confirmación.");
 
-                    // Redirigir a página de confirmación
-                    window.location.href = "confirmacion.php";
-                } else {
-                    alert("Error: " + data.message);
-                }
-            })
-            .catch(error => console.error('Error al finalizar la compra:', error));
+                        // Limpiar carrito y almacenamiento local
+                        localStorage.removeItem("costoEnvio");
+                        localStorage.removeItem("totalCompra");
+
+                        // Redirigir a página de confirmación
+                        window.location.href = "confirmacion.php";
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => console.error('Error al finalizar la compra:', error));
         }
-     
     </script>
 </body>
 
