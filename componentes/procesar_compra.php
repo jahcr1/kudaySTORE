@@ -1,98 +1,108 @@
 <?php
-require_once 'conexion.php'; // Archivo de conexión a la BD
+require_once 'conexion.php';
 require_once '../vendor/autoload.php'; // Cargar Dompdf
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  try {
-    // Sanitizar y recibir datos
-    $nombre = trim($_POST['nombre'] ?? '');
-    $apellido = trim($_POST['apellido'] ?? '');
-    $telefono = trim($_POST['telefono'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $direccion = trim($_POST['direccion'] ?? '');
-    $provincia = trim($_POST['provincia'] ?? '');
-    $ciudad = trim($_POST['ciudad'] ?? '');
-    $codigopostal = trim($_POST['codigopostal'] ?? '');
-    $productos = $_POST['productos'] ?? '[]'; // Los productos vienen como JSON
-    $total = floatval($_POST['total'] ?? 0);
+    try {
+        // Recibir datos del formulario
+        $nombre = trim($_POST['nombre'] ?? '');
+        $apellido = trim($_POST['apellido'] ?? '');
+        $telefono = trim($_POST['telefono'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $direccion = trim($_POST['direccion'] ?? '');
+        $provincia = trim($_POST['provincia'] ?? '');
+        $ciudad = trim($_POST['ciudad'] ?? '');
+        $codigopostal = trim($_POST['codigopostal'] ?? '');
+        $productos = $_POST['productos'] ?? '[]';
+        $total = floatval($_POST['total'] ?? 0);
 
-    // Validar datos esenciales
-    if (!$nombre || !$apellido || !$telefono || !$email || !$direccion || !$provincia || !$ciudad || !$codigopostal || empty($productos) || $total <= 0) {
-      throw new Exception("Datos incompletos o incorrectos.");
+        // Validación básica
+        if (!$nombre || !$apellido || !$telefono || !$email || !$direccion || !$provincia || !$ciudad || !$codigopostal || empty($productos) || $total <= 0) {
+            throw new Exception("Datos incompletos o incorrectos.");
+        }
+
+        // Decodificar los productos
+        $productos_array = json_decode($productos, true);
+        if (!is_array($productos_array)) {
+            throw new Exception("Formato de productos incorrecto.");
+        }
+
+        $productos_json = json_encode($productos_array, JSON_UNESCAPED_UNICODE);
+
+        // Insertar la compra en la base de datos
+        $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+        $stmt->bind_param("sssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total);
+        $stmt->execute();
+
+        if ($stmt->error) {
+          echo "Error en la consulta: " . $stmt->error;
+        }
+
+        if ($stmt->affected_rows <= 0) {
+          throw new Exception("Error al registrar la compra.");
+        }
+
+        // Generar HTML para la factura
+        ob_start();
+        ?>
+        <html>
+        <body>
+            <h2>Factura de Compra</h2>
+            <p><strong>Cliente:</strong> <?php echo "$nombre $apellido"; ?></p>
+            <p><strong>Teléfono:</strong> <?php echo $telefono; ?></p>
+            <p><strong>Email:</strong> <?php echo $email; ?></p>
+            <p><strong>Dirección:</strong> <?php echo "$direccion, $ciudad, $provincia, $codigopostal"; ?></p>
+            <h3>Productos</h3>
+            <ul>
+                <?php foreach ($productos_array as $producto): ?>
+                    <li><?php echo $producto['name'] . " - Cantidad: " . $producto['cantidad'] . " - Precio: $" . $producto['price']; ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <p><strong>Total:</strong> $<?php echo number_format($total, 2); ?></p>
+        </body>
+        </html>
+        <?php
+        $html = ob_get_clean();
+
+        // Configuración de Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true); // Habilitar HTML5
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $pdfOutput = $dompdf->output();
+        $pdfPath = "../facturas/factura_" . time() . ".pdf";
+        file_put_contents($pdfPath, $pdfOutput);
+
+        // Enviar correo con PHPMailer
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.tudominio.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'tuemail@tudominio.com';
+            $mail->Password = 'tucontraseña';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+            $mail->setFrom('tuemail@tudominio.com', 'Tienda Online');
+            $mail->addAddress($email, "$nombre $apellido");
+            $mail->Subject = 'Confirmación de Compra';
+            $mail->Body = "Gracias por tu compra, $nombre. Adjuntamos tu factura en PDF.";
+            $mail->addAttachment($pdfPath);
+            $mail->send();
+        } catch (Exception $e) {
+            throw new Exception("Error al enviar el correo: " . $mail->ErrorInfo);
+        }
+
+        echo json_encode(["success" => true, "message" => "Compra registrada y correo enviado con éxito."]);
+    } catch (Exception $e) {
+        echo json_encode(["success" => false, "message" => $e->getMessage()]);
     }
-
-    // Convertir productos a formato JSON para almacenar en la BD
-    $productos_array = json_decode($productos, true); // Decodificamos el JSON
-    if (!is_array($productos_array)) {
-      throw new Exception("Formato de productos incorrecto.");
-    }
-    $productos_json = json_encode($productos_array, JSON_UNESCAPED_UNICODE);
-
-    // Insertar la compra en la base de datos
-    $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("sssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total);
-    $stmt->execute();
-
-    if ($stmt->error) {
-      echo "Error en la consulta: " . $stmt->error;
-    }
-
-    if ($stmt->affected_rows <= 0) {
-      throw new Exception("Error al registrar la compra.");
-    }
-
-    // Obtener ID de la compra generada
-    $compra_id = $stmt->insert_id;
-
-    // Crear la carpeta "facturas/" si no existe
-    $facturas_dir = __DIR__ . '/../facturas/';
-    if (!is_dir($facturas_dir)) {
-      mkdir($facturas_dir, 0777, true);
-    }
-
-    // Generar factura PDF con Dompdf
-    $factura_html = "<h1>Factura #{$compra_id}</h1>
-                         <p><strong>Cliente:</strong> {$nombre} {$apellido}</p>
-                         <p><strong>Teléfono:</strong> {$telefono}</p>
-                         <p><strong>Email:</strong> {$email}</p>
-                         <p><strong>Dirección:</strong> {$direccion}, {$ciudad}, {$provincia}, {$codigopostal}</p>
-                         <h2>Productos</h2>
-                         <ul>";
-
-    // Verificar que los productos sean un array
-    if (is_array($productos_array) && count($productos_array) > 0) {
-      foreach ($productos_array as $producto) {
-        // Asegúrate de que cada producto tenga las claves correctas
-        $nombre_producto = $producto['name'] ?? 'Desconocido';
-        $cantidad = $producto['cantidad'] ?? 0;
-        $precio = $producto['price'] ?? 0;
-        $factura_html .= "<li>{$nombre_producto} - {$cantidad} x \${$precio}</li>";
-      }
-    } else {
-      $factura_html .= "<li>No hay productos en la compra.</li>";
-    }
-
-    $factura_html .= "</ul><h2>Total: \${$total}</h2>";
-
-    // Configuración de Dompdf
-    $options = new Options();
-    $options->set('defaultFont', 'Arial');
-    $dompdf = new Dompdf($options);
-    $dompdf->loadHtml($factura_html);
-    $dompdf->setPaper('A4', 'portrait');
-    $dompdf->render();
-
-    // Guardar el PDF en la carpeta "facturas/"
-    $factura_file = "{$facturas_dir}factura_{$compra_id}.pdf";
-    file_put_contents($factura_file, $dompdf->output());
-
-    echo json_encode(["success" => true, "message" => "Compra registrada y factura generada.", "factura" => $factura_file]);
-  } catch (Exception $e) {
-    echo json_encode(["success" => false, "message" => $e->getMessage()]);
-  }
 } else {
-  echo json_encode(["success" => false, "message" => "Método no permitido."]);
+    echo json_encode(["success" => false, "message" => "Método no permitido."]);
 }
