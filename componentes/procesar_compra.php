@@ -25,8 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productos_json = json_encode(json_decode($productos, true), JSON_UNESCAPED_UNICODE);
 
     // Insertar la compra en la base de datos con los nuevos campos
-    $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, fecha_compra) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
     $stmt->bind_param("sssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total);
 
     // Ejecutar la consulta
