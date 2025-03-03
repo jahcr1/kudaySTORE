@@ -39,23 +39,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         if ($stmt->error) {
-          echo "Error en la consulta: " . $stmt->error;
+            echo "Error en la consulta: " . $stmt->error;
         }
 
         if ($stmt->affected_rows <= 0) {
-          throw new Exception("Error al registrar la compra.");
+            throw new Exception("Error al registrar la compra.");
         }
+
+        // Para mostrar fecha y hora
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+        $fechaHoraCompra = date("d/m/Y H:i:s"); // Para mostrar fecha y hora
 
         // Generar HTML para la factura
         ob_start();
-        ?>
+?>
         <html>
+
         <body>
             <h2>Factura de Compra</h2>
             <p><strong>Cliente:</strong> <?php echo "$nombre $apellido"; ?></p>
             <p><strong>Teléfono:</strong> <?php echo $telefono; ?></p>
             <p><strong>Email:</strong> <?php echo $email; ?></p>
-            <p><strong>Dirección:</strong> <?php echo "$direccion, $ciudad, $provincia, $codigopostal"; ?></p>
+            <p><strong>Dirección:</strong> <?php echo "$direccion, $ciudad, $provincia."; ?></p>
+            <p><strong>Código Postal:</strong> <?php echo $codigopostal; ?></p>
             <h3>Productos</h3>
             <ul>
                 <?php foreach ($productos_array as $producto): ?>
@@ -63,9 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endforeach; ?>
             </ul>
             <p><strong>Total:</strong> $<?php echo number_format($total, 2); ?></p>
+            <p><strong>Fecha de la Compra:</strong> <?php echo $fechaHoraCompra; ?></p> <!-- Agregar la fecha aquí -->
         </body>
+
         </html>
-        <?php
+<?php
         $html = ob_get_clean();
 
         // Configuración de Dompdf
