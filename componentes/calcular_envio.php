@@ -4,29 +4,29 @@ if (isset($_POST['provincia'])) {
 
     // Simulación de costos de envío según provincia
     $costosEnvio = [
-        "1" => 500,   // Buenos Aires
-        "2" => 700,   // Córdoba
-        "3" => 900,   // Santa Cruz
-        "4" => 900,   // Catamarca
-        "5" => 900,   // Chaco
-        "6" => 900,   // Chubut
-        "7" => 900,   // Corrientes
-        "8" => 900,   // Entre Rios
-        "9" => 900,   // Formosa
-        "10" => 900,   // Jujuy
-        "11" => 900,   // La Pampa
-        "12" => 900,   // La Rioja
-        "13" => 900,   // Mendoza
-        "14" => 900,   // Misiones
-        "15" => 900,   // Neuquén
-        "16" => 900,   // Rio Negro
-        "17" => 900,   // Salta
-        "18" => 900,   // San Juan
-        "19" => 900,   // San Luis
-        "20" => 900,   // Santa Fe
-        "21" => 900,   // Santiago Del Estero
-        "22" => 900,   // Tierra Del Fuego
-        "23" => 900,   // Tucumán
+        "Buenos Aires" => 500,   // Buenos Aires
+        "Cordoba" => 700,   // Córdoba
+        "Santa Cruz" => 900,   // Santa Cruz
+        "Catamarca" => 900,   // Catamarca
+        "Chaco" => 900,   // Chaco
+        "Chubut" => 900,   // Chubut
+        "Corrientes" => 900,   // Corrientes
+        "Entre Rios" => 900,   // Entre Rios
+        "Formosa" => 900,   // Formosa
+        "Jujuy" => 900,   // Jujuy
+        "La Pampa" => 900,   // La Pampa
+        "La Rioja" => 900,   // La Rioja
+        "Mendoza" => 900,   // Mendoza
+        "Misiones" => 900,   // Misiones
+        "Neuquen" => 900,   // Neuquén
+        "Rio Negro" => 900,   // Rio Negro
+        "Salta" => 900,   // Salta
+        "San Juan" => 900,   // San Juan
+        "San Luis" => 900,   // San Luis
+        "Santa Fe" => 900,   // Santa Fe
+        "Santiago Del Estero" => 900,   // Santiago Del Estero
+        "Tierra Del Fuego" => 900,   // Tierra Del Fuego
+        "Tucuman" => 900,   // Tucumán
         // Agregar más provincias con sus respectivos costos
     ];
 
