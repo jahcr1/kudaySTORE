@@ -291,7 +291,7 @@ $result = mysqli_query($conexion, $query);
             let maxStock = parseInt(input.dataset.stock); // Obtiene el stock máximo desde el atributo data-stock
             let value = parseInt(input.value) + change;
 
-            if (value >= 1 && value <= maxStock) {
+            if (value >= 0 && value <= maxStock) {
                 input.value = value;
                 updateTotal();
                 updateCartCount();

@@ -51,7 +51,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               <a class="nav-link active boton-nav" aria-current="page" href="index.php#titulo_tienda">Tienda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active boton-nav" href="index.php#titulo_promociones">Promociones</a>
+              <a class="nav-link active boton-nav" href="index.php#productos-relevantes">Promociones</a>
             </li>
             <li class="nav-item dropdown" style="align-items: flex-start;">
               <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
