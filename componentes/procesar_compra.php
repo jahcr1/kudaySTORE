@@ -69,6 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     color: #333;
                     margin: 0;
                     padding: 0;
+                    border: 1px solid black;
+                    border-collapse: collapse;
                 }
 
                 .header-comprados {
@@ -80,6 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     align-items: center;
                     height: 120px;
                     overflow: hidden;
+                    border: 1px solid black;
+                    border-collapse: collapse;
                 }
 
                 .logo-container {
@@ -106,6 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     padding: 20px;
                     text-align: center;
                     font-size: 14px;
+                    border: 1px solid black;
+                    border-collapse: collapse;
                 }
 
                 /* Asegura que la primera fila esté centrada */
@@ -196,21 +202,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row datos-pagos">
                     <p>Datos de pago:</p>
                 </div>
-                <div class="metodos-pago">
-                    <div>
+                <table class="metodos-pago" style="width: 100%;">
+                    <td style="width: 50%;">
                         <p><strong>Mercado Pago</strong></p>
                         <p>Daiana Rocío Quiroga</p>
                         <p>Alias: <?php echo getenv('ALIAS_MP'); ?></p>
                         <p>CVU: <?php echo getenv('CVU_MP'); ?></p>
                         <p>CUIT/CUIL: <?php echo getenv('CUITCUIL'); ?></p>
-                    </div>
-                    <div>
+                    </td>
+                    <td style="width: 50%;">
                         <p><strong>Datos Bancarios</strong></p>
                         <p>Daiana Rocío Quiroga</p>
                         <p>Cuenta Bancaria: <?php echo getenv('CUENTA_BANCARIA'); ?></p>
                         <p>CBU: <?php echo getenv('CBU'); ?></p>
-                    </div>
-                </div>
+                    </td>
+                </table>
             </div>
 
 
