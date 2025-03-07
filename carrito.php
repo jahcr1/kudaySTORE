@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();
 $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
@@ -195,7 +197,7 @@ $result = mysqli_query($conexion, $query);
                                 <!-- Teléfono -->
                                 <div class="col-md-4">
                                     <div class="form-floating">
-                                        <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="Teléfono" required autocomplete="off" pattern="^[\d\s\+\-\(\)]{10,18}$" title="Debe ser un número de teléfono válido (con o sin espacios, guiones, paréntesis).">
+                                        <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="2976-423488" required autocomplete="off" pattern="^[\d\s\+\-\(\)]{10,18}$" title="Debe ser un número de teléfono válido (con o sin espacios, guiones, paréntesis). Ej: 3516884521">
                                         <label for="telefono">Teléfono</label>
                                     </div>
                                 </div>
@@ -494,39 +496,49 @@ $result = mysqli_query($conexion, $query);
 
             // Enviar los datos al servidor
             fetch('./componentes/procesar_compra.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        nombre: nombre,
-                        apellido: apellido, //  Nuevo campo agregado 
-                        telefono: telefono, //  Nuevo campo agregado 
-                        email: email,
-                        direccion: direccion,
-                        provincia: provincia,
-                        ciudad: ciudad, //  Nuevo campo agregado 
-                        codigopostal: codigopostal, //  Nuevo campo agregado 
-                        productos: JSON.stringify(productos),
-                        total: total
-                    })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    nombre: nombre,
+                    apellido: apellido,
+                    telefono: telefono,
+                    email: email,
+                    direccion: direccion,
+                    provincia: provincia,
+                    ciudad: ciudad,
+                    codigopostal: codigopostal,
+                    productos: JSON.stringify(productos),
+                    total: total
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert("Compra finalizada con éxito. Recibirás un correo de confirmación.");
+            })
+            .then(response => response.json()) // Intentamos parsear directamente a JSON
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+                if (data.success) {
+                    alert("Compra finalizada con éxito. Recibirás un correo con el comprobante en PDF.");
+                    
+                    /// Descargar automáticamente el PDF
+                    const downloadLink = document.createElement("a");
+                    downloadLink.href = data.pdfUrl;  // URL del PDF devuelta por PHP
+                    downloadLink.download = "factura.pdf"; // Nombre del archivo al descargar
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
 
-                        // Limpiar carrito y almacenamiento local
-                        localStorage.removeItem("costoEnvio");
-                        localStorage.removeItem("totalCompra");
-
-                        // Redirigir a página de confirmación
-                        window.location.href = "confirmacion.php";
-                    } else {
-                        alert("Error: " + data.message);
-                    }
-                })
-                .catch(error => console.error('Error al finalizar la compra:', error));
+                     // Limpiar localStorage y redirigir
+                    localStorage.removeItem("costoEnvio");
+                    localStorage.removeItem("totalCompra");
+                    window.location.href = "confirmacion.php";
+                } else {
+                    alert("Error: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error en la respuesta del servidor:", error);
+                alert("Hubo un problema al procesar la compra.");
+            });
         }
     </script>
 </body>
