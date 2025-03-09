@@ -31,6 +31,9 @@
             $productos = $_POST['productos'] ?? '[]';
             $total = floatval($_POST['total'] ?? 0);
 
+            // Decodificar el email en caso de que haya codificación
+            $email = urldecode($email);  // Decodificamos el email
+
             // Validación básica
             if (!$nombre || !$apellido || !$telefono || !$email || !$direccion || !$provincia || !$ciudad || !$codigopostal || empty($productos) || $total <= 0) {
                 throw new Exception("Datos incompletos o incorrectos.");

@@ -167,6 +167,10 @@ $result = mysqli_query($conexion, $query);
                         <div class="text-center mt-3">
                             <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
                         </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-success" id="refreshCart">Actualizar Carrito</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -288,29 +292,51 @@ $result = mysqli_query($conexion, $query);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        // Función para actualizar la cantidad de productos en el carrito
         function updateQuantity(id, change) {
             let input = document.querySelector(`.cantidad[data-id='${id}']`);
-            let maxStock = parseInt(input.dataset.stock); // Obtiene el stock máximo desde el atributo data-stock
+            let maxStock = parseInt(input.dataset.stock);
             let value = parseInt(input.value) + change;
 
-            if (value >= 0 && value <= maxStock) {
+            // Se evita que el valor sea negativo o mayor al stock disponible
+            value = Math.max(0, Math.min(value, maxStock));
+
+            if (value < maxStock) {
                 input.value = value;
                 updateTotal();
                 updateCartCount();
                 updateCartSession(id, value);
-            } else if (value > maxStock) {
+            } else {
                 alert("No puedes agregar más unidades, alcanzaste el stock disponible.");
             }
         }
 
+        // Función para eliminar un producto del carrito
         function removeItem(id) {
             let row = document.querySelector(`tr[data-id='${id}']`);
-            row.remove();
+            if (row) row.remove(); // Remover visualmente la fila
+
+            // Obtener carrito actualizado y eliminar el producto
+            let cart = JSON.parse(localStorage.getItem("carrito")) || [];
+            cart = cart.filter(item => item.id != id);
+            localStorage.setItem("carrito", JSON.stringify(cart)); // Guardar en localStorage
+
+            // Enviar la actualización al servidor para que elimine el producto de la sesión
+            fetch('actualizar_carrito.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${encodeURIComponent(id)}&cantidad=0`
+            }).then(response => response.json())
+            .then(data => {
+                document.getElementById('cart-count').textContent = data.cartCount;
+            })
+            .catch(error => console.error('Error al actualizar el carrito en el servidor:', error));
+
             updateTotal();
             updateCartCount();
-            updateCartSession(id, 0);
         }
 
+        // Función para actualizar el total del carrito
         function updateTotal() {
             let totalElem = document.getElementById('total');
             let total = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
@@ -318,30 +344,97 @@ $result = mysqli_query($conexion, $query);
                 let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
                 return sum + (price * parseInt(el.value));
             }, 0);
+            
             totalElem.textContent = `$${total.toFixed(2)}`;
+        
+            // Actualizar el valor total en el localStorage
+            localStorage.setItem("totalCompra", total);
         }
 
+        // Función para actualizar el contador de productos en el carrito
         function updateCartCount() {
             let count = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => sum + parseInt(el.value), 0);
             document.getElementById('cart-count').textContent = count;
+
+            // Actualizar el contador en localStorage
+            localStorage.setItem("cartCount", count);
         }
 
-        // Nueva función para actualizar la sesión del carrito
+        // Función para actualizar la sesión del carrito
         function updateCartSession(id, cantidad) {
+            // Se sanitiza el ID y la cantidad para evitar inyección de código
+            let safeId = encodeURIComponent(id);
+            let safeCantidad = encodeURIComponent(cantidad);
+
             fetch('actualizar_carrito.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `id=${id}&cantidad=${cantidad}`
+                    body: `id=${safeId}&cantidad=${safeCantidad}`
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
                 .then(data => {
                     document.getElementById('cart-count').textContent = data.cartCount;
                 })
                 .catch(error => console.error('Error al actualizar el carrito:', error));
         }
 
+        // Función para actualizar el carrito en tiempo real
+        document.getElementById("refreshCart").addEventListener("click", function() {
+            fetch("./componentes/obtener_carrito.php")
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                let cartBody = document.getElementById("cart-body");
+                cartBody.innerHTML = ""; // Limpiar la tabla del carrito
+
+                let total = 0;
+
+                // Recargar los productos en la tabla del carrito
+                data.carrito.forEach(item => {
+                    let row = document.createElement("tr");
+                    row.setAttribute("data-id", item.id);
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td class="precio">$${item.precio.toFixed(2)}</td>
+                        <td>
+                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <input type="number" class="cantidad" data-id="${item.id}" data-stock="${item.stock}" value="${item.cantidad}" readonly>
+                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </td>
+                        <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
+                        <td><button onclick="removeItem(${item.id})">🗑</button></td>
+                    `;
+                    cartBody.appendChild(row);
+                    total += item.precio * item.cantidad;
+                });
+
+                // Actualizamos el total en el carrito y el localStorage
+                document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+                document.getElementById("cart-count").textContent = data.carrito.length;
+
+                // Si ya hay un costo de envío, mantenerlo
+                if (localStorage.getItem("costoEnvio")) {
+                    let costoEnvio = parseFloat(localStorage.getItem("costoEnvio"));
+                    document.getElementById("costoEnvio").textContent = `$${costoEnvio}`;
+                    document.getElementById("costoEnvioRow").style.display = "table-row";
+
+                    let nuevoTotal = total + costoEnvio;
+                    document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
+                }
+                // Guardar los productos en el localStorage para que no se pierdan al actualizar
+                localStorage.setItem("carrito", JSON.stringify(data.carrito));
+            })
+            .catch(error => console.error("Error al actualizar el carrito:", error));
+        });
+
+        // Función para continuar con la compra
         function continuarCompra() {
             // Habilita el segundo accordion
             document.getElementById("envioAccordion").style.display = "block";
@@ -361,18 +454,14 @@ $result = mysqli_query($conexion, $query);
                 });
             });
 
-            console.log("Productos en el carrito:", cartItems);
             alert("Carrito actualizado. Puedes proceder con la compra.");
 
             //  Reiniciar el costo de envío a 0
             let costoEnvioActual = parseFloat(localStorage.getItem("costoEnvio") || "0");
             let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", "").trim());
 
-            // Restar el costo de envío anterior del total
-            let nuevoTotal = totalActual - costoEnvioActual;
-
-            // Asegurar que no haya valores negativos
-            nuevoTotal = Math.max(nuevoTotal, 0);
+            // Restar el costo de envío anterior del total y ponerlo en cero en caso de actualizar 
+            let nuevoTotal = Math.max(totalActual - costoEnvioActual, 0);
 
             // Actualizar la interfaz y limpiar el localStorage
             document.getElementById("costoEnvio").textContent = "$0";
@@ -383,59 +472,62 @@ $result = mysqli_query($conexion, $query);
             localStorage.setItem("totalCompra", nuevoTotal);
         }
 
+        // Validación del formulario de envío 
+        document.getElementById("formEnvio").addEventListener("submit", function(event) {
+            const provincia = document.getElementById("provincia");
 
-        // validacion del formulario en front y back
-        document.getElementById("formEnvio").addEventListener("submit", function (event) {
-        const provincia = document.getElementById("provincia");
 
-        // Verifica si la provincia ha sido seleccionada correctamente
-        if (!provincia.value) {
-            provincia.setCustomValidity("Por favor, selecciona una provincia.");
-            provincia.reportValidity();
-            event.preventDefault(); // Detiene el envío
-            return;
-        } else {
-            provincia.setCustomValidity(""); // Limpia el mensaje si es válido
-        }
+            // Verifica si la provincia ha sido seleccionada correctamente
+            if (!provincia.value) {
+                provincia.setCustomValidity("Por favor, selecciona una provincia.");
+                provincia.reportValidity();
+                event.preventDefault(); // Detiene el envío
+                return;
+            } else {
+                provincia.setCustomValidity(""); // Se limpia el mensaje de error dinámicamente
+            }
 
-        // Validación general del formulario
-        if (!this.checkValidity()) {
+            // Validación general del formulario
+            if (!this.checkValidity()) {
+                event.preventDefault();
+                this.reportValidity(); // Muestra los errores en pantalla
+                return;
+            }
+
+            // Si todo es válido, ejecutamos confirmarDatosEnvio después de un pequeño retraso
             event.preventDefault();
-            this.reportValidity(); // Muestra los errores en pantalla
-            return;
-        }
+            setTimeout(confirmarDatosEnvio, 100);
+        });
 
-        // Si todo es válido, ejecutamos confirmarDatosEnvio después de un pequeño retraso
-        event.preventDefault(); 
-        setTimeout(confirmarDatosEnvio, 100); 
-    });
+        // Evento para limpiar errores de provincia
+        document.getElementById("provincia").addEventListener("change", function() {
+            this.setCustomValidity("");
+        });
 
-
-
-
+        // Función para confirmar los datos de envío
         function confirmarDatosEnvio() {
             let provincia = document.getElementById("provincia").value;
-
-            
 
             fetch('./componentes/calcular_envio.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `provincia=${provincia}`
+                    body: `provincia=${encodeURIComponent(provincia)}`
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
                 .then(data => {
                     let costoEnvio = parseFloat(data.costoEnvio);
+                    // Obtener el total actual del primer accordion
+                    let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", "").trim());
+                    let nuevoTotal = totalActual + costoEnvio;
 
                     // Mostrar el costo de envío en el segundo accordion
                     document.getElementById("costoEnvio").textContent = `$${costoEnvio}`;
                     document.getElementById("costoEnvioRow").style.display = "table-row";
-
-                    // Obtener el total actual del primer accordion
-                    let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", "").trim());
-                    let nuevoTotal = totalActual + costoEnvio;
 
                     // Actualizar el total en el primer accordion
                     document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
@@ -450,7 +542,7 @@ $result = mysqli_query($conexion, $query);
                 .catch(error => console.error('Error al calcular el costo de envío:', error));
         }
 
-        // Este script hace que Al cargar la página, recuperar los valores guardados en localStorage
+        // Restaurar valores guardados en localStorage al cargar la página f5
         document.addEventListener("DOMContentLoaded", function() {
             let costoGuardado = localStorage.getItem("costoEnvio");
             let totalGuardado = localStorage.getItem("totalCompra");
@@ -460,7 +552,10 @@ $result = mysqli_query($conexion, $query);
                 document.getElementById("costoEnvioRow").style.display = "table-row";
                 document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
             }
+
+            
         });
+
 
         function finalizarCompra() {
             let nombre = document.getElementById("nombre").value.trim();
@@ -488,58 +583,61 @@ $result = mysqli_query($conexion, $query);
                 });
             });
 
-            // Validación básica (ahora incluye los nuevos campos)
-            if (!nombre || !apellido || !telefono || !email || !direccion || !ciudad || !codigopostal || provincia === "Seleccione..." || productos.length === 0 || total <= 0) {
-                alert("Por favor, completa todos los datos correctamente.");
-                return;
-            }
-
-            // Enviar los datos al servidor
-            fetch('./componentes/procesar_compra.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                    nombre: nombre,
-                    apellido: apellido,
-                    telefono: telefono,
-                    email: email,
-                    direccion: direccion,
-                    provincia: provincia,
-                    ciudad: ciudad,
-                    codigopostal: codigopostal,
-                    productos: JSON.stringify(productos),
-                    total: total
-                })
-            })
-            .then(response => response.json()) // Intentamos parsear directamente a JSON
-            .then(data => {
-                console.log('Respuesta del servidor:', data);
-                if (data.success) {
-                    alert("Compra finalizada con éxito. Recibirás un correo con el comprobante en PDF.");
-                    
-                    /// Descargar automáticamente el PDF
-                    const downloadLink = document.createElement("a");
-                    downloadLink.href = data.pdfUrl;  // URL del PDF devuelta por PHP
-                    downloadLink.download = "factura.pdf"; // Nombre del archivo al descargar
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
-
-                     // Limpiar localStorage y redirigir
-                    localStorage.removeItem("costoEnvio");
-                    localStorage.removeItem("totalCompra");
-                    window.location.href = "confirmacion.php";
-                } else {
-                    alert("Error: " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error en la respuesta del servidor:", error);
-                alert("Hubo un problema al procesar la compra.");
+            // Se sanitizan los datos antes de enviarlos al servidor
+            let params = new URLSearchParams({
+                nombre: nombre, // No se codifica
+                apellido: apellido, // No se codifica
+                telefono: telefono, // No se codifica
+                email: email, // No se codifica
+                direccion: direccion, // No se codifica
+                provincia: provincia, // No se codifica
+                ciudad: ciudad, // No se codifica
+                codigopostal: codigopostal, // No se codifica
+                productos: JSON.stringify(productos),
+                total: total
             });
+
+            fetch('./componentes/procesar_compra.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert("Compra finalizada con éxito. Recibirás un correo con el comprobante en PDF.");
+
+                        // Verificación de URL antes de descargar el PDF (seguridad)
+                        if (data.pdfUrl) {
+                            const downloadLink = document.createElement("a");
+                            downloadLink.href = data.pdfUrl;
+                            downloadLink.download = "factura.pdf";
+                            document.body.appendChild(downloadLink);
+                            downloadLink.click();
+                            document.body.removeChild(downloadLink);
+                        } else {
+                            alert("Error: URL del comprobante no válida.");
+                        }
+
+                        // Limpiar localStorage y redirigir
+                        localStorage.removeItem("costoEnvio");
+                        localStorage.removeItem("totalCompra");
+                        window.location.href = "confirmacion.php";
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error en la respuesta del servidor:", error);
+                    alert("Hubo un problema al procesar la compra.");
+                });
         }
+
     </script>
 </body>
 
