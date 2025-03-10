@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Recalcular el total de productos en el carrito
-    $cartCount = array_sum($_SESSION['cart']);
+    $cartCount = array_sum($_SESSION['cart']);  
     echo json_encode(['cartCount' => $cartCount]);
 }
 ?>

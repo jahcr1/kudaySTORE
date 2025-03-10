@@ -8,6 +8,14 @@ include('./componentes/conexion.php');
 
 $cart = $_SESSION['cart'] ?? [];
 
+// Eliminar productos con cantidad 0
+$cart = array_filter($cart, function($cantidad) {
+    return $cantidad > 0;
+});
+
+// Actualizar la sesión con el carrito limpio
+$_SESSION['cart'] = $cart;
+
 if (empty($cart)) {
     echo "<p>No hay productos en el carrito.</p>";
     echo "<script type='text/javascript'>";
@@ -15,6 +23,7 @@ if (empty($cart)) {
     echo "</script>";
     exit();
 }
+
 
 $productIds = implode(',', array_keys($cart));
 $query = "SELECT * FROM productos WHERE id IN ($productIds)";
@@ -133,6 +142,8 @@ $result = mysqli_query($conexion, $query);
                                 <tbody id="cart-body">
                                     <?php
                                     $total = 0;
+                                    if (!empty($cart)) { ?>
+                                    <?php
                                     while ($product = mysqli_fetch_assoc($result)) {
                                         $id = $product['id'];
                                         $cantidad = $cart[$id];
@@ -153,6 +164,7 @@ $result = mysqli_query($conexion, $query);
                                             <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
                                         </tr>
                                     <?php } ?>
+                                <?php } ?>
                                     <tr id="costoEnvioRow" style="display: none;">
                                         <td colspan="3"><strong>Costo de Envío</strong></td>
                                         <td><strong id="costoEnvio">$0.00</strong></td>
@@ -167,10 +179,7 @@ $result = mysqli_query($conexion, $query);
                         <div class="text-center mt-3">
                             <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
                         </div>
-                        <div class="text-center mt-3">
-                            <button class="btn btn-success" id="refreshCart">Actualizar Carrito</button>
-
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -301,13 +310,15 @@ $result = mysqli_query($conexion, $query);
             // Se evita que el valor sea negativo o mayor al stock disponible
             value = Math.max(0, Math.min(value, maxStock));
 
-            if (value < maxStock) {
+            if (value <= maxStock) {
                 input.value = value;
                 updateTotal();
                 updateCartCount();
                 updateCartSession(id, value);
-            } else {
-                alert("No puedes agregar más unidades, alcanzaste el stock disponible.");
+
+                if (value === maxStock) {
+                    alert("Has alcanzado el stock máximo disponible para este producto.");
+                }
             }
         }
 
@@ -382,57 +393,6 @@ $result = mysqli_query($conexion, $query);
                 })
                 .catch(error => console.error('Error al actualizar el carrito:', error));
         }
-
-        // Función para actualizar el carrito en tiempo real
-        document.getElementById("refreshCart").addEventListener("click", function() {
-            fetch("./componentes/obtener_carrito.php")
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                    return response.json();
-                })
-                .then(data => {
-                let cartBody = document.getElementById("cart-body");
-                cartBody.innerHTML = ""; // Limpiar la tabla del carrito
-
-                let total = 0;
-
-                // Recargar los productos en la tabla del carrito
-                data.carrito.forEach(item => {
-                    let row = document.createElement("tr");
-                    row.setAttribute("data-id", item.id);
-                    row.innerHTML = `
-                        <td>${item.name}</td>
-                        <td class="precio">$${item.precio.toFixed(2)}</td>
-                        <td>
-                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
-                            <input type="number" class="cantidad" data-id="${item.id}" data-stock="${item.stock}" value="${item.cantidad}" readonly>
-                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
-                        </td>
-                        <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
-                        <td><button onclick="removeItem(${item.id})">🗑</button></td>
-                    `;
-                    cartBody.appendChild(row);
-                    total += item.precio * item.cantidad;
-                });
-
-                // Actualizamos el total en el carrito y el localStorage
-                document.getElementById("total").textContent = `$${total.toFixed(2)}`;
-                document.getElementById("cart-count").textContent = data.carrito.length;
-
-                // Si ya hay un costo de envío, mantenerlo
-                if (localStorage.getItem("costoEnvio")) {
-                    let costoEnvio = parseFloat(localStorage.getItem("costoEnvio"));
-                    document.getElementById("costoEnvio").textContent = `$${costoEnvio}`;
-                    document.getElementById("costoEnvioRow").style.display = "table-row";
-
-                    let nuevoTotal = total + costoEnvio;
-                    document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
-                }
-                // Guardar los productos en el localStorage para que no se pierdan al actualizar
-                localStorage.setItem("carrito", JSON.stringify(data.carrito));
-            })
-            .catch(error => console.error("Error al actualizar el carrito:", error));
-        });
 
         // Función para continuar con la compra
         function continuarCompra() {
@@ -542,8 +502,36 @@ $result = mysqli_query($conexion, $query);
                 .catch(error => console.error('Error al calcular el costo de envío:', error));
         }
 
-        // Restaurar valores guardados en localStorage al cargar la página f5
+        // Restaurar valores guardados en localStorage 
+        // al cargar la página f5 y al abrir carrito por primera vez
         document.addEventListener("DOMContentLoaded", function() {
+            // Recuperar productos y datos desde localStorage o sesión
+            let cart = JSON.parse(localStorage.getItem("carrito")) || [];
+            
+            // Si hay productos, actualiza el carrito visualmente
+            if (cart.length > 0) {
+                cart.forEach(item => {
+                    let row = document.createElement("tr");
+                    row.setAttribute("data-id", item.id);
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td class="precio">$${item.precio.toFixed(2)}</td>
+                        <td>
+                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <input type="number" class="cantidad" data-id="${item.id}" data-stock="${item.stock}" value="${item.cantidad}" readonly>
+                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </td>
+                        <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
+                        <td><button onclick="removeItem(${item.id})">🗑</button></td>
+                    `;
+                    document.getElementById("cart-body").appendChild(row);
+                });
+            }
+
+            // Luego, actualizamos el total
+            updateTotal();
+            
+            // Verificar si hay un costo de envío guardado y mostrarlo si es necesario
             let costoGuardado = localStorage.getItem("costoEnvio");
             let totalGuardado = localStorage.getItem("totalCompra");
 
@@ -552,8 +540,6 @@ $result = mysqli_query($conexion, $query);
                 document.getElementById("costoEnvioRow").style.display = "table-row";
                 document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
             }
-
-            
         });
 
 
