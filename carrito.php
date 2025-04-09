@@ -428,6 +428,7 @@ $result = mysqli_query($conexion, $query);
             document.getElementById("costoEnvioRow").style.display = "none";
             document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
 
+            // Limpiar costo de envío y total en localStorage
             localStorage.setItem("costoEnvio", "0");
             localStorage.setItem("totalCompra", nuevoTotal);
         }
@@ -481,6 +482,7 @@ $result = mysqli_query($conexion, $query);
                 })
                 .then(data => {
                     let costoEnvio = parseFloat(data.costoEnvio);
+                    
                     // Obtener el total actual del primer accordion
                     let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", "").trim());
                     let nuevoTotal = totalActual + costoEnvio;
@@ -539,6 +541,10 @@ $result = mysqli_query($conexion, $query);
                 document.getElementById("costoEnvio").textContent = `$${costoGuardado}`;
                 document.getElementById("costoEnvioRow").style.display = "table-row";
                 document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
+            } else {
+                // Si no hay costo de envío guardado, reiniciamos a cero
+                document.getElementById("costoEnvio").textContent = "$0";
+                document.getElementById("costoEnvioRow").style.display = "none";
             }
         });
 
