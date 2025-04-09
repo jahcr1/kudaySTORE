@@ -8,13 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TIENDA Kuday | PANEL ADMINISTRATIVO</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
+
+    <!-- ICONOS DE BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- ICONOS DE FONTAWESOME -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Datatables CSS -->
+    <!-- DATATABLES CSS -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-    <!-- CSS Propio -->
+    <!-- CSS PROPIO -->
     <link rel="stylesheet" href="CSS/styles.css">
 
 </head>
@@ -22,9 +33,8 @@
 <body id="body-panel">
 
     <header>
-
-        <nav class="navbar fixed-top navbar-expand-lg panel-nav">
-            <div class="container-fluid contenedor-barra">
+        <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
+            <div class="container-fluid contenedor-barra" style="flex-wrap: wrap;">
 
                 <a class="navbar-brand marca align-self-center text-center" href="index.php#inicio">Kuday Artesanias</a>
 
@@ -33,64 +43,34 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="panel-navbarScroll">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 600px;">
-                        <li class="nav-item">
-                            <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" >
+                        <li>    
+                            <form action="componentes/acceder.php" method="POST" class="row gy-2 gx-3 align-items-center">
+                                <div class="col-auto">
+                                    <label class="visually-hidden" for="autoSizingInput">Usuario:</label>
+                                    <input type="text" name="usuario-admin" class="form-control" id="autoSizingInput" placeholder="Usuario" autocomplete="off">
+                                </div>
+                                <div class="col-auto">
+                                    <label class="visually-hidden" for="autoSizingInputGroup">Contraseña:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-text">@</div>
+                                        <input type="password" name="pass-admin" class="form-control" id="autoSizingInputGroup" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="submit" value="Acceder" class="btn btn-success m-1">
+                                    <a href="componentes/salir.php" class="btn  btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
+                                    
+                                </div>
+                            </form>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active boton-nav" aria-current="page" href="#panel">Agregar Producto</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Tienda
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="vistas/cartucheras.php">Cartucheras / Neceser</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="setsmateros.php">Sets Materos</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item " href="billeteras.php">Billeteras</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="bolsomatero.php">Bolso Matero</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="bandoleras.php">Bandoleras</a></li>
-                                <hr class="dropdown-divider">
-                                <li><a class="dropdown-item" href="varios.php">Varios</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active boton-nav" href="#">Contactános</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <section id="session-adm">
-
-        <div class="container login">
-            <div class="row">
-                <div class="text-center">
-                    <h2 class="titulo-loginpanel">Inicio de Sesion al panel</h2>
-                </div>
-            </div>
-
-            <form action="componentes/acceder.php" method="POST" id="form-loginpanel">
-
-                <label for="adm" class="form-label loginlabel text-center" >Usuario:</label>
-                <input type="text" name="usuario-admin" id="adm" class="form-control mb-3 logininput" placeholder="Usuario" autocomplete="off">
-                <label for="pass" class="form-label loginlabel">Contraseña:</label>
-                <input type="password" name="pass-admin" id="pass" class="form-control mb-3 logininput" placeholder="Password">
-                <input type="submit" value="Acceder" class="btn btn-success m-1">
-                <a href="componentes/salir.php" class="btn btn-dark btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
-
-            </form>
-            <div id="msj-session"></div>
-
-        </div>
-
-    </section>
 
     <?php if (isset($_SESSION['administrador'])) { ?>
 
@@ -350,7 +330,7 @@
     
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Bootstrap JS -->
+    <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- DataTables JS -->
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>

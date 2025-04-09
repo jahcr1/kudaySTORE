@@ -1533,17 +1533,28 @@ nav.panel-nav {
 }
 
 div.contenedor-barra {
-  padding: 0px 0px 10px 0px;
+  padding: 10px;
   gap: 10px;
 }
 
 div#panel-navbarScroll {
-  background-color: #f5c6cb;
   margin-right: 30px;
 }
 
 button.navbar-toggler {
   margin-right: 10px;
+}
+
+.btn-salir {
+  padding: 10px;
+  background-color: #d9534f;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-salir:hover {
+  background-color: #c9302c;
 }
 
 body#body-panel {
@@ -1553,70 +1564,18 @@ body#body-panel {
       rgba(250, 100, 113, 0.685)
     ),
     url("../images/fondos/fondo1.png");
-  background-repeat: repeat;
-  background-size: contain;
-  background-position: center;
-}
-
-/*************************************/
-/*******  SECCIÓN LOGIN ADMIN  *******/
-/*************************************/
-
-#session-adm {
-  width: 100%;
-  max-width: 40vw;
-  min-width: 300px;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  padding-bottom: 40px;
-  border-radius: 20px;
-  /*background-color: rgb(239, 138, 138);*/
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.425),
-      rgba(255, 255, 255, 0.87)
-    ),
-    url("../images/panelimg/nina2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-div.container.login {
-  width: 100%;
-  max-width: 50%;
-  min-width: 250px;
-}
-
-h2.titulo-loginpanel {
-  text-shadow: -2px 2px 5px white, -2px -2px 5px rgb(13, 255, 243);
-}
-
-form#form-loginpanel input.logininput {
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-}
-
-btn-salir {
-  padding: 10px 20px;
-  background-color: #d9534f;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.btn-salir:hover {
-  background-color: #c9302c;
-}
 
 /***************************************/
 /*******  SECCIÓN PANEL AGREGAR  *******/
 /***************************************/
 
 #panel {
-  margin: 50px auto 10px auto;
+  margin: 120px auto 10px auto;
   height: auto;
   padding: 25px;
   width: 100%;
