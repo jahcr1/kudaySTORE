@@ -58,8 +58,8 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="submit" value="Acceder" class="btn btn-success m-1">
-                                    <a href="componentes/salir.php" class="btn  btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
+                                    <input type="submit" value="Acceder" class="btn btn-sm btn-success m-1">
+                                    <a href="componentes/salir.php" class="btn btn-sm btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
                                     
                                 </div>
                             </form>
