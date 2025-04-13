@@ -43,8 +43,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="panel-navbarScroll">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" >
-                        <li>    
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li>
                             <form action="componentes/acceder.php" method="POST" class="row gy-2 gx-3 align-items-center">
                                 <div class="col-auto">
                                     <label class="visually-hidden" for="autoSizingInput">Usuario:</label>
@@ -60,7 +60,7 @@
                                 <div class="col-auto">
                                     <input type="submit" value="Acceder" class="btn btn-sm btn-success m-1">
                                     <a href="componentes/salir.php" class="btn btn-sm btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
-                                    
+
                                 </div>
                             </form>
                         </li>
@@ -74,7 +74,7 @@
 
     <?php if (isset($_SESSION['administrador'])) { ?>
 
-    <section id="panel">
+        <section id="panel">
 
             <div class="container panel-adm">
 
@@ -128,43 +128,45 @@
                             </div>
                         </form>
                         <?php
-                        
+
                         if (isset($_GET['mensaje'])) {
                             if ($_GET['mensaje'] === 'error-peso') {
                                 echo '<div class="alerta peso">¡La imagen es demasiado grande. Debe ser menor a 1 MB!</div>';
-                            } if ($_GET['mensaje'] === 'error-duplicado') {
+                            }
+                            if ($_GET['mensaje'] === 'error-duplicado') {
                                 echo '<div class="alerta peso">¡El ID que ingresaste ya existe!</div>';
-                            } if ($_GET['mensaje'] === 'exito') {
+                            }
+                            if ($_GET['mensaje'] === 'exito') {
                                 echo '<div class="alerta exito">¡Producto cargado correctamente!</div>';
                             } else if ($_GET['mensaje'] === 'error') {
                                 echo '<div class="alerta error">Hubo un problema al cargar el producto. Intenta nuevamente.</div>';
                             }
                         }
                         ?>
-                    
+
                     </div>
                     <div class="col-5 panel-muestra">
-                        <p>Cosas a tener en cuenta al momento de cargar productos : </p>       
-                        <p>Estos datos se guardan directamente en la base de datos, esto significa que una vez que se suben a la BD se muestran automáticamente en todas las páginas activas de la tienda.</p>       
-                        <p>Dentro de la categoria VARIOS van todos los productos sin una categoría especifica, asique acá se podrían guardar productos randoms.</p>       
-                        <p>Dentro de la categoria PROMOCIONES van todos los productos que se van a mostrar en la sección PROMOS dentro de la pagina principal index.html. Asique aca pueden ir productos lindos o productos con descuentos.</p>       
-                        <p>El valor del precio minimo que existe para cualquier producto es de $5000 pesos y el máximo es de $450000 (Se pueden poner hasta 2 números decimales para los centavos).</p>       
-                        <p>Listas de IDs de cada producto para un mejor orden :</p>       
-                        <p>ID Cartucheras : entre 1 y 100.<br>ID Neceseres : entre 101 y 200.<br>ID Bolsos materos : entre 201 y 300.<br>ID Sets Materos : entre 301 y 400.<br>ID Billeteras : entre 401 y 500.<br>ID Bandoleras : entre 501 y 600.<br>ID Varios : entre 601 y 800.<br>ID Promociones : entre 801 y 1000.<br></p>              
+                        <p>Cosas a tener en cuenta al momento de cargar productos : </p>
+                        <p>Estos datos se guardan directamente en la base de datos, esto significa que una vez que se suben a la BD se muestran automáticamente en todas las páginas activas de la tienda.</p>
+                        <p>Dentro de la categoria VARIOS van todos los productos sin una categoría especifica, asique acá se podrían guardar productos randoms.</p>
+                        <p>Dentro de la categoria PROMOCIONES van todos los productos que se van a mostrar en la sección PROMOS dentro de la pagina principal index.html. Asique aca pueden ir productos lindos o productos con descuentos.</p>
+                        <p>El valor del precio minimo que existe para cualquier producto es de $5000 pesos y el máximo es de $450000 (Se pueden poner hasta 2 números decimales para los centavos).</p>
+                        <p>Listas de IDs de cada producto para un mejor orden :</p>
+                        <p>ID Cartucheras : entre 1 y 100.<br>ID Neceseres : entre 101 y 200.<br>ID Bolsos materos : entre 201 y 300.<br>ID Sets Materos : entre 301 y 400.<br>ID Billeteras : entre 401 y 500.<br>ID Bandoleras : entre 501 y 600.<br>ID Varios : entre 601 y 800.<br>ID Promociones : entre 801 y 1000.<br></p>
                     </div>
                 </div>
             </div>
 
 
-    </section>
+        </section>
 
-    <section id="listar-productos">
+        <section id="listar-productos">
 
             <div class="container fondo-panel">
 
                 <div class="show-details row">
                     <div class="col-12 caja-form-add">
-                        
+
                         <form action="componentes/listar_productos.php" method="POST" id=formulario-categoria>
                             <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
                             <select name="categoria" id="seleccionCategoria" class="form-select" required>
@@ -241,7 +243,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                
+
                                                                 <form method="POST" action="modificar_producto.php" enctype="multipart/form-data" id="modalmod">
                                                                     <!-- Campo oculto de ID del producto -->
                                                                     <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
@@ -251,7 +253,7 @@
 
                                                                     <label for="precio_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Precio</label>
                                                                     <input type="number" step="0.01" name="precio" id="precio_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['precio']; ?>">
-                                                                    
+
                                                                     <label for="stock_producto<?php echo $producto['id']; ?>" class="label_listar_modal">Stock</label>
                                                                     <input type="number" name="stock" min="0" id="stock_producto<?php echo $producto['id']; ?>" class="form-control mb-2" value="<?php echo $producto['stock']; ?>">
 
@@ -323,11 +325,81 @@
                     </table>
                 </div>
             </div>
-    </section>
+        </section>
+
+        <section id="ventas">
+            <div class="container fondo-panel">
+                <h2 class="text-center mb-3">Gestión de Compras</h2>
+
+                <form action="componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
+                    <div class="col-md-5">
+                        <label for="nombre" class="form-label">Buscar por nombre</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del cliente">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="fecha" class="form-label">Buscar por fecha</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <input type="submit" class="btn btn-danger w-100" value="Buscar">
+                    </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-sm" id="tabla-compras">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Dirección</th>
+                                <th>Provincia / Ciudad</th>
+                                <th>Código Postal</th>
+                                <th>Productos</th>
+                                <th>Total</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (isset($_SESSION['compras']) && !empty($_SESSION['compras'])): ?>
+                                <?php foreach ($_SESSION['compras'] as $compra): ?>
+                                    <tr>
+                                        <td><?php echo $compra['id']; ?></td>
+                                        <td><?php echo $compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']; ?></td>
+                                        <td><?php echo $compra['telefono_cliente']; ?></td>
+                                        <td><?php echo $compra['email_cliente']; ?></td>
+                                        <td><?php echo $compra['direccion']; ?></td>
+                                        <td><?php echo $compra['provincia'] . ' / ' . $compra['ciudad']; ?></td>
+                                        <td><?php echo $compra['codigopostal']; ?></td>
+                                        <td style="white-space: pre-wrap;"><?php echo $compra['productos_json']; ?></td>
+                                        <td>$<?php echo $compra['total']; ?></td>
+                                        <td><?php echo $compra['fecha_compra']; ?></td>
+                                        <td>
+                                            <form method="POST" action="acciones/confirmar_compra.php" style="display:inline;">
+                                                <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
+                                                <button type="submit" class="btn btn-success btn-sm mb-1">Confirmar</button>
+                                            </form>
+                                            <form method="POST" action="acciones/rechazar_compra.php" style="display:inline;">
+                                                <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
 
     <?php  } ?>
 
-    
+
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- BOOTSTRAP JS -->
@@ -365,10 +437,48 @@
                         "previous": "Anterior"
                     }
                 }
+            });
 
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tabla-compras').DataTable({
+                "columnDefs": [{
+                    "targets": "_all",
+                    "defaultContent": "—"
+                }],
+                "paging": true,
+                "lengthMenu": [5, 10, 20, 50],
+                "searching": true,
+                "responsive": true,
+                "scrollX": true,
+                "ordering": true,
+                "order": [
+                    [0, "asc"]
+                ],
+                "info": true,
+                "autoWidth": true,
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
             });
         });
     </script>
+
+
 </body>
 
 </html>
