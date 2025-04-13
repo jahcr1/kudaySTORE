@@ -329,7 +329,7 @@
 
         <section id="ventas">
             <div class="container fondo-panel">
-                <h2 class="text-center mb-3">Gestión de Compras</h2>
+                <h2 class="text-center p-3">Gestión de Ventas</h2>
 
                 <form action="componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
                     <div class="col-md-5">
@@ -373,7 +373,7 @@
                                         <td><?php echo $compra['direccion']; ?></td>
                                         <td><?php echo $compra['provincia'] . ' / ' . $compra['ciudad']; ?></td>
                                         <td><?php echo $compra['codigopostal']; ?></td>
-                                        <td style="white-space: pre-wrap;"><?php echo $compra['productos_json']; ?></td>
+                                        <td style="white-space: pre-wrap; padding:5px;"><?php echo $compra['productos_json']; ?></td>
                                         <td>$<?php echo $compra['total']; ?></td>
                                         <td><?php echo $compra['fecha_compra']; ?></td>
                                         <td>
