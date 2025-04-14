@@ -43,32 +43,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="panel-navbarScroll">
-                    <!--
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
-                        <li>
-                            <form action="componentes/acceder.php" method="POST" class="row gy-2 gx-3 align-items-center">
-                                <div class="col-auto">
-                                    <label class="visually-hidden" for="autoSizingInput">Usuario:</label>
-                                    <input type="text" name="usuario-admin" class="form-control" id="autoSizingInput" placeholder="Usuario" autocomplete="off">
-                                </div>
-                                <div class="col-auto">
-                                    <label class="visually-hidden" for="autoSizingInputGroup">Contraseña:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-text">@</div>
-                                        <input type="password" name="pass-admin" class="form-control" id="autoSizingInputGroup" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="submit" value="Acceder" class="btn btn-sm btn-success m-1">
-                                    <a href="componentes/salir.php" class="btn btn-sm btn-salir m-1" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
-
-                                </div>
-                            </form>
-                        </li>
-
-                    </ul>
-                    -->
-
+                
                     <div class="ms-auto w-100 w-lg-auto">
                         <form action="componentes/acceder.php" method="POST" class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 py-2 px-2">
                             <div class="w-100 w-lg-auto">
