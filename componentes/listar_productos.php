@@ -44,7 +44,7 @@ if (isset($_SESSION['administrador'])) {
     
     if ($resultado) {
       $_SESSION['productos'] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
-      header("Location: ../panel.php?eaea#tabla-resultado");
+      header("Location: ../panel.php?ok#listar-productos");
       exit();
     } else {
       echo 'No se encontraron productos.';

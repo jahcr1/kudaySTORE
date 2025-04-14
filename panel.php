@@ -43,6 +43,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="panel-navbarScroll">
+                    <!--
                     <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
                         <li>
                             <form action="componentes/acceder.php" method="POST" class="row gy-2 gx-3 align-items-center">
@@ -66,6 +67,27 @@
                         </li>
 
                     </ul>
+                    -->
+
+                    <div class="ms-auto w-100 w-lg-auto">
+                        <form action="componentes/acceder.php" method="POST" class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 py-2 px-2">
+                            <div class="w-100 w-lg-auto">
+                                <input type="text" name="usuario-admin" class="form-control" placeholder="Usuario" autocomplete="off">
+                            </div>
+                            <div class="w-100 w-lg-auto">
+                                <div class="input-group">
+                                    <span class="input-group-text">@</span>
+                                    <input type="password" name="pass-admin" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column flex-lg-row gap-2 w-100 w-lg-auto">
+                                <input type="submit" value="Acceder" class="btn btn-sm btn-success w-100 w-lg-auto">
+                                <a href="componentes/salir.php" class="btn btn-sm btn-salir w-100 w-lg-auto" onclick="return confirm('¿Estás seguro de que deseas cerrar la sesión?');">Cerrar Sesión</a>
+                            </div>
+                        </form>
+                    </div>
+
+
                 </div>
             </div>
         </nav>
@@ -184,11 +206,10 @@
                                 </select>
                             </div>
                             <div class="col-md-3 d-flex align-items-end">
-                                <label class="form-label"></label>
-                                <input type="submit" class="btn btn-primary btn-sm btn-buscar form-control" value="Buscar">
+                                <input type="submit" class="btn btn-primary btn-sm btn-buscar w-100 w-lg-auto" value="Buscar">
                             </div>
                             <div class="col-md-3 d-flex align-items-end">
-                                <button class="btn btn-danger btn-sm form-control"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
+                                <button type="button" class="btn btn-danger btn-sm w-100 w-lg-auto" onclick="location.href='componentes/borrar_sesion.php'">Borrar lista</button>
                             </div>
                         </form>
                     </div>
@@ -362,7 +383,7 @@
                                 <th>Teléfono</th>
                                 <th>Email</th>
                                 <th>Dirección</th>
-                                <th>Provincia / Ciudad</th>
+                                <th>Provincia/Ciudad</th>
                                 <th>Código Postal</th>
                                 <th>Productos</th>
                                 <th>Total</th>
