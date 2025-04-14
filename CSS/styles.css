@@ -1533,12 +1533,15 @@ div.contenedor-barra {
   gap: 10px;
 }
 
-div#panel-navbarScroll {
-  margin-right: 30px;
+
+.navbar-collapse form {
+  width: 100%;
+  
 }
 
 button.navbar-toggler {
-  margin-right: 10px;
+  margin: 10px;
+  
 }
 
 .btn-salir {
@@ -1650,6 +1653,17 @@ div.panel-muestra p {
   border: 1px solid #f5c6cb;
 }
 
+/**************************************/
+/*******  SECCIÓN PANEL VENTAS ********/
+/**************************************/
+
+table#tabla-compras {
+  width: 100% !important;
+  table-layout: fixed;
+}
+
+
+
 /***************************************/
 /*******  SECCIÓN DATATABLE  *******/
 /***************************************/
@@ -1755,6 +1769,27 @@ div.dataTables_filter input {
   background-color: rgb(255, 255, 255) !important;
   border-radius: 10px !important;
 }
+
+
+
+/* Letra más chica para toda la tabla */
+table.dataTable tbody td {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.3rem; /* Menos padding */
+}
+
+/* Letra más chica para encabezados */
+table.dataTable thead th {
+  font-size: 0.9rem;
+  padding: 0.6rem 0.4rem;
+}
+
+/* Ajustes en filas para hacerlas más compactas */
+table.dataTable tbody tr {
+  height: auto;
+}
+
+
 
 /*=======================================*/
 /*=== PRODUCTO.PHP - DETALLE PRODUCTOS ==*/
