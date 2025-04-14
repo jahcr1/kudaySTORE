@@ -79,7 +79,7 @@
             <div class="container panel-adm">
 
                 <div class="row m-2 titulo-panel-carga">
-                    <h3 class="p-3">Agregar Productos a Tienda kuday</h3>
+                    <h2 class="text-center p-3 mt-4">Agregar Productos a Tienda Kuday</h2>
                 </div>
                 <div class="row paneles">
                     <div class="col-7 panel-carga">
@@ -163,25 +163,33 @@
         <section id="listar-productos">
 
             <div class="container fondo-panel">
+                <h2 class="text-center p-3 mt-4">Eliminar o Modificar Productos a Tienda Kuday</h2>
 
                 <div class="show-details row">
-                    <div class="col-12 caja-form-add">
+                    <div class="col-12">
 
-                        <form action="componentes/listar_productos.php" method="POST" id=formulario-categoria>
-                            <label for="seleccionCategoria" class="col-form-label fs-6 fw-semibold">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
-                            <select name="categoria" id="seleccionCategoria" class="form-select" required>
-                                <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="1">Cartuchera</option>
-                                <option value="2">Neceser</option>
-                                <option value="3">Bolso Matero</option>
-                                <option value="4">Set Matero</option>
-                                <option value="5">Billetera</option>
-                                <option value="6">Bandolera</option>
-                                <option value="7">Varios</option>
-                                <option value="8">Promociones</option>
-                            </select>
-                            <input type="submit" class="btn btn-danger btn-buscar form-control ms-auto mt-2 mb-2 w-50" value="Buscar">
-                            <button class="btn btn-dark"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
+                        <form action="componentes/listar_productos.php" method="POST" id=formulario-categoria class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="seleccionCategoria" class="form-label fs-6">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
+                                <select name="categoria" id="seleccionCategoria" class="form-select" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="1">Cartuchera</option>
+                                    <option value="2">Neceser</option>
+                                    <option value="3">Bolso Matero</option>
+                                    <option value="4">Set Matero</option>
+                                    <option value="5">Billetera</option>
+                                    <option value="6">Bandolera</option>
+                                    <option value="7">Varios</option>
+                                    <option value="8">Promociones</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <label class="form-label"></label>
+                                <input type="submit" class="btn btn-primary btn-sm btn-buscar form-control" value="Buscar">
+                            </div>
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button class="btn btn-danger btn-sm form-control"><a href="componentes/borrar_sesion.php" class="btn-borrar-lista">Borrar lista</a></button>
+                            </div>
                         </form>
                     </div>
 
@@ -276,8 +284,8 @@
 
 
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-                                                                        <button type="submit" class="btn btn-primary">Modificar</button>
+                                                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Salir</button>
+                                                                        <button type="submit" class="btn btn-primary btn-sm">Modificar</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -329,7 +337,7 @@
 
         <section id="ventas">
             <div class="container fondo-panel">
-                <h2 class="text-center p-3">Gestión de Ventas</h2>
+                <h2 class="text-center p-3 mt-4">Gestión de Ventas</h2>
 
                 <form action="componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
                     <div class="col-md-5">
@@ -341,7 +349,7 @@
                         <input type="date" name="fecha" id="fecha" class="form-control">
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
-                        <input type="submit" class="btn btn-danger w-100" value="Buscar">
+                        <input type="submit" class="btn btn-primary btn-sm w-100" value="Buscar">
                     </div>
                 </form>
 
@@ -377,11 +385,11 @@
                                         <td>$<?php echo $compra['total']; ?></td>
                                         <td><?php echo $compra['fecha_compra']; ?></td>
                                         <td>
-                                            <form method="POST" action="acciones/confirmar_compra.php" style="display:inline;">
+                                            <form method="POST" action="componentes/confirmar_compra.php" style="display:inline;">
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
                                                 <button type="submit" class="btn btn-success btn-sm mb-1">Confirmar</button>
                                             </form>
-                                            <form method="POST" action="acciones/rechazar_compra.php" style="display:inline;">
+                                            <form method="POST" action="componentes/rechazar_compra.php" style="display:inline;">
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
                                             </form>

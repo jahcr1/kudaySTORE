@@ -1048,7 +1048,6 @@ h3.titulo {
 
 .btn {
   margin-top: auto;
-  background: #007bff;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -1057,9 +1056,6 @@ h3.titulo {
   align-self: center;
 }
 
-.btn:hover {
-  background: #0056b3;
-}
 
 /*=====================================*/
 /*========= SECCION INFO ==============*/
@@ -1666,12 +1662,6 @@ div.fondo-panel {
   border: 3px dashed black;
 }
 
-div.caja-form-add {
-  width: 100%;
-  max-width: 500px;
-  margin-left: 0px;
-}
-
 form#formulario-categoria {
   margin: 20px;
 }
@@ -1682,14 +1672,16 @@ label.col-form-label {
 }
 
 input.btn-buscar {
-  font-weight: bold;
-  border: 1px solid white;
+  font-weight: normal;
+  
+  
 }
 
 button a.btn-borrar-lista {
-  color: red;
+  color: black;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
+  
 }
 
 div.table-responsive {
