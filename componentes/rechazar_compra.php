@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     $id_compra = intval($_POST['id_compra']);
 
     // Actualizar el estado a 'rechazada'
-    $stmt = $conn->prepare("UPDATE compras SET estado = 'Rechazada' WHERE id = ?");
+    $stmt = $conexion->prepare("UPDATE compras SET estado = 'Rechazada' WHERE id = ?");
     $stmt->bind_param("i", $id_compra);
     $stmt->execute();
 
