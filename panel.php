@@ -385,10 +385,11 @@
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
                                                 <button type="submit" class="btn btn-success btn-sm mb-1">Confirmar</button>
                                             </form>
-                                            <form method="POST" action="componentes/rechazar_compra.php" style="display:inline;">
+                                            <form method="POST" action="componentes/rechazar_compra.php" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que querés rechazar esta compra?');">
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
                                             </form>
+
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
