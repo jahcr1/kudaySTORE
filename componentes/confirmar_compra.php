@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
 
     // 1. Obtener los datos de la compra
     $query = "SELECT * FROM compras WHERE id = ?";
-    $stmt = $conn->prepare($query);
+    $stmt = $conexion->prepare($query);
     $stmt->bind_param("i", $id_compra);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
         $id_producto = intval($producto['id']);
         $cantidad = intval($producto['cantidad']);
 
-        $stmt_stock = $conn->prepare("UPDATE productos SET stock = stock - ? WHERE id = ? AND stock >= ?");
+        $stmt_stock = $conexion->prepare("UPDATE productos SET stock = stock - ? WHERE id = ? AND stock >= ?");
         $stmt_stock->bind_param("iii", $cantidad, $id_producto, $cantidad);
         $stmt_stock->execute();
 
@@ -38,13 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     }
 
     // 4. Insertar la compra en la tabla ventas (venta final para enviar)
-    $stmt_venta = $conn->prepare("INSERT INTO ventas (total, fecha) VALUES (?, NOW())");
+    $stmt_venta = $conexion->prepare("INSERT INTO ventas (total, fecha) VALUES (?, NOW())");
     $stmt_venta->bind_param("d", $compra['total']);
     $stmt_venta->execute();
-    $venta_id = $conn->insert_id;
+    $venta_id = $conexion->insert_id;
 
     // 5. Insertar en detalle_ventas
-    $stmt_detalle = $conn->prepare("INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+    $stmt_detalle = $conexion->prepare("INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
     foreach ($productos as $producto) {
         $id_producto = intval($producto['id']);
         $cantidad = intval($producto['cantidad']);
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     }
 
     // 6. Actualizar estado de la compra a 'confirmada'
-    $stmt_update = $conn->prepare("UPDATE compras SET estado = 'Confirmada' WHERE id = ?");
+    $stmt_update = $conexion->prepare("UPDATE compras SET estado = 'Confirmada' WHERE id = ?");
     $stmt_update->bind_param("i", $id_compra);
     $stmt_update->execute();
 
