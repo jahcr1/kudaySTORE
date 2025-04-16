@@ -351,35 +351,47 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-sm" id="tabla-compras">
+                        
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Estado de la Compra</th>
                                 <th>Cliente</th>
                                 <th>Teléfono</th>
                                 <th>Email</th>
+                                <th>Productos</th>
+                                <th>Total</th>
+                                <th>Fecha de Compra</th>
                                 <th>Dirección</th>
                                 <th>Provincia/Ciudad</th>
                                 <th>Código Postal</th>
-                                <th>Productos</th>
-                                <th>Total</th>
-                                <th>Fecha</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (isset($_SESSION['compras']) && !empty($_SESSION['compras'])): ?>
+                            
                                 <?php foreach ($_SESSION['compras'] as $compra): ?>
                                     <tr>
-                                        <td><?php echo $compra['id']; ?></td>
-                                        <td><?php echo $compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']; ?></td>
-                                        <td><?php echo $compra['telefono_cliente']; ?></td>
-                                        <td><?php echo $compra['email_cliente']; ?></td>
-                                        <td><?php echo $compra['direccion']; ?></td>
-                                        <td><?php echo $compra['provincia'] . ' / ' . $compra['ciudad']; ?></td>
-                                        <td><?php echo $compra['codigopostal']; ?></td>
-                                        <td style="white-space: pre-wrap; padding:5px;"><?php echo $compra['productos_json']; ?></td>
-                                        <td>$<?php echo $compra['total']; ?></td>
-                                        <td><?php echo $compra['fecha_compra']; ?></td>
+                                        <td><?php echo isset($compra['estado']) ? htmlspecialchars($compra['estado']) : 'N/A'; ?></td>
+                                        <td><?php echo htmlspecialchars($compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']); ?></td>
+                                        <td><?php echo htmlspecialchars($compra['telefono_cliente']); ?></td>
+                                        <td><?php echo htmlspecialchars($compra['email_cliente']); ?></td>
+                                        <td><?php
+                                                $productos = json_decode($compra['productos_json'], true);
+                                                if (is_array($productos)) {
+                                                    foreach ($productos as $producto) {
+                                                        echo htmlspecialchars($producto['name']) . ' x' . htmlspecialchars($producto['cantidad']) . ' - $' . htmlspecialchars($producto['price']) . '<br>';
+                                                    }
+                                                } else {
+                                                    echo 'Sin productos';
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>$<?php echo number_format($compra['total'], 2); ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($compra['fecha_compra'])); ?></td>
+                                        <td><?php echo htmlspecialchars($compra['direccion']); ?></td>
+                                        <td><?php echo htmlspecialchars($compra['provincia']) . ', ' . htmlspecialchars($compra['ciudad']); ?></td>
+                                        <td><?php echo htmlspecialchars($compra['codigopostal']); ?></td>
                                         <td>
                                             <form method="POST" action="componentes/confirmar_compra.php" style="display:inline;">
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">
