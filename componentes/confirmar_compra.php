@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     }
 
     // 6. Actualizar estado de la compra a 'confirmada'
-    $stmt_update = $conn->prepare("UPDATE compras SET estado = 'confirmada' WHERE id = ?");
+    $stmt_update = $conn->prepare("UPDATE compras SET estado = 'Confirmada' WHERE id = ?");
     $stmt_update->bind_param("i", $id_compra);
     $stmt_update->execute();
 
