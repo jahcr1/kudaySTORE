@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
 
     if ($stmt->affected_rows > 0) {
         // Redireccionar con mensaje de éxito
-        header("Location: ../panel.php?mensaje=compra_rechazada");
+        header("Location: ../panel.php?mensaje=compra_rechazada#ventas");
     } else {
         // Algo salió mal o ya estaba rechazada
-        header("Location: ../panel.php?mensaje=error_rechazo");
+        header("Location: ../panel.php?mensaje=error_rechazo#ventas");
     }
     exit;
 }
