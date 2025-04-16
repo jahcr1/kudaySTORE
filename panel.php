@@ -43,7 +43,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="panel-navbarScroll">
-                
+
                     <div class="ms-auto w-100 w-lg-auto">
                         <form action="componentes/acceder.php" method="POST" class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 py-2 px-2">
                             <div class="w-100 w-lg-auto">
@@ -335,7 +335,16 @@
             <div class="container fondo-panel">
                 <h2 class="text-center p-3 mt-4">Gestión de Ventas</h2>
 
-                <form action="componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
+                <?php if (!isset($_SESSION['compras'])) {
+                    require_once('./componentes/conexion.php');
+                    $sql = "SELECT * FROM compras ORDER BY fecha_compra DESC, id DESC";
+                    $resultado = mysqli_query($conexion, $sql);
+                    $_SESSION['compras'] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+                }
+                ?>
+
+
+                <form action="./componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
                     <div class="col-md-5">
                         <label for="nombre" class="form-label">Buscar por nombre</label>
                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del cliente">
@@ -351,7 +360,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-sm" id="tabla-compras">
-                        
+
                         <thead>
                             <tr>
                                 <th>Estado de la Compra</th>
@@ -369,22 +378,28 @@
                         </thead>
                         <tbody>
                             <?php if (isset($_SESSION['compras']) && !empty($_SESSION['compras'])): ?>
-                            
+
                                 <?php foreach ($_SESSION['compras'] as $compra): ?>
-                                    <tr>
-                                        <td><?php echo isset($compra['estado']) ? htmlspecialchars($compra['estado']) : 'N/A'; ?></td>
+                                    <?php
+                                    $esModificada = isset($_GET['id']) && $_GET['id'] == $compra['id'];
+                                    ?>
+                                    <tr class="<?php echo $esModificada ? 'resaltado' : ''; ?>" id="compra-<?php echo $compra['id']; ?>">
+
+                                        <td class="estado <?php echo strtolower($compra['estado']); ?>">
+                                            <?php echo isset($compra['estado']) ? htmlspecialchars($compra['estado']) : 'N/A'; ?>
+                                        </td>
                                         <td><?php echo htmlspecialchars($compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']); ?></td>
                                         <td><?php echo htmlspecialchars($compra['telefono_cliente']); ?></td>
                                         <td><?php echo htmlspecialchars($compra['email_cliente']); ?></td>
                                         <td><?php
-                                                $productos = json_decode($compra['productos_json'], true);
-                                                if (is_array($productos)) {
-                                                    foreach ($productos as $producto) {
-                                                        echo htmlspecialchars($producto['name']) . ' x' . htmlspecialchars($producto['cantidad']) . ' - $' . htmlspecialchars($producto['price']) . '<br>';
-                                                    }
-                                                } else {
-                                                    echo 'Sin productos';
+                                            $productos = json_decode($compra['productos_json'], true);
+                                            if (is_array($productos)) {
+                                                foreach ($productos as $producto) {
+                                                    echo htmlspecialchars($producto['name']) . ' x' . htmlspecialchars($producto['cantidad']) . ' - $' . htmlspecialchars($producto['price']) . '<br>';
                                                 }
+                                            } else {
+                                                echo 'Sin productos';
+                                            }
                                             ?>
                                         </td>
                                         <td>$<?php echo number_format($compra['total'], 2); ?></td>
@@ -492,8 +507,25 @@
                     }
                 }
             });
+
+            // Aplicar animación y scroll luego de que DataTable haya cargado
+            setTimeout(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+                if (id) {
+                    const fila = document.getElementById('compra-' + id);
+                    if (fila) {
+                        fila.classList.add('resaltado');
+                        fila.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => fila.classList.remove('resaltado'), 3000);
+                    }
+                }
+            }, 500);
+
         });
     </script>
+
+    
 
 
 </body>

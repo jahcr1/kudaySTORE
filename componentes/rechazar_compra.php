@@ -11,12 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
 
     if ($stmt->affected_rows > 0) {
         // Redirigimos a mostrar_compras.php para actualizar los datos
-        header("Location: mostrar_compras.php?auto=1&mensaje=compra_rechazada");
+        header("Location: mostrar_compras.php?auto=1&mensaje=compra_rechazada&id=$id_compra");
     } else {
         // Algo salió mal o ya estaba rechazada
         header("Location: mostrar_compras.php?auto=1&mensaje=error_rechazo");
     }
     exit;
 }
-?>
-
