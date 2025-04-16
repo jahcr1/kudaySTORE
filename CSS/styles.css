@@ -1662,6 +1662,42 @@ table#tabla-compras {
   table-layout: fixed;
 }
 
+.resaltado {
+  background-color: #d1ffd1 !important;
+  animation: resaltar-fila 4s ease-in-out;
+}
+
+@keyframes resaltar-fila {
+  0% { background-color: #c9c95f; }
+  50% { background-color: #38af38; }
+  100% { background-color: inherit; }
+}
+
+
+.estado {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 0px;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.estado.confirmada {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado.rechazada {
+  background-color: #f7caca;
+  color: #721c24;
+}
+
+.estado.pendiente {
+  background-color: #e9e05e;
+  color: #383d41;
+}
+
 
 
 /***************************************/

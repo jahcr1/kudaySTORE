@@ -78,6 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     $stmt_update->execute();
 
     // Confirmación Exitosa y redirigimos a mostrar_compras para actualizar la tabla
-    header("Location: mostrar_compras.php?auto=1");
+    header("Location: mostrar_compras.php?auto=1&mensaje=compra_confirmada&id=$id_compra");
     exit();
 }
