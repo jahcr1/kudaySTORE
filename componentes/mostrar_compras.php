@@ -1,11 +1,11 @@
-<?php
+<?php 
 session_start();
-
 require_once('conexion.php');
 
 if (isset($_SESSION['administrador'])) {
-    $nombre = isset($_POST['nombre']) ? mysqli_real_escape_string($conexion, $_POST['nombre']) : '';
-    $fecha = isset($_POST['fecha']) ? mysqli_real_escape_string($conexion, $_POST['fecha']) : '';
+    // Se puede usar GET o POST, así el script es más flexible
+    $nombre = isset($_REQUEST['nombre']) ? mysqli_real_escape_string($conexion, $_REQUEST['nombre']) : '';
+    $fecha = isset($_REQUEST['fecha']) ? mysqli_real_escape_string($conexion, $_REQUEST['fecha']) : '';
 
     $sql = "SELECT * FROM compras WHERE 1";
 
@@ -27,11 +27,13 @@ if (isset($_SESSION['administrador'])) {
         $_SESSION['compras'] = [];
     }
 
-    header("Location: ../panel.php#ventas");
-    exit();
+    // Si fue solicitado como redirección automática
+    if (isset($_GET['auto']) && $_GET['auto'] === '1') {
+        header("Location: ../panel.php?mensaje=actualizado#ventas");
+        exit();
+    }
 } else {
     $_SESSION['error'] = "Acceso no autorizado.";
     header("Location: ../index.php");
     exit();
 }
-?>
