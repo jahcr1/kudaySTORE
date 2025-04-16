@@ -38,18 +38,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     }
 
     // 4. Insertar la compra en la tabla ventas (venta final para enviar)
-    $stmt_venta = $conexion->prepare("INSERT INTO ventas (total, fecha) VALUES (?, NOW())");
-    $stmt_venta->bind_param("d", $compra['total']);
+    $productos_json = json_encode($productos, JSON_UNESCAPED_UNICODE);
+
+    $stmt_venta = $conexion->prepare("INSERT INTO ventas (
+        nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, total, productos_json, fecha
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+
+    $stmt_venta->bind_param(
+        "sssssssdds",
+        $compra['nombre_cliente'],
+        $compra['apellido_cliente'],
+        $compra['telefono_cliente'],
+        $compra['email_cliente'],
+        $compra['direccion'],
+        $compra['provincia'],
+        $compra['ciudad'],
+        $compra['codigopostal'],
+        $compra['total'],
+        $productos_json
+    );
+
     $stmt_venta->execute();
     $venta_id = $conexion->insert_id;
 
     // 5. Insertar en detalle_ventas
-    $stmt_detalle = $conexion->prepare("INSERT INTO detalle_ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?)");
+    $stmt_detalle = $conexion->prepare("INSERT INTO detalle_ventas (id_venta, id_producto, nombre_producto, cantidad, precio_unitario) VALUES (?, ?, ?, ?, ?)");
     foreach ($productos as $producto) {
         $id_producto = intval($producto['id']);
         $cantidad = intval($producto['cantidad']);
-        $precio_unitario = floatval($producto['precio_unitario']);
-        $stmt_detalle->bind_param("iiid", $venta_id, $id_producto, $cantidad, $precio_unitario);
+        $nombre_producto = $producto['name'];
+        $precio_unitario = floatval($producto['price']);
+        $stmt_detalle->bind_param("iisid", $venta_id, $id_producto, $nombre_producto, $cantidad, $precio_unitario);
         $stmt_detalle->execute();
     }
 
@@ -59,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     $stmt_update->execute();
 
     // Redireccionar o mostrar mensaje
-    header("Location: ../panel.php?mensaje=venta_confirmada");
+    header("Location: ../panel.php?mensaje=venta_confirmada#ventas");
     exit;
 }
-?>
