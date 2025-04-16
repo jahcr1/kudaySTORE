@@ -48,8 +48,11 @@
             $productos_json = json_encode($productos_array, JSON_UNESCAPED_UNICODE);
 
             // Insertar la compra en la base de datos
-            $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-            $stmt->bind_param("sssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total);
+            $estado = 'Pendiente'; // Valor por defecto
+
+            $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, estado, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            $stmt->bind_param("ssssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total, $estado);
+
             $stmt->execute();
 
             if ($stmt->error) {
@@ -130,7 +133,7 @@
                     .footer-comprados {
                         position: fixed;
                         bottom: 0;
-                        background:rgb(243, 165, 217);
+                        background: rgb(243, 165, 217);
                         padding: 20px;
                         text-align: center;
                         font-size: 14px;
@@ -151,7 +154,7 @@
                     }
 
                     /* Título "Datos de pago" centrado */
-                    .footer-comprados div.datos-pagos > p {
+                    .footer-comprados div.datos-pagos>p {
                         font-size: 16px;
                         text-align: left;
                         font-weight: bold;
@@ -164,7 +167,7 @@
                         border-collapse: collapse;
                     }
 
-                    thead > tr > th {
+                    thead>tr>th {
                         font-size: 14px;
                         border: 1px solid #000;
                         background-color: #cccccc;
@@ -183,7 +186,7 @@
                         text-align: left;
                     }
 
-                    td > p {
+                    td>p {
                         text-align: center;
                     }
                 </style>
@@ -264,7 +267,7 @@
             $dompdf->loadHtml($html);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
-        
+
             //Guardar pdf
             $pdfOutput = $dompdf->output();
 
@@ -275,7 +278,7 @@
 
             $pdfPath = "../facturas/factura_" . time() . ".pdf";
             file_put_contents($pdfPath, $pdfOutput);
-            
+
 
 
             // Enviar correo con PHPMailer
@@ -300,8 +303,10 @@
             }
 
             // Ejemplo de respuesta exitosa
-            $response = ['success' => true, 'message' => 'Compra procesada con éxito',
-            'pdfUrl' => "descargar_pdf.php?file=" . urlencode(basename($pdfPath))
+            $response = [
+                'success' => true,
+                'message' => 'Compra procesada con éxito',
+                'pdfUrl' => "descargar_pdf.php?file=" . urlencode(basename($pdfPath))
             ];
         } catch (Exception $e) {
             $response = ['success' => false, 'message' => $e->getMessage()];
