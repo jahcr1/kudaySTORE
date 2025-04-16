@@ -10,12 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        // Redireccionar con mensaje de éxito
-        header("Location: ../panel.php?mensaje=compra_rechazada#ventas");
+        // Redirigimos a mostrar_compras.php para actualizar los datos
+        header("Location: mostrar_compras.php?auto=1&mensaje=compra_rechazada");
     } else {
         // Algo salió mal o ya estaba rechazada
-        header("Location: ../panel.php?mensaje=error_rechazo#ventas");
+        header("Location: mostrar_compras.php?auto=1&mensaje=error_rechazo");
     }
     exit;
 }
 ?>
+

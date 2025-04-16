@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_compra'])) {
     $stmt_update->bind_param("i", $id_compra);
     $stmt_update->execute();
 
-    // Redireccionar o mostrar mensaje
-    header("Location: ../panel.php?mensaje=venta_confirmada#ventas");
-    exit;
+    // Confirmación Exitosa y redirigimos a mostrar_compras para actualizar la tabla
+    header("Location: mostrar_compras.php?auto=1");
+    exit();
 }
