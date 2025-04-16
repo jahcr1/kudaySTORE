@@ -29,9 +29,11 @@ if (isset($_SESSION['administrador'])) {
 
     // Si fue solicitado como redirección automática
     if (isset($_GET['auto']) && $_GET['auto'] === '1') {
-        header("Location: ../panel.php?mensaje=actualizado#ventas");
+        $mensaje = isset($_GET['mensaje']) ? $_GET['mensaje'] : 'actualizado';
+        header("Location: ../panel.php?mensaje=$mensaje#ventas");
         exit();
     }
+    
 } else {
     $_SESSION['error'] = "Acceso no autorizado.";
     header("Location: ../index.php");
