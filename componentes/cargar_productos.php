@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         
         // Verificamos el tamaño de la imagen
         if ($_FILES['foto_producto']['size'] > 1024 * 1024) { // 1 MB
-          header("Location: ../panel.php?mensaje=error-peso#formulario-carga");
+          header("Location: ../panel.php?mensaje=error-peso#formulario-carga1");
           exit();
 
         }
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       if ($count > 0) {
           // Si ya existe el ID, redirige con un mensaje de error
-          header("Location: ../panel.php?mensaje=error-duplicado#formulario-carga");
+          header("Location: ../panel.php?mensaje=error-duplicado#formulario-carga1");
           exit();
       }
 
@@ -48,13 +48,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $stmt->close();
         
         // Redirigir a panel.php con un parámetro de éxito en la URL
-        header("Location: ../panel.php?mensaje=exito#formulario-carga");
+        header("Location: ../panel.php?mensaje=exito#formulario-carga1");
         exit();
       
       } else {
         // Redirigir con un parámetro de error si algo falla
-        header("Location: ../panel.php?mensaje=error#formulario-carga");
+        header("Location: ../panel.php?mensaje=error#formulario-carga1");
         exit();
-       }
+      }
 }  
 ?>

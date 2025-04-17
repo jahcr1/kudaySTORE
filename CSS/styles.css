@@ -1659,17 +1659,26 @@ div.panel-muestra p {
 
 table#tabla-compras {
   width: 100% !important;
+  min-width: 100%; /* Asegura que la tabla ocupe el espacio completo disponible */
   table-layout: fixed;
+}
+
+#tabla-compras th, 
+#tabla-compras td {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  vertical-align: middle;
 }
 
 .resaltado {
   background-color: #d1ffd1 !important;
-  animation: resaltar-fila 4s ease-in-out;
+  animation: resaltar-fila 1.2s ease-in-out;
 }
 
 @keyframes resaltar-fila {
-  0% { background-color: #c9c95f; }
-  50% { background-color: #38af38; }
+  0% { background-color: #0eb8aa; }
+  50% { background-color: #8b2ca8; }
   100% { background-color: inherit; }
 }
 
@@ -1735,10 +1744,8 @@ button a.btn-borrar-lista {
 }
 
 div.table-responsive {
-  padding: 10px;
   overflow-x: auto;
-  /* Mejor experiencia de scroll en dispositivos táctiles */
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* Mejor experiencia de scroll en dispositivos táctiles */
 }
 
 table#tabla-resultado {
