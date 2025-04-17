@@ -121,7 +121,7 @@
                                 <input type="file" name="foto_producto" id="subirfoto" class="form-control form-control-sm" required>
                             </div>
                             <div class="mb-2 p-1">
-                                <input type="submit" class="form-control btn btn-primary" value="Cargar PRODUCTO">
+                                <input type="submit" class="form-control btn btn-primary" id="formulario-carga1" value="Cargar PRODUCTO">
                             </div>
                         </form>
                         <?php
@@ -191,7 +191,7 @@
 
                 </div>
                 <div class="col-12 table-responsive">
-                    <table class="table table-striped table-bordered table-sm tabla-listas" id="tabla-resultado">
+                    <table class="table table-striped table-bordered table-sm" id="tabla-resultado">
                         <thead>
                             <tr>
                                 <th>ID del Producto</th>
@@ -225,7 +225,7 @@
                                                 <?php
                                                 $img_data = base64_encode($producto['ci_imagen_producto']);
                                                 $img_type = $producto['formato_imagen'];
-                                                echo "<img width='100' height='100' src='data:$img_type;base64,$img_data' alt='Imagen del producto'>";
+                                                echo "<img width='100' height='auto' src='data:$img_type;base64,$img_data' alt='Imagen del producto'>";
                                                 ?>
                                             <?php else: ?>
                                                 <p>Sin imagen disponible</p>
@@ -447,7 +447,7 @@
                 "paging": true, // Activar paginación
                 "lengthMenu": [5, 10, 20, 50], // Opciones de elementos por página
                 "searching": true, // Activar la barra de búsqueda
-                "responsive": true, // Activa el modo responsive de DataTables
+                "responsive": false, // Activa el modo responsive de DataTables
                 "scrollX": true, // Habilita el scroll horizontal si es necesario
                 "ordering": true, // Activar ordenamiento de columnas
                 "order": [
@@ -484,7 +484,7 @@
                 "paging": true,
                 "lengthMenu": [5, 10, 20, 50],
                 "searching": true,
-                "responsive": true,
+                "responsive": false,
                 "scrollX": true,
                 "ordering": true,
                 "order": [
