@@ -147,8 +147,9 @@ li.nav-item a.nav-link:hover {
 /*========= SECCION INICIO ============*/
 /*=====================================*/
 section#inicio {
-  height: 100vh;
-  margin: 80px 0 50px 0;
+  
+  height: auto;
+  margin: 80px 0 50px 0px;
   padding-top: 50px;
 
   background-image: linear-gradient(
@@ -159,6 +160,7 @@ section#inicio {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  
 }
 
 div#box_inicio {
@@ -201,6 +203,7 @@ div#presentacion {
 /*=====================================*/
 
 section.carrusel {
+  padding: 10px;
   margin-top: 10px;
 }
 
@@ -247,20 +250,45 @@ section.carrusel {
   }
 }
 
+/* Estilos base para animación fluida */
 .carousel-caption {
-  position: absolute;
-  top: 10%; /* Espacio desde la parte superior */
-  left: 10%; /* Espacio desde la parte izquierda */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
   color: #fff; /* Color del texto */
-  padding: 15px;
-  border-radius: 8px;
+  font-size: 2rem;
   z-index: 10; /* Asegura que esté sobre la imagen */
 }
+
+/* Posiciones por slide */
+.carousel-item:nth-child(1) .carousel-caption {
+  top: 40px;
+  left: 80px;
+  bottom: auto;
+  right: auto;
+  text-align: left;
+}
+
+.carousel-item:nth-child(2) .carousel-caption {
+  bottom: 40px;
+  left: 60px;
+  top: auto;
+  right: auto;
+  text-align: left;
+}
+
+.carousel-item:nth-child(3) .carousel-caption {
+  top: 40px;
+  right: 60px;
+  left: auto;
+  bottom: auto;
+  text-align: right;
+}
+
 
 .carousel-button {
   position: absolute;
   bottom: 5%; /* Espacio desde la parte inferior */
   right: 5%; /* Espacio desde la parte derecha */
+  margin-top: 15px;
   z-index: 10;
 }
 
@@ -312,6 +340,12 @@ section.carrusel {
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
   background: none; /* Sin cambio de fondo al hacer hover */
+}
+
+.carousel-caption {
+  position: absolute !important;
+  display: block !important;
+  opacity: 1 !important;
 }
 
 /*=====================================*/
@@ -1072,50 +1106,74 @@ section#info {
   margin: 100px 0;
 }
 
-#texto_presentacion {
-  overflow-x: hidden;
-  width: auto;
-  height: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-  border-top: 0px dotted black;
-  border-bottom: 0px dotted black;
 
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.8)
-    ),
-    url("../images/fondos/p2.jpg");
-  background-size: cover; /* Escala la imagen para cubrir todo el área */
+
+#texto_presentacion {
+  width: 100%;
+  padding: 50px 30px;
+  margin: 50px auto;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  /* Fondo con efecto glass */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Fondo de imagen sutil */
+  background-image: url("../images/fondos/p2.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: grayscale(0%); /* Convierte la imagen en blanco y negro */
+  background-blend-mode: overlay;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
+
+
 p#eslogan {
-  box-sizing: border-box;
   font-family: "Dancing Script", cursive;
-  color: #0c0c0c;
-  font-size: 20px;
-  padding: 40px 15px;
-  text-align: center;
+  font-size: 1.2rem;
+  color: #212529;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: inline-block;
 }
+
 
 .icon-box {
+  position: relative;
   text-align: center;
   padding: 20px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
 }
 
+.icon-box:hover {
+  border-color: #6610f2; /* Color violeta */
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.08);
+}
+
+
+
+
 .icon-box i {
-  font-size: 3rem;
-  color: #007bff;
+  font-size: 3.5rem;
+  color: #6610f2;
 }
 
 .icon-box p {
   margin-top: 10px;
   font-size: 1rem;
-  text-wrap: pretty;
-  padding: 10px;
+  padding: 5px 0px;
 }
 
 /*=====================================*/
@@ -1450,7 +1508,7 @@ img.imagen-producto:hover {
 .contenedor-detalle {
   width: 100%;
   padding: 5px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 221, 221);
 }
 
 div.card-body {

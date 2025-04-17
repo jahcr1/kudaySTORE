@@ -27,6 +27,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <!-- AOS CSS desde CDN-->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+  <!-- Animate CSS desde CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
   <!-- CSS DE BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -97,7 +100,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </nav>
   </header>
-  
+
   <section id="inicio">
     <div class="container text-center py-5">
       <div class="row align-items-center" id="box_inicio">
@@ -112,7 +115,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </div>
 
-    <div class="text-center py-4" id="minibanner" data-aos="zoom-in">
+    <div class="container text-center py-4" id="minibanner" data-aos="zoom-in">
       <h2 class="fs-4 fw-light">
         <span class="text-primary fw-bold">KUDAY</span> es una tienda única donde vas a encontrar las mejores
         <span class="text-primary">Promociones</span> todos los meses.
@@ -122,38 +125,38 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 
   <section class="carrusel">
-    <div class="container-fluid">
-      <div id="carouselExampleSlidesOnly" class="carousel slide car pt-2 pb-3" data-bs-ride="carousel">
-        <div class="carousel-inner carusel-index mx-auto">
-          <div class="carousel-item active" data-bs-interval="4000">
+    <div class="container">
+      <div id="carouselExampleSlidesOnly" class="carousel slide pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-inner carusel-index">
+          <div class="carousel-item active">
             <img src="images/carousel/glaciar1.jpg" class="foto-carousel" alt="slide1">
-            <div class="carousel-caption text-start">
-              <h5>SE VIENE EL VERANO CON TODO</h5>
-              <p>Y en Kuday sabemos lo que necesitás</p>
+            <div class="carousel-caption">
+              <h5 class="caption-title">SE VIENE EL INVIERNO</h5>
+              <p>Y en Kuday sabemos lo que necesitás...</p>
             </div>
             <div class="carousel-button">
-              <a href="#" class="btn-invisible">Click Me</a>
+              <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
             </div>
           </div>
 
-          <div class="carousel-item" data-bs-interval="4000">
+          <div class="carousel-item">
             <img src="images/carousel/glaciar2.jpg" class="foto-carousel" alt="slide2">
-            <div class="carousel-caption text-start">
-              <h5>SE VIENE EL VERANO CON TODO</h5>
+            <div class="carousel-caption">
+              <h5 class="caption-title">NO IMPORTA EL MOMENTO</h5>
               <p>Visita nuestras promociones todo el año</p>
             </div>
             <div class="carousel-button">
-              <a href="#" class="btn-invisible">Ver Promos</a>
+              <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
             </div>
           </div>
-          <div class="carousel-item" data-bs-interval="4000">
+          <div class="carousel-item">
             <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
-            <div class="carousel-caption text-start">
-              <h5>SE VIENE EL VERANO CON TODO</h5>
-              <p>Te compro todo mameeeee.</p>
+            <div class="carousel-caption">
+              <h5 class="caption-title">CON MUCHA CREATIVIDAD Y TALENTO...</h5>
+              <p>Descubrí nuestras mejores creaciones</p>
             </div>
             <div class="carousel-button">
-              <a href="#" class="btn-invisible">VER PRODUCTOS</a>
+              <a href="#" class="btn-invisible">Okay!</a>
             </div>
           </div>
         </div>
@@ -169,6 +172,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </div>
   </section>
+
 
   <section id="tienda-index">
     <h3 class="text-center titulo" style="margin-top: 100px;" id="titulo_tienda">Tienda Kuday</h3>
@@ -246,7 +250,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   </section>
 
 
-
   <section id="productos-relevantes" class="slider-container">
     <h3 class="titulo-slider" id="titulo_productos">Nuestras Promociones </h3>
     <div class="swiper mySwiper">
@@ -282,68 +285,71 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   </section>
 
 
-
   <section id="info">
-    <div>
-      <article id="texto_presentacion" class="text-center mx-auto">
-        <p id="eslogan">Visita nuestra tienda online para encontrar las mejores creaciones del mercado regional.</p>
+  <div>
+    <article id="texto_presentacion" class="text-center mx-auto">
+      <p id="eslogan" data-aos="fade-up" data-aos-duration="1000">
+        Visita nuestra tienda online para encontrar las mejores creaciones del mercado regional.
+      </p>
 
-        <!-- Contenedor para pantallas grandes -->
-        <div class="row desktop-container justify-content-evenly">
-          <div class="col-md-3 icon-box">
-            <i class="bi bi-truck"></i>
-            <p>Envíos Gratis</p>
-            <p>En tus compras superiores a $100.000</p>
-          </div>
-          <div class="col-md-3 icon-box">
-            <i class="bi bi-credit-card"></i>
-            <p>Cuotas sin interés</p>
-            <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
-          </div>
-          <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black">
-            <i class="bi bi-whatsapp"></i>
-            <p>Soporte por WhatsApp</p>
-            <p>Hacé click acá y comunicate con nosotros</p>
-          </a>
+      <!-- Contenedor para pantallas grandes -->
+      <div class="row desktop-container justify-content-evenly">
+        <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="100">
+          <i class="bi bi-truck"></i>
+          <p>Envíos Gratis</p>
+          <p>En tus compras superiores a $100.000</p>
         </div>
+        <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="200">
+          <i class="bi bi-credit-card"></i>
+          <p>Cuotas sin interés</p>
+          <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+        </div>
+        <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black" data-aos="zoom-in" data-aos-delay="300">
+          <i class="bi bi-whatsapp"></i>
+          <p>Soporte por WhatsApp</p>
+          <p>Hacé click acá y comunicate con nosotros</p>
+        </a>
+      </div>
 
-        <!-- Carrusel para pantallas pequeñas -->
-        <div id="iconCarousel" class="carousel slide carousel-container" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="text-center icon-box">
-                <i class="bi bi-truck"></i>
-                <p>Envíos Gratis</p>
-                <p>En tus compras superiores a $100.000</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="text-center icon-box">
-                <i class="bi bi-credit-card"></i>
-                <p>Cuotas sin interés</p>
-                <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
-                <i class="bi bi-whatsapp"></i>
-                <p>Soporte por WhatsApp</p>
-                <p>Hacé click acá y comunicate con nosotros</p>
-              </a>
+      <!-- Carrusel para pantallas pequeñas -->
+      <div id="iconCarousel" class="carousel slide carousel-container d-md-none" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="text-center icon-box">
+              <i class="bi bi-truck"></i>
+              <p>Envíos Gratis</p>
+              <p>En tus compras superiores a $100.000</p>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
+          <div class="carousel-item">
+            <div class="text-center icon-box">
+              <i class="bi bi-credit-card"></i>
+              <p>Cuotas sin interés</p>
+              <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
+              <i class="bi bi-whatsapp"></i>
+              <p>Soporte por WhatsApp</p>
+              <p>Hacé click acá y comunicate con nosotros</p>
+            </a>
+          </div>
         </div>
-      </article>
-    </div>
-  </section>
+        <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </article>
+  </div>
+</section>
+
+
 
   <footer class="footer" id="seccion_footer">
     <main class="container-fluid">
@@ -407,6 +413,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
   </footer>
 
+
   <!-- Incluyendo BOOTSTRAP JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -417,7 +424,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
 
-  <!-- CONFIG MySwiper JS -->            
+  <!-- CONFIG MySwiper JS -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       new Swiper(".mySwiper", {
@@ -462,8 +469,32 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <script>
     AOS.init({
       duration: 1000,
-      once: true,
+      once: false,
     });
+  </script>
+
+  <!-- SCRIPT PARA MANEJAR ANIMACIONES CON ANIMATE.CSS EN SLIDERS DE BS -->
+  <script>
+    function animarSlide(slide) {
+  const caption = slide.querySelector('.carousel-caption');
+  if (caption) {
+    caption.classList.remove('animate__animated', 'animate__bounceInDown');
+    void caption.offsetWidth;
+    caption.classList.add('animate__animated', 'animate__bounceInDown');
+    caption.style.setProperty('opacity', '1', 'important');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const activeSlide = document.querySelector('.carousel-item.active');
+  animarSlide(activeSlide);
+});
+
+const carrusel = document.getElementById('carouselExampleSlidesOnly');
+carrusel.addEventListener('slid.bs.carousel', function (e) {
+  animarSlide(e.relatedTarget);
+});
+
   </script>
 
 
