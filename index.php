@@ -97,25 +97,29 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </nav>
   </header>
-
+  
   <section id="inicio">
-    <div class="container text-center">
-      <div class="d-flex" id="box_inicio">
-        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-4 align-self-center mx-auto">
-          <h1 class="mx-auto text-center p-2"><span id="logo_texto">Kuday<br>Creaciones Artesanales</span></h1>
-          <p>Buscá lo que necesitás en nuestra tienda Online</p>
-          <p>Envios a todo el país.</p>
+    <div class="container text-center py-5">
+      <div class="row align-items-center" id="box_inicio">
+        <div class="col-lg-6 col-md-12 mb-4 mb-lg-0" data-aos="fade-right">
+          <h1 class="display-4 fw-bold" id="logo_texto">Kuday<br><span class="text-primary">Creaciones Artesanales</span></h1>
+          <p class="lead mt-3">Buscá lo que necesitás en nuestra tienda Online</p>
+          <p>Envíos a todo el país.</p>
         </div>
-
-        <div class="col-xl-6 col-lg-5 col-md-5 col-sm-8" id="presentacion">
-          <img src="images/logo/logo.png" class="logo object-fit-cover " alt="logo">
+        <div class="col-lg-6 col-md-12" data-aos="fade-left">
+          <img src="images/logo/logo.png" class="img-fluid" alt="logo" style="max-height: 350px;">
         </div>
       </div>
     </div>
-    <div class="text-center mx-auto" id="minibanner">
-      <h2 class="fs-5 p-3"><span class="text-primary">KUDAY</span> es una tienda unica donde vas a encontrar las mejores <span class="text-primary text-center"> Promociones</span> todos los meses.</h2>
+
+    <div class="text-center py-4" id="minibanner" data-aos="zoom-in">
+      <h2 class="fs-4 fw-light">
+        <span class="text-primary fw-bold">KUDAY</span> es una tienda única donde vas a encontrar las mejores
+        <span class="text-primary">Promociones</span> todos los meses.
+      </h2>
     </div>
   </section>
+
 
   <section class="carrusel">
     <div class="container-fluid">
