@@ -66,7 +66,7 @@ font-family: "Poiret One", sans-serif; 8
 */
 .index-nav {
   width: 100%;
-  background-color: rgb(240, 165, 181);
+  background: linear-gradient(135deg, rgb(247, 150, 171), #f1dbeb);
   height: auto;
 }
 
@@ -171,10 +171,18 @@ div#box_inicio {
 }
 
 #logo_texto {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  line-height: 1.2;
-  font-size: 2.8rem;
+  font-family: "Birthstone", serif;
+  line-height: 0.9;
+  font-size: 4.5rem;
+  color: rgb(214, 44, 81);
+  text-shadow: 1px 1px black;
+  
+}
+
+#logo_texto span {
+  font-size: 4rem;
+  text-shadow: 1px 1px black;
+  
 }
 
 div#presentacion {
@@ -188,14 +196,25 @@ div#presentacion {
 }
 
 #minibanner {
-  background-color: #e9e092;
+  background-color: #ffef60;
   margin-top: 20px;
   margin-bottom: 50px;
 }
 
 #minibanner h2 {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Klee One", serif;
   color: #444;
+}
+
+h2 span.text-kuday {
+  font-family: "Klee One", serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: rgba(208, 49, 230, 0.753);
+}
+
+.text-general {
+  font-family: "Klee One", serif;
 }
 
 /*=====================================*/
@@ -252,10 +271,20 @@ section.carrusel {
 
 /* Estilos base para animación fluida */
 .carousel-caption {
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+  text-shadow: -3px 3px 2px rgba(0,0,0,0.6);
   color: #fff; /* Color del texto */
   font-size: 2rem;
   z-index: 10; /* Asegura que esté sobre la imagen */
+}
+
+h5.caption-title {
+  font-size: 2.6rem;
+  color: rgb(248, 245, 245);
+}
+
+p.caption-parr {
+  font-size: 2.4rem;
+  color: rgb(239, 255, 98);
 }
 
 /* Posiciones por slide */
@@ -330,7 +359,7 @@ section.carrusel {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #e079ee; /* Fondo violeta del ícono */
+  background-color: #000000; /* Fondo violeta del ícono */
   width: 40px; /* Tamaño del ícono */
   height: 40px; /* Tamaño del ícono */
   border-radius: 50%; /* Forma circular */
@@ -347,6 +376,33 @@ section.carrusel {
   display: block !important;
   opacity: 1 !important;
 }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+  opacity: 0;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.carousel-item.active .carousel-caption h5 {
+  animation-delay: 0.5s;
+}
+
+.carousel-item.active .carousel-caption p {
+  animation-delay: 1s;
+}
+
+
 
 /*=====================================*/
 /*========= SECCION TIENDA ============*/
@@ -481,7 +537,7 @@ h3.titulo {
   width: 100%; /* Ahora se ajustará al ancho natural del contenedor */
   height: 100%;
   background: linear-gradient(
-    rgba(214, 238, 129, 0.7),
+    rgba(253, 250, 75, 0.7),
     rgba(255, 255, 255, 0.9)
   );
   z-index: 1; /* Debajo de la imagen y el texto */
@@ -1007,14 +1063,16 @@ h3.titulo {
 
 .slider-container {
   text-align: center;
-  padding: 20px;
-  background: #f8f9fa;
+  padding: 20px 20px 80px 20px;
+  background: linear-gradient(rgba(240, 212, 248, 0.7), rgba(255, 255, 255, 0.9));
+  
 }
 
 .titulo-slider {
   font-size: 4.8rem;
   font-family: "Teko", sans-serif;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  padding: 20px 0;
   text-align: center;
   font-weight: normal;
 }
@@ -1038,6 +1096,8 @@ h3.titulo {
   align-items: stretch;
   /* Hace que todos los slides tengan la misma altura */
 }
+
+
 
 .slider-item {
   background: white;
@@ -1101,7 +1161,7 @@ h3.titulo {
 /*=====================================*/
 
 section#info {
-  margin: 100px 0;
+  margin: 50px 0;
 }
 
 
@@ -1179,13 +1239,15 @@ p#eslogan {
 /*=====================================*/
 
 footer {
-  background-color: rgb(240, 165, 181);
+  background-color: rgb(240, 165, 181); /* opcion vieja*/
+  background: linear-gradient(135deg, rgb(247, 150, 171), #f1dbeb);
   color: black;
   text-align: center;
   padding: 20px;
   bottom: 0;
   width: 100%;
   height: auto;
+  animation: fadeInFooter 1.2s ease-out both;
 }
 
 footer#seccion_footer {
@@ -1243,19 +1305,32 @@ i.pinguin {
 }
 
 i.tel,
+i.correo,
 i.wsp,
 i.ubic {
   font-size: 1.2rem;
-  color: white;
-  text-shadow: 1px 1px black;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px rgb(253, 253, 253) ;
+  margin-right: 10px;
+  vertical-align: middle;
 }
+
+i.tel:hover,
+i.correo:hover,
+i.wsp:hover,
+i.ubic:hover {
+  color: #fd0707;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
 
 i.fb,
 i.ig,
 i.prest {
   font-size: 3rem;
-  color: white;
-  text-shadow: 1px 1px black;
+  color: rgb(0, 0, 0);
+  text-shadow: -1px 1px rgb(252, 247, 247);
 }
 
 .h6-footer {
@@ -1267,8 +1342,10 @@ i.prest {
 }
 
 p.p-footer {
+  font-family: "Klee One", serif;
   font-size: 0.7rem;
   font-weight: bold;
+  
 }
 
 .contenedor-cards {
@@ -1284,6 +1361,13 @@ p.p-footer {
   border: 1px solid white;
   border-radius: 5px;
 }
+
+.contenedor-cards img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  transition: 0.3s ease-in-out;
+}
+
 
 .redes-icons-footer {
   padding: 0 10px;
@@ -1305,6 +1389,22 @@ p.p-footer {
 .redes-icons-footer a:hover {
   transform: scale(1.2);
 }
+
+@keyframes fadeInFooter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer {
+  animation: fadeInFooter 1.2s ease-out both;
+}
+
 
 /*=====================================*/
 /*========= CARTUCHERAS.PHP ==========*/

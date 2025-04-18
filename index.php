@@ -82,7 +82,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active boton-nav" href="./contacto.php">Contactános</a>
+              <a class="nav-link active boton-nav" href="index.php#seccion_footer">Contactános</a>
             </li>
             <li class="nav-item cart-item">
               <a href="./carrito.php" class="cart-icon">
@@ -105,9 +105,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <div class="container text-center py-5">
       <div class="row align-items-center" id="box_inicio">
         <div class="col-lg-6 col-md-12 mb-4 mb-lg-0" data-aos="fade-right">
-          <h1 class="display-4 fw-bold" id="logo_texto">Kuday<br><span class="text-primary">Creaciones Artesanales</span></h1>
-          <p class="lead mt-3">Buscá lo que necesitás en nuestra tienda Online</p>
-          <p>Envíos a todo el país.</p>
+          <h1 class="display-4 fw-bold" id="logo_texto">Kuday<br><span class="text-warning">Creaciones Artesanales</span></h1>
+          <p class="lead mt-3 text-general fw-semibold">Buscá lo que necesitás en nuestra tienda Online</p>
+          <p class="text-general fw-semibold">Envíos a todo el país.</p>
         </div>
         <div class="col-lg-6 col-md-12" data-aos="fade-left">
           <img src="images/logo/logo.png" class="img-fluid" alt="logo" style="max-height: 350px;">
@@ -115,10 +115,10 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </div>
 
-    <div class="container text-center py-4" id="minibanner" data-aos="zoom-in">
-      <h2 class="fs-4 fw-light">
-        <span class="text-primary fw-bold">KUDAY</span> es una tienda única donde vas a encontrar las mejores
-        <span class="text-primary">Promociones</span> todos los meses.
+    <div class="container-fluid text-center py-4" id="minibanner" data-aos="zoom-in">
+      <h2 class="fs-4 fw-light fst-italic">
+        <span class="text-kuday fw-semibold">KUDAY</span> es una tienda única donde vas a encontrar los mejores
+        <span class="text-kuday fw-semibold">accesorios</span> para verte mejor!
       </h2>
     </div>
   </section>
@@ -126,13 +126,13 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
   <section class="carrusel">
     <div class="container">
-      <div id="carouselExampleSlidesOnly" class="carousel slide pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="4000">
+      <div id="carouselExampleSlidesOnly" class="carousel slide pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner carusel-index">
           <div class="carousel-item active">
             <img src="images/carousel/glaciar1.jpg" class="foto-carousel" alt="slide1">
             <div class="carousel-caption">
-              <h5 class="caption-title">SE VIENE EL INVIERNO</h5>
-              <p>Y en Kuday sabemos lo que necesitás...</p>
+              <h5 class="caption-title">Se viene el INVIERNO</h5>
+              <p class="caption-parr">Y en Kuday sabemos lo que necesitás...</p>
             </div>
             <div class="carousel-button">
               <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
@@ -143,7 +143,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             <img src="images/carousel/glaciar2.jpg" class="foto-carousel" alt="slide2">
             <div class="carousel-caption">
               <h5 class="caption-title">NO IMPORTA EL MOMENTO</h5>
-              <p>Visita nuestras promociones todo el año</p>
+              <p class="caption-parr">Visita nuestras promociones todo el año</p>
             </div>
             <div class="carousel-button">
               <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
@@ -153,7 +153,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
             <div class="carousel-caption">
               <h5 class="caption-title">CON MUCHA CREATIVIDAD Y TALENTO...</h5>
-              <p>Descubrí nuestras mejores creaciones</p>
+              <p class="caption-parr">Descubrí nuestras mejores creaciones</p>
             </div>
             <div class="carousel-button">
               <a href="#" class="btn-invisible">Okay!</a>
@@ -286,68 +286,68 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 
   <section id="info">
-  <div>
-    <article id="texto_presentacion" class="text-center mx-auto">
-      <p id="eslogan" data-aos="fade-up" data-aos-duration="1000">
-        Visita nuestra tienda online para encontrar las mejores creaciones del mercado regional.
-      </p>
+    <div>
+      <article id="texto_presentacion" class="text-center mx-auto text-general">
+        <p id="eslogan" data-aos="fade-up" data-aos-duration="1000">
+          Visita los distintos productos y accesorios en nuestra tienda online para encontrar lo que está de moda en el mercado regional
+        </p>
 
-      <!-- Contenedor para pantallas grandes -->
-      <div class="row desktop-container justify-content-evenly">
-        <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="100">
-          <i class="bi bi-truck"></i>
-          <p>Envíos Gratis</p>
-          <p>En tus compras superiores a $100.000</p>
+        <!-- Contenedor para pantallas grandes -->
+        <div class="row desktop-container justify-content-evenly">
+          <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="100">
+            <i class="bi bi-truck"></i>
+            <p class="fw-semibold">Envíos Gratis</p>
+            <p>En tus compras superiores a $100.000</p>
+          </div>
+          <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="200">
+            <i class="bi bi-credit-card"></i>
+            <p class="fw-semibold">Cuotas sin interés</p>
+            <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+          </div>
+          <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black" data-aos="zoom-in" data-aos-delay="300">
+            <i class="bi bi-whatsapp"></i>
+            <p class="fw-semibold">Soporte por WhatsApp</p>
+            <p class="fw-semibold">Hacé click acá y comunicate con nosotros</p>
+          </a>
         </div>
-        <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="200">
-          <i class="bi bi-credit-card"></i>
-          <p>Cuotas sin interés</p>
-          <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
-        </div>
-        <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black" data-aos="zoom-in" data-aos-delay="300">
-          <i class="bi bi-whatsapp"></i>
-          <p>Soporte por WhatsApp</p>
-          <p>Hacé click acá y comunicate con nosotros</p>
-        </a>
-      </div>
 
-      <!-- Carrusel para pantallas pequeñas -->
-      <div id="iconCarousel" class="carousel slide carousel-container d-md-none" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="text-center icon-box">
-              <i class="bi bi-truck"></i>
-              <p>Envíos Gratis</p>
-              <p>En tus compras superiores a $100.000</p>
+        <!-- Carrusel para pantallas pequeñas -->
+        <div id="iconCarousel" class="carousel slide carousel-container d-md-none" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="text-center icon-box">
+                <i class="bi bi-truck"></i>
+                <p class="fw-semibold">Envíos Gratis</p>
+                <p>En tus compras superiores a $100.000</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="text-center icon-box">
+                <i class="bi bi-credit-card"></i>
+                <p class="fw-semibold">Cuotas sin interés</p>
+                <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
+                <i class="bi bi-whatsapp"></i>
+                <p class="fw-semibold">Soporte por WhatsApp</p>
+                <p class="fw-normal">Hacé click acá y comunicate con nosotros</p>
+              </a>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="text-center icon-box">
-              <i class="bi bi-credit-card"></i>
-              <p>Cuotas sin interés</p>
-              <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
-              <i class="bi bi-whatsapp"></i>
-              <p>Soporte por WhatsApp</p>
-              <p>Hacé click acá y comunicate con nosotros</p>
-            </a>
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Siguiente</span>
-        </button>
-      </div>
-    </article>
-  </div>
-</section>
+      </article>
+    </div>
+  </section>
 
 
 
@@ -359,7 +359,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
           <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
           <div class="box_1">
-            <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+            <p class="p-footer"><i class="bi bi-envelope-at correo"></i>kudayartesanias@gmail.com</p>
             <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
             <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
 
@@ -402,7 +402,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="redes-icons-footer">
             <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
             <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
-            <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
+            
           </div>
         </div>
 
