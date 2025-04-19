@@ -48,9 +48,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="../index.php#inicio">Inicio</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active boton-nav" aria-current="page" href="promociones.php">Promociones</a>
-                            </li>
                             <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Productos
@@ -74,7 +71,10 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="../contacto.php">Contactános</a>
+                                <a class="nav-link active boton-nav" aria-current="page" href="#seccion_footer">Quiénes Somos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active boton-nav" href="../contacto.php" target="_blank">Contactános</a>
                             </li>
                             <li class="nav-item cart-item">
                                 <a href="../carrito.php" target="_blank" class="cart-icon">
@@ -92,24 +92,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             </div>
         </nav>
     </header>
-<!--
-    <section id="slide-cartuchera">
 
-        <div class="container contenedor-slide-cartuchera">
-            <div class="box1">
-                <a id="cartuchera-bounce" class="propaganda2" href="../vistas/promociones.php" target="_blank">Ver Promociones</a>
-            </div>
-            <div class="box2">
-                <div class="imagen-logo">
-                    <img src="../images/logo/logo.png" class="img-logo-slide">
-                </div>
-            </div>
-            
-        </div>
-
-    </section>
--->
-    
 
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
@@ -204,7 +187,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                 
                 <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
                 <div class="box_1">
-                    <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-envelope-at correo"></i>kudayartesanias@gmail.com</p>
                     <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
                     <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
 
@@ -247,7 +230,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                     <div class="redes-icons-footer">
                         <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
                         <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
                     </div>
                 </div>
                 
