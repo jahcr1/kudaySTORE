@@ -82,7 +82,10 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active boton-nav" href="index.php#seccion_footer">Contactános</a>
+              <a class="nav-link active boton-nav" aria-current="page" href="#seccion_footer">Quiénes Somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active boton-nav" href="./contacto.php" target="_blank">Contactános</a>
             </li>
             <li class="nav-item cart-item">
               <a href="./carrito.php" class="cart-icon">

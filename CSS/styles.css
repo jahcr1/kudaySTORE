@@ -88,13 +88,10 @@ a.marca:hover {
   text-shadow: -2px 2px black;
 }
 
-.nav-item {
-  margin-left: 50px;
-}
 
 li.nav-item a.nav-link {
   color: black !important;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: "Poiret One", sans-serif;
   font-weight: bold;
 }
@@ -104,11 +101,12 @@ li.nav-item a.nav-link:hover {
 }
 
 /* Estilo base para todos los nav-items */
-.navbar-nav .nav-item {
+.navbar-nav li.nav-item {
   display: flex; /* Asegura que todos los elementos se alineen correctamente */
   align-items: center; /* Centra verticalmente el contenido dentro del contenedor */
   justify-content: center; /* Alinea el contenido al inicio horizontalmente */
-  margin: 10px 0 0 20px; /* Evita márgenes adicionales que puedan desalinear */
+  margin: 10px 0 0 7px; /* Evita márgenes adicionales que puedan desalinear */
+
 }
 
 /* Estilo específico para el ícono del carrito */
@@ -1549,10 +1547,10 @@ h3.titulo-categoria {
 /* Configuración de la grid responsiva */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
   justify-items: center;
-  padding: 20px;
+  padding: 20px 25px 50px 25px;
 }
 
 /* Estilo para cada producto */
