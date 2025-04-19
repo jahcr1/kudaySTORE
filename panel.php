@@ -344,7 +344,7 @@
                 ?>
 
 
-                <form action="./componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4">
+                <form action="./componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4" id="formulario-ventas-filtros">
                     <div class="col-md-5">
                         <label for="nombre" class="form-label">Buscar por nombre</label>
                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del cliente">
