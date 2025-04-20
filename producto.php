@@ -14,10 +14,10 @@ if (!$id_producto) {
 
 // Consulta el producto en la base de datos
 $query = "SELECT p.*, c.nombre AS categoria_nombre 
-          FROM productos p 
-          JOIN categorias c 
-          ON p.categoria_id = c.id 
-          WHERE p.id = $id_producto";
+        FROM productos p 
+        JOIN categorias c 
+        ON p.categoria_id = c.id 
+        WHERE p.id = $id_producto";
 $result = mysqli_query($conexion, $query);
 $producto = mysqli_fetch_assoc($result);
 
@@ -70,9 +70,6 @@ if (!$producto) {
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="./index.php#inicio">Inicio</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active boton-nav" aria-current="page" href="./vistas/promociones.php">Promociones</a>
-                            </li>
                             <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Productos
@@ -94,6 +91,9 @@ if (!$producto) {
                                     <hr class="dropdown-divider">
                                     <li><a class="dropdown-item" href="./vistas/promociones.php">Promociones</a></li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active boton-nav" aria-current="page" href="#seccion_footer">Quiénes Somos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active boton-nav" href="./contacto.php">Contactános</a>
@@ -202,7 +202,7 @@ if (!$producto) {
                 
                 <h6 class="h6-footer"><i class="bi bi-tencent-qq pinguin"></i> CONTÁCTANOS</h6>
                 <div class="box_1">
-                    <p class="p-footer"><i class="bi bi-telephone-fill tel"></i> +54 9 0297 432-1429</p>
+                    <p class="p-footer"><i class="bi bi-envelope-at correo"></i>kudayartesanias@gmail.com</p>
                     <p class="p-footer"><i class="bi bi-whatsapp wsp"></i> +54 9 0297 432-1429</p>
                     <p class="p-footer"><i class="bi bi-geo-alt-fill ubic"></i> Gral. Araóz de Lamadrid 425</p>
 
@@ -245,7 +245,6 @@ if (!$producto) {
                     <div class="redes-icons-footer">
                         <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
                         <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-pinterest prest"></i></a>
                     </div>
                 </div>
                 
