@@ -1337,6 +1337,7 @@ i.prest {
   font-size: 1.7rem;
   text-wrap: nowrap;
   margin: 8px 0 0 0;
+  color: #a63d57;
 }
 
 p.p-footer {
@@ -1662,14 +1663,15 @@ a.add-carrito {
   width: 250px;
   margin-top: 10px;
   background-color: rgb(255, 151, 173);
-
+  transition: background-color 0.3s ease, transform 0.2s ease;
   min-width: 200px;
   max-width: 100%;
 }
 
 a.add-carrito:hover {
-  background-color: rgb(247, 87, 121);
+  background-color: #c82333;
   color: white;
+  transform: scale(1.05);
 }
 
 
@@ -2015,52 +2017,37 @@ table.dataTable tbody tr {
 /*=======================================*/
 
 section#ver_producto {
-  margin: 150px auto 150px auto;
+  margin: 150px auto 50px auto;
   padding: 20px;
   height: auto;
+  
 }
 
-div#details {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-
-  padding: 20px;
-  background-color: rgb(255, 255, 255);
-  justify-content: center;
-
-  gap: 10px;
+section#ver_producto .detalleproducto.row {
+  background-color: #fffafc;
+  border: 1px solid #ffcbd8;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
 }
 
-div.detalle-img {
-  display: flex;
-  justify-content: center;
+.producto-img-prod {
+  max-height: 400px;
+  object-fit: contain;
+  border: 2px solid #ffcbd8;
   padding: 10px;
-  border: 1px solid black;
+  background-color: white;
+  transition: transform 0.3s ease;
 }
 
-div.detalle-img img {
-  justify-content: center;
-  width: 100%;
-  max-width: 400px;
-  min-width: 200px;
-  height: auto;
+.producto-img-prod:hover {
+  transform: scale(1.05);
 }
 
-div.detalle-producto {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 10px;
-}
-
-
-div.detalle-botones {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+div.botonera-producto {
+  margin: 20px 0;
+  border: none!important;
+  border-radius: 0 !important;
+  box-shadow: none!important;
 }
 
 /* Contenedor principal del controlador de cantidad */
@@ -2069,20 +2056,18 @@ div.detalle-botones {
   justify-content: center; /* Centra los elementos horizontalmente */
   align-items: center; /* Centra los elementos verticalmente */
   gap: 10px; /* Espacio entre los elementos */
-  width: 200px; /* Ajusta el tamaño del contenedor */
+  width: auto; /* Ajusta el tamaño del contenedor */
   margin: 0 auto; /* Centra el contenedor en su contenedor principal */
 }
 
 /* Estilo para los botones */
 .quantity-controller button {
   background-color: rgb(209, 120, 139); /* Color de fondo del botón */
-  color: white; /* Color de texto blanco */
-  font-size: 18px; /* Tamaño de la fuente */
-  padding: 10px 15px; /* Espaciado dentro del botón */
+  color: rgb(255, 255, 255); /* Color de texto blanco */
+  font-size: 1rem; /* Tamaño de la fuente */  
   border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cursor en forma de mano */
-  transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+  transition: background-color 0.2s ease; /* Transición suave al pasar el ratón */
 }
 
 /* Estilo de los botones cuando se pasa el ratón */
@@ -2091,54 +2076,50 @@ div.detalle-botones {
 }
 
 /* Estilo del campo de cantidad */
-#product-quantity {
+input#product-quantity {
   text-align: center; /* Centra el texto (el número) dentro del campo */
   width: 50px; /* Ancho fijo para el campo */
   padding: 5px; /* Espaciado interno */
-  font-size: 18px; /* Tamaño de la fuente */
-  border: 1px solid #ccc; /* Borde gris claro */
+  font-size: 1.2rem; /* Tamaño de la fuente */
+  border: 1px solid #b8b6b6; /* Borde gris claro */
   border-radius: 5px; /* Bordes redondeados */
   outline: none; /* Sin borde al hacer clic */
   transition: border-color 0.3s; /* Transición suave al pasar el ratón */
 }
 
 /* Estilo del campo de cantidad cuando se enfoca */
-#product-quantity:focus {
-  border-color: rgb(
-    196,
-    74,
-    100
-  ); /* Color de borde cuando el campo está enfocado */
+input#product-quantity:focus {
+  border-color: rgb(196,74,100); 
 }
 
-/* Asegura que los botones y el campo de cantidad sean del mismo tamaño */
-.quantity-controller input[type="number"] {
-  -moz-appearance: textfield; /* Para Firefox */
-  -webkit-appearance: none; /* Para Safari y Chrome */
-  appearance: none; /* Para otros navegadores modernos */
-  padding: 5px 10px;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  outline: none;
-  text-align: center;
-}
-
-button#add-to-cart {
+.add-carrito-prod {
+  color: #ffffff;
+  border: none;
   background-color: rgb(209, 120, 139);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.add-carrito-prod:hover {
+  background-color: #b93c59;
+  transform: scale(1.05);
 }
 
-@media (min-width: 768px) {
-  .carousel-container {
-    display: none; /* Oculta el carrusel en pantallas grandes */
-  }
+.accordion-button {
+  background-color: #fbe2ea;
+  font-weight: 600;
 }
 
-@media (max-width: 767px) {
-  .desktop-container {
-    display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
-  }
+.accordion-button:not(.collapsed) {
+  color: #a63d57;
+  background-color: #fad1dc;
 }
+
+.accordion-body {
+  background-color: #fff;
+  border-top: 1px solid #f7c0d0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
 
 
 /*=========================================*/
@@ -2179,4 +2160,33 @@ td.mi_carrito_total {
   text-align: end;
   padding: 5px;
   font-weight: bold;
+}
+
+/*=========================================*/
+/*============ MEDIA QUERIES ==============*/
+/*=========================================*/
+
+
+@media (min-width: 768px) {
+  .carousel-container {
+    display: none; /* Oculta el carrusel en pantallas grandes */
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-container {
+    display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
+  }
+
+  .producto-img-prod {
+    max-width: 100%;
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .quantity-controller {
+    width: 50%;
+    justify-content: center;
+    
+  }
 }

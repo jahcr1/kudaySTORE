@@ -115,84 +115,103 @@ if (!$producto) {
         </nav>
     </header>
 
-    <section id="ver_producto">
-        <div id="details">
-            <div class="detalle-img col-xl-5 col-lg-5 col-md-5 col-sm-10">
-                <img src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>" alt="Imagen del Producto" class="img-fluid">
-            </div>
-            <div class="detalle-producto col-xl-5 col-lg-5 col-md-5 col-sm-10 text-center">
-                <div class="detalle-main">
-                    <h1><?php echo $producto['nombre']; ?></h1>
-                    <p><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
-                    <p><strong>Precio:</strong> $<?php echo $producto['precio']; ?></p>
-                    <p><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
-                    <p><strong>Descripción:</strong> <?php echo $producto['descripcion']; ?></p>
+
+    <section id="ver_producto" class="py-5">
+        <div class="container">
+            <div class="detalleproducto row align-items-start justify-content-center g-5 shadow rounded-4 p-4">
+                
+                <!-- Imagen del producto -->
+                <div class="col-lg-5 text-center">
+                    <img src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>" 
+                        alt="Imagen del Producto" 
+                        class="img-fluid rounded-3 shadow-sm producto-img-prod"
+                        style="max-height: 400px; object-fit: contain;">
                 </div>
 
-                <div class="detalle-botones">
-                    <div class="quantity-controller">
-                        <button class="btn-decrease" onclick="updateQuantity(-1)">−</button>
-                        <input type="number" id="product-quantity" value="1" min="1" max="<?php echo $producto['stock']; ?>">
-                        <button class="btn-increase" onclick="updateQuantity(1)">+</button>
+                <!-- Detalles del producto -->
+                <div class="col-lg-6 text-center">
+                    <div class="mb-4">
+                        <h1 class="fw-bold display-6 mb-2"><?php echo $producto['nombre']; ?></h1>
+                        <p class="mb-1"><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
+                        <p class="mb-1"><strong>Precio:</strong> <span class="text-success fw-bold fs-5">$<?php echo $producto['precio']; ?></span></p>
+                        <p class="mb-1"><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
+                        <p class="mt-3"><strong>Descripción:</strong> <br><?php echo $producto['descripcion']; ?></p>
                     </div>
-                    <button id="add-to-cart" class="btn btn-danger add-carrito" data-id="<?php echo $producto['id']; ?>">
-                        Agregar al carrito
-                    </button>
-                </div>
 
-                <div class="accordion mt-3" id="accordionPanelsStayOpenExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        <i class="fa-solid fa-house-chimney"></i>&nbsp;&nbsp;&nbsp;Nuestro Local
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <strong>Kuday Artesanias</strong> General Araóz de Lamadrid 425 - Barrio General Paz, Cordoba Argentina
-                        </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                        <i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Medios de Envio
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <div class="input-group">
-                                <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Tu código postal">
-                                <button type="button" class="btn btn-outline-secondary">CALCULAR</button>
-                                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">No sé mi Código Postal</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">RESETEAR C.P</a></li>
-                                </ul>
+                    <!-- Control de cantidad y botón -->
+                    <div class="botonera-producto row text-center text-md-start">
+                        <div class="col-12 col-md-auto mb-3 mb-md-0">
+                            <div class="quantity-controller d-flex justify-content-center justify-content-md-start">
+                                <button class="btn btn-outline-secondary px-3" onclick="updateQuantity(-1)">−</button>
+                                <input type="number" id="product-quantity" class="form-control text-center " value="1" min="1" max="<?php echo $producto['stock']; ?>">
+                                <button class="btn btn-outline-secondary px-3" onclick="updateQuantity(1)">+</button>
                             </div>
                         </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Accordion Item #3
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                        <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+                        <div class="col-12 col-md-auto">
+                            <button id="add-to-cart" class="btn btn-danger add-carrito-prod px-4 py-2 shadow" data-id="<?php echo $producto['id']; ?>">
+                            <i class="fa-solid fa-cart-plus me-2"></i>Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Acordeón -->
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne">
+                                    <i class="fa-solid fa-house-chimney me-2"></i> Nuestro Local
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <strong>Kuday Artesanias</strong> General Araóz de Lamadrid 425 - Barrio General Paz, Córdoba, Argentina.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo">
+                                    <i class="fa-solid fa-truck-fast me-2"></i> Medios de Envío
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Tu código postal">
+                                        <button type="button" class="btn btn-outline-secondary">CALCULAR</button>
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">No sé mi Código Postal</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="#">RESETEAR C.P</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree">
+                                    Más información
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p class="mb-0">Esta es una sección adicional donde podés brindar más información sobre el producto, el proceso de elaboración o políticas de cambio y devolución.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- Fin col -->
+            </div> <!-- Fin row -->
+        </div> <!-- Fin container -->
     </section>
+
 
     <footer class="footer" id="seccion_footer">
         <main class="container-fluid">
