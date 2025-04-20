@@ -131,7 +131,27 @@ if (!$producto) {
                 <!-- Detalles del producto -->
                 <div class="col-lg-6 text-center">
                     <div class="mb-4">
-                        <h1 class="fw-bold display-6 mb-2"><?php echo $producto['nombre']; ?></h1>
+                        <div class="d-flex align-items-center justify-content-center justify-content-md-center gap-3 mb-3">
+                            <h1 class="fw-bold display-6 m-0"><?php echo $producto['nombre']; ?></h1>
+                            
+                            <!-- Botones de compartir -->
+                            <div class="social-share d-flex align-items-center gap-2 ms-3">
+                                <a href="https://wa.me/?text=<?php echo urlencode('Mirá este producto de Kuday Artesanías: https://tusitio.com/producto.php?id=' . $producto['id']); ?>" 
+                                target="_blank" 
+                                class="btn btn-sm btn-success shadow-sm rounded-circle"
+                                title="Compartir en WhatsApp">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode('https://tusitio.com/producto.php?id=' . $producto['id']); ?>" 
+                                target="_blank" 
+                                class="btn btn-sm btn-primary shadow-sm rounded-circle"
+                                title="Compartir en Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+
                         <p class="mb-1"><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
                         <p class="mb-1"><strong>Precio:</strong> <span class="text-success fw-bold fs-5">$<?php echo $producto['precio']; ?></span></p>
                         <p class="mb-1"><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
