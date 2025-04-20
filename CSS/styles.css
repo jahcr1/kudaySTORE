@@ -2042,6 +2042,18 @@ section#ver_producto .detalleproducto.row {
 .producto-img-prod:hover {
   transform: scale(1.05);
 }
+div.cuadro-detalle {
+  padding: 0 25px 25px 25px;
+}
+
+h1.titulo-producto {
+  font-family: "Teko", sans-serif;
+  font-size: 3rem;
+}
+
+p.detalle-producto {
+  font-family: "Klee One", serif;
+}
 
 .social-share a {
   width: 32px;
@@ -2057,7 +2069,6 @@ section#ver_producto .detalleproducto.row {
   transform: scale(1.2);
   opacity: 0.9;
 }
-
 
 
 div.botonera-producto {
@@ -2135,6 +2146,7 @@ input#product-quantity:focus {
   border-top: 1px solid #f7c0d0;
   font-size: 0.95rem;
   color: #333;
+  font-family: "Klee One", serif;
 }
 
 

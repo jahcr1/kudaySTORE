@@ -129,10 +129,10 @@ if (!$producto) {
                 </div>
 
                 <!-- Detalles del producto -->
-                <div class="col-lg-6 text-center">
+                <div class="cuadro-detalle col-lg-6 text-center">
                     <div class="mb-4">
-                        <div class="d-flex align-items-center justify-content-center justify-content-md-center gap-3 mb-3">
-                            <h1 class="fw-bold display-6 m-0"><?php echo $producto['nombre']; ?></h1>
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-center gap-3 mb-3">
+                            <h1 class="titulo-producto fw-normal display-6 m-0 text-capitalize"><?php echo $producto['nombre']; ?></h1>
                             
                             <!-- Botones de compartir -->
                             <div class="social-share d-flex align-items-center gap-2 ms-3">
@@ -152,10 +152,10 @@ if (!$producto) {
                             </div>
                         </div>
 
-                        <p class="mb-1"><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
-                        <p class="mb-1"><strong>Precio:</strong> <span class="text-success fw-bold fs-5">$<?php echo $producto['precio']; ?></span></p>
-                        <p class="mb-1"><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
-                        <p class="mt-3"><strong>Descripción:</strong> <br><?php echo $producto['descripcion']; ?></p>
+                        <p class="mb-1 detalle-producto"><strong>Categoría:</strong> <?php echo $producto['categoria_nombre']; ?></p>
+                        <p class="mb-1 detalle-producto"><strong>Precio:</strong> <span class="text-success fw-semibold fs-6">$<?php echo $producto['precio']; ?></span></p>
+                        <p class="mb-1 detalle-producto"><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?></p>
+                        <p class="mt-3 detalle-producto"><strong>Descripción:</strong> <br><?php echo $producto['descripcion']; ?></p>
                     </div>
 
                     <!-- Control de cantidad y botón -->
@@ -181,12 +181,14 @@ if (!$producto) {
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne">
-                                    <i class="fa-solid fa-house-chimney me-2"></i> Nuestro Local
+                                    <i class="fa-solid fa-house-chimney me-3"></i> Nuestro Local
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                                 <div class="accordion-body">
-                                    <strong>Kuday Artesanias</strong> General Araóz de Lamadrid 425 - Barrio General Paz, Córdoba, Argentina.
+                                    <p class="text-secondary">    
+                                        <strong>Kuday Artesanias</strong> General Araóz de Lamadrid 425 - Barrio General Paz, Córdoba, Argentina.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -194,21 +196,14 @@ if (!$producto) {
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo">
-                                    <i class="fa-solid fa-truck-fast me-2"></i> Medios de Envío
+                                    <i class="fa-solid fa-sack-dollar me-3"></i>Formas de Pago
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Tu código postal">
-                                        <button type="button" class="btn btn-outline-secondary">CALCULAR</button>
-                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">No sé mi Código Postal</a></li>
-                                            <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#">RESETEAR C.P</a></li>
-                                        </ul>
-                                    </div>
+                                    <p class="text-secondary">
+                                        En <strong>Kuday</strong> aceptamos varios métodos de pago, depósitos, transferencias bancarias, transferencias de plataformas digitales como <strong>MercadoPago</strong>, <strong>Ualá</strong>, <strong>Modo</strong>, <strong>Lemon</strong>, y <strong>efectivo.</strong>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -216,12 +211,12 @@ if (!$producto) {
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree">
-                                    Más información
+                                    <i class="fa-solid fa-truck-fast me-3"></i>Medios de Envío
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    <p class="mb-0">Esta es una sección adicional donde podés brindar más información sobre el producto, el proceso de elaboración o políticas de cambio y devolución.</p>
+                                    <p class="mb-0 text-secondary">Hacemos envíos a todo el país, trabajamos mediante <strong>Andreani Envíos</strong> y <strong>Correo Argentino</strong><br>Si sos de <strong>Córdoba Capital</strong> y querés recibir el pedido en tu casa, al continuar la compra en tu carrito, seleccionar en el formulario de envio, en el campo <strong>provincia</strong> la opcion: <strong>Córdoba</strong> y en el campo <strong>ciudad</strong> la opcion: <strong>Capital</strong>. Si querés pagarlo en <strong>efectivo</strong> podés comunicarte con nosotros y acercarte a nuestro local.</p>
                                 </div>
                             </div>
                         </div>
