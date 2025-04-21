@@ -9,7 +9,7 @@ include('./componentes/conexion.php');
 $cart = $_SESSION['cart'] ?? [];
 
 // Eliminar productos con cantidad 0
-$cart = array_filter($cart, function($cantidad) {
+$cart = array_filter($cart, function ($cantidad) {
     return $cantidad > 0;
 });
 
@@ -143,28 +143,28 @@ $result = mysqli_query($conexion, $query);
                                     <?php
                                     $total = 0;
                                     if (!empty($cart)) { ?>
-                                    <?php
-                                    while ($product = mysqli_fetch_assoc($result)) {
-                                        $id = $product['id'];
-                                        $cantidad = $cart[$id];
-                                        $stock = $product['stock']; // Asumiendo que tienes una columna 'stock' en la DB
-                                        $subtotal = $product['precio'] * $cantidad;
-                                        $total += $subtotal;
-                                    ?>
-                                        <tr data-id="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
-                                            <td><?php echo $product['nombre']; ?></td>
-                                            <td class="precio">$<?php echo $product['precio']; ?></td>
-                                            <td>
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, -1)">−</button>
-                                                    <input type="number" class="form-control mx-2 cantidad" data-id="<?php echo $id; ?>" data-stock="<?php echo $product['stock']; ?>" style="width: 60px; text-align: center;" value="<?php echo $cantidad; ?>" min="1">
-                                                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, 1)">+</button>
-                                                </div>
-                                            </td>
-                                            <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
-                                        </tr>
+                                        <?php
+                                        while ($product = mysqli_fetch_assoc($result)) {
+                                            $id = $product['id'];
+                                            $cantidad = $cart[$id];
+                                            $stock = $product['stock']; // Asumiendo que tienes una columna 'stock' en la DB
+                                            $subtotal = $product['precio'] * $cantidad;
+                                            $total += $subtotal;
+                                        ?>
+                                            <tr data-id="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
+                                                <td><?php echo $product['nombre']; ?></td>
+                                                <td class="precio">$<?php echo $product['precio']; ?></td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, -1)">−</button>
+                                                        <input type="number" class="form-control mx-2 cantidad" data-id="<?php echo $id; ?>" data-stock="<?php echo $product['stock']; ?>" style="width: 60px; text-align: center;" value="<?php echo $cantidad; ?>" min="1">
+                                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, 1)">+</button>
+                                                    </div>
+                                                </td>
+                                                <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
                                     <?php } ?>
-                                <?php } ?>
                                     <tr id="costoEnvioRow" style="display: none;">
                                         <td colspan="3"><strong>Costo de Envío</strong></td>
                                         <td><strong id="costoEnvio">$0.00</strong></td>
@@ -179,7 +179,7 @@ $result = mysqli_query($conexion, $query);
                         <div class="text-center mt-3">
                             <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -334,14 +334,16 @@ $result = mysqli_query($conexion, $query);
 
             // Enviar la actualización al servidor para que elimine el producto de la sesión
             fetch('actualizar_carrito.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `id=${encodeURIComponent(id)}&cantidad=0`
-            }).then(response => response.json())
-            .then(data => {
-                document.getElementById('cart-count').textContent = data.cartCount;
-            })
-            .catch(error => console.error('Error al actualizar el carrito en el servidor:', error));
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id=${encodeURIComponent(id)}&cantidad=0`
+                }).then(response => response.json())
+                .then(data => {
+                    document.getElementById('cart-count').textContent = data.cartCount;
+                })
+                .catch(error => console.error('Error al actualizar el carrito en el servidor:', error));
 
             updateTotal();
             updateCartCount();
@@ -355,9 +357,9 @@ $result = mysqli_query($conexion, $query);
                 let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
                 return sum + (price * parseInt(el.value));
             }, 0);
-            
+
             totalElem.textContent = `$${total.toFixed(2)}`;
-        
+
             // Actualizar el valor total en el localStorage
             localStorage.setItem("totalCompra", total);
         }
@@ -465,6 +467,7 @@ $result = mysqli_query($conexion, $query);
             this.setCustomValidity("");
         });
 
+
         // Función para confirmar los datos de envío
         function confirmarDatosEnvio() {
             let provincia = document.getElementById("provincia").value;
@@ -482,23 +485,35 @@ $result = mysqli_query($conexion, $query);
                 })
                 .then(data => {
                     let costoEnvio = parseFloat(data.costoEnvio);
-                    
-                    // Obtener el total actual del primer accordion
-                    let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", "").trim());
-                    let nuevoTotal = totalActual + costoEnvio;
 
-                    // Mostrar el costo de envío en el segundo accordion
-                    document.getElementById("costoEnvio").textContent = `$${costoEnvio}`;
+                    // Calcular subtotal real sin costo de envío
+                    let subtotal = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
+                        let id = el.dataset.id;
+                        let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
+                        return sum + (price * parseInt(el.value));
+                    }, 0);
+
+                    // Evitar aplicar el costo de envío varias veces
+                    let totalActual = parseFloat(document.getElementById("total").textContent.replace("$", ""));
+                    let costoAnterior = parseFloat(localStorage.getItem("costoEnvio") || "0");
+
+                    // Si ya se había aplicado un costo de envío antes, lo eliminamos
+                    let subtotalReal = totalActual - costoAnterior;
+                    let nuevoTotal = subtotalReal + costoEnvio;
+
+
+                    // Actualizar UI
+                    document.getElementById("costoEnvio").textContent = `$${costoEnvio.toFixed(2)}`;
                     document.getElementById("costoEnvioRow").style.display = "table-row";
-
-                    // Actualizar el total en el primer accordion
                     document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
 
-                    // Guardar en localStorage para mantener valores después de actualizar
-                    localStorage.setItem("costoEnvio", costoEnvio);
-                    localStorage.setItem("totalCompra", nuevoTotal);
+                    // Guardar en localStorage
+                    localStorage.setItem("costoEnvio", costoEnvio.toFixed(2));
+                    localStorage.setItem("totalCompra", nuevoTotal.toFixed(2));
+                    localStorage.setItem("subtotalCompra", subtotalReal.toFixed(2));
 
-                    // Mostrar el botón "Finalizar Compra"
+
+                    // Mostrar botón para finalizar compra
                     document.getElementById("finalizarCompraBtn").style.display = "block";
                 })
                 .catch(error => console.error('Error al calcular el costo de envío:', error));
@@ -507,10 +522,8 @@ $result = mysqli_query($conexion, $query);
         // Restaurar valores guardados en localStorage 
         // al cargar la página f5 y al abrir carrito por primera vez
         document.addEventListener("DOMContentLoaded", function() {
-            // Recuperar productos y datos desde localStorage o sesión
             let cart = JSON.parse(localStorage.getItem("carrito")) || [];
-            
-            // Si hay productos, actualiza el carrito visualmente
+
             if (cart.length > 0) {
                 cart.forEach(item => {
                     let row = document.createElement("tr");
@@ -530,23 +543,33 @@ $result = mysqli_query($conexion, $query);
                 });
             }
 
-            // Luego, actualizamos el total
+            // Actualizamos el subtotal
             updateTotal();
-            
-            // Verificar si hay un costo de envío guardado y mostrarlo si es necesario
-            let costoGuardado = localStorage.getItem("costoEnvio");
-            let totalGuardado = localStorage.getItem("totalCompra");
 
-            if (costoGuardado && totalGuardado) {
-                document.getElementById("costoEnvio").textContent = `$${costoGuardado}`;
+            // Recuperamos costo de envío
+            let costoGuardado = parseFloat(localStorage.getItem("costoEnvio") || "0");
+            let subtotal = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
+                let id = el.dataset.id;
+                let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
+                return sum + (price * parseInt(el.value));
+            }, 0);
+
+
+            if (costoGuardado > 0) {
+                document.getElementById("costoEnvio").textContent = `$${costoGuardado.toFixed(2)}`;
                 document.getElementById("costoEnvioRow").style.display = "table-row";
-                document.getElementById("total").textContent = `$${parseFloat(totalGuardado).toFixed(2)}`;
             } else {
-                // Si no hay costo de envío guardado, reiniciamos a cero
                 document.getElementById("costoEnvio").textContent = "$0";
                 document.getElementById("costoEnvioRow").style.display = "none";
             }
+
+            // Mostrar total real: subtotal + envío
+            let nuevoTotal = subtotal + costoGuardado;
+            document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
+
+
         });
+
 
 
         function finalizarCompra() {
@@ -558,7 +581,23 @@ $result = mysqli_query($conexion, $query);
             let ciudad = document.getElementById("ciudad").value.trim(); // Nuevo campo
             let provincia = document.getElementById("provincia").value.trim();
             let codigopostal = document.getElementById("codigoPostal").value.trim();
-            let total = parseFloat(localStorage.getItem("totalCompra") || "0");
+            // Validar y recalcular antes de finalizar
+            let subtotal = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
+                let id = el.dataset.id;
+                let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
+                return sum + (price * parseInt(el.value));
+            }, 0);
+
+            // Siempre recalcular costo de envío desde localStorage o forzarlo si está vacío
+            let costoEnvioStr = localStorage.getItem("costoEnvio");
+            let costoEnvio = (costoEnvioStr && !isNaN(costoEnvioStr)) ? parseFloat(costoEnvioStr) : 0;
+
+            // Actualizar valores en pantalla y localStorage antes de continuar
+            let total = subtotal + costoEnvio;
+            document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+            localStorage.setItem("totalCompra", total.toFixed(2));
+            localStorage.setItem("subtotalCompra", subtotal.toFixed(2));
+
 
             // Recoger los productos del carrito
             let productos = [];
@@ -586,7 +625,8 @@ $result = mysqli_query($conexion, $query);
                 ciudad: ciudad, // No se codifica
                 codigopostal: codigopostal, // No se codifica
                 productos: JSON.stringify(productos),
-                total: total
+                total: total,
+                costoEnvio: costoEnvio
             });
 
             fetch('./componentes/procesar_compra.php', {
@@ -629,7 +669,6 @@ $result = mysqli_query($conexion, $query);
                     alert("Hubo un problema al procesar la compra.");
                 });
         }
-
     </script>
 </body>
 

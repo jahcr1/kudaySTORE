@@ -30,13 +30,16 @@
             $codigopostal = trim($_POST['codigopostal'] ?? '');
             $productos = $_POST['productos'] ?? '[]';
             $total = floatval($_POST['total'] ?? 0);
+            $costoEnvio = floatval($_POST['costoEnvio'] ?? 0);
+            $subtotal = $total - $costoEnvio;
+
 
             // Decodificar el email en caso de que haya codificación
             $email = urldecode($email);  // Decodificamos el email
 
             // Validación básica
-            if (!$nombre || !$apellido || !$telefono || !$email || !$direccion || !$provincia || !$ciudad || !$codigopostal || empty($productos) || $total <= 0) {
-                throw new Exception("Datos incompletos o incorrectos.");
+            if (!$nombre || !$apellido || !$telefono || !$email || !$direccion || !$provincia || !$ciudad || !$codigopostal || empty($productos) || $total <= 0 || $costoEnvio < 0) {
+                throw new Exception("Datos incompletos o incorrectos o negativos.");
             }
 
             // Decodificar los productos
@@ -51,7 +54,7 @@
             $estado = 'Pendiente'; // Valor por defecto
 
             $stmt = $conexion->prepare("INSERT INTO compras (nombre_cliente, apellido_cliente, telefono_cliente, email_cliente, direccion, provincia, ciudad, codigopostal, productos_json, total, estado, fecha_compra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-            $stmt->bind_param("ssssssssssd", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total, $estado);
+            $stmt->bind_param("sssssssssds", $nombre, $apellido, $telefono, $email, $direccion, $provincia, $ciudad, $codigopostal, $productos_json, $total, $estado);
 
             $stmt->execute();
 
@@ -215,7 +218,10 @@
                             <li><?php echo $producto['name'] . " - Cantidad: " . $producto['cantidad'] . " - Precio: $" . $producto['price']; ?></li>
                         <?php endforeach; ?>
                     </ul>
+                    <p><strong>Subtotal:</strong> $<?php echo number_format($subtotal, 2); ?></p>
+                    <p><strong>Costo de Envío:</strong> $<?php echo number_format($costoEnvio, 2); ?></p>
                     <p><strong>Total:</strong> $<?php echo number_format($total, 2); ?></p>
+
                     <p><strong>Fecha de la Compra:</strong> <?php echo $fechaHoraCompra; ?></p>
                 </div>
                 <div class="footer-comprados">
