@@ -59,7 +59,7 @@ if (!$producto) {
     <header>
         <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
             <div class="container-fluid" style="flex-wrap: wrap;">
-                    <a class="navbar-brand marca align-self-center text-center" href="../index.php#inicio">Kuday Artesanias</a>
+                    <a class="navbar-brand marca align-self-center text-center" href="./index.php#inicio">Kuday Artesanias</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
