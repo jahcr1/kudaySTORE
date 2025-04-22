@@ -16,18 +16,16 @@ $cart = array_filter($cart, function ($cantidad) {
 // Actualizar la sesión con el carrito limpio
 $_SESSION['cart'] = $cart;
 
-if (empty($cart)) {
-    echo "<p>No hay productos en el carrito.</p>";
-    echo "<script type='text/javascript'>";
-    echo "if (window.opener) { setTimeout(function() { window.close(); }, 5000); } else { setTimeout(function() { window.history.back(); }, 5000); }";
-    echo "</script>";
-    exit();
+$productosVacios = empty($cart); // Bandera para saber si mostrar el mensaje de carrito vacío
+
+
+
+if (!$productosVacios) {
+    $productIds = implode(',', array_keys($cart));
+    $query = "SELECT * FROM productos WHERE id IN ($productIds)";
+    $result = mysqli_query($conexion, $query);
 }
 
-
-$productIds = implode(',', array_keys($cart));
-$query = "SELECT * FROM productos WHERE id IN ($productIds)";
-$result = mysqli_query($conexion, $query);
 
 ?>
 
@@ -75,7 +73,7 @@ $result = mysqli_query($conexion, $query);
                             <a class="nav-link active boton-nav" aria-current="page" href="index.php#titulo_tienda">Tienda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active boton-nav" href="index.php#titulo_promociones">Promociones</a>
+                            <a class="nav-link active boton-nav" href="index.php#productos-relevantes">Promociones</a>
                         </li>
                         <li class="nav-item dropdown" style="align-items: flex-start;">
                             <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -164,6 +162,14 @@ $result = mysqli_query($conexion, $query);
                                                 <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
                                             </tr>
                                         <?php } ?>
+                                    <?php } else { ?>
+                                        <tr>
+                                            <td colspan="4">
+                                                <div class="alert alert-info mb-0">
+                                                    No hay productos en el carrito. Podés volver a la <a href="index.php#titulo_tienda" class="alert-link">tienda</a> para agregar alguno.
+                                                </div>
+                                            </td>
+                                        </tr>
                                     <?php } ?>
                                     <tr id="costoEnvioRow" style="display: none;">
                                         <td colspan="3"><strong>Costo de Envío</strong></td>
@@ -176,9 +182,12 @@ $result = mysqli_query($conexion, $query);
                                 </tbody>
                             </table>
                         </div>
+                    <?php if (!$productosVacios) : ?>
                         <div class="text-center mt-3">
                             <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
                         </div>
+                    <?php endif; ?>
+
 
                     </div>
                 </div>
