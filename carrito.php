@@ -36,7 +36,7 @@ if (!$productosVacios) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kuday | Mi Carrito</title>
+    <title>Mi Carrito Kuday</title>
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,11 +182,11 @@ if (!$productosVacios) {
                                 </tbody>
                             </table>
                         </div>
-                    <?php if (!$productosVacios) : ?>
-                        <div class="text-center mt-3">
-                            <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
-                        </div>
-                    <?php endif; ?>
+                        <?php if (!$productosVacios) : ?>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
+                            </div>
+                        <?php endif; ?>
 
 
                     </div>
@@ -668,14 +668,15 @@ if (!$productosVacios) {
                         // Limpiar localStorage y redirigir
                         localStorage.removeItem("costoEnvio");
                         localStorage.removeItem("totalCompra");
-                        window.location.href = "confirmacion.php";
+                        localStorage.removeItem('carrito');
+                        window.location.href = "index.php?comprafuckyes";
                     } else {
                         alert("Error: " + data.message);
                     }
                 })
                 .catch(error => {
                     console.error("Error en la respuesta del servidor:", error);
-                    alert("Hubo un problema al procesar la compra.");
+                    alert("Hubo un problema al procesar la compra. Por favor, revisa tu conexión o intenta nuevamente.");
                 });
         }
     </script>
