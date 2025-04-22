@@ -59,7 +59,7 @@
             $stmt->execute();
 
             if ($stmt->error) {
-                echo "Error en la consulta: " . $stmt->error;
+                throw new Exception("Error en la consulta: " . $stmt->error);
             }
 
             if ($stmt->affected_rows <= 0) {
@@ -250,7 +250,7 @@
                                     <td>
                                         <p><strong>Daiana Rocío Quiroga</strong></p>
                                         <p><strong>Cuenta Bancaria:</strong> <?php echo $_ENV['CUENTA_BANCARIA']; ?></p>
-                                        <p><strong>CBU:</strong> <?php echo $_ENV['CBU'];; ?></p>
+                                        <p><strong>CBU:</strong> <?php echo $_ENV['CBU']; ?></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -307,6 +307,15 @@
             } catch (Exception $e) {
                 throw new Exception("Error al enviar el correo: " . $mail->ErrorInfo);
             }
+
+            // Limpiar carrito de la sesión si la compra fue exitosa
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            unset($_SESSION['carrito']);
+            unset($_SESSION['cartCount']);
+            session_destroy();
+
 
             // Ejemplo de respuesta exitosa
             $response = [
