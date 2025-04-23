@@ -183,10 +183,13 @@ if (!$productosVacios) {
                             </table>
                         </div>
                         <?php if (!$productosVacios) : ?>
-                            <div class="text-center mt-3">
-                                <button class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
-                            </div>
+                        <div class="text-center mt-3" id="botonesCompra">
+                            <button id="continuarCompraBtn" class="btn btn-primary me-2" onclick="continuarCompra()">Continuar con la Compra</button>
+                            <button id="finalizarCompraBtn" class="btn btn-success me-2" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
+                            <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
+                        </div>
                         <?php endif; ?>
+
 
 
                     </div>
@@ -442,6 +445,18 @@ if (!$productosVacios) {
             // Limpiar costo de envío y total en localStorage
             localStorage.setItem("costoEnvio", "0");
             localStorage.setItem("totalCompra", nuevoTotal);
+
+            // Mostrar y abrir el accordion de envío
+            document.getElementById("envioAccordion").style.display = "block";
+            let envioCollapse = new bootstrap.Collapse(document.getElementById('collapseTwo'), {
+                toggle: true
+            });
+
+            // Enfocar en el segundo accordion
+            setTimeout(() => {
+                document.getElementById('collapseTwo').scrollIntoView({ behavior: 'smooth' });
+            }, 200);
+
         }
 
         // Validación del formulario de envío 
@@ -522,8 +537,22 @@ if (!$productosVacios) {
                     localStorage.setItem("subtotalCompra", subtotalReal.toFixed(2));
 
 
-                    // Mostrar botón para finalizar compra
-                    document.getElementById("finalizarCompraBtn").style.display = "block";
+                    // Ocultar botón Continuar, mostrar Finalizar y Reiniciar
+                    document.getElementById("continuarCompraBtn").style.display = "none";
+                    document.getElementById("finalizarCompraBtn").style.display = "inline-block";
+                    document.getElementById("reiniciarBtn").style.display = "inline-block";
+
+                    // Cerrar accordion de envío
+                    let envioCollapse = new bootstrap.Collapse(document.getElementById('collapseTwo'), {
+                        toggle: false
+                    });
+                    envioCollapse.hide();
+
+                    // Enfocar en el primer accordion (productos)
+                    setTimeout(() => {
+                        document.getElementById('collapseCart').scrollIntoView({ behavior: 'smooth' });
+                    }, 400);
+
                 })
                 .catch(error => console.error('Error al calcular el costo de envío:', error));
         }
@@ -669,7 +698,7 @@ if (!$productosVacios) {
                         localStorage.removeItem("costoEnvio");
                         localStorage.removeItem("totalCompra");
                         localStorage.removeItem('carrito');
-                        window.location.href = "index.php?comprafuckyes";
+                        window.location.href = "index.php?compra=ok";
                     } else {
                         alert("Error: " + data.message);
                     }
@@ -679,6 +708,25 @@ if (!$productosVacios) {
                     alert("Hubo un problema al procesar la compra. Por favor, revisa tu conexión o intenta nuevamente.");
                 });
         }
+
+        // Funcion para reiniciar el carrito en el ultimo paso
+        function reiniciarCarrito() {
+            localStorage.removeItem("carrito");
+            localStorage.removeItem("costoEnvio");
+            localStorage.removeItem("totalCompra");
+            localStorage.removeItem("subtotalCompra");
+            localStorage.removeItem("cartCount");
+
+            fetch('./componentes/vaciar_carrito.php', {
+                method: 'POST'
+            }).then(() => {
+                window.location.href = "carrito.php";
+            }).catch(error => {
+                console.error("Error al reiniciar el carrito:", error);
+                alert("No se pudo reiniciar el carrito. Intenta nuevamente.");
+            });
+        }
+
     </script>
 </body>
 
