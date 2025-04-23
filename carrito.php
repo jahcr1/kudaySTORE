@@ -383,6 +383,12 @@ if (!$productosVacios) {
 
             // Actualizar el contador en localStorage
             localStorage.setItem("cartCount", count);
+
+            // Ocultar o mostrar botón de continuar según el contenido del carrito
+            const continuarBtn = document.getElementById("continuarCompraBtn");
+            if (continuarBtn) {
+                continuarBtn.style.display = (count > 0) ? "block" : "none";
+            }
         }
 
         // Función para actualizar la sesión del carrito
