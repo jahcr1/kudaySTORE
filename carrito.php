@@ -183,9 +183,9 @@ if (!$productosVacios) {
                             </table>
                         </div>
                         <?php if (!$productosVacios) : ?>
-                        <div class="text-center mt-3" id="botonesCompra">
-                            <button id="continuarCompraBtn" class="btn btn-primary me-2" onclick="continuarCompra()">Continuar con la Compra</button>
-                            <button id="finalizarCompraBtn" class="btn btn-success me-2" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
+                        <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap" id="botonesCompra">
+                            <button id="continuarCompraBtn" class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
+                            <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
                             <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
                         </div>
                         <?php endif; ?>
@@ -416,7 +416,14 @@ if (!$productosVacios) {
 
         // Función para continuar con la compra
         function continuarCompra() {
-            // Habilita el segundo accordion
+            
+            let totalItems = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => sum + parseInt(el.value), 0);
+
+            if (totalItems === 0) {
+                alert("Tu carrito está vacío. Agrega al menos un producto antes de continuar.");
+                return;
+            }
+            // Si hay mas de 0 Items, entonces Habilita el segundo accordion
             document.getElementById("envioAccordion").style.display = "block";
 
             let cartItems = [];
@@ -611,6 +618,11 @@ if (!$productosVacios) {
             let nuevoTotal = subtotal + costoGuardado;
             document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
 
+            const continuarBtn = document.getElementById("continuarCompraBtn");
+            let totalItems = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => sum + parseInt(el.value), 0);
+            if (continuarBtn) {
+                continuarBtn.style.display = (totalItems > 0) ? "block" : "none";
+            }
 
         });
 
