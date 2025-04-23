@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TIENDA Kuday | PANEL ADMINISTRATIVO</title>
+    <title>PANEL ADM Kuday</title>
 
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
