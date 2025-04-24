@@ -2210,7 +2210,8 @@ section#contact-form {
   justify-content:center;
 }
 
-div.contact-card{
+div.contact-card {
+  font-family: "Klee One", serif;
   max-width:540px;
   background:#fff;
   border-radius:1rem;
