@@ -139,28 +139,28 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             <img src="images/carousel/glaciar1.jpg" class="foto-carousel" alt="slide1">
             <div class="carousel-caption">
               <h5 class="caption-title">Se viene el INVIERNO</h5>
-              <p class="caption-parr">Y en Kuday sabemos lo que necesitás...</p>
+              <p class="caption-parr">Y en Kuday sabemos lo que necesitás!</p>
             </div>
             <div class="carousel-button">
-              <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
+              <a href="vistas/promociones.php" class="btn-invisible btn-lg">Ver Promos</a>
             </div>
           </div>
 
           <div class="carousel-item">
             <img src="images/carousel/glaciar2.jpg" class="foto-carousel" alt="slide2">
             <div class="carousel-caption">
-              <h5 class="caption-title">NO IMPORTA EL MOMENTO</h5>
-              <p class="caption-parr">Visita nuestras promociones todo el año</p>
+              <h5 class="caption-title">Los mejores accesorios para tu look</h5>
+              <p class="caption-parr">Mirá nuestras promociones de invierno</p>
             </div>
             <div class="carousel-button">
-              <a href="#" class="btn-invisible btn-lg">Ver Promos</a>
+              <a href="vistas/promociones.php" class="btn-invisible btn-lg">Ver Promos</a>
             </div>
           </div>
           <div class="carousel-item">
             <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
             <div class="carousel-caption">
-              <h5 class="caption-title">CON MUCHA CREATIVIDAD Y TALENTO...</h5>
-              <p class="caption-parr">Descubrí nuestras mejores creaciones</p>
+              <h5 class="caption-title">Encontrá también buenisimas artesanías para tu hogar</h5>
+              <p class="caption-parr">Accesorios deco, productos Handmade, productos para higiene personal y más</p>
             </div>
             <div class="carousel-button">
               <a href="#" class="btn-invisible">Okay!</a>
