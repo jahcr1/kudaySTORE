@@ -91,23 +91,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             </div>
         </nav>
     </header>
-<!--
-    <section id="slide-cartuchera">
 
-        <div class="container contenedor-slide-cartuchera">
-            <div class="box1">
-                <a id="cartuchera-bounce" class="propaganda2" href="../vistas/promociones.php" target="_blank">Ver Promociones</a>
-            </div>
-            <div class="box2">
-                <div class="imagen-logo">
-                    <img src="../images/logo/logo.png" class="img-logo-slide">
-                </div>
-            </div>
-            
-        </div>
-
-    </section>
--->
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container contenedor-h3">
