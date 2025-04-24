@@ -359,36 +359,75 @@ if (!$productosVacios) {
 
             updateTotal();
             updateCartCount();
+
+            // Busca que cantidad queda en el carrito y si es 0 lo reinicia
+            const totalItems = Array.from(document.querySelectorAll('.cantidad'))
+                            .reduce((s, el) => s + parseInt(el.value), 0);
+
+            if (totalItems === 0) {
+                // vacía storage + sesión y recarga
+                reiniciarCarrito();          // ← ya existe, la reutilizamos
+                return;                      // detiene cualquier resto de lógica
+            }
         }
 
         // Función para actualizar el total del carrito
         function updateTotal() {
-            let totalElem = document.getElementById('total');
-            let total = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
-                let id = el.dataset.id;
-                let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
-                return sum + (price * parseInt(el.value));
-            }, 0);
+            const totalElem = document.getElementById('total');
+            const total = Array.from(document.querySelectorAll('.cantidad'))
+                                .reduce((sum, el) => {
+                                    const id = el.dataset.id;
+                                    const price = parseFloat(
+                                        document.querySelector(`tr[data-id='${id}'] .precio`)
+                                                .textContent.replace('$', '')
+                                    );
+                                    return sum + price * parseInt(el.value);
+                                }, 0);
 
             totalElem.textContent = `$${total.toFixed(2)}`;
 
             // Actualizar el valor total en el localStorage
             localStorage.setItem("totalCompra", total);
+
+            /* ---- NUEVO: si el usuario está en paso 2/3, volvemos a paso 1 ---- */
+            const continuarBtn = document.getElementById("continuarCompraBtn");
+            const finalizarBtn = document.getElementById("finalizarCompraBtn");
+            const reiniciarBtn = document.getElementById("reiniciarBtn");
+
+            if (continuarBtn) continuarBtn.style.display = (total > 0) ? "block" : "none";
+            if (finalizarBtn) finalizarBtn.style.display = "none";
+            if (reiniciarBtn) reiniciarBtn.style.display = "none";
+
+            // reset de envío
+            localStorage.setItem("costoEnvio", "0");
+            document.getElementById("costoEnvio").textContent = "$0";
+            document.getElementById("costoEnvioRow").style.display = "none";
+
+            // re‑activar el botón del formulario por si estaba todavía visible
+            document.querySelector("#formEnvio button[type='submit']").disabled = false;
         }
 
         // Función para actualizar el contador de productos en el carrito
         function updateCartCount() {
-            let count = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => sum + parseInt(el.value), 0);
-            document.getElementById('cart-count').textContent = count;
+            const count = Array.from(document.querySelectorAll('.cantidad'))
+                        .reduce((sum, el) => sum + parseInt(el.value), 0);
 
-            // Actualizar el contador en localStorage
+            // actualiza burbuja del carrito
+            document.getElementById('cart-count').textContent = count;
             localStorage.setItem("cartCount", count);
 
-            // Ocultar o mostrar botón de continuar según el contenido del carrito
+            // botones
             const continuarBtn = document.getElementById("continuarCompraBtn");
-            if (continuarBtn) {
-                continuarBtn.style.display = (count > 0) ? "block" : "none";
-            }
+            const finalizarBtn = document.getElementById("finalizarCompraBtn");
+            const reiniciarBtn = document.getElementById("reiniciarBtn");
+
+            if (continuarBtn) continuarBtn.style.display = (count > 0) ? "block" : "none";
+
+            /*  “Finalizar” y “Reiniciar” solo se muestran después de que el usuario
+                confirma los datos de envío; si en algún momento el carrito queda vacío
+                los ocultamos para evitar que el flujo continúe inconsistentes. */
+            if (finalizarBtn) finalizarBtn.style.display = "none";
+            if (reiniciarBtn) reiniciarBtn.style.display = "none";
         }
 
         // Función para actualizar la sesión del carrito
@@ -461,6 +500,10 @@ if (!$productosVacios) {
 
             // Mostrar y abrir el accordion de envío
             document.getElementById("envioAccordion").style.display = "block";
+
+            // Habilitamos el boton Confirmar Datos de Envio
+            document.querySelector("#formEnvio button[type='submit']").disabled = false;
+
             let envioCollapse = new bootstrap.Collapse(document.getElementById('collapseTwo'), {
                 toggle: true
             });
@@ -554,6 +597,9 @@ if (!$productosVacios) {
                     document.getElementById("continuarCompraBtn").style.display = "none";
                     document.getElementById("finalizarCompraBtn").style.display = "inline-block";
                     document.getElementById("reiniciarBtn").style.display = "inline-block";
+
+                    // deshabilitamos el botón para evitar un segundo envío con datos obsoletos
+                    document.querySelector("#formEnvio button[type='submit']").disabled = true;
 
                     // Cerrar accordion de envío
                     let envioCollapse = new bootstrap.Collapse(document.getElementById('collapseTwo'), {
