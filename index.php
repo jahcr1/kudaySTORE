@@ -41,9 +41,13 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 <body class="index-body">
 
   <header>
-    <nav class="navbar navbar-expand-lg index-nav fixed-top">
+    <nav class="navbar navbar-expand-xl index-nav fixed-top">
       <div class="container-fluid" style="flex-wrap: wrap;">
-        <a class="navbar-brand marca align-self-center text-center" href="index.php#inicio">Kuday Artesanias</a>
+        <a class="navbar-brand d-flex align-items-center brand-logo" href="index.php#inicio">
+          <!-- Logo como imagen SVG -->
+          <img src="images/logo/logo.png" alt="Kuday Artesanías" class="logo-img" />
+          <span class="logo-text">Kuday Artesanias</span>
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

@@ -64,30 +64,51 @@ font-family: "Mystery Quest", serif; 8
 font-family: "Fuzzy Bubbles", serif; 8
 font-family: "Poiret One", sans-serif; 8
 */
+
+
+/* NAVBAR BACKGROUND */
 .index-nav {
-  width: 100%;
-  background: linear-gradient(135deg, rgb(247, 150, 171), #f1dbeb);
+  background: linear-gradient(135deg, #f796ab, #f1dbeb);
+  transition: background 0.3s ease-in-out;
+}
+
+/* ----------  BRAND  ---------- */
+a.brand-logo {
+  margin-left: 20px;
+  gap: 0.25rem; /* espacio entre img y texto */
+  text-decoration: none;
+}
+
+.logo-img {
+  display: none;
+  width: 250px; /* tamaño base desktop */
   height: auto;
+  transition: transform 0.25s ease;
 }
 
-a.marca {
-  display: inline-block;
-  align-self: center;
-  width: 100%;
-  max-width: 200px;
+.logo-text {
   font-family: "Birthstone", serif;
-  color: black;
-  /*text-shadow: -1px 1px white;*/
-  font-size: 2.5rem;
-  transition: all 0.3s ease-in-out;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #000;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  transition: all 0.25s ease;
 }
 
-a.marca:hover {
-  transform: scale(1.1) translateX(10px);
-  color: #ffffff;
+/* Hover cool */
+.brand-logo:hover .logo-img {
+  transform: scale(1.2) rotate(-3deg);
+}
+.brand-logo:hover .logo-text {
+  color: #fff;
   text-shadow: -2px 2px black;
 }
 
+
+
+/* ****************************** */
 
 li.nav-item a.nav-link {
   color: black !important;
@@ -106,7 +127,6 @@ li.nav-item a.nav-link:hover {
   align-items: center; /* Centra verticalmente el contenido dentro del contenedor */
   justify-content: center; /* Alinea el contenido al inicio horizontalmente */
   margin: 10px 0 0 7px; /* Evita márgenes adicionales que puedan desalinear */
-
 }
 
 /* Estilo específico para el ícono del carrito */
@@ -145,7 +165,6 @@ li.nav-item a.nav-link:hover {
 /*========= SECCION INICIO ============*/
 /*=====================================*/
 section#inicio {
-  
   height: auto;
   margin: 80px 0 50px 0px;
   padding-top: 50px;
@@ -158,7 +177,6 @@ section#inicio {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  
 }
 
 div#box_inicio {
@@ -174,13 +192,11 @@ div#box_inicio {
   font-size: 4.5rem;
   color: rgb(214, 44, 81);
   text-shadow: 1px 1px black;
-  
 }
 
 #logo_texto span {
   font-size: 4rem;
   text-shadow: 1px 1px black;
-  
 }
 
 div#presentacion {
@@ -235,7 +251,6 @@ section.carrusel {
   max-height: 100%;
   min-height: 100%;
   box-shadow: 2px -2px 15px rgb(14, 14, 14);
-
 }
 
 .carousel-item {
@@ -269,7 +284,7 @@ section.carrusel {
 
 /* Estilos base para animación fluida */
 .carousel-caption {
-  text-shadow: -3px 3px 2px rgba(0,0,0,0.6);
+  text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.6);
   color: #fff; /* Color del texto */
   font-size: 2rem;
   z-index: 10; /* Asegura que esté sobre la imagen */
@@ -309,7 +324,6 @@ p.caption-parr {
   bottom: auto;
   text-align: right;
 }
-
 
 .carousel-button {
   position: absolute;
@@ -399,8 +413,6 @@ p.caption-parr {
 .carousel-item.active .carousel-caption p {
   animation-delay: 1s;
 }
-
-
 
 /*=====================================*/
 /*========= SECCION TIENDA ============*/
@@ -1062,8 +1074,10 @@ h3.titulo {
 .slider-container {
   text-align: center;
   padding: 20px 20px 80px 20px;
-  background: linear-gradient(rgba(240, 212, 248, 0.7), rgba(255, 255, 255, 0.9));
-  
+  background: linear-gradient(
+    rgba(240, 212, 248, 0.7),
+    rgba(255, 255, 255, 0.9)
+  );
 }
 
 .titulo-slider {
@@ -1094,8 +1108,6 @@ h3.titulo {
   align-items: stretch;
   /* Hace que todos los slides tengan la misma altura */
 }
-
-
 
 .slider-item {
   background: white;
@@ -1153,7 +1165,6 @@ h3.titulo {
   align-self: center;
 }
 
-
 /*=====================================*/
 /*========= SECCION INFO ==============*/
 /*=====================================*/
@@ -1161,8 +1172,6 @@ h3.titulo {
 section#info {
   margin: 50px 0;
 }
-
-
 
 #texto_presentacion {
   width: 100%;
@@ -1188,7 +1197,6 @@ section#info {
   transition: all 0.3s ease;
 }
 
-
 p#eslogan {
   font-family: "Dancing Script", cursive;
   font-size: 1.2rem;
@@ -1200,7 +1208,6 @@ p#eslogan {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: inline-block;
 }
-
 
 .icon-box {
   position: relative;
@@ -1217,9 +1224,6 @@ p#eslogan {
   background: rgba(255, 255, 255, 0.7);
   transform: scale(1.08);
 }
-
-
-
 
 .icon-box i {
   font-size: 3.5rem;
@@ -1308,7 +1312,7 @@ i.wsp,
 i.ubic {
   font-size: 1.2rem;
   color: rgb(0, 0, 0);
-  text-shadow: 1px 1px rgb(253, 253, 253) ;
+  text-shadow: 1px 1px rgb(253, 253, 253);
   margin-right: 10px;
   vertical-align: middle;
 }
@@ -1321,7 +1325,6 @@ i.ubic:hover {
   transform: scale(1.2);
   transition: all 0.3s ease;
 }
-
 
 i.fb,
 i.ig,
@@ -1344,7 +1347,6 @@ p.p-footer {
   font-family: "Klee One", serif;
   font-size: 0.7rem;
   font-weight: bold;
-  
 }
 
 .contenedor-cards {
@@ -1366,7 +1368,6 @@ p.p-footer {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
   transition: 0.3s ease-in-out;
 }
-
 
 .redes-icons-footer {
   padding: 0 10px;
@@ -1403,7 +1404,6 @@ p.p-footer {
 footer {
   animation: fadeInFooter 1.2s ease-out both;
 }
-
 
 /*=====================================*/
 /*========= CARTUCHERAS.PHP ==========*/
@@ -1674,7 +1674,6 @@ a.add-carrito:hover {
   transform: scale(1.05);
 }
 
-
 /* Responsividad adicional */
 @media (max-width: 600px) {
   .grid-container {
@@ -1703,14 +1702,29 @@ div.contenedor-barra {
   gap: 10px;
 }
 
+a.marca {
+  display: inline-block;
+  align-self: center;
+  width: 100%;
+  max-width: 200px;
+  font-family: "Birthstone", serif;
+  color: black;
+  font-size: 2.5rem;
+  transition: all 0.3s ease-in-out;
+} 
+
+a.marca:hover {
+  transform: scale(1.1) translateX(10px);
+  color: #ffffff;
+  text-shadow: -2px 2px black;
+}
+
 .navbar-collapse form {
   width: 100%;
-  
 }
 
 button.navbar-toggler {
   margin: 10px;
-  
 }
 
 .btn-salir {
@@ -1724,9 +1738,6 @@ button.navbar-toggler {
 .btn-salir:hover {
   background-color: #c9302c;
 }
-
-
-
 
 /************************************************************/
 /*******  SECCIÓN PANEL AGREGAR PRODUCTO A LA TIENDA  *******/
@@ -1815,7 +1826,6 @@ div.panel-muestra p {
   border: 1px solid #f5c6cb;
 }
 
-
 /************************************************/
 /*******  SECCIÓN PANEL LISTAR PRODUCTOS ********/
 /************************************************/
@@ -1860,7 +1870,6 @@ table#tabla-resultado {
   min-width: 100%; /* Asegura que la tabla ocupe el espacio completo disponible */
   width: 100%; /* Asegura que la tabla tome el 100% del ancho disponible */
   background-color: transparent;
-  
 }
 
 td {
@@ -1922,7 +1931,7 @@ table#tabla-compras {
   table-layout: fixed;
 }
 
-#tabla-compras th, 
+#tabla-compras th,
 #tabla-compras td {
   white-space: normal;
   word-break: break-word;
@@ -1936,11 +1945,16 @@ table#tabla-compras {
 }
 
 @keyframes resaltar-fila {
-  0% { background-color: #0eb8aa; }
-  50% { background-color: #8b2ca8; }
-  100% { background-color: inherit; }
+  0% {
+    background-color: #0eb8aa;
+  }
+  50% {
+    background-color: #8b2ca8;
+  }
+  100% {
+    background-color: inherit;
+  }
 }
-
 
 .estado {
   font-weight: bold;
@@ -1966,7 +1980,6 @@ table#tabla-compras {
   color: #383d41;
 }
 
-
 /***************************************/
 /*******  CONFIG DATATABLE  ***********/
 /***************************************/
@@ -1991,8 +2004,6 @@ div.dataTables_filter input {
   border-radius: 10px !important;
 }
 
-
-
 /* Letra más chica para toda la tabla */
 table.dataTable tbody td {
   font-size: 0.85rem;
@@ -2010,8 +2021,6 @@ table.dataTable tbody tr {
   height: auto;
 }
 
-
-
 /*=======================================*/
 /*=== PRODUCTO.PHP - DETALLE PRODUCTOS ==*/
 /*=======================================*/
@@ -2020,7 +2029,6 @@ section#ver_producto {
   margin: 150px auto 50px auto;
   padding: 20px;
   height: auto;
-  
 }
 
 section#ver_producto .detalleproducto.row {
@@ -2070,12 +2078,11 @@ p.detalle-producto {
   opacity: 0.9;
 }
 
-
 div.botonera-producto {
   margin: 20px 0;
-  border: none!important;
+  border: none !important;
   border-radius: 0 !important;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
 /* Contenedor principal del controlador de cantidad */
@@ -2092,7 +2099,7 @@ div.botonera-producto {
 .quantity-controller button {
   background-color: rgb(209, 120, 139); /* Color de fondo del botón */
   color: rgb(255, 255, 255); /* Color de texto blanco */
-  font-size: 1rem; /* Tamaño de la fuente */  
+  font-size: 1rem; /* Tamaño de la fuente */
   border: none; /* Sin borde */
   cursor: pointer; /* Cursor en forma de mano */
   transition: background-color 0.2s ease; /* Transición suave al pasar el ratón */
@@ -2117,7 +2124,7 @@ input#product-quantity {
 
 /* Estilo del campo de cantidad cuando se enfoca */
 input#product-quantity:focus {
-  border-color: rgb(196,74,100); 
+  border-color: rgb(196, 74, 100);
 }
 
 .add-carrito-prod {
@@ -2149,8 +2156,6 @@ input#product-quantity:focus {
   font-family: "Klee One", serif;
 }
 
-
-
 /*=========================================*/
 /*=== CARRITO.PHP - DETALLES DEL CARRITO ==*/
 /*=========================================*/
@@ -2162,7 +2167,6 @@ body#carrito_body {
 section#tabla-carrito {
   margin: 150px 0 50px 0;
   padding: 20px;
-  
 }
 
 table#mi_carrito {
@@ -2173,11 +2177,11 @@ table#mi_carrito {
 }
 
 th.mi_carrito {
-    vertical-align: middle;
-    text-align: center;
-    font-weight: 800 !important;
-    text-align: center !important;
-    padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 800 !important;
+  text-align: center !important;
+  padding: 5px;
 }
 
 td.mi_carrito_envio {
@@ -2194,7 +2198,6 @@ td.mi_carrito_total {
 /*=========================================*/
 /*============ MEDIA QUERIES ==============*/
 /*=========================================*/
-
 
 @media (min-width: 768px) {
   .carousel-container {
@@ -2216,6 +2219,21 @@ td.mi_carrito_total {
   .quantity-controller {
     width: 50%;
     justify-content: center;
-    
   }
+}
+
+/* ----------  RESPONSIVE  DEL NAV EN INDEX ---------- */
+@media (max-width: 575.98px) {
+  .brand-logo {
+    margin-left: 10px;
+  }
+
+  .logo-img {
+    justify-content: center;
+    width: 200px;
+    display: flex;
+  }
+  .logo-text {
+    display: none;
+  } /* sólo el ícono en móviles */
 }
