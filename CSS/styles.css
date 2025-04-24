@@ -2193,6 +2193,75 @@ td.mi_carrito_total {
 }
 
 /*=========================================*/
+/*============ CONTACTO.PHP ===============*/
+/*=========================================*/
+
+body#contacto {
+  background:linear-gradient(135deg,#d4d4d4 0%,#f1dbeb 100%);
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+}
+
+section#contact-form {
+  display: flex;
+  margin: 170px auto 50px auto;
+  align-items:center;
+  justify-content:center;
+}
+
+div.contact-card{
+  max-width:540px;
+  background:#fff;
+  border-radius:1rem;
+  padding:2.5rem;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  animation:fade 0.8s ease;
+}
+
+h1.titulo-contacto {
+  font-family:"Birthstone",cursive;
+  font-size:3.5rem;
+  color:#202020;
+  text-shadow:0 1px 2px #bbbbbbb9;
+}
+
+@keyframes fade {
+  0% {
+    transform:translateY(30px);
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.form-control:focus {
+  border-color:#f796ab;
+  box-shadow:0 0 0 .2rem #f796ab55;
+}
+
+.btn-kuday{
+  background:linear-gradient(135deg,#f796ab,#f1dbeb);
+  border:none;
+  font-weight:700;
+}
+
+.btn-kuday:hover {
+  transform:scale(1.03);
+}
+
+.alert {
+  font-size:0.95rem;
+  padding:.7rem 1rem;
+}
+
+/* honeypot oculto */
+.honeypot {
+  display:none !important;
+}
+
+/*=========================================*/
 /*============ MEDIA QUERIES ==============*/
 /*=========================================*/
 
