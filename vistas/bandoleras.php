@@ -92,22 +92,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         </nav>
     </header>
 
-    <section id="slide-cartuchera">
-
-        <div class="container contenedor-slide-cartuchera">
-            <div class="box1">
-                <a id="cartuchera-bounce" class="propaganda2" href="../vistas/promociones.php" target="_blank">Ver Promociones</a>
-            </div>
-            <div class="box2">
-                <div class="imagen-logo">
-                    <img src="../images/logo/logo.png" class="img-logo-slide">
-                </div>
-            </div>
-            
-        </div>
-
-    </section>
-
     <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container contenedor-h3">
@@ -128,7 +112,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                 <?php
                                 $img_data = base64_encode($listar_productos['ci_imagen_producto']);
                                 $img_type = $listar_productos['formato_imagen'];
-                                echo "<img src='data:$img_type;base64,$img_data' class='imagen-producto' alt='Imagen del producto'>";
+                                echo "<img src='data:$img_type;base64,$img_data' class='imagen-producto' loading='lazy' alt='Imagen del producto'>";
                                 ?>
                             <?php else: ?>
                                 <p>Sin imagen disponible</p>
@@ -136,21 +120,20 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                         </div>
                         <div class="card contenedor-detalle">
                             <div class="card-body">
-                                <h5 class="card-title p-1 item-card"><?php echo $listar_productos['nombre']; ?></h5>
-                                <p class="text-start p-1"><strong>Articulo : </strong><span class="dato"><?php echo $listar_productos['categoria_nombre']; ?></span></p>
-                                <hr class="divider">
-                                <p class="text-start p-1"><strong>Precio : </strong><span class="dato">$<?php echo $listar_productos['precio']; ?></span></p>
-                                <hr class="divider">
-                                <p class="text-start p-1"><strong>Cantidad : </strong><span class="dato"><?php echo $listar_productos['stock']; ?></span></p>
-                                <hr class="divider">
-                                <p class="text-start p-1"><strong>Descripción : </strong><span class="dato"><?php echo $listar_productos['descripcion']; ?></span></p>
-                                <div class="botonera-producto">
-                                    <!-- Botón para Ver Producto -->
-                                    <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="btn ver-producto">Ver producto</a>
-                                    <a href="../carrito.php" class="btn add-carrito" data-id="<?php echo $listar_productos['id']; ?>">Agregar al carrito</a>
+                                <h5 class="item-card"><?php echo $listar_productos['nombre']; ?></h5>
 
+                                <ul class="detalle-lista">
+                                    <li><strong>Artículo:</strong> <?php echo $listar_productos['categoria_nombre']; ?></li>
+                                    <li><strong>Precio:</strong> $<?php echo $listar_productos['precio']; ?></li>
+                                    <li><strong>Cantidad:</strong> <?php echo $listar_productos['stock']; ?></li>
+                                    <li><strong>Descripción:</strong> <?php echo $listar_productos['descripcion']; ?></li>
+                                </ul>
+
+                                <div class="botonera-producto">
+                                    <a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="boton-producto">Ver producto</a>
+                                    <a href="../carrito.php" class="boton-producto add-carrito" data-id="<?php echo $listar_productos['id']; ?>">Agregar al carrito</a>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 <?php } ?>
