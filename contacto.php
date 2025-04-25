@@ -56,23 +56,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->CharSet    = 'UTF-8';
 
             /*  Mail a la tienda  */
-            $mail->setFrom($_ENV['SMTP_USER'], 'Formulario de contacto');
-            $mail->addAddress($_ENV['SMTP_USER']);          // destino interno
+            $mail->setFrom($_ENV['SMTP_USER'], 'Formulario Web'); // Quien envia, tiene q coincidir USER
+            $mail->addAddress($_ENV['SMTP_USER']);          // A mi propio mail
             $mail->addReplyTo($correo, "$nombre $apellido");
-            $mail->Subject = "Contacto: $asunto";
-            $body  = "<b>Nombre:</b> $nombre $apellido<br>";
-            $body .= "<b>Email:</b> $correo<br><hr>";
-            $body .= nl2br(htmlspecialchars($mensaje,ENT_QUOTES,'UTF-8'));
+            $mail->Subject = "Nuevo mensaje de contacto: $nombre";
+            // Correo en HTML
             $mail->isHTML(true);
-            $mail->Body = $body;
+            $mail->Body = "
+                <h2>Nuevo mensaje de sección Contacto</h2>
+                <p><strong>Nombre:</strong> {$nombre}</p>
+                <p><strong>Email:</strong> {$correo}</p>
+                <p><strong>Asunto:</strong> {$asunto}</p>
+                <hr>
+                <p><strong>Mensaje:</strong><br>" . nl2br(htmlspecialchars($mensaje)) . "</p>";
+            // Versión en texto plano
+            $mail->AltBody = "Nombre: $nombre\nEmail: $correo\nAsunto: $asunto\n\nMensaje:\n$mensaje";
             $mail->send();
 
-            /*  Mail de cortesía al usuario  */
+            /*  Mail de cortesía al Visitante  */
             $mail->clearAllRecipients();
-            $mail->addAddress($correo);
-            $mail->Subject = '¡Gracias por contactarnos!';
-            $mail->Body    = "Hola $nombre 👋🏼,\n\nRecibimos tu mensaje y te responderemos a la brevedad.\n\nSaludos,\nKuday Artesanías.";
-            $mail->isHTML(false);
+            $mail->setFrom($_ENV['SMTP_USER'], 'Kuday'); // Desde tu correo
+            $mail->addAddress($correo); // Al mail del visitante
+            $mail->addReplyTo($_ENV['SMTP_USER'], 'Kuday'); // A mi como respuesta
+            
+            $mail->Subject = "Gracias por contactarnos, $nombre 🙌🏼";
+            $mail->isHTML(true);
+            $mail->Body = "
+                <p>Hola <strong>$nombre</strong> 👋🏼,</p>
+                <p>Recibí tu mensaje y en breve te estaré respondiendo. Gracias por tomarte el tiempo de escribirme.</p>
+                <hr>
+                <p><strong>Este fue tu mensaje:</strong><br>" . nl2br(htmlspecialchars($mensaje)) . "</p>
+                <br>
+                <p>Saludos,<br><strong>Daiana de Kuday Artesanias</strong></p>
+            ";
+            $mail->AltBody = "Hola $nombre,\n\nRecibí tu mensaje:\n\n$mensaje\n\nGracias por escribir.\n\nEquipo Kuday";
             $mail->send();
 
             $successMsg = '¡Mensaje enviado correctamente! 😀';
@@ -182,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <!-- Honeypot -->
-                    <input type="text" name="website" class="honeypot">
+                    <input type="text" name="website" class="honeypot" autocomplete="off" aria-hidden="true">
 
                     <div class="col-12 d-flex justify-content-center">
                         <div class="g-recaptcha" data-sitekey="<?= htmlspecialchars($_ENV['RECAPTCHA_SITE_KEY']) ?>"></div>
