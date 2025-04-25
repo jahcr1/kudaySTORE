@@ -226,8 +226,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
                     <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
                     <div class="redes-icons-footer">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-facebook fb"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-instagram ig"></i></a>
                     </div>
                 </div>
                 

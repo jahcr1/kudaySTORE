@@ -227,8 +227,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
                     <h6 class="h6-footer" style="text-wrap: wrap!important;"><i class="bi bi-tencent-qq pinguin"></i> SEGUINOS EN NUESTRAS REDES!</h6>
                     <div class="redes-icons-footer">
-                        <a href="https://www.facebook.com/dai.quiroga.7" target="_"><i class="bi bi-facebook fb"></i></a>
-                        <a href="https://www.facebook.com/dai.quiroga.7"><i class="bi bi-instagram ig"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-facebook fb"></i></a>
+                        <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-instagram ig"></i></a>
                     </div>
                 </div>
                 
@@ -249,27 +249,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <!-- Agrega Swiper.js desde CDN -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <!-- Incluyendo GSAP BOUNCE -->
-    <!-- <script>
-        gsap.to("#cartuchera-bounce", {
-            duration: 1.5,
-            y: 50,
-            ease: "bounce.out", // Efecto de rebote realista
-            repeat: -1, // Animación infinita
-            yoyo: true // Vuelve a su posición original para continuar rebotando
-        });
-    </script>
-
-    <script>
-        let words = gsap.utils.toArray("svg text"),
-        tl = gsap.timeline({delay: 0.5}),
-        timePerCharacter = 0.2;
-
-        words.forEach(el => {
-            tl.from(el, {text: "", duration: el.innerHTML.length * timePerCharacter, ease: "none"});
-        });
-    </script> -->
-
 
     <!-- Script JS para sumar productos al carrito dinamicamente -->
     <script>
@@ -317,45 +296,45 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
     </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    new Swiper(".mySwiper", {
-        loop: true, // Hace que el slider sea infinito
-        slidesPerView: 3,
-        spaceBetween: 10,
-        autoplay: {
-            delay: 3000, // Cambia cada 3 segundos
-            disableOnInteraction: false, // Sigue moviéndose aunque el usuario interactúe
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        breakpoints: {
-            250: {  
-                slidesPerView: 1,  // Muestra 1 slide (ya está igual en 480px)
-                spaceBetween: 5,   // Espacio muy pequeño entre los slides
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        new Swiper(".mySwiper", {
+            loop: true, // Hace que el slider sea infinito
+            slidesPerView: 3,
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000, // Cambia cada 3 segundos
+                disableOnInteraction: false, // Sigue moviéndose aunque el usuario interactúe
             },
-            480: {  
-                slidesPerView: 1, // Muestra solo un slide
-                spaceBetween: 10, // Menor espacio entre los slides
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
             },
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
             },
-            1024: {
-                slidesPerView: 2,
-                spaceBetween: 30,
+            breakpoints: {
+                250: {  
+                    slidesPerView: 1,  // Muestra 1 slide (ya está igual en 480px)
+                    spaceBetween: 5,   // Espacio muy pequeño entre los slides
+                },
+                480: {  
+                    slidesPerView: 1, // Muestra solo un slide
+                    spaceBetween: 10, // Menor espacio entre los slides
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
             },
-        },
+        });
     });
-});
-</script>
+    </script>
 
 
 </body>
