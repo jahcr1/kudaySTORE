@@ -1406,14 +1406,6 @@ footer {
 /*========= CARTUCHERAS.PHP ==========*/
 /*====================================*/
 
-body.cartuchera-body {
-  min-height: 100vh;
-  height: auto;
-  background-image: url("../images/fondos/p10.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: repeat;
-}
 
 /* Aplica un contenedor sobre el fondo para hacerlo borroso*/
 body.cartuchera-body::before {
@@ -1423,18 +1415,14 @@ body.cartuchera-body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("../images/fondos/p10.png");
+  background-image: url("../images/fondos/p10.png");
   background-position: center;
   background-size: contain;
   background-repeat: repeat;
-  filter: grayscale(0.2); /* Controla el nivel de desenfoque */
+  filter: grayscale(0.2); 
   z-index: -1;
   box-sizing: border-box;
-}
+} 
 
 nav.cartuchera-nav {
   width: 100%;
@@ -1531,15 +1519,16 @@ div.contenedor-h3 {
 }
 
 h3.titulo-categoria {
+  background: linear-gradient(135deg, rgba(247, 150, 171, 0.692), #f1dbeb);
   display: inline-block;
-  padding: 10px;
+  padding: 20px 50px;
   color: black;
   font-family: "Poiret One", sans-serif;
   font-size: 4rem;
   font-weight: bold;
   text-align: center !important;
   text-shadow: -2px 2px rgb(255, 151, 173);
-  border-radius: 25px;
+  border-radius: 20px;
 }
 
 /* Configuración de la grid responsiva */
@@ -1570,38 +1559,38 @@ h3.titulo-categoria {
 
 .contenedor-foto {
   display: flex;
-  border-radius: 50%;
-  padding: 10px;
-  width: 480px;
-  height: auto;
-  max-height: 500px;
   justify-content: center;
-  align-self: center;
-  flex-grow: 1;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
-/* Imagen del producto */
+
 img.imagen-producto {
   width: 100%;
-  max-width: 300px;
   height: auto;
+  max-width: 300px;
   max-height: 350px;
   object-fit: contain;
-  cursor: pointer;
-  filter: brightness(120%);
-  transition: 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+  filter: brightness(1.1);
+  border-radius: 15px;
 }
 
 img.imagen-producto:hover {
   transform: scale(1.1);
-  filter: brightness(120%) contrast(105%)
+  filter: brightness(105%) contrast(105%)
     drop-shadow(-2px 2px 10px rgb(65, 65, 65));
 }
 
 /* Detalle del producto */
 .contenedor-detalle {
   width: 100%;
-  padding: 5px;
+  padding: 10px 25px;
   background-color: rgb(255, 221, 221);
 }
 
@@ -1611,22 +1600,17 @@ div.card-body {
 }
 
 h5.item-card {
-  font-family: "Poiret One", sans-serif;
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-family: "Teko", sans-serif;
+  font-size: 2.5rem;
+  font-weight: normal;
   text-align: center;
   border: 1px solid gray;
-  border-radius: 8px;
+  border-radius: 15px;
   background-color: rgb(255, 151, 173);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
   cursor: pointer;
   margin-bottom: 20px;
-}
-
-span.dato {
-  padding-left: 20px;
-  font-size: 1rem;
-  font-weight: 400;
+  padding: 5px;
 }
 
 div.botonera-producto {
@@ -1637,24 +1621,8 @@ div.botonera-producto {
   gap: 10px;
 }
 
-a.ver-producto {
-  color: black;
-  font-weight: bold;
-  width: 250px;
-  margin-top: 10px;
-  background-color: rgb(255, 151, 173);
-
-  min-width: 200px;
-  max-width: 100%;
-}
-
-a.ver-producto:hover {
-  background-color: rgb(247, 87, 121);
-  color: white;
-}
-
-/* Botón de agregar al carrito */
-a.add-carrito {
+.boton-producto {
+  font-family: "Klee One", serif;
   color: black;
   font-weight: bold;
   width: 250px;
@@ -1663,19 +1631,71 @@ a.add-carrito {
   transition: background-color 0.3s ease, transform 0.2s ease;
   min-width: 200px;
   max-width: 100%;
+  padding: 10px 15px;
+  border: none;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-a.add-carrito:hover {
-  background-color: #c82333;
+.boton-producto:hover {
+  background-color: rgb(247, 87, 121);
   color: white;
   transform: scale(1.05);
 }
+
+/*******************/
+
+ul.detalle-lista {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0 20px 0;
+  text-align: center;
+}
+
+ul.detalle-lista li {
+  font-size: 1rem;
+  margin: 6px 0;
+  padding-left: 10px;
+  position: relative;
+  font-family: "Klee One", serif;
+}
+
+ul.detalle-lista li strong {
+  font-size: 1.1rem;
+  text-decoration-line: underline;
+}
+
+ul.detalle-lista li::before {
+  content: "•";
+  color: rgb(255, 151, 173);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/**********************/
+
+
 
 /* Responsividad adicional */
 @media (max-width: 600px) {
   .grid-container {
     grid-template-columns: 1fr;
   }
+  
+  .contenedor-foto {
+    max-width: 90%;
+    padding: 5px;
+  }
+
+  img.imagen-producto {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
 }
 
 /*=======================================*/
