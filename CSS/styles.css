@@ -2133,7 +2133,7 @@ section.carrito-acc thead th {
 /*=========================================*/
 
 body#contacto {
-  background:linear-gradient(135deg,#f3f3f3 0%,#f1dbeb 100%);
+  background:linear-gradient(135deg,#fff6eb 0%,#ffedfa 100%);
   min-height:100vh;
   align-items:center;
   justify-content:center;
@@ -2150,7 +2150,7 @@ div.contact-card {
   font-family: "Klee One", serif;
   max-width:540px;
   min-width: 300px;
-  background:#fff;
+  background:linear-gradient(135deg,#ffebd5 0%,#f1dbeb 100%);
   border: 1px solid rgb(145, 143, 143);
   border-radius:1rem;
   padding:2.5rem;
