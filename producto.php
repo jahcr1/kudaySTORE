@@ -117,7 +117,7 @@ if (!$producto) {
 
 
     <section id="ver_producto" class="py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="detalleproducto row align-items-start justify-content-center g-5 shadow rounded-4 p-4">
                 
                 <!-- Imagen del producto -->
