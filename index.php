@@ -132,7 +132,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 
   <section class="carrusel">
-    <div class="container">
+    <div class="container-fluid">
       <div id="carouselExampleSlidesOnly" class="carousel slide pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner carusel-index">
           <div class="carousel-item active">
@@ -160,7 +160,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
             <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
             <div class="carousel-caption">
               <h5 class="caption-title">Encontrá también buenisimas artesanías para tu hogar</h5>
-              <p class="caption-parr">Accesorios deco, productos Handmade, productos para higiene personal y más</p>
+              <p class="caption-parr">Art decó, productos para higiene personal y más</p>
             </div>
             <div class="carousel-button">
               <a href="vistas/varios.php" class="btn-invisible">Okay!</a>

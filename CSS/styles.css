@@ -281,6 +281,7 @@ section.carrusel {
 
 /* Estilos base para animación fluida */
 .carousel-caption {
+  padding: 10px 20px;
   text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.6);
   color: #fff; /* Color del texto */
   font-size: 1.5rem;
@@ -294,7 +295,7 @@ h5.caption-title {
 
 p.caption-parr {
   font-size: 1.4rem;
-  color: rgb(239, 255, 98);
+  color: rgb(228, 248, 51);
 }
 
 /* Posiciones por slide */
@@ -2229,6 +2230,43 @@ h1.titulo-contacto {
   .logo-text {
     display: none;
   } 
+
+  #minibanner h2 {
+    font-size: 1.2rem !important;
+    font-family: "Klee One", serif;
+    color: #444;
+  }
+  
+  h2 span.text-kuday {
+    font-family: "Klee One", serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: rgba(208, 49, 230, 0.753);
+  }
+
+  .carousel-caption {
+    padding: 10px 20px;
+    text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.6);
+    color: #fff; /* Color del texto */
+    font-size: 1.5rem;
+    z-index: 10; /* Asegura que esté sobre la imagen */
+  }
+  
+  h5.caption-title {
+    font-size: 1.5rem;
+    color: rgb(248, 245, 245);
+  }
+  
+  p.caption-parr {
+    font-size: 1.3rem;
+    color: rgb(228, 248, 51);
+  }
+
+  .text-general {
+    font-size: 1rem;
+    font-family: "Klee One", serif;
+  }
+
 }
 
 /*  Estilos desde celulares hasta tablets*/
@@ -2247,10 +2285,27 @@ h1.titulo-contacto {
     width: 50%;
     justify-content: center;
   }
+
+
+}
+
+/*  Estilos para tablets hasta notebooks */
+@media all and (min-width: 767.98px) and (max-width: 991.98px) {
+
+  h5.caption-title {
+    font-size: 2rem;
+    color: rgb(248, 245, 245);
+  }
+  
+  p.caption-parr {
+    font-size: 1.4rem;
+    color: rgb(228, 248, 51);
+    
+  }
 }
 
 
-/*  Estilos desde tablets hasta notebooks*/
+/*  Estilos desde celulares hasta notebooks*/
 @media all and (min-width: 576px) and (max-width: 1199.98px) {
   #minibanner h2 {
     font-size: 1.3rem !important;
