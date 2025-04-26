@@ -2211,13 +2211,28 @@ h1.titulo-contacto {
 /*============ MEDIA QUERIES ==============*/
 /*=========================================*/
 
-@media (min-width: 768px) {
-  .carousel-container {
-    display: none; /* Oculta el carrusel en pantallas grandes */
+/*  Estilos para celulares - mobile */
+@media all and (max-width: 575.98px) {
+
+  /* ----------  RESPONSIVE DEL NAV EN INDEX ---------- */
+  .brand-logo {
+    margin-left: 10px;
   }
+
+  .logo-img {
+    justify-content: center;
+    width: 200px;
+    display: flex;
+  }
+
+  /* para mostrar sólo el ícono en móviles */
+  .logo-text {
+    display: none;
+  } 
 }
 
-@media (max-width: 767px) {
+/*  Estilos desde celulares hasta tablets*/
+@media all and (max-width: 767px) {
   .desktop-container {
     display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
   }
@@ -2234,18 +2249,27 @@ h1.titulo-contacto {
   }
 }
 
-/* ----------  RESPONSIVE  DEL NAV EN INDEX ---------- */
-@media (max-width: 575.98px) {
-  .brand-logo {
-    margin-left: 10px;
-  }
 
-  .logo-img {
-    justify-content: center;
-    width: 200px;
-    display: flex;
+/*  Estilos desde tablets hasta notebooks*/
+@media all and (min-width: 576px) and (max-width: 1199.98px) {
+  #minibanner h2 {
+    font-size: 1.3rem !important;
+    font-family: "Klee One", serif;
+    color: #444;
   }
-  .logo-text {
-    display: none;
-  } /* sólo el ícono en móviles */
+  
+  h2 span.text-kuday {
+    font-family: "Klee One", serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgba(208, 49, 230, 0.753);
+  }
 }
+
+/*  Estilo desde notebooks hasta desktop*/
+@media (min-width: 768px) {
+  .carousel-container {
+    display: none; /* Oculta el carrusel en pantallas grandes */
+  }
+}
+
