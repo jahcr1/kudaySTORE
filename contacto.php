@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
     </header>
 
-    <section id="contact-form">
+    <section id="contact-form" class="container">
         <div class="contact-card">
             <h1 class="text-center mb-4 titulo-contacto">¡Hablemos!</h1>
 
