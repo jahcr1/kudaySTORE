@@ -230,7 +230,7 @@ h2 span.text-kuday {
 }
 
 /*=====================================*/
-/*========= CARRUSEL =================*/
+/*========= CARRUSEL ==================*/
 /*=====================================*/
 
 section.carrusel {
@@ -2110,39 +2110,23 @@ input#product-quantity:focus {
 /*=========================================*/
 
 body#carrito_body {
-  background-color: #dddddd;
+  background-color: #ffffff;
+  
 }
 
-section#tabla-carrito {
-  margin: 150px 0 50px 0;
-  padding: 20px;
+h3.titulo-carrito {
+  font-size: 3.5rem;
+  font-weight: normal;
+  font-family: "Teko", sans-serif;
 }
 
-table#mi_carrito {
-  border: 1px solid black;
-  background-color: white;
-  width: 100%;
-  padding: 20px;
+section.carrito-acc thead th {
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
 }
 
-th.mi_carrito {
-  vertical-align: middle;
-  text-align: center;
-  font-weight: 800 !important;
-  text-align: center !important;
-  padding: 5px;
-}
 
-td.mi_carrito_envio {
-  text-align: end;
-  padding: 5px;
-  font-weight: bold;
-}
-td.mi_carrito_total {
-  text-align: end;
-  padding: 5px;
-  font-weight: bold;
-}
+
 
 /*=========================================*/
 /*============ CONTACTO.PHP ===============*/

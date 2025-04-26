@@ -55,7 +55,7 @@ if (!$productosVacios) {
     <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 
-<body>
+<body id="carrito_body" class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg fixed-top cartuchera-nav">
             <div class="container-fluid" style="flex-wrap: wrap;">
@@ -116,193 +116,195 @@ if (!$productosVacios) {
         </nav>
     </header>
 
-    <section class="container" style="margin-top: 150px;">
-        <h1 class="text-center">Mi Carrito</h1>
-        <div class="accordion" id="cartAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingCart">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCart" aria-expanded="true" aria-controls="collapseCart">
-                        <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;&nbsp;Mis Productos
-                    </button>
-                </h2>
-                <div id="collapseCart" class="accordion-collapse collapse show" aria-labelledby="headingCart" data-bs-parent="#cartAccordion">
-                    <div class="accordion-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>Producto</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cart-body">
-                                    <?php
-                                    $total = 0;
-                                    if (!empty($cart)) { ?>
+    <main class="flex-grow-1">
+        <section class="container-fluid carrito-acc" style="margin-top: 150px;">
+            <h3 class="text-center titulo-carrito">Mi Carrito</h3>
+            <div class="accordion" id="cartAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingCart">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCart" aria-expanded="true" aria-controls="collapseCart">
+                            <i class="fa-solid fa-basket-shopping"></i>&nbsp;&nbsp;&nbsp;Mis Productos
+                        </button>
+                    </h2>
+                    <div id="collapseCart" class="accordion-collapse collapse show" aria-labelledby="headingCart" data-bs-parent="#cartAccordion">
+                        <div class="accordion-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cart-body">
                                         <?php
-                                        while ($product = mysqli_fetch_assoc($result)) {
-                                            $id = $product['id'];
-                                            $cantidad = $cart[$id];
-                                            $stock = $product['stock']; // Asumiendo que tienes una columna 'stock' en la DB
-                                            $subtotal = $product['precio'] * $cantidad;
-                                            $total += $subtotal;
-                                        ?>
-                                            <tr data-id="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
-                                                <td><?php echo $product['nombre']; ?></td>
-                                                <td class="precio">$<?php echo $product['precio']; ?></td>
-                                                <td>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, -1)">−</button>
-                                                        <input type="number" class="form-control mx-2 cantidad" data-id="<?php echo $id; ?>" data-stock="<?php echo $product['stock']; ?>" style="width: 60px; text-align: center;" value="<?php echo $cantidad; ?>" min="1">
-                                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, 1)">+</button>
+                                        $total = 0;
+                                        if (!empty($cart)) { ?>
+                                            <?php
+                                            while ($product = mysqli_fetch_assoc($result)) {
+                                                $id = $product['id'];
+                                                $cantidad = $cart[$id];
+                                                $stock = $product['stock']; // Asumiendo que tienes una columna 'stock' en la DB
+                                                $subtotal = $product['precio'] * $cantidad;
+                                                $total += $subtotal;
+                                            ?>
+                                                <tr data-id="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
+                                                    <td class="fw-normal"><?php echo $product['nombre']; ?></td>
+                                                    <td class="precio">$<?php echo $product['precio']; ?></td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center align-items-center">
+                                                            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, -1)">−</button>
+                                                            <input type="number" class="form-control mx-2 cantidad" data-id="<?php echo $id; ?>" data-stock="<?php echo $product['stock']; ?>" style="width: 60px; text-align: center;" value="<?php echo $cantidad; ?>" min="1">
+                                                            <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, 1)">+</button>
+                                                        </div>
+                                                    </td>
+                                                    <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="alert alert-info mb-0">
+                                                        No hay productos en el carrito. Podés volver a la <a href="index.php#titulo_tienda" class="alert-link">tienda</a> para agregar alguno.
                                                     </div>
                                                 </td>
-                                                <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
                                             </tr>
                                         <?php } ?>
-                                    <?php } else { ?>
-                                        <tr>
-                                            <td colspan="4">
-                                                <div class="alert alert-info mb-0">
-                                                    No hay productos en el carrito. Podés volver a la <a href="index.php#titulo_tienda" class="alert-link">tienda</a> para agregar alguno.
-                                                </div>
-                                            </td>
+                                        <tr id="costoEnvioRow" style="display: none;">
+                                            <td colspan="3"><strong>Costo de Envío</strong></td>
+                                            <td><strong id="costoEnvio">$0.00</strong></td>
                                         </tr>
-                                    <?php } ?>
-                                    <tr id="costoEnvioRow" style="display: none;">
-                                        <td colspan="3"><strong>Costo de Envío</strong></td>
-                                        <td><strong id="costoEnvio">$0.00</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"><strong>Total</strong></td>
-                                        <td><strong id="total">$<?php echo $total; ?></strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <?php if (!$productosVacios) : ?>
-                        <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap" id="botonesCompra">
-                            <button id="continuarCompraBtn" class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
-                            <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
-                            <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
-                        </div>
-                        <?php endif; ?>
-
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item" id="envioAccordion" style="display: none;">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Datos de Envio
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <form class="p-4 border rounded shadow-sm bg-light" id="formEnvio">
-                            <div class="row g-3">
-                                <!-- Nombre -->
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control form-control-sm" id="nombre" placeholder="Nombre" required autocomplete="on">
-                                        <label for="nombre">Nombre</label>
-                                    </div>
-                                </div>
-                                <!-- Apellido -->
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control form-control-sm" id="apellido" placeholder="Apellido" required autocomplete="on">
-                                        <label for="apellido">Apellido</label>
-                                    </div>
-                                </div>
-                                <!-- Teléfono -->
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="2976-423488" required autocomplete="off" pattern="^[\d\s\+\-\(\)]{10,18}$" title="Debe ser un número de teléfono válido (con o sin espacios, guiones, paréntesis). Ej: 3516884521">
-                                        <label for="telefono">Teléfono</label>
-                                    </div>
-                                </div>
-                                <!-- Correo -->
-                                <div class="col-md-8">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control form-control-sm" id="correo" placeholder="Correo Electrónico" required autocomplete="off">
-                                        <label for="correo">Correo Electrónico</label>
-                                    </div>
-                                </div>
-                                <!-- Provincia -->
-                                <div class="col-md-5">
-                                    <div class="form-floating">
-                                        <select class="form-select form-select-sm" id="provincia" required autocomplete="off">
-                                            <option value="" selected>Seleccione...</option>
-                                            <option value="Buenos Aires">Buenos Aires</option>
-                                            <option value="Cordoba">Córdoba</option>
-                                            <option value="Santa Cruz">Santa Cruz</option>
-                                            <option value="Catamarca">Catamarca</option>
-                                            <option value="Chaco">Chaco</option>
-                                            <option value="Chubut">Chubut</option>
-                                            <option value="Corrientes">Corrientes</option>
-                                            <option value="Entre Rios">Entre Rios</option>
-                                            <option value="Formosa">Formosa</option>
-                                            <option value="Jujuy">Jujuy</option>
-                                            <option value="La Pampa">La Pampa</option>
-                                            <option value="La Rioja">La Rioja</option>
-                                            <option value="Mendoza">Mendoza</option>
-                                            <option value="Misiones">Misiones</option>
-                                            <option value="Neuquen">Neuquén</option>
-                                            <option value="Rio Negro">Rio Negro</option>
-                                            <option value="Salta">Salta</option>
-                                            <option value="San Juan">San Juan</option>
-                                            <option value="San Luis">San Luis</option>
-                                            <option value="Santa Fe">Santa Fe</option>
-                                            <option value="Santiago Del Estero">Santiago Del Estero</option>
-                                            <option value="Tierra Del Fuego">Tierra Del Fuego</option>
-                                            <option value="Tucuman">Tucumán</option>
-                                        </select>
-                                        <label for="provincia">Provincia</label>
-                                    </div>
-                                </div>
-                                <!-- Ciudad -->
-                                <div class="col-md-7">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control form-control-sm" id="ciudad" placeholder="Ciudad" required autocomplete="off">
-                                        <label for="ciudad">Ciudad</label>
-                                    </div>
-                                </div>
-                                <!-- Dirección -->
-                                <div class="col-md-9">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control form-control-sm" id="direccion" placeholder="Dirección" required autocomplete="off">
-                                        <label for="direccion">Dirección</label>
-                                    </div>
-                                </div>
-                                <!-- Código Postal -->
-                                <div class="col-md-3">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control form-control-sm" id="codigoPostal" placeholder="Código Postal" required autocomplete="off">
-                                        <label for="codigoPostal">Código Postal</label>
-                                    </div>
-                                </div>
-                                <!-- Botón de envío -->
-                                <div class="col-12 text-center mt-3">
-                                    <button type="submit" class="btn btn-primary px-4">Confirmar Datos de Envío</button>
-                                </div>
+                                        <tr>
+                                            <td colspan="3"><strong>Total</strong></td>
+                                            <td><strong id="total">$<?php echo $total; ?></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </form>
+                            <?php if (!$productosVacios) : ?>
+                            <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap" id="botonesCompra">
+                                <button id="continuarCompraBtn" class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
+                                <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
+                                <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
+                            </div>
+                            <?php endif; ?>
+
+
+
+                        </div>
                     </div>
                 </div>
+
+                <div class="accordion-item" id="envioAccordion" style="display: none;">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa-solid fa-truck-fast"></i>&nbsp;&nbsp;&nbsp;Datos de Envio
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <form class="p-4 border rounded shadow-sm bg-light" id="formEnvio">
+                                <div class="row g-3">
+                                    <!-- Nombre -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control form-control-sm" id="nombre" placeholder="Nombre" required autocomplete="on">
+                                            <label for="nombre">Nombre</label>
+                                        </div>
+                                    </div>
+                                    <!-- Apellido -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control form-control-sm" id="apellido" placeholder="Apellido" required autocomplete="on">
+                                            <label for="apellido">Apellido</label>
+                                        </div>
+                                    </div>
+                                    <!-- Teléfono -->
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="2976-423488" required autocomplete="off" pattern="^[\d\s\+\-\(\)]{10,18}$" title="Debe ser un número de teléfono válido (con o sin espacios, guiones, paréntesis). Ej: 3516884521">
+                                            <label for="telefono">Teléfono</label>
+                                        </div>
+                                    </div>
+                                    <!-- Correo -->
+                                    <div class="col-md-8">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control form-control-sm" id="correo" placeholder="Correo Electrónico" required autocomplete="off">
+                                            <label for="correo">Correo Electrónico</label>
+                                        </div>
+                                    </div>
+                                    <!-- Provincia -->
+                                    <div class="col-md-5">
+                                        <div class="form-floating">
+                                            <select class="form-select form-select-sm" id="provincia" required autocomplete="off">
+                                                <option value="" selected>Seleccione...</option>
+                                                <option value="Buenos Aires">Buenos Aires</option>
+                                                <option value="Cordoba">Córdoba</option>
+                                                <option value="Santa Cruz">Santa Cruz</option>
+                                                <option value="Catamarca">Catamarca</option>
+                                                <option value="Chaco">Chaco</option>
+                                                <option value="Chubut">Chubut</option>
+                                                <option value="Corrientes">Corrientes</option>
+                                                <option value="Entre Rios">Entre Rios</option>
+                                                <option value="Formosa">Formosa</option>
+                                                <option value="Jujuy">Jujuy</option>
+                                                <option value="La Pampa">La Pampa</option>
+                                                <option value="La Rioja">La Rioja</option>
+                                                <option value="Mendoza">Mendoza</option>
+                                                <option value="Misiones">Misiones</option>
+                                                <option value="Neuquen">Neuquén</option>
+                                                <option value="Rio Negro">Rio Negro</option>
+                                                <option value="Salta">Salta</option>
+                                                <option value="San Juan">San Juan</option>
+                                                <option value="San Luis">San Luis</option>
+                                                <option value="Santa Fe">Santa Fe</option>
+                                                <option value="Santiago Del Estero">Santiago Del Estero</option>
+                                                <option value="Tierra Del Fuego">Tierra Del Fuego</option>
+                                                <option value="Tucuman">Tucumán</option>
+                                            </select>
+                                            <label for="provincia">Provincia</label>
+                                        </div>
+                                    </div>
+                                    <!-- Ciudad -->
+                                    <div class="col-md-7">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control form-control-sm" id="ciudad" placeholder="Ciudad" required autocomplete="off">
+                                            <label for="ciudad">Ciudad</label>
+                                        </div>
+                                    </div>
+                                    <!-- Dirección -->
+                                    <div class="col-md-9">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control form-control-sm" id="direccion" placeholder="Dirección" required autocomplete="off">
+                                            <label for="direccion">Dirección</label>
+                                        </div>
+                                    </div>
+                                    <!-- Código Postal -->
+                                    <div class="col-md-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control form-control-sm" id="codigoPostal" placeholder="Código Postal" required autocomplete="off">
+                                            <label for="codigoPostal">Código Postal</label>
+                                        </div>
+                                    </div>
+                                    <!-- Botón de envío -->
+                                    <div class="col-12 text-center mt-3">
+                                        <button type="submit" class="btn btn-primary px-4">Confirmar Datos de Envío</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3 w-100">
+                    <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+
+
             </div>
-
-            <div class="text-center mt-3 w-100">
-                <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
-            </div>
-
-
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer mt-5">
         <div class="container text-center">
@@ -508,9 +510,13 @@ if (!$productosVacios) {
                 toggle: true
             });
 
-            // Enfocar en el segundo accordion
             setTimeout(() => {
-                document.getElementById('collapseTwo').scrollIntoView({ behavior: 'smooth' });
+                const element = document.getElementById('collapseTwo');
+                const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: offsetTop - 150, // aquí le restas 50px para que suba un poco más
+                    behavior: 'smooth'
+                });
             }, 200);
 
         }
