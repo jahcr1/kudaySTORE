@@ -448,6 +448,10 @@ h3.titulo {
   font-weight: normal;
 }
 
+.mainbox-store {
+  flex-grow: 1;
+}
+
 /* Contenedor principal CARTUCHERAS con gradiente */
 .fondo-store1 {
   height: 220px; /* Altura fija */
@@ -497,7 +501,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store1:hover .imagen1 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -573,7 +577,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store2:hover .imagen2 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -650,7 +654,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store3:hover .imagen3 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -727,7 +731,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store4:hover .imagen4 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -809,7 +813,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store5:hover .imagen5 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -962,7 +966,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store7:hover .imagen7 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -1036,7 +1040,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store8:hover .imagen8 {
-  transform: scale(2.2); /* Agranda la imagen ligeramente */
+  transform: scale(2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
