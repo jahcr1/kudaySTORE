@@ -98,7 +98,7 @@ if (!$productosVacios) {
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active boton-nav" href="index.php#seccion_footer">Contactános</a>
+                            <a class="nav-link active boton-nav" href="contacto.php">Contactános</a>
                         </li>
                         <li class="nav-item cart-item">
                             <a href="./carrito.php" class="cart-icon">
@@ -151,16 +151,18 @@ if (!$productosVacios) {
                                                 $total += $subtotal;
                                             ?>
                                                 <tr data-id="<?php echo $id; ?>" data-stock="<?php echo $stock; ?>">
-                                                    <td class="fw-normal"><?php echo $product['nombre']; ?></td>
-                                                    <td class="precio">$<?php echo $product['precio']; ?></td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center align-items-center">
+                                                    <td class="fw-normal" data-label="Producto"><?php echo $product['nombre']; ?></td>
+                                                    <td class="precio" data-label="Precio">$<?php echo $product['precio']; ?></td>
+                                                    <td class="botonera-update" data-label="Cantidad">
+                                                        <div class="d-flex justify-content-center align-items-center celda-cantidad">
                                                             <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, -1)">−</button>
                                                             <input type="number" class="form-control mx-2 cantidad" data-id="<?php echo $id; ?>" data-stock="<?php echo $product['stock']; ?>" style="width: 60px; text-align: center;" value="<?php echo $cantidad; ?>" min="1">
                                                             <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(<?php echo $id; ?>, 1)">+</button>
                                                         </div>
                                                     </td>
-                                                    <td><button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button></td>
+                                                    <td class="botonera-eliminar" data-label="Eliminar">
+                                                        <button class="btn btn-danger btn-sm" onclick="removeItem(<?php echo $id; ?>)"><i class="bi bi-trash"></i></button>
+                                                    </td>
                                                 </tr>
                                             <?php } ?>
                                         <?php } else { ?>
@@ -172,9 +174,9 @@ if (!$productosVacios) {
                                                 </td>
                                             </tr>
                                         <?php } ?>
-                                        <tr id="costoEnvioRow" style="display: none;">
-                                            <td colspan="3"><strong>Costo de Envío</strong></td>
-                                            <td><strong id="costoEnvio">$0.00</strong></td>
+                                        <tr id="costoEnvioRow" style="display: none;" class="costo-envio-row">
+                                            <td colspan="3" data-label="Costo de Envío" class="costo-envio-label"><strong>Costo de Envío</strong></td>
+                                            <td data-label="Costo de Envío" class="costo-envio-valor"><strong id="costoEnvio">$0.00</strong></td>
                                         </tr>
                                         <tr>
                                             <td colspan="3"><strong>Total</strong></td>
@@ -590,7 +592,8 @@ if (!$productosVacios) {
 
                     // Actualizar UI
                     document.getElementById("costoEnvio").textContent = `$${costoEnvio.toFixed(2)}`;
-                    document.getElementById("costoEnvioRow").style.display = "table-row";
+                    const rowEnvio = document.getElementById("costoEnvioRow");
+                    rowEnvio.style.display = "table-row";
                     document.getElementById("total").textContent = `$${nuevoTotal.toFixed(2)}`;
 
                     // Guardar en localStorage

@@ -2110,7 +2110,7 @@ input#product-quantity:focus {
 /*=========================================*/
 
 body#carrito_body {
-  background-color: #ffffff;
+  background:linear-gradient(135deg,#fff6eb 0%,#ffedfa 100%);
   
 }
 
@@ -2125,7 +2125,9 @@ section.carrito-acc thead th {
   font-weight: bold !important;
 }
 
-
+table td.botonera-update div {
+  padding: 5px;
+}
 
 
 /*=========================================*/
@@ -2134,7 +2136,7 @@ section.carrito-acc thead th {
 
 body#contacto {
   background:linear-gradient(135deg,#fff6eb 0%,#ffedfa 100%);
-  min-height:100vh;
+  
   align-items:center;
   justify-content:center;
 }
@@ -2276,10 +2278,61 @@ h1.titulo-contacto {
     scroll-margin-top: 100px;
   }
 
+  
+  .table-responsive table thead {
+    display: none; /* Ocultamos encabezados */
+  }
+
+  .table-responsive table, 
+  .table-responsive tbody, 
+  .table-responsive tr,
+  .table-responsive tr.costo-envio-row,
+  .table-responsive td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .table-responsive tr, .table-responsive tr.costo-envio-row {
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    background: #fff;
+  }
+
+
+  .table-responsive td {
+    text-align: center;
+    padding: 8px 10px;
+    position: relative;
+  }
+
+  .table-responsive td div.celda-cantidad {
+    justify-content: center !important;
+  }
+
+  .table-responsive td.costo-envio-label {
+    display: none !important;
+  }
+
+
+  .table-responsive td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #495057;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .botonera-update, .botonera-eliminar {
+    text-align: center;
+  }
 
 }
 
-/*  Estilos desde celulares hasta tablets*/
+/*  Estilos para todos los dispositivos hasta tablets*/
 @media all and (max-width: 767px) {
   .desktop-container {
     display: none; /* Oculta los elementos distribuidos en pantallas pequeñas */
@@ -2295,7 +2348,6 @@ h1.titulo-contacto {
     width: 50%;
     justify-content: center;
   }
-
 
 }
 
