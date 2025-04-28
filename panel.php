@@ -73,7 +73,7 @@
 
         <section id="panel">
 
-            <div class="container panel-adm">
+            <div class="container-fluid panel-adm">
 
                 <div class="row m-2 titulo-panel-carga">
                     <h2 class="text-center p-3 mt-4">Agregar Productos a Tienda Kuday</h2>
@@ -159,7 +159,7 @@
 
         <section id="listar-productos">
 
-            <div class="container fondo-panel">
+            <div class="container-fluid fondo-panel">
                 <h2 class="text-center p-3 mt-4">Eliminar o Modificar Productos a Tienda Kuday</h2>
 
                 <div class="show-details row">
@@ -190,7 +190,7 @@
                     </div>
 
                 </div>
-                <div class="col-12 table-responsive">
+                <div class="col-12 table-responsive" id="panel-listar-table-mq">
                     <table class="table table-striped table-bordered table-sm" id="tabla-resultado">
                         <thead>
                             <tr>
@@ -214,13 +214,13 @@
                                 foreach ($_SESSION['productos'] as $producto) { ?>
 
                                     <tr>
-                                        <td style="font-weight: 500;"><?php echo $producto['id']; ?></td>
-                                        <td><?php echo $producto['categoria_nombre']; ?></td>
-                                        <td><?php echo $producto['nombre']; ?></td>
-                                        <td><?php echo $producto['descripcion']; ?></td>
-                                        <td style="white-space: nowrap;">$ <?php echo $producto['precio']; ?></td>
-                                        <td style="font-weight: 500;"><?php echo $producto['stock']; ?></td>
-                                        <td class="img-fetched">
+                                        <td style="font-weight: 500;" data-label="ID del producto"><?php echo $producto['id']; ?></td>
+                                        <td data-label="Categoria del producto"><?php echo $producto['categoria_nombre']; ?></td>
+                                        <td data-label="Nombre del producto"><?php echo $producto['nombre']; ?></td>
+                                        <td data-label="Descripción"><?php echo $producto['descripcion']; ?></td>
+                                        <td style="white-space: nowrap;" data-label="Precio">$ <?php echo $producto['precio']; ?></td>
+                                        <td style="font-weight: 500;" data-label="Stock"><?php echo $producto['stock']; ?></td>
+                                        <td class="img-fetched" data-label="Foto del producto">
                                             <?php if (!empty($producto['ci_imagen_producto'])): ?>
                                                 <?php
                                                 $img_data = base64_encode($producto['ci_imagen_producto']);
@@ -332,7 +332,7 @@
         </section>
 
         <section id="ventas">
-            <div class="container fondo-panel">
+            <div class="container-fluid fondo-panel">
                 <h2 class="text-center p-3 mt-4">Gestión de Ventas</h2>
 
                 <?php if (!isset($_SESSION['compras'])) {
@@ -358,7 +358,7 @@
                     </div>
                 </form>
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="panel-ventas-mq">
                     <table class="table table-striped table-bordered table-sm" id="tabla-compras">
 
                         <thead>
@@ -385,13 +385,13 @@
                                     ?>
                                     <tr class="<?php echo $esModificada ? 'resaltado' : ''; ?>" id="compra-<?php echo $compra['id']; ?>">
 
-                                        <td class="estado <?php echo strtolower($compra['estado']); ?>">
+                                        <td class="estado <?php echo strtolower($compra['estado']); ?>" data-label="Estado de la compra">
                                             <?php echo isset($compra['estado']) ? htmlspecialchars($compra['estado']) : 'N/A'; ?>
                                         </td>
-                                        <td><?php echo htmlspecialchars($compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']); ?></td>
-                                        <td><?php echo htmlspecialchars($compra['telefono_cliente']); ?></td>
-                                        <td><?php echo htmlspecialchars($compra['email_cliente']); ?></td>
-                                        <td><?php
+                                        <td data-label="Cliente"><?php echo htmlspecialchars($compra['nombre_cliente'] . ' ' . $compra['apellido_cliente']); ?></td>
+                                        <td data-label="Teléfono"><?php echo htmlspecialchars($compra['telefono_cliente']); ?></td>
+                                        <td data-label="Correo"><?php echo htmlspecialchars($compra['email_cliente']); ?></td>
+                                        <td data-label="Detalle de compra"><?php
                                             $productos = json_decode($compra['productos_json'], true);
                                             if (is_array($productos)) {
                                                 foreach ($productos as $producto) {
@@ -402,11 +402,11 @@
                                             }
                                             ?>
                                         </td>
-                                        <td>$<?php echo number_format($compra['total'], 2); ?></td>
-                                        <td><?php echo date('d/m/Y', strtotime($compra['fecha_compra'])); ?></td>
-                                        <td><?php echo htmlspecialchars($compra['direccion']); ?></td>
-                                        <td><?php echo htmlspecialchars($compra['provincia']) . ', ' . htmlspecialchars($compra['ciudad']); ?></td>
-                                        <td><?php echo htmlspecialchars($compra['codigopostal']); ?></td>
+                                        <td data-label="Total">$<?php echo number_format($compra['total'], 2); ?></td>
+                                        <td data-label="Fecha de compra"><?php echo date('d/m/Y', strtotime($compra['fecha_compra'])); ?></td>
+                                        <td data-label="Dirección del Cliente"><?php echo htmlspecialchars($compra['direccion']); ?></td>
+                                        <td data-label="Localidad"><?php echo htmlspecialchars($compra['provincia']) . ', ' . htmlspecialchars($compra['ciudad']); ?></td>
+                                        <td data-label="Código Postal"><?php echo htmlspecialchars($compra['codigopostal']); ?></td>
                                         <td>
                                             <form method="POST" action="componentes/confirmar_compra.php" style="display:inline;">
                                                 <input type="hidden" name="id_compra" value="<?php echo $compra['id']; ?>">

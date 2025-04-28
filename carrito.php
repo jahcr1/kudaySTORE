@@ -128,7 +128,7 @@ if (!$productosVacios) {
                     </h2>
                     <div id="collapseCart" class="accordion-collapse collapse show" aria-labelledby="headingCart" data-bs-parent="#cartAccordion">
                         <div class="accordion-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="carrito-table-mq">
                                 <table class="table table-striped table-bordered text-center align-middle">
                                     <thead>
                                         <tr>

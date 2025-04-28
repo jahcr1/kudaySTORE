@@ -2281,22 +2281,25 @@ h1.titulo-contacto {
   footer#seccion_footer {
     scroll-margin-top: 100px;
   }
-
   
-  .table-responsive table thead {
+  /*  ****************  */
+  /*  TABLA DE CARRITO  */
+  /*  ****************  */
+
+  .table-responsive#carrito-table-mq table thead {
     display: none; /* Ocultamos encabezados */
   }
 
-  .table-responsive table, 
-  .table-responsive tbody, 
-  .table-responsive tr,
-  .table-responsive tr.costo-envio-row,
-  .table-responsive td {
+  .table-responsive#carrito-table-mq table, 
+  .table-responsive#carrito-table-mq tbody, 
+  .table-responsive#carrito-table-mq tr,
+  .table-responsive#carrito-table-mq tr.costo-envio-row,
+  .table-responsive#carrito-table-mq td {
     display: block !important;
     width: 100% !important;
   }
 
-  .table-responsive tr, .table-responsive tr.costo-envio-row {
+  .table-responsive#carrito-table-mq tr, .table-responsive#carrito-table-mq tr.costo-envio-row {
     margin-bottom: 1rem;
     border: 1px solid #dee2e6;
     border-radius: 8px;
@@ -2306,22 +2309,22 @@ h1.titulo-contacto {
   }
 
 
-  .table-responsive td {
+  .table-responsive#carrito-table-mq td {
     text-align: center;
     padding: 8px 10px;
     position: relative;
   }
 
-  .table-responsive td div.celda-cantidad {
+  .table-responsive#carrito-table-mq td div.celda-cantidad {
     justify-content: center !important;
   }
 
-  .table-responsive td.costo-envio-label {
+  .table-responsive#carrito-table-mq td.costo-envio-label {
     display: none !important;
   }
 
 
-  .table-responsive td::before {
+  .table-responsive#carrito-table-mq td::before {
     content: attr(data-label);
     font-weight: bold;
     font-size: 1.2rem;
@@ -2332,6 +2335,92 @@ h1.titulo-contacto {
 
   .botonera-update, .botonera-eliminar {
     text-align: center;
+  }
+
+  /*  *****************************************  */
+  /*  TABLA DE LISTAS DE PRODUCTOS EN PANEL.PHP  */
+  /*  *****************************************  */
+
+  .table-responsive#panel-listar-table-mq table thead {
+    display: none; /* Ocultamos encabezados */
+  }
+
+  .table-responsive#panel-listar-table-mq table, 
+  .table-responsive#panel-listar-table-mq tbody, 
+  .table-responsive#panel-listar-table-mq tr,
+  .table-responsive#panel-listar-table-mq td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .table-responsive#panel-listar-table-mq tr {
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    background: #fff;
+  }
+
+
+  .table-responsive#panel-listar-table-mq td {
+    text-align: center;
+    padding: 8px 10px 8px 10px;
+    position: relative;
+  }
+
+  .table-responsive#panel-listar-table-mq td.img-fetched {
+    text-align: center !important;
+  }
+
+  .table-responsive#panel-listar-table-mq td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #495057;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /*  *****************************************  */
+  /*  TABLA DE VENTAS DE PRODUCTOS EN PANEL.PHP  */
+  /*  *****************************************  */
+
+  .table-responsive#panel-ventas-mq table thead {
+    display: none; /* Ocultamos encabezados */
+  }
+
+  .table-responsive#panel-ventas-mq table, 
+  .table-responsive#panel-ventas-mq tbody, 
+  .table-responsive#panel-ventas-mq tr,
+  .table-responsive#panel-ventas-mq td {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .table-responsive#panel-ventas-mq tr {
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    background: #fff;
+  }
+
+
+  .table-responsive#panel-ventas-mq td {
+    text-align: center;
+    padding: 8px 10px 8px 10px;
+    position: relative;
+  }
+
+  .table-responsive#panel-ventas-mq td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    font-size: 1rem;
+    color: #495057;
+    display: block;
+    margin-bottom: 4px;
   }
 
 }
