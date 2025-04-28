@@ -1441,8 +1441,9 @@ nav.cartuchera-nav {
   height: auto;
 }
 
-section#cartucheras {
+section#vistas-inicio {
   height: auto;
+  scroll-margin-top: 50px;
 }
 
 div.contenedor-h3 {
@@ -1978,6 +1979,7 @@ section#ver_producto {
   margin: 120px 20px 0px 20px;
   padding: 20px;
   height: auto;
+  scroll-margin-top: 50px;
 }
 
 section#ver_producto .detalleproducto.row {
@@ -2111,6 +2113,7 @@ input#product-quantity:focus {
 
 body#carrito_body {
   background:linear-gradient(135deg,#fff6eb 0%,#ffedfa 100%);
+  scroll-margin-top: 50px;
   
 }
 
@@ -2146,6 +2149,7 @@ section#contact-form {
   margin: 150px auto 50px auto;
   align-items:center;
   justify-content:center;
+  scroll-margin-top: 150px;
 }
 
 div.contact-card {

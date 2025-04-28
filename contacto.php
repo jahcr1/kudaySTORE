@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 700px; margin-right:50px;">
                     <li class="nav-item">
-                    <a class="nav-link active boton-nav" href="index.php#inicio">Inicio</a>
+                    <a class="nav-link active boton-nav" href="contacto.php#contact-form">Inicio</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link active boton-nav" aria-current="page" href="index.php#titulo_tienda">Tienda</a>
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
     </header>
 
-    <section id="contact-form" class="container">
+    <section id="contact-form" class="container" >
         <div class="contact-card">
             <h1 class="text-center mb-4 titulo-contacto">¡Hablemos!</h1>
 

@@ -46,7 +46,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                     <div class="collapse navbar-collapse" id="navbarScroll">
                         <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 620px; margin-right:50px;">
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="../index.php#inicio">Inicio</a>
+                                <a class="nav-link active boton-nav" href="bandoleras.php#vistas-inicio">Inicio</a>
                             </li>
                             <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,7 +92,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         </nav>
     </header>
 
-    <section id="cartucheras" style="margin-top:20px; padding:20px 0 20px 0;">
+    <section id="vistas-inicio" style="margin-top:20px; padding:20px 0 20px 0;">
 
         <div class="container contenedor-h3">
             <h3 class="text-center titulo-categoria" style="margin-top: 80px;">Bandoleras</h3>

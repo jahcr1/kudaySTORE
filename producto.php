@@ -68,7 +68,7 @@ if (!$producto) {
                     <div class="collapse navbar-collapse" id="navbarScroll">
                         <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 620px; margin-right:50px;">
                             <li class="nav-item">
-                                <a class="nav-link active boton-nav" href="./index.php#inicio">Inicio</a>
+                                <a class="nav-link active boton-nav" href="#ver_producto">Inicio</a>
                             </li>
                             <li class="nav-item dropdown" style="align-items: flex-start;">
                                 <a class="nav-link dropdown-toggle active boton-nav" href="tienda.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
