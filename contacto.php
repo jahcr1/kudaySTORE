@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors',1);
-error_reporting(E_ALL);
 session_start();
 $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
