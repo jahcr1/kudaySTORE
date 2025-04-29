@@ -109,8 +109,8 @@ if (!$producto) {
                                 </a>
                             </li>
 
-                       </ul>
-                 </div>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -136,14 +136,14 @@ if (!$producto) {
                             
                             <!-- Botones de compartir -->
                             <div class="social-share d-flex align-items-center gap-2 ms-3">
-                                <a href="https://wa.me/?text=<?php echo urlencode('Mirá este producto de Kuday Artesanías: https://tusitio.com/producto.php?id=' . $producto['id']); ?>" 
+                                <a href="https://wa.me/?text=<?php echo urlencode('Mirá este producto de Kuday Artesanías: https://kudayartesanias.com.ar/producto.php?id=' . $producto['id']); ?>" 
                                 target="_blank" 
                                 class="btn btn-sm btn-success shadow-sm rounded-circle"
                                 title="Compartir en WhatsApp">
                                     <i class="bi bi-whatsapp"></i>
                                 </a>
 
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode('https://tusitio.com/producto.php?id=' . $producto['id']); ?>" 
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode('https://kudayartesanias.com.ar/producto.php?id=' . $producto['id']); ?>" 
                                 target="_blank" 
                                 class="btn btn-sm btn-primary shadow-sm rounded-circle"
                                 title="Compartir en Facebook">
@@ -202,7 +202,7 @@ if (!$producto) {
                             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                 <div class="accordion-body">
                                     <p class="text-secondary">
-                                        En <strong>Kuday</strong> aceptamos varios métodos de pago, depósitos, transferencias bancarias, transferencias de plataformas digitales como <strong>MercadoPago</strong>, <strong>Ualá</strong>, <strong>Modo</strong>, <strong>Lemon</strong>, y <strong>efectivo.</strong>
+                                        En <strong>Kuday</strong> aceptamos varios métodos de pago, transferencias bancarias, transferencias de plataformas digitales como <strong>MercadoPago</strong>, <strong>Ualá</strong>, <strong>Modo</strong>, <strong>Lemon</strong>, y <strong>efectivo.</strong>
                                     </p>
                                 </div>
                             </div>
