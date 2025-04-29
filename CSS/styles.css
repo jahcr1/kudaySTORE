@@ -1585,6 +1585,8 @@ ul.detalle-lista {
   padding-left: 0;
   margin: 20px 0 20px 0;
   text-align: center;
+  height: 200px;
+  overflow-y: auto;
 }
 
 ul.detalle-lista li {
