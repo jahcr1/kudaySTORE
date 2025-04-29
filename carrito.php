@@ -314,6 +314,12 @@ if (!$productosVacios) {
         </div>
     </footer>
 
+    <!-- Overlay de carga oculto inicialmente -->
+    <div id="overlay-carga" style="display:none;">
+    <div class="spinner"></div>
+    <p>Procesando tu compra, por favor espera...</p>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -799,6 +805,23 @@ if (!$productosVacios) {
                 alert("No se pudo reiniciar el carrito. Intenta nuevamente.");
             });
         }
+
+        // Script para overlay de carga al finalizar la compra
+        document.addEventListener('DOMContentLoaded', function() {
+        const finalizarBtn = document.getElementById('finalizarCompraBtn'); // ID de tu botón de finalizar compra
+        finalizarBtn.addEventListener('click', function() {
+        // Mostrar overlay
+        document.getElementById('overlay-carga').style.display = 'flex';
+        
+        // Deshabilitar todo
+        document.body.style.pointerEvents = 'none';
+        
+        // Permitir eventos solo en overlay (opcional)
+        document.getElementById('overlay-carga').style.pointerEvents = 'auto';
+        
+        // Importante: dejar que el submit/trámite del formulario siga
+        });
+    });
 
     </script>
 </body>
