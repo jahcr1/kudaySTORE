@@ -4,29 +4,29 @@ if (isset($_POST['provincia'])) {
 
     // Simulación de costos de envío según provincia
     $costosEnvio = [
-        "Buenos Aires" => 8500,   // Buenos Aires
-        "Cordoba" => 3500,   // Córdoba
-        "Santa Cruz" => 10500,   // Santa Cruz
-        "Catamarca" => 6900,   // Catamarca
-        "Chaco" => 10500,   // Chaco
-        "Chubut" => 9500,   // Chubut
-        "Corrientes" => 6500,   // Corrientes
-        "Entre Rios" => 6500,   // Entre Rios
-        "Formosa" => 7500,   // Formosa
-        "Jujuy" => 6500,   // Jujuy
-        "La Pampa" => 6500,   // La Pampa
-        "La Rioja" => 5500,   // La Rioja
-        "Mendoza" => 6500,   // Mendoza
-        "Misiones" => 6500,   // Misiones
-        "Neuquen" => 8500,   // Neuquén
-        "Rio Negro" => 8500,   // Rio Negro
-        "Salta" => 7500,   // Salta
-        "San Juan" => 6500,   // San Juan
-        "San Luis" => 6500,   // San Luis
-        "Santa Fe" => 6500,   // Santa Fe
-        "Santiago Del Estero" => 9500,   // Santiago Del Estero
-        "Tierra Del Fuego" => 11000,   // Tierra Del Fuego
-        "Tucuman" => 7500,   // Tucumán
+        "Buenos Aires" => 28500,   // Buenos Aires
+        "Cordoba" => 23500,   // Córdoba
+        "Santa Cruz" => 5000,   // Santa Cruz
+        "Catamarca" => 26900,   // Catamarca
+        "Chaco" => 28500,   // Chaco
+        "Chubut" => 10500,   // Chubut
+        "Corrientes" => 26500,   // Corrientes
+        "Entre Rios" => 26500,   // Entre Rios
+        "Formosa" => 27500,   // Formosa
+        "Jujuy" => 26500,   // Jujuy
+        "La Pampa" => 18500,   // La Pampa
+        "La Rioja" => 25500,   // La Rioja
+        "Mendoza" => 24500,   // Mendoza
+        "Misiones" => 26500,   // Misiones
+        "Neuquen" => 18500,   // Neuquén
+        "Rio Negro" => 15500,   // Rio Negro
+        "Salta" => 27500,   // Salta
+        "San Juan" => 23500,   // San Juan
+        "San Luis" => 20500,   // San Luis
+        "Santa Fe" => 22500,   // Santa Fe
+        "Santiago Del Estero" => 29500,   // Santiago Del Estero
+        "Tierra Del Fuego" => 28000,   // Tierra Del Fuego
+        "Tucuman" => 28500,   // Tucumán
         // Agregar más provincias con sus respectivos costos
     ];
 
