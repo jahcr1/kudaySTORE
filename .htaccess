@@ -3,55 +3,53 @@ RewriteEngine On
 RewriteBase /
 
 ##############################################
-# 🔒 Seguridad: Bloquear acceso a archivos sensibles
+# 🔒 SEGURIDAD: BLOQUEAR ARCHIVOS SENSIBLES
 ##############################################
 
-# Bloquear archivos ocultos como .env, .gitignore
+# Archivos ocultos como .env, .git, .htaccess
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-# Bloquear archivos específicos
-<FilesMatch "^(config\.php|composer\.json|composer\.lock|modificar_producto\.php|eliminar_producto\.php|descargar_pdf\.php|cerrar\.php|actualizar_carrito\.php)$">
+<FilesMatch "^(composer\.json|composer\.lock|config\.php|\.env)$">
     Order allow,deny
     Deny from all
-</FilesMatch>
+</FilesMatch
 
-# Bloquear acceso directo desde navegador a archivos sensibles
+# Bloquear acceso manual desde navegador a archivos sensibles
+# pero permitir uso interno como AJAX o include()
 <IfModule mod_rewrite.c>
-RewriteEngine On
-
-# Bloquea archivos dentro de /componentes si se acceden por URL
-RewriteCond %{REQUEST_URI} ^/componentes/
-    RewriteRule ^.*$ - [F,L]
-
-# Lo mismo para /vendor si usás Composer
-    RewriteCond %{REQUEST_URI} ^/vendor/
-    RewriteRule ^.*$ - [F,L]
+    RewriteCond %{THE_REQUEST} ^GET\s.+(modificar_producto|eliminar_producto|descargar_pdf|cerrar|actualizar_carrito)\.php\sHTTP [NC]
+    RewriteRule ^ - [F,L]
 </IfModule>
 
 
-# Bloquear acceso a /facturas y sus archivos PDF
-RewriteRule ^facturas(/.*)?$ - [F,L]
+# 🔐 Bloquear solo accesos directos tipo GET a archivos PHP en /componentes
+RewriteCond %{THE_REQUEST} ^GET\s/+componentes/.*\.php\sHTTP/ [NC]
+RewriteRule ^componentes/ - [F,L]
+
+
+
+# Bloquear acceso a /vendor y /facturas desde navegador
+RewriteRule ^(vendor|facturas)(/.*)?$ - [F,L]
 
 ##############################################
-# 🌐 Redirigir de HTTP a HTTPS (si tenés SSL)
+# 🌐 REDIRECCIÓN HTTPS (si tenés SSL)
 ##############################################
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ##############################################
-# 🚀 Ocultar .php de las URLs
+# 🚀 URLS AMIGABLES (ocultar .php)
 ##############################################
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
 
 ##############################################
-# 🔁 Rutas limpias personalizadas
+# 🔁 RUTEO DE PÁGINAS
 ##############################################
 
-# Página principal (opcional)
 DirectoryIndex index.php
 
 # Rutas personalizadas
@@ -60,7 +58,7 @@ RewriteRule ^carrito$ carrito.php [L]
 RewriteRule ^producto$ producto.php [L]
 RewriteRule ^contacto$ contacto.php [L]
 
-# Rutas para vistas (cartucheras, billeteras, etc.)
+# Rutas para vistas
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(cartucheras|billeteras|bolsomatero|neceser|promociones|setmatero|varios)$ vistas/$1.php [L]
+RewriteRule ^(cartucheras|billeteras|bandoleras|bolsomatero|neceser|promociones|setmatero|varios)$ vistas/$1.php [L]
