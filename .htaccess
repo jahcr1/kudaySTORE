@@ -24,6 +24,11 @@ RewriteRule ^(componentes|vendor)(/.*)?$ - [F,L]
 # Bloquear acceso a /facturas y sus archivos PDF
 RewriteRule ^facturas(/.*)?$ - [F,L]
 
+##############################################
+# 🌐 Redirigir de HTTP a HTTPS (si tenés SSL)
+##############################################
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ##############################################
 # 🚀 Ocultar .php de las URLs
