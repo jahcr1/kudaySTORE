@@ -18,8 +18,19 @@ RewriteBase /
     Deny from all
 </FilesMatch>
 
-# Bloquear acceso a /componentes y /vendor
-RewriteRule ^(componentes|vendor)(/.*)?$ - [F,L]
+# Bloquear acceso directo desde navegador a archivos sensibles
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Bloquea archivos dentro de /componentes si se acceden por URL
+RewriteCond %{REQUEST_URI} ^/componentes/
+    RewriteRule ^.*$ - [F,L]
+
+# Lo mismo para /vendor si usás Composer
+    RewriteCond %{REQUEST_URI} ^/vendor/
+    RewriteRule ^.*$ - [F,L]
+</IfModule>
+
 
 # Bloquear acceso a /facturas y sus archivos PDF
 RewriteRule ^facturas(/.*)?$ - [F,L]
