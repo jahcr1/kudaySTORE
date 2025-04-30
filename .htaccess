@@ -1,0 +1,50 @@
+# Activar reescritura
+RewriteEngine On
+RewriteBase /
+
+##############################################
+# 🔒 Seguridad: Bloquear acceso a archivos sensibles
+##############################################
+
+# Bloquear archivos ocultos como .env, .gitignore
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquear archivos específicos
+<FilesMatch "^(config\.php|composer\.json|composer\.lock|modificar_producto\.php|eliminar_producto\.php|descargar_pdf\.php|cerrar\.php|actualizar_carrito\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquear acceso a /componentes y /vendor
+RewriteRule ^(componentes|vendor)(/.*)?$ - [F,L]
+
+# Bloquear acceso a /facturas y sus archivos PDF
+RewriteRule ^facturas(/.*)?$ - [F,L]
+
+
+##############################################
+# 🚀 Ocultar .php de las URLs
+##############################################
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+
+##############################################
+# 🔁 Rutas limpias personalizadas
+##############################################
+
+# Página principal (opcional)
+DirectoryIndex index.php
+
+# Rutas personalizadas
+RewriteRule ^admin$ panel.php [L]
+RewriteRule ^carrito$ carrito.php [L]
+RewriteRule ^producto$ producto.php [L]
+RewriteRule ^contacto$ contacto.php [L]
+
+# Rutas para vistas (cartucheras, billeteras, etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(cartucheras|billeteras|bolsomatero|neceser|promociones|setmatero|varios)$ vistas/$1.php [L]
