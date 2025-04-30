@@ -893,7 +893,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store6:hover .imagen6 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
