@@ -456,7 +456,7 @@ h3.titulo {
 
 /* Contenedor principal CARTUCHERAS con gradiente */
 .fondo-store1 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -496,14 +496,14 @@ h3.titulo {
 
 /* Imagen dentro del contenedor */
 .imagen1 {
-  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
-  max-height: 90%; /* Respeta las proporciones de la imagen */
+  max-width: 80%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 80%; /* Respeta las proporciones de la imagen */
   transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
 }
 
 /* Hover para agrandar la imagen */
 .fondo-store1:hover .imagen1 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -532,7 +532,7 @@ h3.titulo {
 
 /* Contenedor principal NECESER con gradiente */
 .fondo-store2 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -579,7 +579,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store2:hover .imagen2 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -601,7 +601,7 @@ h3.titulo {
 }
 
 .texto-store2:hover {
-  color: #befd49; /* Cambia el color a un tono cálido (naranja suave) */
+  color: rgba(253, 250, 75, 0.7); /* Cambia el color a un tono cálido (naranja suave) */
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
     /* Sombra negra más profunda */ 0 0 12px rgba(255, 255, 255, 0.8),
     /* Brillo más destacado */ 0 0 24px rgba(255, 154, 118, 0.6); /* Un resplandor del color hover */
@@ -609,7 +609,7 @@ h3.titulo {
 
 /* Contenedor principal BILLETERAS con gradiente */
 .fondo-store3 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -649,14 +649,14 @@ h3.titulo {
 
 /* Imagen dentro del contenedor */
 .imagen3 {
-  max-width: 90%; /* Ajusta la imagen al tamaño del contenedor */
-  max-height: 90%; /* Respeta las proporciones de la imagen */
+  max-width: 80%; /* Ajusta la imagen al tamaño del contenedor */
+  max-height: 80%; /* Respeta las proporciones de la imagen */
   transition: transform 0.5s ease-in-out; /* Suaviza el cambio de tamaño */
 }
 
 /* Hover para agrandar la imagen */
 .fondo-store3:hover .imagen3 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -686,7 +686,7 @@ h3.titulo {
 
 /* Contenedor principal BANDOLERA con gradiente */
 .fondo-store4 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -733,7 +733,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store4:hover .imagen4 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -768,7 +768,7 @@ h3.titulo {
 
 /* Contenedor principal BOLSO MATERO con gradiente */
 .fondo-store5 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -815,7 +815,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store5:hover .imagen5 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -846,7 +846,7 @@ h3.titulo {
 
 /* Contenedor principal SET MATERO con gradiente */
 .fondo-store6 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -893,7 +893,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store6:hover .imagen6 {
-  transform: scale(1.3); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -924,7 +924,7 @@ h3.titulo {
 
 /* Contenedor principal VARIOS con gradiente */
 .fondo-store7 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -998,7 +998,7 @@ h3.titulo {
 
 /* Contenedor principal PROMOCIONES con gradiente */
 .fondo-store8 {
-  height: 220px; /* Altura fija */
+  height: 300px; /* Altura fija */
   position: relative;
   border: 0px solid black;
   border-radius: 20px;
@@ -1042,7 +1042,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store8:hover .imagen8 {
-  transform: scale(2); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
