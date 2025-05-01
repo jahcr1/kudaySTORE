@@ -487,26 +487,36 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <!-- SCRIPT PARA MANEJAR ANIMACIONES CON ANIMATE.CSS EN SLIDERS DE BS -->
   <script>
     function animarSlide(slide) {
-  const caption = slide.querySelector('.carousel-caption');
-  if (caption) {
-    caption.classList.remove('animate__animated', 'animate__bounceInDown');
-    void caption.offsetWidth;
-    caption.classList.add('animate__animated', 'animate__bounceInDown');
-    caption.style.setProperty('opacity', '1', 'important');
-  }
-}
+      const caption = slide.querySelector('.carousel-caption');
+      if (caption) {
+        // Eliminar cualquier animación previa
+        caption.classList.remove('animate__animated', 'animate__bounceInDown');
 
-document.addEventListener('DOMContentLoaded', () => {
-  const activeSlide = document.querySelector('.carousel-item.active');
-  animarSlide(activeSlide);
-});
+        // Forzar reflow para reiniciar animación
+        void caption.offsetWidth;
 
-const carrusel = document.getElementById('carouselExampleSlidesOnly');
-carrusel.addEventListener('slid.bs.carousel', function (e) {
-  animarSlide(e.relatedTarget);
-});
+        // Agregar la animación con visibilidad asegurada
+        caption.classList.add('animate__animated', 'animate__bounceInDown');
+      }
+    }
 
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeSlide = document.querySelector('.carousel-item.active');
+      if (activeSlide) {
+        animarSlide(activeSlide);
+      }
+
+      const carrusel = document.getElementById('carouselExampleSlidesOnly');
+      if (carrusel) {
+        carrusel.addEventListener('slid.bs.carousel', function (e) {
+          if (e.relatedTarget) {
+            animarSlide(e.relatedTarget);
+          }
+        });
+      }
+    });
   </script>
+
 
 
 
