@@ -13,7 +13,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Delius+Unicase:wght@400;700&family=Fuzzy+Bubbles:wght@400;700&family=Gwendolyn:wght@400;700&family=Homemade+Apple&family=Just+Me+Again+Down+Here&family=Kablammo&family=Klee+One&family=Ms+Madi&family=Mystery+Quest&family=Pacifico&family=Playwrite+IT+Moderna:wght@100..400&family=Poiret+One&family=Teko:wght@300..700&family=Unkempt:wght@400;700&family=Vibur&family=Yomogi&display=swap&family=Dancing+Script:wght@400..700&display=swap?" rel="stylesheet">
 
   <!-- ICONOS DE BOOTSTRAP -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -322,25 +322,30 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div id="iconCarousel" class="carousel slide carousel-container d-md-none" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div class="text-center icon-box">
-                <i class="bi bi-truck"></i>
-                <p class="fw-semibold">Envíos Gratis</p>
-                <p>En tus compras superiores a $100.000</p>
+              <div class="carusel-information">
+                <div class="text-center icon-box">
+                  <i class="bi bi-truck"></i>
+                  <p class="fw-semibold">Envíos Gratis</p>
+                  <p>En tus compras superiores a $100.000</p>
+                </div>
               </div>
             </div>
             <div class="carousel-item">
-              <div class="text-center icon-box">
-                <i class="bi bi-credit-card"></i>
-                <p class="fw-semibold">Cuotas sin interés</p>
-                <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+              <div class="carusel-information">
+                <div class="text-center icon-box">
+                  <i class="bi bi-credit-card"></i>
+                  <p class="fw-semibold">Cuotas sin interés</p>
+                  <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+                </div>
               </div>
             </div>
             <div class="carousel-item">
-              <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box d-block" style="color:black">
-                <i class="bi bi-whatsapp"></i>
-                <p class="fw-semibold">Soporte por WhatsApp</p>
-                <p class="fw-normal">Hacé click acá y comunicate con nosotros</p>
-              </a>
+              <div class="carusel-information">
+                <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="text-decoration-none text-center icon-box" style="color:black">
+                  <i class="bi bi-whatsapp"></i>
+                  <p class="fw-semibold">Soporte por WhatsApp</p>
+                  <p class="fw-normal">Hacé click acá y comunicate con nosotros</p>
+                </a>
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
@@ -355,7 +360,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </article>
     </div>
   </section>
-
 
 
   <footer class="footer" id="seccion_footer">
