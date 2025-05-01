@@ -3,62 +3,67 @@ RewriteEngine On
 RewriteBase /
 
 ##############################################
-# 🔒 SEGURIDAD: BLOQUEAR ARCHIVOS SENSIBLES
+# 🔒 1. Bloquear archivos ocultos y sensibles
 ##############################################
 
-# Archivos ocultos como .env, .git, .htaccess
+# Archivos como .env, .gitignore, .htaccess
 <FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
+  Require all denied
 </FilesMatch>
 
-<FilesMatch "^(composer\.json|composer\.lock|config\.php|\.env)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch
-
-# Bloquear acceso manual desde navegador a archivos sensibles
-# pero permitir uso interno como AJAX o include()
-<IfModule mod_rewrite.c>
-    RewriteCond %{THE_REQUEST} ^GET\s.+(modificar_producto|eliminar_producto|descargar_pdf|cerrar|actualizar_carrito)\.php\sHTTP [NC]
-    RewriteRule ^ - [F,L]
-</IfModule>
-
-
-# 🔐 Bloquear solo accesos directos tipo GET a archivos PHP en /componentes
-RewriteCond %{THE_REQUEST} ^GET\s/+componentes/.*\.php\sHTTP/ [NC]
-RewriteRule ^componentes/ - [F,L]
-
-
-
-# Bloquear acceso a /vendor y /facturas desde navegador
-RewriteRule ^(vendor|facturas)(/.*)?$ - [F,L]
+# Archivos de configuración que no deben ser accedidos nunca
+<FilesMatch "^(composer\.json|composer\.lock|config\.php)$">
+  Require all denied
+</FilesMatch>
 
 ##############################################
-# 🌐 REDIRECCIÓN HTTPS (si tenés SSL)
+# 🔒 2. Bloquear acceso por navegador a scripts backend de la raíz
 ##############################################
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# (permitir fetch, POST, redirección interna, include, etc.)
+
+RewriteCond %{THE_REQUEST} ^GET\s.*/(cerrar|actualizar_carrito|descargar_pdf|eliminar_producto|modificar_producto)\.php\sHTTP [NC]
+RewriteRule ^ - [F,L]
 
 ##############################################
-# 🚀 URLS AMIGABLES (ocultar .php)
+# 🔒 3. Bloquear acceso por navegador a archivos PHP dentro de /componentes/
 ##############################################
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/componentes/(acceder|add_to_cart|borrar_sesion|calcular_envio|cargar_productos|conexion|confirmar_compra|imagen_producto|listar_productos|mostrar_compras|mostrar_imagen|obtener_carrito|procesar_compra|rechazar_compra|salir|vaciar_carrito)\.php\sHTTP [NC]
+RewriteRule ^ - [F,L]
+
+##############################################
+# 🔒 4. Bloquear carpetas internas
+##############################################
+
+RewriteRule ^vendor(/.*)?$ - [F,L]
+RewriteRule ^facturas(/.*)?$ - [F,L]
+
+##############################################
+# 🌐 5. Redirección de HTTP a HTTPS
+##############################################
+
+#RewriteCond %{HTTPS} off
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+##############################################
+# 🚀 6. URL amigables (.php oculto)
+##############################################
+
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
 
 ##############################################
-# 🔁 RUTEO DE PÁGINAS
+# 🔁 7. Rutas personalizadas
 ##############################################
 
 DirectoryIndex index.php
 
-# Rutas personalizadas
 RewriteRule ^admin$ panel.php [L]
 RewriteRule ^carrito$ carrito.php [L]
 RewriteRule ^producto$ producto.php [L]
 RewriteRule ^contacto$ contacto.php [L]
 
-# Rutas para vistas
+# Vistas dinámicas desde carpeta vistas/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(cartucheras|billeteras|bandoleras|bolsomatero|neceser|promociones|setmatero|varios)$ vistas/$1.php [L]
+RewriteRule ^(cartucheras|billeteras|bolsomatero|neceser|promociones|setmatero|varios)$ vistas/$1.php [L]
