@@ -8,7 +8,7 @@ Sistema de comercio electrónico artesanal desarrollado en PHP y MySQL que permi
 
 | Página Principal | Carrito | Panel Admin |
 |------------------|---------|-------------|
-| ![Inicio](./screenshots/inicio.png) | ![Carrito](./screenshots/carrito.png) | ![Panel](./screenshots/panel.png) |
+| ![Inicio](./screenshots/inicio.png) | ![Carrito](./screenshots/carrito1.png) | ![Panel](./screenshots/panel.png) |
 
 ---
 
@@ -122,10 +122,10 @@ MAIL_PASS=clavesupersegura
 
 ## 🧑‍💻 Autor
 
-**Martín Contreras**  
+**Martín Contreras </jahcr1>**  
 Desarrollador Web / Ingeniería Electrónica  
 📧 martin.contreras.dev@gmail.com  
-🌐 [tuportfolio.com](https://www.martincontrerasdev.com/)
+🌐 [MiPortfolio.com](https://www.martincontrerasdev.com/)
 
 ---
 
