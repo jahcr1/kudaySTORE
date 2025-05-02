@@ -7,7 +7,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kuday Argentina Sitio Oficial</title>
 
   <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
@@ -27,8 +27,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
   <!-- AOS CSS desde CDN-->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <!-- Animate CSS desde CDN-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <!-- CSS DE BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -133,7 +131,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
   <section class="carrusel">
     <div class="container-fluid">
-      <div id="carouselExampleSlidesOnly" class="carousel slide pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="5000">
+      <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade pt-2 pb-3" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner carusel-index">
           <div class="carousel-item active">
             <img src="images/carousel/glaciar1.jpg" class="foto-carousel" alt="slide1">
@@ -426,7 +424,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
 
   <!-- Incluyendo BOOTSTRAP JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
 
   <!-- Agrega Swiper.js desde CDN -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -473,6 +471,56 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           },
         },
       });
+
+      // 🚀 Carrusel de Bootstrap - animación de título y párrafo
+      const carousel = document.querySelector('#carouselExampleSlidesOnly');
+
+      // Reiniciar animación al cargar la página (F5)
+      const resetAnimation = () => {
+        const activeItem = carousel.querySelector('.carousel-item.active');
+        const title = activeItem.querySelector('h5.caption-title');
+        const paragraph = activeItem.querySelector('p.caption-parr');
+
+        title.style.opacity = '0';
+        paragraph.style.opacity = '0';
+        
+        // Forzamos reflujo para que la animación no se quede en estado "animada"
+        void title.offsetWidth;
+        void paragraph.offsetWidth;
+
+        // Aplica la animación inicial
+        title.style.animation = 'fadeInUp 1.2s ease forwards';
+        title.style.animationDelay = '1s';
+        paragraph.style.animation = 'fadeInUp 1.2s ease forwards';
+        paragraph.style.animationDelay = '1.5s';
+      };
+
+      // Ejecutar la reinicialización de animación cuando cargue la página
+      resetAnimation();
+
+      // Aplicar animación en cada transición de slide
+      carousel.addEventListener('slid.bs.carousel', function () {
+        const activeItem = carousel.querySelector('.carousel-item.active');
+        const title = activeItem.querySelector('h5.caption-title');
+        const paragraph = activeItem.querySelector('p.caption-parr');
+
+        title.style.opacity = '0';
+        paragraph.style.opacity = '0';
+
+        // Forzamos reflujo
+        void title.offsetWidth;
+        void paragraph.offsetWidth;
+
+        title.classList.add('fadeInUp');
+        paragraph.classList.add('fadeInUp');
+
+        title.style.animation = 'fadeInUp 1.2s ease forwards';
+        title.style.animationDelay = '1s';
+
+        paragraph.style.animation = 'fadeInUp 1.2s ease forwards';
+        paragraph.style.animationDelay = '1.5s';
+      });
+
     });
   </script>
 
@@ -483,40 +531,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       once: false,
     });
   </script>
-
-  <!-- SCRIPT PARA MANEJAR ANIMACIONES CON ANIMATE.CSS EN SLIDERS DE BS -->
-  <script>
-    function animarSlide(slide) {
-      const caption = slide.querySelector('.carousel-caption');
-      if (caption) {
-        // Eliminar cualquier animación previa
-        caption.classList.remove('animate__animated', 'animate__bounceInDown');
-
-        // Forzar reflow para reiniciar animación
-        void caption.offsetWidth;
-
-        // Agregar la animación con visibilidad asegurada
-        caption.classList.add('animate__animated', 'animate__bounceInDown');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const activeSlide = document.querySelector('.carousel-item.active');
-      if (activeSlide) {
-        animarSlide(activeSlide);
-      }
-
-      const carrusel = document.getElementById('carouselExampleSlidesOnly');
-      if (carrusel) {
-        carrusel.addEventListener('slid.bs.carousel', function (e) {
-          if (e.relatedTarget) {
-            animarSlide(e.relatedTarget);
-          }
-        });
-      }
-    });
-  </script>
-
 
 
 
