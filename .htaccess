@@ -44,9 +44,8 @@ RewriteRule ^facturas(/.*)?$ - [F,L]
 # 🌐 5. Redirección de HTTP a HTTPS
 ##############################################
 
-# Uncomment to force HTTPS
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ##############################################
 # 🚀 6. URL amigables (.php oculto)
