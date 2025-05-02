@@ -17,18 +17,20 @@ RewriteBase /
 </FilesMatch>
 
 ##############################################
-# 🔒 2. Bloquear acceso por navegador a scripts backend de la raíz
+# 🔒 2. Bloquear acceso por navegador a scripts backend en la raíz
 ##############################################
-# (permitir fetch, POST, redirección interna, include, etc.)
+# (permite fetch, POST, redirección interna, include, etc.)
 
-RewriteCond %{THE_REQUEST} ^GET\s.*/(cerrar|actualizar_carrito|descargar_pdf|eliminar_producto|modificar_producto)\.php\sHTTP [NC]
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/(cerrar|actualizar_carrito|descargar_pdf|eliminar_producto|modificar_producto)\.php\sHTTP [NC]
 RewriteRule ^ - [F,L]
 
 ##############################################
-# 🔒 3. Bloquear acceso por navegador a archivos PHP dentro de /componentes/
+# 🔒 3. Bloquear acceso GET a scripts en /componentes/
 ##############################################
 
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/componentes/(acceder|add_to_cart|borrar_sesion|calcular_envio|cargar_productos|conexion|confirmar_compra|imagen_producto|listar_productos|mostrar_compras|mostrar_imagen|obtener_carrito|procesar_compra|rechazar_compra|salir|vaciar_carrito)\.php\sHTTP [NC]
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/componentes/(acceder|add_to_cart|borrar_sesion|calcular_envio|cargar_productos|conexion|confirmar_compra|imagen_producto|listar_productos|mostrar_compras|mostrar_imagen|obtener_carrito|procesar_compra|rechazar_compra|vaciar_carrito)\.php\sHTTP [NC]
 RewriteRule ^ - [F,L]
 
 ##############################################
@@ -42,8 +44,9 @@ RewriteRule ^facturas(/.*)?$ - [F,L]
 # 🌐 5. Redirección de HTTP a HTTPS
 ##############################################
 
-#RewriteCond %{HTTPS} off
-#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Uncomment to force HTTPS
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ##############################################
 # 🚀 6. URL amigables (.php oculto)
