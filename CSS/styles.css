@@ -268,22 +268,24 @@ section.carrusel {
 
 /* Estilos base para animación fluida */
 .carousel-caption {
-  padding: 10px 20px;
-  text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.9);
   color: #fff; /* Color del texto */
   font-family: "Dancing Script", cursive !important;
-  font-size: 1.5rem;
+  font-size: 2rem;
   z-index: 10; /* Asegura que esté sobre la imagen */
 }
 
 h5.caption-title {
-  font-size: 2rem;
-  color: rgb(248, 245, 245);
+  font-size: 3rem;
+  color: #fff;
+  font-weight: bold;
 }
 
 p.caption-parr {
-  font-size: 1.8rem;
-  color: rgb(228, 248, 51);
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
 }
 
 /* Posiciones por slide */
@@ -813,7 +815,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store5:hover .imagen5 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -891,7 +893,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store6:hover .imagen6 {
-  transform: scale(1.1); /* Agranda la imagen ligeramente */
+  transform: scale(1.2); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -2322,18 +2324,19 @@ h1.titulo-contacto {
     padding: 10px 20px;
     text-shadow: -3px 3px 2px rgba(0, 0, 0, 0.6);
     color: #fff; /* Color del texto */
-    font-size: 1.5rem;
     z-index: 10; /* Asegura que esté sobre la imagen */
   }
 
   h5.caption-title {
-    font-size: 1.1rem;
-    color: rgb(248, 245, 245);
+    font-size: 2rem;
+    color: #fff;
+    font-weight: bold;
   }
 
   p.caption-parr {
-    font-size: 1rem;
-    color: rgb(228, 248, 51);
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
   }
 
   .text-general {
@@ -2582,23 +2585,43 @@ h1.titulo-contacto {
   section#tienda-index {
     margin: 100px 0 0 0;
   }
+
+  .carusel-index {
+    height: 70vh;
+  }
 }
+
 
 /*  Estilos para tablets hasta notebooks */
 @media all and (min-width: 767.98px) and (max-width: 991.98px) {
   h5.caption-title {
     font-size: 2rem;
-    color: rgb(248, 245, 245);
+    color: #fff;
+    font-weight: bold;
   }
 
   p.caption-parr {
-    font-size: 1.4rem;
-    color: rgb(228, 248, 51);
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
   }
 }
 
+
 /*  Estilos desde celulares hasta notebooks*/
 @media all and (min-width: 576px) and (max-width: 1199.98px) {
+  h5.caption-title {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  p.caption-parr {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+  }
+
   #minibanner h2 {
     font-size: 1.3rem !important;
     font-family: "Klee One", serif;
