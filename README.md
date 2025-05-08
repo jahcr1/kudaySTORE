@@ -52,7 +52,7 @@ Sistema de comercio electrónico artesanal desarrollado en PHP y MySQL que permi
 ├── composer.lock               # Archivo contenedor de dependencias, servicios y versiones
 ├── config.php                  # Carga las variables de entorno del .env utilizando vLucas/Dotenv
 ├── actualizar_carrito.php      # Maneja Lógica del carrito
-├── descargar_pdf.php           # Carrito de compras con control de stock actualizado en tiempo real
+├── descargar_pdf.php           # Archivo que maneja lógica para generar y descargar el pdf/comprobante
 ├── eliminar_producto.php       # Maneja Lógica del Panel administrador
 ├── modificar_producto.php      # Maneja Lógica del Panel administrador
 └── README.md                   # Este archivo
