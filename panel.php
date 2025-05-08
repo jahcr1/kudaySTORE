@@ -76,7 +76,7 @@
             <div class="container-fluid panel-adm">
 
                 <div class="row m-2 titulo-panel-carga">
-                    <h2 class="text-center p-3 mt-4">Agregar Productos a Tienda Kuday</h2>
+                    <h2 class="text-center p-3 mt-4">AGREGAR PRODUCTOS [TIENDA KUDAY]</h2>
                 </div>
                 <div class="row paneles">
                     <div class="col-7 panel-carga">
@@ -160,14 +160,14 @@
         <section id="listar-productos">
 
             <div class="container-fluid fondo-panel">
-                <h2 class="text-center p-3 mt-4">Eliminar o Modificar Productos a Tienda Kuday</h2>
+                <h2 class="text-center p-3 mt-4">ELIMINAR / MODIFICAR PRODUCTOS [TIENDA KUDAY]</h2>
 
                 <div class="show-details row">
                     <div class="col-12">
 
                         <form action="componentes/listar_productos.php" method="POST" id=formulario-categoria class="row g-3 mb-4">
                             <div class="col-md-6">
-                                <label for="seleccionCategoria" class="form-label fs-6">Elija un producto de la tienda para MODIFICAR/ELIMINAR:</label>
+                                <label for="seleccionCategoria" class="form-label fs-6 fw-semibold ps-2">Producto a Modificar/Eliminar :</label>
                                 <select name="categoria" id="seleccionCategoria" class="form-select" required>
                                     <option value="" disabled selected>Selecciona una opción</option>
                                     <option value="1">Cartuchera</option>
@@ -270,7 +270,7 @@
                                                                             <?php
                                                                             $img_data = base64_encode($producto['ci_imagen_producto']);
                                                                             $img_type = $producto['formato_imagen'];
-                                                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='300' height='300'>";
+                                                                            echo "<img src='data:$img_type;base64,$img_data' alt='Imagen del producto' width='150' height='auto'>";
                                                                             ?>
                                                                         <?php else: ?>
                                                                             <p>Sin imagen disponible</p>
@@ -333,7 +333,7 @@
 
         <section id="ventas">
             <div class="container-fluid fondo-panel">
-                <h2 class="text-center p-3 mt-4">Gestión de Ventas</h2>
+                <h2 class="text-center p-3 mt-4">GESTIÓN DE VENTAS</h2>
 
                 <?php if (!isset($_SESSION['compras'])) {
                     require_once('./componentes/conexion.php');
@@ -346,11 +346,11 @@
 
                 <form action="./componentes/mostrar_compras.php" method="POST" class="row g-3 mb-4" id="formulario-ventas-filtros">
                     <div class="col-md-5">
-                        <label for="nombre" class="form-label">Buscar por nombre</label>
+                        <label for="nombre" class="form-label fs-6 fw-semibold ps-2">Buscar por nombre</label>
                         <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del cliente">
                     </div>
                     <div class="col-md-5">
-                        <label for="fecha" class="form-label">Buscar por fecha</label>
+                        <label for="fecha" class="form-label fs-6 fw-semibold ps-2">Buscar por fecha</label>
                         <input type="date" name="fecha" id="fecha" class="form-control">
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
@@ -358,7 +358,7 @@
                     </div>
                 </form>
 
-                <div class="table-responsive" id="panel-ventas-mq">
+                <div class="col-12 table-responsive" id="panel-ventas-mq">
                     <table class="table table-striped table-bordered table-sm" id="tabla-compras">
 
                         <thead>
