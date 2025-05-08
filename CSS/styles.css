@@ -183,18 +183,6 @@ div#box_inicio {
   justify-content: space-between;
 }
 
-#logo_texto {
-  font-family: "Birthstone", serif;
-  line-height: 0.9;
-  font-size: 4.5rem;
-  color: rgb(214, 44, 81);
-  text-shadow: 1px 1px black;
-}
-
-#logo_texto span {
-  font-size: 4rem;
-  text-shadow: 1px 1px black;
-}
 
 div#presentacion {
   align-self: center;
@@ -1538,8 +1526,7 @@ img.imagen-producto {
 
 img.imagen-producto:hover {
   transform: scale(1.1);
-  filter: brightness(105%) contrast(105%)
-    drop-shadow(-2px 2px 10px rgb(65, 65, 65));
+  filter: brightness(105%) contrast(105%);
 }
 
 /* Detalle del producto */

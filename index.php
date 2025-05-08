@@ -108,14 +108,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
   <section id="inicio">
     <div class="container text-center py-5">
-      <div class="row align-items-center" id="box_inicio">
-        <div class="col-lg-6 col-md-12 mb-4 mb-lg-0" data-aos="fade-right">
-          <h1 class="display-4 fw-bold" id="logo_texto">Kuday<br><span class="text-warning">Creaciones Artesanales</span></h1>
-          <p class="lead mt-3 text-general fw-semibold">Buscá lo que necesitás en nuestra tienda Online</p>
-          <p class="text-general fw-semibold">Envíos a todo el país.</p>
-        </div>
-        <div class="col-lg-6 col-md-12" data-aos="fade-left">
-          <img src="images/logo/logo.png" class="img-fluid" alt="logo" style="max-height: 350px;">
+      <div class="row align-items-center" id="box_inicio"> 
+        <div class="col-lg-12 col-md-12" data-aos="zoom-in">
+          <img src="images/logo/logo.png" class="img-fluid" alt="logo" style="max-height: 750px;">
         </div>
       </div>
     </div>
