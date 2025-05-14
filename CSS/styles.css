@@ -510,7 +510,7 @@ h3.titulo {
   z-index: 3;
   color: #fff;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
@@ -586,7 +586,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
@@ -656,7 +656,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store3:hover .imagen3 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.4); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -668,7 +668,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
@@ -745,7 +745,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
@@ -827,7 +827,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   text-wrap: nowrap;
@@ -905,7 +905,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   text-wrap: nowrap;
@@ -980,7 +980,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
@@ -1042,7 +1042,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store8:hover .imagen8 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.05); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -1054,7 +1054,7 @@ h3.titulo {
   z-index: 3;
   color: white;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
 
