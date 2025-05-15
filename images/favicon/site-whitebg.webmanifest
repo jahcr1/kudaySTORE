@@ -1,0 +1,19 @@
+{
+  "name": "Mi Sitio Web",
+  "short_name": "MiSitio",
+  "icons": [
+    {
+      "src": "/favicon-192x192-whitebg.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512-whitebg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

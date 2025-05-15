@@ -8,6 +8,13 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon estándar -->
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon/favicon-512x512-transparent.png">
+
+  <!-- Manifest para navegadores que lo usen -->
+  <link rel="manifest" href="images/favicon/site-transparent.webmanifest">
+
   <title>Kuday Argentina Sitio Oficial</title>
 
   <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
@@ -108,7 +115,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
   <section id="inicio">
     <div class="container text-center py-5">
-      <div class="row align-items-center" id="box_inicio"> 
+      <div class="row align-items-center" id="box_inicio">
         <div class="col-lg-12 col-md-12" data-aos="zoom-in">
           <img src="images/logo/logo.png" class="img-fluid" alt="logo" style="max-height: 750px;">
         </div>
@@ -339,17 +346,17 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                   <p class="fw-semibold">Soporte por WhatsApp</p>
                   <p class="fw-normal">Hacé click acá y comunicate con nosotros</p>
                 </a>
+              </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#iconCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#iconCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
       </article>
     </div>
   </section>
@@ -406,7 +413,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="redes-icons-footer">
             <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-facebook fb"></i></a>
             <a href="https://www.facebook.com/dai.quiroga.7" target="_blank"><i class="bi bi-instagram ig"></i></a>
-            
+
           </div>
         </div>
 
@@ -478,7 +485,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 
         title.style.opacity = '0';
         paragraph.style.opacity = '0';
-        
+
         // Forzamos reflujo para que la animación no se quede en estado "animada"
         void title.offsetWidth;
         void paragraph.offsetWidth;
@@ -494,7 +501,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       resetAnimation();
 
       // Aplicar animación en cada transición de slide
-      carousel.addEventListener('slid.bs.carousel', function () {
+      carousel.addEventListener('slid.bs.carousel', function() {
         const activeItem = carousel.querySelector('.carousel-item.active');
         const title = activeItem.querySelector('h5.caption-title');
         const paragraph = activeItem.querySelector('p.caption-parr');
