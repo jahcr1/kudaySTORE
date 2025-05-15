@@ -6,6 +6,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon estándar -->
+    <link rel="icon" type="image/png" sizes="512x512" href="images/favicon/favicon-512x512-transparent.png">
+
+    <!-- Manifest para navegadores que lo usen -->
+    <link rel="manifest" href="images/favicon/site-transparent.webmanifest">
+
     <title>PANEL ADM Kuday</title>
 
     <!-- FAMILIAS TIPOGRAFICAS DE GOOGLE FONTS -->
