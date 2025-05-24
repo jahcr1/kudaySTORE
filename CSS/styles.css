@@ -183,7 +183,6 @@ div#box_inicio {
   justify-content: space-between;
 }
 
-
 div#presentacion {
   align-self: center;
 }
@@ -498,7 +497,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store1:hover .imagen1 {
-  transform: scale(1.1); /* Agranda la imagen ligeramente */
+  transform: scale(1.4); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -1042,7 +1041,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store8:hover .imagen8 {
-  transform: scale(1.05); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */
@@ -2591,7 +2590,6 @@ h1.titulo-contacto {
   }
 }
 
-
 /*  Estilos para tablets hasta notebooks */
 @media all and (min-width: 767.98px) and (max-width: 991.98px) {
   h5.caption-title {
@@ -2606,7 +2604,6 @@ h1.titulo-contacto {
     font-weight: bold;
   }
 }
-
 
 /*  Estilos desde celulares hasta notebooks*/
 @media all and (min-width: 576px) and (max-width: 1199.98px) {

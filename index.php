@@ -190,7 +190,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div class="col-lg-5 fondo-store1 d-flex align-items-center justify-content-center g-2 gy-4">
           <div class="gradiente1"></div> <!-- Capa para el gradiente -->
           <div class="imagen-contenedor1">
-            <img src="./images/tienda/cartucheras7.png" alt="Cartuchera" class="imagen1">
+            <img src="./images/tienda/cartuchera1v1.png" alt="Cartuchera" class="imagen1">
           </div>
           <a href="./vistas/cartucheras.php" target="_blank" class="texto-store1">Cartucheras</a>
         </div>
@@ -246,7 +246,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div class="col-lg-5 fondo-store8 d-flex align-items-center justify-content-center g-2 gy-4">
           <div class="gradiente8"></div> <!-- Capa para el gradiente -->
           <div class="imagen-contenedor8">
-            <img src="./images/tienda/promo114v1.png" alt="Promociones" class="imagen8">
+            <img src="./images/tienda/promo1v1.png" alt="Promociones" class="imagen8">
           </div>
           <a href="./vistas/promociones.php" target="_blank" class="texto-store8">Promociones</a>
         </div>
