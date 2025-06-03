@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       if(isset($_FILES['foto_producto']) && $_FILES['foto_producto']['error'] === UPLOAD_ERR_OK) {
         
         // Verificamos el tamaño de la imagen
-        if ($_FILES['foto_producto']['size'] > 1024 * 1024) { // 1 MB
+        if ($_FILES['foto_producto']['size'] > 8192 * 1024) { // 8 MB
           header("Location: ../panel.php?mensaje=error-peso#formulario-carga1");
           exit();
 
