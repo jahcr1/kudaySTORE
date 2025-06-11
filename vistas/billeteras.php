@@ -93,9 +93,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                                     <span id="cart-count"><?php echo $cartCount; ?></span>
                                 </a>
                             </li>
-
-                       </ul>
-                 </div>
+                        </ul>
+                    </div>
             </div>
         </nav>
     </header>
@@ -128,7 +127,9 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
                         </div>
                         <div class="card contenedor-detalle">
                             <div class="card-body">
-                                <h5 class="item-card"><?php echo $listar_productos['nombre']; ?></h5>
+                                <div class="botonera-nombre">
+                                    <h5 class="item-card"><a href="../producto.php?id=<?php echo $listar_productos['id']; ?>" class="boton-nombre"><?php echo $listar_productos['nombre']; ?></a></h5>
+                                </div>
 
                                 <ul class="detalle-lista">
                                     <li><strong>Artículo:</strong> <?php echo $listar_productos['categoria_nombre']; ?></li>

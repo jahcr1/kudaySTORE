@@ -291,7 +291,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <div>
       <article id="texto_presentacion" class="text-center mx-auto text-general">
         <p id="eslogan" data-aos="fade-up" data-aos-duration="1000">
-          Visita los distintos productos y accesorios en nuestra tienda online, también podes encontrar más fotos y detalles en nuestras Redes Sociales
+          Visita los distintos productos y accesorios en nuestra tienda online, también podes encontrar más fotos y detalles en nuestras redes sociales
         </p>
 
         <!-- Contenedor para pantallas grandes -->

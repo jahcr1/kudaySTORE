@@ -1356,7 +1356,7 @@ i.prest {
 
 p.p-footer {
   font-family: "Klee One", serif;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -1551,9 +1551,15 @@ h5.item-card {
   border-radius: 15px;
   background-color: rgb(255, 151, 173);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
-  cursor: pointer;
+  cursor: default;
   margin-bottom: 20px;
   padding: 5px;
+}
+
+a.boton-nombre {
+  font-family: "Teko", sans-serif;
+  text-decoration: none;
+  color: black;
 }
 
 div.botonera-producto {
@@ -1666,15 +1672,16 @@ a.marca {
   align-self: center;
   width: 100%;
   max-width: 200px;
-  font-family: "Birthstone", serif;
+  font-family: "Gwendolyn", serif;
+  font-weight: 500;
   color: black;
   font-size: 2.5rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 a.marca:hover {
   transform: scale(1.1) translateX(10px);
-  color: #ffffff;
+  color: #fff;
   text-shadow: -2px 2px black;
 }
 
