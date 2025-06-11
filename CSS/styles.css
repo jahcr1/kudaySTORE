@@ -87,9 +87,9 @@ a.brand-logo {
 }
 
 .logo-text {
-  font-family: "Birthstone", serif;
+  font-family: "Gwendolyn", serif;
   font-size: 2.8rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #000;
   width: 100%;
   max-width: 300px;
@@ -732,7 +732,7 @@ h3.titulo {
 
 /* Hover para agrandar la imagen */
 .fondo-store4:hover .imagen4 {
-  transform: scale(1.2); /* Agranda la imagen ligeramente */
+  transform: scale(1.1); /* Agranda la imagen ligeramente */
 }
 
 /* Texto en el centro */

@@ -51,7 +51,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <a class="navbar-brand d-flex align-items-center brand-logo" href="index.php#inicio">
           <!-- Logo como imagen SVG -->
           <img src="images/logo/logo.png" alt="Kuday Artesanías" class="logo-img" />
-          <span class="logo-text">Kuday Artesanias</span>
+          <span class="logo-text">Kuday Artesanías</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,12 +122,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
       </div>
     </div>
 
-    <div class="container-fluid text-center py-4" id="minibanner" data-aos="zoom-in">
-      <h2 class="fs-4 fw-light fst-italic">
-        <span class="text-kuday fw-semibold">KUDAY</span> es una tienda única donde vas a encontrar los mejores
-        <span class="text-kuday fw-semibold">accesorios</span> para verte mejor!
-      </h2>
-    </div>
+
   </section>
 
 
@@ -159,7 +154,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           <div class="carousel-item">
             <img src="images/carousel/baner3.jpg" class="foto-carousel" alt="slide3">
             <div class="carousel-caption">
-              <h5 class="caption-title">Encontrá también buenisimas artesanías para tu hogar</h5>
+              <h5 class="caption-title">Encontrá también artesanías para tu hogar</h5>
               <p class="caption-parr">Art decó, productos para higiene personal y más</p>
             </div>
             <div class="carousel-button">
@@ -214,7 +209,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div class="col-lg-5 fondo-store4 d-flex align-items-center justify-content-center g-2 gy-4">
           <div class="gradiente4"></div> <!-- Capa para el gradiente -->
           <div class="imagen-contenedor4">
-            <img src="./images/tienda/bandolera6.png" alt="Bandoleras" class="imagen4">
+            <img src="./images/tienda/bandoleraplanetasfin.PNG" alt="Bandoleras" class="imagen4">
           </div>
           <a href="./vistas/bandoleras.php" target="_blank" class="texto-store4">Bandoleras</a>
         </div>
@@ -230,7 +225,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
         <div class="col-lg-5 fondo-store6 d-flex align-items-center justify-content-center g-2 gy-4">
           <div class="gradiente6"></div> <!-- Capa para el gradiente -->
           <div class="imagen-contenedor6">
-            <img src="./images/tienda/setmatero1.png" alt="Set Matero" class="imagen6">
+            <img src="./images/tienda/Set Matero floresnueva.PNG" alt="Set Matero" class="imagen6">
           </div>
           <a href="./vistas/setmatero.php" target="_blank" class="texto-store6">Set Matero</a>
         </div>
@@ -296,7 +291,7 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <div>
       <article id="texto_presentacion" class="text-center mx-auto text-general">
         <p id="eslogan" data-aos="fade-up" data-aos-duration="1000">
-          Visita los distintos productos y accesorios en nuestra tienda online para encontrar lo que está de moda en el mercado regional
+          Visita los distintos productos y accesorios en nuestra tienda online, también podes encontrar más fotos y detalles en nuestras Redes Sociales
         </p>
 
         <!-- Contenedor para pantallas grandes -->
@@ -308,13 +303,13 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
           </div>
           <div class="col-md-3 icon-box" data-aos="zoom-in" data-aos-delay="200">
             <i class="bi bi-credit-card"></i>
-            <p class="fw-semibold">Cuotas sin interés</p>
-            <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+            <p class="fw-semibold">Medios de pago</p>
+            <p>En Kuday aceptamos varios métodos de pago, transferencias bancarias, transferencias de plataformas digitales como <strong>MercadoPago</strong>, <strong>Ualá</strong>, <strong>Modo</strong>, <strong>Lemon</strong>, y <strong>efectivo.</strong></p>
           </div>
           <a href="https://wa.me/<?php echo $_ENV['WSP_CEL']; ?>" target="_blank" class="col-md-3 icon-box text-decoration-none" style="color:black" data-aos="zoom-in" data-aos-delay="300">
             <i class="bi bi-whatsapp"></i>
             <p class="fw-semibold">Soporte por WhatsApp</p>
-            <p class="fw-semibold">Hacé click acá y comunicate con nosotros</p>
+            <p class="fw-normal">Hacé click acá y comunicate con nosotros</p>
           </a>
         </div>
 
@@ -334,8 +329,8 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
               <div class="carusel-information">
                 <div class="text-center icon-box">
                   <i class="bi bi-credit-card"></i>
-                  <p class="fw-semibold">Cuotas sin interés</p>
-                  <p>3 y 6 cuotas sin interés con tarjeta de crédito bancarizadas y hasta 4 cuotas sin interés con tarjeta de débito</p>
+                  <p class="fw-semibold">Medios de pago</p>
+                  <p>En Kuday aceptamos varios métodos de pago, transferencias bancarias, transferencias de plataformas digitales como <strong>MercadoPago</strong>, <strong>Ualá</strong>, <strong>Modo</strong>, <strong>Lemon</strong>, y <strong>efectivo.</strong></p>
                 </div>
               </div>
             </div>
