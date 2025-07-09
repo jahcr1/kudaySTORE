@@ -291,6 +291,10 @@
                                                                     </div>
                                                                     <input type="file" name="foto_producto" id="modificarFoto<?php echo $producto['id']; ?>" class="form-control form-control-sm mb-2" accept=".jpg, .jpeg, .png, .gif">
 
+                                                                    <!-- Campo para miniaturas adicionales -->
+                                                                    <label for="thumbnails<?php echo $producto['id']; ?>" class="label_listar_modal mt-2">Agregar imágenes extras (thumbnails)</label>
+                                                                    <input type="file" name="thumbnails[]" id="thumbnails<?php echo $producto['id']; ?>" class="form-control form-control-sm mb-2" accept=".jpg,.jpeg,.png,.gif" multiple>
+
 
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Salir</button>
