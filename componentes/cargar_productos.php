@@ -1,5 +1,6 @@
 <?php
 require_once 'conexion.php';
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -46,6 +47,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       
       if($stmt->execute()) {
         $stmt->close();
+
+        // Procesar miniaturas si se subieron
+        if (isset($_FILES['miniaturas']) && count($_FILES['miniaturas']['name']) > 0) {
+            for ($i = 0; $i < count($_FILES['miniaturas']['name']); $i++) {
+                if ($_FILES['miniaturas']['error'][$i] === UPLOAD_ERR_OK && $_FILES['miniaturas']['size'][$i] <= 8192 * 1024) {
+                    $miniaturaData = file_get_contents($_FILES['miniaturas']['tmp_name'][$i]);
+                    $miniaturaTipo = mime_content_type($_FILES['miniaturas']['tmp_name'][$i]);
+
+                    $stmt_thumb = $conexion->prepare("INSERT INTO producto_imagenes (producto_id, imagen, formato) VALUES (?, ?, ?)");
+                    $stmt_thumb->bind_param("iss", $id_producto, $miniaturaData, $miniaturaTipo);
+                    $stmt_thumb->execute();
+                    $stmt_thumb->close();
+                }
+            }
+        }
         
         // Redirigir a panel.php con un parámetro de éxito en la URL
         header("Location: ../panel.php?mensaje=exito#formulario-carga1");

@@ -124,8 +124,15 @@
                                 <textarea name="descripcion" id="descripcion" rows="5" placeholder="Descripción del Producto, medidas, colores, etc..." class="form-control" required></textarea>
                             </div>
                             <div class="mb-2 p-1">
-                                <label for="subirfoto" class="col-form-label fs-6 fw-semibold">Subir Foto: (.jpg, .gif, .png) (Max: 1024KB = 1MB)</label>
+                                <label for="subirfoto" class="col-form-label fs-6 fw-semibold">Subir Foto Principal: (.jpg, .gif, .png) (Max: 8192KB = 8MB)</label>
                                 <input type="file" name="foto_producto" id="subirfoto" class="form-control form-control-sm" required>
+                            </div>
+                            <!-- FORMULARIO PARA VARIOS ARCHIVOS DE FOTO -->
+                            <div>
+                                <div class="mb-2 p-1">
+                                    <label for="subirfotos" class="col-form-label fs-6 fw-semibold">Subir Miniaturas: (JPG, PNG, GIF - Máx 8MB c/u)</label>
+                                    <input type="file" name="miniaturas[]" id="subirfotos" class="form-control form-control-sm" multiple accept="image/*">
+                                </div>
                             </div>
                             <div class="mb-2 p-1">
                                 <input type="submit" class="form-control btn btn-primary" id="formulario-carga1" value="Cargar PRODUCTO">
@@ -160,7 +167,6 @@
                     </div>
                 </div>
             </div>
-
 
         </section>
 

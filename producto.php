@@ -54,7 +54,9 @@ if (!$producto) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet">
 
     <!-- CSS LIGHTGALLERY  -->
-     <link type="text/css" rel="stylesheet" href="css/lightgallery-bundle.css" />
+    <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.js"></script>
 
     <!-- CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -131,12 +133,42 @@ if (!$producto) {
             <div class="detalleproducto row align-items-start justify-content-center g-5 shadow rounded-4 p-4">
                 
                 <!-- Imagen del producto -->
+                 <!--
                 <div class="col-lg-5 text-center">
                     <img src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>" 
                         alt="Imagen del Producto" 
                         class="img-fluid rounded-3 shadow-sm producto-img-prod"
                         style="max-height: 400px; object-fit: contain;">
                 </div>
+-->
+
+                <!-- Galería del producto -->
+                <div class="col-lg-5">
+                    <div id="lightgallery" class="mb-3 text-center">
+                        <!-- Imagen principal -->
+                        <a href="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>">
+                            <img 
+                                src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>"
+                                class="img-fluid rounded-3 shadow-sm"
+                                alt="Imagen del Producto" 
+                                style="max-height: 400px; object-fit: contain;"
+                            >
+                        </a>
+                    </div>
+
+                    <!-- Thumbnails (solo 1 imagen en este caso, puedes duplicar si tienes más) -->
+                    <div class="d-flex justify-content-center gap-2" id="thumbnails">
+                        <a href="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>">
+                            <img 
+                                src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>"
+                                class="img-thumbnail"
+                                style="width: 80px; height: 80px; object-fit: cover;"
+                                alt="Miniatura"
+                            >
+                        </a>
+                        <!-- Aquí podrías agregar más thumbnails si los tienes -->
+                    </div>
+                </div>                
 
                 <!-- Detalles del producto -->
                 <div class="cuadro-detalle col-lg-6 text-center">
@@ -232,7 +264,7 @@ if (!$producto) {
                         </div>
                     </div>
 
-                </div> <!-- Fin col -->
+                </div> <!-- Fin cuadro detalle -->
             </div> <!-- Fin row -->
         </div> <!-- Fin container -->
     </section>
@@ -362,6 +394,14 @@ if (!$producto) {
                 alert('Error al agregar al carrito. Intenta nuevamente.');
             });
         });
+    });
+</script>
+
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        plugins: [lgThumbnail],
+        speed: 500,
+        thumbnail: true
     });
 </script>
 
