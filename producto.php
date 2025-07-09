@@ -159,14 +159,18 @@ $stmt_imagenes->close();
 
                     <!-- Thumbnails (se cargan los thumbsnails q sean necesarios, quizas maximo 3) -->
                     <div class="d-flex justify-content-center flex-wrap gap-2 mt-3" id="thumbnails">
-                        <?php foreach ($imagenes_adicionales as $img): ?>
-                            <img
-                                src="data:<?php echo $img['formato']; ?>;base64,<?php echo base64_encode($img['imagen']); ?>"
-                                class="img-thumbnail thumbnail-image"
-                                style="width: 80px; height: 80px; object-fit: contain; cursor: pointer;"
-                                data-full="data:<?php echo $img['formato']; ?>;base64,<?php echo base64_encode($img['imagen']); ?>"
-                                alt="Miniatura">
-                        <?php endforeach; ?>
+                        <?php if (count($imagenes_adicionales) > 0): ?>
+                            <?php foreach ($imagenes_adicionales as $img): ?>
+                                <img
+                                    src="data:<?php echo $img['formato']; ?>;base64,<?php echo base64_encode($img['imagen']); ?>"
+                                    class="img-thumbnail thumbnail-image"
+                                    style="width: 80px; height: 80px; object-fit: contain; cursor: pointer;"
+                                    data-full="data:<?php echo $img['formato']; ?>;base64,<?php echo base64_encode($img['imagen']); ?>"
+                                    alt="Miniatura">
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="text-muted mt-2">Sin fotos adicionales.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
 
