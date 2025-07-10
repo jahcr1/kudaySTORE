@@ -67,39 +67,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // NUEVO BLOQUE: Manejo robusto de thumbnails
-        if (isset($_FILES['thumbnails']) && is_array($_FILES['thumbnails']['name']) && count($_FILES['thumbnails']['name']) > 0) {
+        $existenThumbnails = false;
 
-            // Borrar miniaturas existentes del producto
-            $deleteThumbs = $conexion->prepare("DELETE FROM producto_imagenes WHERE producto_id = ?");
-            $deleteThumbs->bind_param("i", $id);
-            $deleteThumbs->execute();
-            $deleteThumbs->close();
-
-            // Insertar nuevas miniaturas
-            $insertThumb = $conexion->prepare("INSERT INTO producto_imagenes (producto_id, imagen, formato) VALUES (?, ?, ?)");
-
+        if (
+            isset($_FILES['thumbnails']) &&
+            is_array($_FILES['thumbnails']['name']) &&
+            count($_FILES['thumbnails']['name']) > 0
+        ) {
             $allowed_mimes = ['image/jpeg', 'image/png', 'image/webp']; // Tipos permitidos
 
-            for ($i = 0; $i < count($_FILES['thumbnails']['name']); $i++) {
-                if ($_FILES['thumbnails']['error'][$i] === UPLOAD_ERR_OK) {
-                    $thumbTmpName = $_FILES['thumbnails']['tmp_name'][$i];
-                    $thumbSize = $_FILES['thumbnails']['size'][$i];
+            // Validar si al menos una miniatura es válida
+            foreach ($_FILES['thumbnails']['name'] as $index => $name) {
+                if ($_FILES['thumbnails']['error'][$index] === UPLOAD_ERR_OK) {
+                    $thumbMime = mime_content_type($_FILES['thumbnails']['tmp_name'][$index]);
+                    $thumbSize = $_FILES['thumbnails']['size'][$index];
 
-                    $thumbMime = mime_content_type($thumbTmpName);
-
-                    // Validación de tipo y tamaño max 8 MB
-                    if ($thumbSize > 8 * 1024 * 1024 || !in_array($thumbMime, $allowed_mimes)) {
-                        error_log("Miniatura rechazada: " . $_FILES['thumbnails']['name'][$i]);
-                        continue;
+                    if ($thumbSize <= 8 * 1024 * 1024 && in_array($thumbMime, $allowed_mimes)) {
+                        $existenThumbnails = true;
+                        break;
                     }
-
-                    $thumbData = file_get_contents($thumbTmpName);
-                    $insertThumb->bind_param("iss", $id, $thumbData, $thumbMime);
-                    $insertThumb->execute();
                 }
             }
 
-            $insertThumb->close();
+            // Si se encontraron thumbnails existentes, proceder con borrado e inserción
+            if ($existenThumbnails) {
+                // Borrar miniaturas existentes del producto
+                $deleteThumbs = $conexion->prepare("DELETE FROM producto_imagenes WHERE producto_id = ?");
+                $deleteThumbs->bind_param("i", $id);
+                $deleteThumbs->execute();
+                $deleteThumbs->close();
+
+                // Insertar nuevas miniaturas
+                $insertThumb = $conexion->prepare("INSERT INTO producto_imagenes (producto_id, imagen, formato) VALUES (?, ?, ?)");
+
+                for ($i = 0; $i < count($_FILES['thumbnails']['name']); $i++) {
+                    if ($_FILES['thumbnails']['error'][$i] === UPLOAD_ERR_OK) {
+                        $thumbTmpName = $_FILES['thumbnails']['tmp_name'][$i];
+                        $thumbSize = $_FILES['thumbnails']['size'][$i];
+                        $thumbMime = mime_content_type($thumbTmpName);
+
+                        if ($thumbSize > 8 * 1024 * 1024 || !in_array($thumbMime, $allowed_mimes)) {
+                            error_log("Miniatura rechazada: " . $_FILES['thumbnails']['name'][$i]);
+                            continue;
+                        }
+
+                        $thumbData = file_get_contents($thumbTmpName);
+                        $insertThumb->bind_param("iss", $id, $thumbData, $thumbMime);
+                        $insertThumb->execute();
+                    }
+                }
+
+                $insertThumb->close();
+            }
         }
 
         // Redirigimos de vuelta con una notificación de éxito
