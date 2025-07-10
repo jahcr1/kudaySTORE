@@ -65,7 +65,7 @@ $stmt_imagenes->close();
 
     <!-- CSS LIGHTGALLERY  -->
     <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.umd.js"></script>
 
     <!-- CSS DE BOOTSTRAP -->
@@ -147,7 +147,7 @@ $stmt_imagenes->close();
                 <div class="col-lg-5">
                     <div id="lightgallery" class="mb-3 text-center">
                         <!-- Imagen principal -->
-                        <a href="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>">
+                        <a id="main-image-link" href="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>">
                             <img
                                 id="imagen_principal"
                                 src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>"
@@ -160,6 +160,13 @@ $stmt_imagenes->close();
                     <!-- Thumbnails (se cargan los thumbsnails q sean necesarios, quizas maximo 3) -->
                     <div class="d-flex justify-content-center flex-wrap gap-2 mt-3" id="thumbnails">
                         <?php if (count($imagenes_adicionales) > 0): ?>
+                            <img
+
+                                src="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>"
+                                class="img-thumbnail thumbnail-image"
+                                style="width: 80px; height: 80px; object-fit: contain; cursor: pointer;"
+                                data-full="data:<?php echo $producto['formato_imagen']; ?>;base64,<?php echo base64_encode($producto['ci_imagen_producto']); ?>"
+                                alt="Miniatura">
                             <?php foreach ($imagenes_adicionales as $img): ?>
                                 <img
                                     src="data:<?php echo $img['formato']; ?>;base64,<?php echo base64_encode($img['imagen']); ?>"
@@ -407,31 +414,54 @@ $stmt_imagenes->close();
     </script>
 
     <script>
-        //  Script para manejar clicks en los thumbnails y hacerlos principal
-        document.querySelectorAll('.thumbnail-image').forEach(thumb => {
-            thumb.addEventListener('click', function () {
-                const fullImage = this.getAttribute('data-full');
+        let lgInstance = null;
+
+        // Función para inicializar lightGallery en el link principal
+        function initGallery(src) {
+            const mainLink = document.getElementById('main-image-link');
+
+            // Actualizar el href del <a>
+            mainLink.href = src;
+
+            // Destruir instancia anterior si existe
+            if (lgInstance) {
+                lgInstance.destroy();
+            }
+
+            // Re-inicializar lightGallery en modo normal (no dynamic)
+            lgInstance = lightGallery(mainLink, {
+                plugins: [lgThumbnail],
+                speed: 500,
+                thumbnail: true
+            });
+        }
+
+        // Al hacer clic en una miniatura
+        document.querySelectorAll('.thumbnail-image').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function () {
+                const newSrc = this.getAttribute('data-full');
+
+                // Cambiar imagen principal
                 const mainImage = document.getElementById('imagen_principal');
-                const mainLink = mainImage.closest('a');
+                mainImage.src = newSrc;
 
-                // Actualizar imagen principal
-                mainImage.src = fullImage;
-                if (mainLink) mainLink.href = fullImage;
-
-                // Resaltar miniatura activa
+                // Marcar miniatura activa
                 document.querySelectorAll('.thumbnail-image').forEach(img => img.classList.remove('active'));
                 this.classList.add('active');
+
+                // Re-inicializar galería con la nueva imagen
+                initGallery(newSrc);
             });
+        });
+
+        // Inicializar al cargar la página con la imagen principal por defecto
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultSrc = document.getElementById('imagen_principal').src;
+            initGallery(defaultSrc);
         });
     </script>
 
-    <script>
-        lightGallery(document.getElementById('lightgallery'), {
-            plugins: [lgThumbnail],
-            speed: 500,
-            thumbnail: true
-        });
-    </script>
+    
 
 
 </body>
