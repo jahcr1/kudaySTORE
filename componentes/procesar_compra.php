@@ -3,15 +3,20 @@
     require_once 'conexion.php';
     require_once __DIR__ . '/../vendor/autoload.php';
 
+    use MercadoPago\SDK;
+    use MercadoPago\Preference;
+    use MercadoPago\Item;
 
-    MercadoPago\SDK::setAccessToken($_ENV['MP_ACCESS_TOKEN']); // Usa tus credenciales reales
 
-    $preference = new MercadoPago\Preference();
+
+    SDK::setAccessToken($_ENV['MP_ACCESS_TOKEN']); // Usa tus credenciales reales
+
+    $preference = new Preference();
 
     // Armar los productos para Mercado Pago
     $items = [];
     foreach ($productos_array as $producto) {
-        $item = new MercadoPago\Item();
+        $item = new Item();
         $item->id = $producto['id'];
         $item->title = $producto['name'];
         $item->quantity = $producto['cantidad'];
