@@ -1,0 +1,3 @@
+2025-08-08 08:13:04 - Class "MercadoPago\SDK" not found
+#0 {main}
+
