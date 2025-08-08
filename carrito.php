@@ -191,11 +191,11 @@ if (!$productosVacios) {
                                 </table>
                             </div>
                             <?php if (!$productosVacios) : ?>
-                            <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap" id="botonesCompra">
-                                <button id="continuarCompraBtn" class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
-                                <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Finalizar Compra</button>
-                                <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
-                            </div>
+                                <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap" id="botonesCompra">
+                                    <button id="continuarCompraBtn" class="btn btn-primary" onclick="continuarCompra()">Continuar con la Compra</button>
+                                    <button id="finalizarCompraBtn" class="btn btn-success" style="display: none;" onclick="finalizarCompra()">Pagar</button>
+                                    <button id="reiniciarBtn" class="btn btn-danger" style="display: none;" onclick="reiniciarCarrito()">Reiniciar Carrito</button>
+                                </div>
                             <?php endif; ?>
 
 
@@ -321,8 +321,8 @@ if (!$productosVacios) {
 
     <!-- Overlay de carga oculto inicialmente -->
     <div id="overlay-carga" style="display:none;">
-    <div class="spinner"></div>
-    <p>Procesando tu compra, por favor espera...</p>
+        <div class="spinner"></div>
+        <p>Procesando tu compra, por favor espera...</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -377,12 +377,12 @@ if (!$productosVacios) {
 
             // Busca que cantidad queda en el carrito y si es 0 lo reinicia
             const totalItems = Array.from(document.querySelectorAll('.cantidad'))
-                            .reduce((s, el) => s + parseInt(el.value), 0);
+                .reduce((s, el) => s + parseInt(el.value), 0);
 
             if (totalItems === 0) {
                 // vacía storage + sesión y recarga
-                reiniciarCarrito();          // ← ya existe, la reutilizamos
-                return;                      // detiene cualquier resto de lógica
+                reiniciarCarrito(); // ← ya existe, la reutilizamos
+                return; // detiene cualquier resto de lógica
             }
         }
 
@@ -390,14 +390,14 @@ if (!$productosVacios) {
         function updateTotal() {
             const totalElem = document.getElementById('total');
             const total = Array.from(document.querySelectorAll('.cantidad'))
-                                .reduce((sum, el) => {
-                                    const id = el.dataset.id;
-                                    const price = parseFloat(
-                                        document.querySelector(`tr[data-id='${id}'] .precio`)
-                                                .textContent.replace('$', '')
-                                    );
-                                    return sum + price * parseInt(el.value);
-                                }, 0);
+                .reduce((sum, el) => {
+                    const id = el.dataset.id;
+                    const price = parseFloat(
+                        document.querySelector(`tr[data-id='${id}'] .precio`)
+                        .textContent.replace('$', '')
+                    );
+                    return sum + price * parseInt(el.value);
+                }, 0);
 
             totalElem.textContent = `$${total.toFixed(2)}`;
 
@@ -425,7 +425,7 @@ if (!$productosVacios) {
         // Función para actualizar el contador de productos en el carrito
         function updateCartCount() {
             const count = Array.from(document.querySelectorAll('.cantidad'))
-                        .reduce((sum, el) => sum + parseInt(el.value), 0);
+                .reduce((sum, el) => sum + parseInt(el.value), 0);
 
             // actualiza burbuja del carrito
             document.getElementById('cart-count').textContent = count;
@@ -470,7 +470,7 @@ if (!$productosVacios) {
 
         // Función para continuar con la compra
         function continuarCompra() {
-            
+
             let totalItems = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => sum + parseInt(el.value), 0);
 
             if (totalItems === 0) {
@@ -629,7 +629,9 @@ if (!$productosVacios) {
 
                     // Enfocar en el primer accordion (productos)
                     setTimeout(() => {
-                        document.getElementById('collapseCart').scrollIntoView({ behavior: 'smooth' });
+                        document.getElementById('collapseCart').scrollIntoView({
+                            behavior: 'smooth'
+                        });
                     }, 400);
 
                 })
@@ -695,103 +697,93 @@ if (!$productosVacios) {
 
 
         function finalizarCompra() {
-            let nombre = document.getElementById("nombre").value.trim();
-            let apellido = document.getElementById("apellido").value.trim(); // Nuevo campo
-            let telefono = document.getElementById("telefono").value.trim(); // Nuevo campo
-            let email = document.getElementById("correo").value.trim();
-            let direccion = document.getElementById("direccion").value.trim();
-            let ciudad = document.getElementById("ciudad").value.trim(); // Nuevo campo
-            let provincia = document.getElementById("provincia").value.trim();
-            let codigopostal = document.getElementById("codigoPostal").value.trim();
-            // Validar y recalcular antes de finalizar
-            let subtotal = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
-                let id = el.dataset.id;
-                let price = parseFloat(document.querySelector(`tr[data-id='${id}'] .precio`).textContent.replace('$', ''));
-                return sum + (price * parseInt(el.value));
-            }, 0);
+            // Mostrar overlay de "procesando" (asegurate tener un elemento overlay con id="overlay")
+            const overlay = document.getElementById('overlay');
+            if (overlay) overlay.classList.add('visible');
 
-            // Siempre recalcular costo de envío desde localStorage o forzarlo si está vacío
-            let costoEnvioStr = localStorage.getItem("costoEnvio");
-            let costoEnvio = (costoEnvioStr && !isNaN(costoEnvioStr)) ? parseFloat(costoEnvioStr) : 0;
+            try {
+                let nombre = document.getElementById("nombre").value.trim();
+                let apellido = document.getElementById("apellido").value.trim();
+                let telefono = document.getElementById("telefono").value.trim();
+                let email = document.getElementById("correo").value.trim();
+                let direccion = document.getElementById("direccion").value.trim();
+                let ciudad = document.getElementById("ciudad").value.trim();
+                let provincia = document.getElementById("provincia").value.trim();
+                let codigopostal = document.getElementById("codigoPostal").value.trim();
 
-            // Actualizar valores en pantalla y localStorage antes de continuar
-            let total = subtotal + costoEnvio;
-            document.getElementById("total").textContent = `$${total.toFixed(2)}`;
-            localStorage.setItem("totalCompra", total.toFixed(2));
-            localStorage.setItem("subtotalCompra", subtotal.toFixed(2));
+                // recalcular subtotal
+                let subtotal = Array.from(document.querySelectorAll('.cantidad')).reduce((sum, el) => {
+                    let id = el.dataset.id;
+                    let priceEl = document.querySelector(`tr[data-id='${id}'] .precio`);
+                    let price = 0;
+                    if (priceEl) price = parseFloat(priceEl.textContent.replace('$', '').replace(',', '.')) || 0;
+                    return sum + (price * parseInt(el.value || 0));
+                }, 0);
 
+                let costoEnvioStr = localStorage.getItem("costoEnvio");
+                let costoEnvio = (costoEnvioStr && !isNaN(costoEnvioStr)) ? parseFloat(costoEnvioStr) : 0;
 
-            // Recoger los productos del carrito
-            let productos = [];
-            document.querySelectorAll("#cart-body tr[data-id]").forEach(row => {
-                let id = row.dataset.id;
-                let name = row.cells[0].textContent;
-                let price = parseFloat(row.cells[1].textContent.replace('$', ''));
-                let cantidad = parseInt(row.querySelector('.cantidad').value);
-                productos.push({
-                    id,
-                    name,
-                    cantidad,
-                    price
+                let total = subtotal + costoEnvio;
+                const totalEl = document.getElementById("total");
+                if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+
+                localStorage.setItem("totalCompra", total.toFixed(2));
+                localStorage.setItem("subtotalCompra", subtotal.toFixed(2));
+
+                // productos
+                let productos = [];
+                document.querySelectorAll("#cart-body tr[data-id]").forEach(row => {
+                    let id = row.dataset.id;
+                    let name = row.cells[0] ? row.cells[0].textContent.trim() : '';
+                    let price = row.querySelector('.precio') ? parseFloat(row.querySelector('.precio').textContent.replace('$', '').replace(',', '.')) : 0;
+                    let cantidad = row.querySelector('.cantidad') ? parseInt(row.querySelector('.cantidad').value || 0) : 0;
+                    if (cantidad > 0) {
+                        productos.push({ id, name, cantidad, price });
+                    }
                 });
-            });
 
-            // Se sanitizan los datos antes de enviarlos al servidor
-            let params = new URLSearchParams({
-                nombre: nombre, // No se codifica
-                apellido: apellido, // No se codifica
-                telefono: telefono, // No se codifica
-                email: email, // No se codifica
-                direccion: direccion, // No se codifica
-                provincia: provincia, // No se codifica
-                ciudad: ciudad, // No se codifica
-                codigopostal: codigopostal, // No se codifica
-                productos: JSON.stringify(productos),
-                total: total,
-                costoEnvio: costoEnvio
-            });
+                if (productos.length === 0) {
+                    if (overlay) overlay.classList.remove('visible');
+                    alert('El carrito está vacío.');
+                    return;
+                }
 
-            fetch('./componentes/procesar_compra.php', {
+                const payload = {
+                    nombre, apellido, telefono, email, direccion, provincia, ciudad, codigopostal,
+                    productos, total, costoEnvio
+                };
+
+                fetch('./componentes/procesar_compra.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: params
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                    return response.json();
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+                    return res.json();
                 })
                 .then(data => {
-                    if (data.success) {
-                        alert("Compra finalizada con éxito. Recibirás un correo con el comprobante en PDF.");
-
-                        // Verificación de URL antes de descargar el PDF (seguridad)
-                        if (data.pdfUrl) {
-                            const downloadLink = document.createElement("a");
-                            downloadLink.href = data.pdfUrl;
-                            downloadLink.download = "factura.pdf";
-                            document.body.appendChild(downloadLink);
-                            downloadLink.click();
-                            document.body.removeChild(downloadLink);
-                        } else {
-                            alert("Error: URL del comprobante no válida.");
-                        }
-
-                        // Limpiar localStorage y redirigir
-                        localStorage.removeItem("costoEnvio");
-                        localStorage.removeItem("totalCompra");
-                        localStorage.removeItem('carrito');
-                        window.location.href = "index.php?compra=ok";
+                    if (data.success && data.init_point) {
+                        // redirigir al checkout (Mercado Pago)
+                        window.location.href = data.init_point;
                     } else {
-                        alert("Error: " + data.message);
+                        throw new Error(data.message || 'No se generó init_point.');
                     }
                 })
-                .catch(error => {
-                    console.error("Error en la respuesta del servidor:", error);
-                    alert("Hubo un problema al procesar la compra. Por favor, revisa tu conexión o intenta nuevamente.");
+                .catch(err => {
+                    console.error('Error en compra:', err);
+                    alert('Hubo un problema al procesar la compra. ' + (err.message || 'Intentá nuevamente.'));
+                    if (overlay) overlay.classList.remove('visible');
                 });
+
+            } catch (err) {
+                console.error('Error al preparar la compra:', err);
+                alert('Error interno al procesar la compra.');
+                if (overlay) overlay.classList.remove('visible');
+            }
         }
+
+
 
         // Funcion para reiniciar el carrito en el ultimo paso
         function reiniciarCarrito() {
@@ -813,21 +805,20 @@ if (!$productosVacios) {
 
         // Script para overlay de carga al finalizar la compra
         document.addEventListener('DOMContentLoaded', function() {
-        const finalizarBtn = document.getElementById('finalizarCompraBtn'); // ID de tu botón de finalizar compra
-        finalizarBtn.addEventListener('click', function() {
-        // Mostrar overlay
-        document.getElementById('overlay-carga').style.display = 'flex';
-        
-        // Deshabilitar todo
-        document.body.style.pointerEvents = 'none';
-        
-        // Permitir eventos solo en overlay (opcional)
-        document.getElementById('overlay-carga').style.pointerEvents = 'auto';
-        
-        // Importante: dejar que el submit/trámite del formulario siga
-        });
-    });
+            const finalizarBtn = document.getElementById('finalizarCompraBtn'); // ID de tu botón de finalizar compra
+            finalizarBtn.addEventListener('click', function() {
+                // Mostrar overlay
+                document.getElementById('overlay-carga').style.display = 'flex';
 
+                // Deshabilitar todo
+                document.body.style.pointerEvents = 'none';
+
+                // Permitir eventos solo en overlay (opcional)
+                document.getElementById('overlay-carga').style.pointerEvents = 'auto';
+
+                // Importante: dejar que el submit/trámite del formulario siga
+            });
+        });
     </script>
 </body>
 
