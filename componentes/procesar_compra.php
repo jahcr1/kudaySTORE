@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 ini_set('display_errors', '1'); // solo en dev
@@ -7,12 +8,10 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/conexion.php'; // tu conexión mysqli en $conexion
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Dotenv\Dotenv;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 
 header('Content-Type: application/json; charset=utf-8');
-
 
 $logFile = __DIR__ . '/logs_errores_php.txt';
 
@@ -38,7 +37,7 @@ try {
     $direccion   = trim($input['direccion'] ?? '');
     $provincia   = trim($input['provincia'] ?? '');
     $ciudad      = trim($input['ciudad'] ?? '');
-    $codigopostal= trim($input['codigopostal'] ?? '');
+    $codigopostal = trim($input['codigopostal'] ?? '');
     $productos   = $input['productos'] ?? $input['carrito'] ?? [];
     $total       = floatval($input['total'] ?? 0);
     $costoEnvio  = floatval($input['costoEnvio'] ?? 0);
@@ -54,8 +53,11 @@ try {
     }
 
     // Validaciones básicas
-    if ($nombre === '' || $apellido === '' || $telefono === '' || $email === '' || $direccion === '' ||
-        $provincia === '' || $ciudad === '' || $codigopostal === '' || $total <= 0 || count($productos_array) === 0) {
+    if (
+        $nombre === '' || $apellido === '' || $telefono === '' || $email === '' ||
+        $direccion === '' || $provincia === '' || $ciudad === '' || $codigopostal === '' ||
+        $total <= 0 || count($productos_array) === 0
+    ) {
         throw new Exception('Faltan datos obligatorios o carrito vacío.');
     }
 
@@ -72,7 +74,6 @@ try {
     }
 
     $estado = 'Pendiente';
-    // 9 strings, 1 double, 1 string => 's' x9, 'd', 's'
     $types = 'sssssssssds';
 
     $stmt->bind_param(
@@ -97,12 +98,24 @@ try {
     $idCompra = (int)$stmt->insert_id;
     $stmt->close();
 
-    // Configurar Mercado Pago (token desde .env o variable de entorno)
+    // Configurar Mercado Pago
     $mpAccessToken = $_ENV['MP_ACCESS_TOKEN'] ?? getenv('MP_ACCESS_TOKEN') ?: null;
     if (!$mpAccessToken) {
         throw new Exception('Token de Mercado Pago no encontrado en variables de entorno.');
     }
     MercadoPagoConfig::setAccessToken($mpAccessToken);
+
+    // Detectar entorno y definir baseUrl
+    $appEnv = $_ENV['APP_ENV'] ?? getenv('APP_ENV') ?? 'production';
+    if ($appEnv === 'local') {
+        $ngrokUrl = $_ENV['NGROK_URL'] ?? getenv('NGROK_URL');
+        if (!$ngrokUrl) {
+            throw new Exception('NGROK_URL no definido en .env para entorno local.');
+        }
+        $baseUrl = rtrim($ngrokUrl, '/');
+    } else {
+        $baseUrl = 'https://kudayartesanias.com.ar';
+    }
 
     // Crear items para la preferencia
     $items = [];
@@ -121,7 +134,6 @@ try {
         ];
     }
 
-    // Costo de envío como item opcional
     if ($costoEnvio > 0) {
         $items[] = [
             'title' => 'Costo de envío',
@@ -131,10 +143,7 @@ try {
         ];
     }
 
-    // Back URLs y base del sitio (usar dominio si lo tenés)
-    $host = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
-    $baseUrl = $host . ($_SERVER['HTTP_HOST'] ?? 'localhost');
-
+    // Armar preferencia
     $preferencePayload = [
         'items' => $items,
         'payer' => [
@@ -149,16 +158,15 @@ try {
         ],
         'auto_return' => 'approved',
         'notification_url' => $baseUrl . '/webhook.php',
+        'statement_descriptor' => "Tienda Kuday",
         'external_reference' => (string)$idCompra
     ];
 
     $client = new PreferenceClient();
     $preference = $client->create($preferencePayload);
 
-    // Obtener init_point (producción o sandbox)
     $init_point = $preference->init_point ?? $preference->sandbox_init_point ?? null;
     if (!$init_point) {
-        // fallback: convertir objeto a array y buscar claves
         $arr = json_decode(json_encode($preference), true);
         $init_point = $arr['init_point'] ?? $arr['sandbox_init_point'] ?? null;
     }
@@ -173,9 +181,7 @@ try {
         'id_compra' => $idCompra
     ], JSON_UNESCAPED_UNICODE);
     exit;
-
 } catch (Throwable $e) {
-    // Log para debugging
     $msg = date('Y-m-d H:i:s') . ' - procesar_compra ERROR: ' . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n\n";
     file_put_contents($logFile, $msg, FILE_APPEND);
     http_response_code(500);

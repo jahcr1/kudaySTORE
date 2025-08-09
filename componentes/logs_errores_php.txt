@@ -1,3 +1,15 @@
 2025-08-08 08:13:04 - Class "MercadoPago\SDK" not found
 #0 {main}
 
+2025-08-09 12:20:17 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33033894389","topic":"merchant_order"}
+2025-08-09 12:20:18 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"121613832212"},"date_created":"2025-08-09T10:20:16Z","id":123601096561,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-09 12:20:18 - Webhook recibido: {"resource":"121613832212","topic":"payment"}
+2025-08-09 12:20:18 - webhook ERROR: Api error. Check response for details
+2025-08-09 12:20:18 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33033894389","topic":"merchant_order"}
+2025-08-09 12:20:19 - Procesando compra 8 con productos: [{"id":"999","name":"cartuchera fhuiarehra","cantidad":1,"price":7500}]
+2025-08-09 12:20:19 - Intentando descontar producto 999 cantidad 1
+2025-08-09 12:20:19 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-09 12:20:19 - Procesando compra 8 con productos: [{"id":"999","name":"cartuchera fhuiarehra","cantidad":1,"price":7500}]
+2025-08-09 12:20:19 - Intentando descontar producto 999 cantidad 1
+2025-08-09 12:20:19 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-09 12:20:19 - webhook ERROR: Api error. Check response for details
