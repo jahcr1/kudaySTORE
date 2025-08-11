@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// Ajuste zona horaria Argentina
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
 
@@ -10,54 +13,72 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Payment\PaymentClient;
-use MercadoPago\Client\MerchantOrder\MerchantOrderClient;
-use MercadoPago\Client\Preference\PreferenceClient;
 use Dompdf\Dompdf;
 use PHPMailer\PHPMailer\PHPMailer;
 
 $logFile = __DIR__ . '/componentes/logs_errores_php.txt';
 
 try {
+    // 1. Configurar Mercado Pago
     $mpAccessToken = $_ENV['MP_ACCESS_TOKEN'] ?? getenv('MP_ACCESS_TOKEN') ?: null;
     if (!$mpAccessToken) {
         throw new Exception('MP access token no definido');
     }
     MercadoPagoConfig::setAccessToken($mpAccessToken);
 
-    // Leer body
+    // 2. Leer body crudo y logearlo para debug
     $raw = file_get_contents('php://input');
     $input = json_decode($raw, true);
-
-    // Logging inicial
     file_put_contents($logFile, date('Y-m-d H:i:s') . " - Webhook recibido: {$raw}" . PHP_EOL, FILE_APPEND);
 
-    // Obtener payment id
-    $paymentId = $input['data']['id'] ?? $_GET['id'] ?? $input['id'] ?? null;
+    /**
+     * 3. BLOQUE NUEVO DE DETECCIÓN DE paymentId
+     * ------------------------------------------------
+     * Mercado Pago envía distintos formatos:
+     * - Formato viejo con "topic" y "resource" o "data.id"
+     * - Formato nuevo con "type" y "data.id"
+     * Este bloque detecta todos los casos posibles.
+     */
+    $paymentId = null;
+
+    // Caso formato viejo con 'topic'
+    if (($input['topic'] ?? '') === 'payment') {
+        if (!empty($input['data']['id'])) {
+            $paymentId = $input['data']['id'];
+        } elseif (!empty($input['resource'])) {
+            // Puede ser solo un número o una URL completa
+            if (is_numeric($input['resource'])) {
+                $paymentId = $input['resource'];
+            } else {
+                $paymentId = basename(parse_url($input['resource'], PHP_URL_PATH));
+            }
+        }
+    }
+    // Caso formato nuevo con 'type'
+    elseif (($input['type'] ?? '') === 'payment' && !empty($input['data']['id'])) {
+        $paymentId = $input['data']['id'];
+    }
+    // Si es merchant_order lo ignoramos (opcional)
+    elseif (($input['topic'] ?? '') === 'merchant_order') {
+        http_response_code(200);
+        file_put_contents($logFile, date('Y-m-d H:i:s') . " - Notificación merchant_order ignorada\n", FILE_APPEND);
+        exit;
+    }
+
+    // Si sigue sin ID, salir
     if (!$paymentId) {
         http_response_code(200);
         file_put_contents($logFile, date('Y-m-d H:i:s') . " - webhook sin payment id" . PHP_EOL, FILE_APPEND);
         exit;
     }
 
+    /**
+     * 4. Recuperar información del pago desde la API
+     */
     $paymentClient = new PaymentClient();
     $payment = $paymentClient->get((int)$paymentId);
     $status = $payment->status ?? null;
-
-    // Buscar external_reference
-    $externalReference = null;
-    if (!empty($payment->order->id)) {
-        $merchantClient = new MerchantOrderClient();
-        $merchant = $merchantClient->get((int)$payment->order->id);
-        $externalReference = $merchant->external_reference ?? null;
-    }
-    if (!$externalReference && !empty($payment->preference_id)) {
-        $prefClient = new PreferenceClient();
-        $pref = $prefClient->get((string)$payment->preference_id);
-        $externalReference = $pref->external_reference ?? null;
-    }
-    if (!$externalReference && !empty($payment->external_reference)) {
-        $externalReference = $payment->external_reference;
-    }
+    $externalReference = $payment->external_reference ?? null;
 
     if (!$externalReference) {
         file_put_contents($logFile, date('Y-m-d H:i:s') . " - webhook no pudo ubicar external_reference para payment {$paymentId}" . PHP_EOL, FILE_APPEND);
@@ -72,19 +93,33 @@ try {
         exit;
     }
 
-    // Mapear estado
+    // 5. Evitar reprocesar compra ya aprobada
+    $stmtCheck = $conexion->prepare("SELECT estado FROM compras WHERE id = ?");
+    $stmtCheck->bind_param('i', $idCompra);
+    $stmtCheck->execute();
+    $resCheck = $stmtCheck->get_result();
+    $estadoActual = $resCheck->fetch_assoc()['estado'] ?? '';
+    $stmtCheck->close();
+
+    if ($estadoActual === 'Aprobado') {
+        file_put_contents($logFile, date('Y-m-d H:i:s') . " - compra {$idCompra} ya procesada\n", FILE_APPEND);
+        http_response_code(200);
+        exit;
+    }
+
+    // 6. Mapear estado de Mercado Pago
     $map = [
-        'approved' => 'Aprobado',
+        'approved'   => 'Aprobado',
         'authorized' => 'Aprobado',
-        'paid' => 'Aprobado',
-        'pending' => 'Pendiente',
+        'paid'       => 'Aprobado',
+        'pending'    => 'Pendiente',
         'in_process' => 'En proceso',
-        'rejected' => 'Rechazado',
-        'cancelled' => 'Rechazado'
+        'rejected'   => 'Rechazado',
+        'cancelled'  => 'Rechazado'
     ];
     $nuevoEstado = $map[strval($status)] ?? $status;
 
-    // Obtener datos de compra
+    // 7. Obtener datos de la compra
     $stmt = $conexion->prepare("SELECT productos_json, email_cliente, nombre_cliente, apellido_cliente, total FROM compras WHERE id = ?");
     $stmt->bind_param('i', $idCompra);
     $stmt->execute();
@@ -102,13 +137,15 @@ try {
     $total_compra = $row['total'];
     $stmt->close();
 
-    // Actualizar estado
+    // 8. Actualizar estado
     $stmtUpd = $conexion->prepare("UPDATE compras SET estado = ? WHERE id = ?");
     $stmtUpd->bind_param('si', $nuevoEstado, $idCompra);
     $stmtUpd->execute();
     $stmtUpd->close();
 
-    // Si aprobado -> descontar stock y generar comprobante
+    /**
+     * 9. Si aprobado → descontar stock y generar comprobante
+     */
     if (in_array(strval($status), ['approved', 'authorized', 'paid'], true)) {
         $productos_array = json_decode($productos_json, true) ?: [];
 
@@ -137,7 +174,7 @@ try {
         if ($ok) {
             $conexion->commit();
 
-            // PDF con branding
+            // PDF
             $logoPath = __DIR__ . '/imagenes/logo.png';
             $html = '
             <html>
@@ -164,7 +201,7 @@ try {
             foreach ($productos_array as $p) {
                 $title = htmlspecialchars($p['name'] ?? $p['title'] ?? '');
                 $qty = intval($p['cantidad'] ?? ($p['quantity'] ?? 0));
-                $price = floatval($p['price'] ?? $p['unit_price'] ?? 0);
+                $price = is_numeric($p['price']) ? (float)$p['price'] : 0.0;
                 $sub = $qty * $price;
                 $html .= "<tr><td>{$title}</td><td>{$qty}</td><td>\$" . number_format($price, 2, ',', '.') . "</td><td>\$" . number_format($sub, 2, ',', '.') . "</td></tr>";
             }

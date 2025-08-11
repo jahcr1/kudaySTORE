@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+// Ajuste zona horaria Argentina
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 ini_set('display_errors', '1'); // solo en dev
 error_reporting(E_ALL);
 
