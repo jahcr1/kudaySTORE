@@ -14,6 +14,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Payment\PaymentClient;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use PHPMailer\PHPMailer\PHPMailer;
 
 $logFile = __DIR__ . '/componentes/logs_errores_php.txt';
@@ -54,7 +55,7 @@ try {
             }
         }
     }
-    // Caso formato nuevo con 'type'
+    // Caso formato nuevo con 'type', acá entra por positivo
     elseif (($input['type'] ?? '') === 'payment' && !empty($input['data']['id'])) {
         $paymentId = $input['data']['id'];
     }
@@ -175,7 +176,7 @@ try {
             $conexion->commit();
 
             // PDF
-            $logoPath = __DIR__ . '/imagenes/logo.png';
+            $logoPath = __DIR__ . '/images/logo/logo1.png';
             $html = '
             <html>
             <head>
@@ -226,9 +227,10 @@ try {
                 $mail->Password = $_ENV['SMTP_PASSWORD'] ?? getenv('SMTP_PASSWORD');
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = intval($_ENV['SMTP_PORT'] ?? getenv('SMTP_PORT') ?: 587);
+                $mail->CharSet = 'UTF-8';
 
                 $from = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER');
-                $mail->setFrom($from, 'Kuday Artesanías');
+                $mail->setFrom($from, 'Tienda Kuday Online');
                 $mail->addAddress($email_cliente, $nombre_cliente . ' ' . $apellido_cliente);
 
                 $mail->Subject = "Comprobante de compra #{$idCompra} - Kuday Artesanías";
