@@ -304,10 +304,14 @@ try {
                 if (!empty($filename) && file_exists($filename)) {
                     $mail->addAttachment($filename);
                 }
+                $mail->SMTPDebug = 2; // Nivel de debug (1 = básico, 2 = medio, 3 = muy detallado)
+                $mail->Debugoutput = function($str, $level) use ($logFile) {
+                    file_put_contents($logFile, date('Y-m-d H:i:s') . " - SMTP Debug: $str" . PHP_EOL, FILE_APPEND);
+                };
                 $mail->send();
                 file_put_contents($logFile, date('Y-m-d H:i:s') . " - comprobante enviado a {$email_cliente} para compra {$idCompra}\n", FILE_APPEND);
-            } catch (\Throwable $mailEx) {
-                file_put_contents($logFile, date('Y-m-d H:i:s') . " - Error enviando mail: " . $mailEx->getMessage() . PHP_EOL, FILE_APPEND);
+            } catch (Exception $e) {
+                file_put_contents($logFile, date('Y-m-d H:i:s') . " - Error enviando mail: " . $mail->ErrorInfo . PHP_EOL, FILE_APPEND);
             }
         } else {
             $conexion->rollback();
