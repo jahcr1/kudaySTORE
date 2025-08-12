@@ -19,6 +19,45 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 $logFile = __DIR__ . '/componentes/logs_errores_php.txt';
 
+/**
+ * === FUNCIONES UTILES (CAMBIO) ===
+ * parse_float: limpia y convierte distintos formatos de string numérico a float.
+ * Esto evita errores con number_format() cuando vienen strings con comas, puntos, símbolos, etc.
+ */
+function parse_float(mixed $val): float {
+    if (is_float($val) || is_int($val)) {
+        return (float)$val;
+    }
+    $s = (string)$val;
+    $s = trim($s);
+    if ($s === '') return 0.0;
+
+    // quitar espacios NO separadores y caracteres no numéricos (salvo ,- .)
+    $s = preg_replace('/[^\d\-,\.]/u', '', $s);
+
+    // detectar si hay ambos separadores '.' y ','
+    $lastDot = strrpos($s, '.');
+    $lastComma = strrpos($s, ',');
+    if ($lastDot !== false && $lastComma !== false) {
+        // si la coma está después del punto, asumimos coma = decimal (1.234,56)
+        if ($lastComma > $lastDot) {
+            $s = str_replace('.', '', $s);     // eliminar miles
+            $s = str_replace(',', '.', $s);    // convertir decimal
+        } else {
+            // punto está después -> 1,234.56 (coma miles, punto decimal)
+            $s = str_replace(',', '', $s);
+        }
+    } elseif ($lastComma !== false && $lastDot === false) {
+        // solo coma — probablemente decimal (e.g. "1234,56")
+        $s = str_replace(',', '.', $s);
+    } else {
+        // solo punto o ninguno -> dejar como está (punto decimal o entero)
+    }
+
+    // finalmente casteamos
+    return (float)$s;
+}
+
 try {
     // 1. Configurar Mercado Pago
     $mpAccessToken = $_ENV['MP_ACCESS_TOKEN'] ?? getenv('MP_ACCESS_TOKEN') ?: null;
@@ -33,7 +72,7 @@ try {
     file_put_contents($logFile, date('Y-m-d H:i:s') . " - Webhook recibido: {$raw}" . PHP_EOL, FILE_APPEND);
 
     /**
-     * 3. BLOQUE NUEVO DE DETECCIÓN DE paymentId
+     * 3. DETECCIÓN DE paymentId robusta
      * ------------------------------------------------
      * Mercado Pago envía distintos formatos:
      * - Formato viejo con "topic" y "resource" o "data.id"
@@ -135,18 +174,18 @@ try {
     $email_cliente = $row['email_cliente'];
     $nombre_cliente = $row['nombre_cliente'];
     $apellido_cliente = $row['apellido_cliente'];
-    $total_compra = $row['total'];
+    // === CAMBIO: sanitizar y castear total a float para evitar TypeError en number_format por PHP 8+ === 
+    $total_compra = parse_float($row['total'] ?? 0);
     $stmt->close();
 
-    // 8. Actualizar estado
+    // 8. Actualizar estado (se actualiza; si falla stock más abajo se reescribirá a Error stock)
     $stmtUpd = $conexion->prepare("UPDATE compras SET estado = ? WHERE id = ?");
     $stmtUpd->bind_param('si', $nuevoEstado, $idCompra);
     $stmtUpd->execute();
     $stmtUpd->close();
 
-    /**
-     * 9. Si aprobado → descontar stock y generar comprobante
-     */
+    
+    // 9. Si aprobado → descontar stock y generar comprobante
     if (in_array(strval($status), ['approved', 'authorized', 'paid'], true)) {
         $productos_array = json_decode($productos_json, true) ?: [];
 
@@ -175,11 +214,28 @@ try {
         if ($ok) {
             $conexion->commit();
 
-            // PDF
+            //  PREPARAR FACTURA / PDF 
+            // Asegurarse que el directorio exista
+            $facturasDir = __DIR__ . '/facturas';
+            if (!is_dir($facturasDir)) {
+                @mkdir($facturasDir, 0755, true);
+            }
+
+            // Logo: usar file:// si existe
             $logoPath = __DIR__ . '/images/logo/logo1.png';
+            $logoTag = '';
+            if (file_exists($logoPath)) {
+                $logoReal = realpath($logoPath);
+                // Dompdf puede necesitar file:// para rutas locales
+                $logoSrc = 'file://' . $logoReal;
+                $logoTag = '<img src="' . $logoSrc . '" style="max-height:80px;">';
+            }
+
+            // Construir HTML de la factura (asegurando casts)
             $html = '
             <html>
             <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
               <style>
                 body { font-family: DejaVu Sans, sans-serif; font-size: 12px; }
                 h1 { color: #c62828; margin-bottom: 0; }
@@ -190,36 +246,46 @@ try {
               </style>
             </head>
             <body>
-              <div style="text-align:center;">
-                <img src="' . $logoPath . '" style="max-height:80px;">
-                <h1>Kuday Artesanías</h1>
-                <p>Comprobante de Pago</p>
-              </div>
+              <div style="text-align:center;">' . $logoTag . '<h1>Kuday Artesanías</h1><p>Comprobante de Pago</p></div>
               <p><strong>Compra ID:</strong> ' . $idCompra . '</p>
               <p><strong>Cliente:</strong> ' . htmlspecialchars($nombre_cliente . ' ' . $apellido_cliente) . '</p>
               <table>
                 <tr><th>Producto</th><th>Cantidad</th><th>Precio unit.</th><th>Subtotal</th></tr>';
+
             foreach ($productos_array as $p) {
                 $title = htmlspecialchars($p['name'] ?? $p['title'] ?? '');
                 $qty = intval($p['cantidad'] ?? ($p['quantity'] ?? 0));
-                $price = is_numeric($p['price']) ? (float)$p['price'] : 0.0;
-                $sub = $qty * $price;
-                $html .= "<tr><td>{$title}</td><td>{$qty}</td><td>\$" . number_format($price, 2, ',', '.') . "</td><td>\$" . number_format($sub, 2, ',', '.') . "</td></tr>";
+                // === CAMBIO: parsear el precio robustamente ===
+                $price = parse_float($p['price'] ?? $p['unit_price'] ?? 0);
+                $sub = (float)($qty * $price);
+                // Asegurar que number_format reciba float (cast explícito)
+                $html .= "<tr><td>{$title}</td><td>{$qty}</td><td>\$" . number_format((float)$price, 2, ',', '.') . "</td><td>\$" . number_format((float)$sub, 2, ',', '.') . "</td></tr>";
             }
-            $html .= "<tr><td colspan='3' align='right' class='total'>Total</td><td class='total'>\$" . number_format($total_compra, 2, ',', '.') . "</td></tr>";
+
+            $html .= "<tr><td colspan='3' align='right' class='total'>Total</td><td class='total'>\$" . number_format((float)$total_compra, 2, ',', '.') . "</td></tr>";
             $html .= '</table></body></html>';
 
-            $dompdf = new Dompdf();
-            $dompdf->loadHtml($html);
-            $dompdf->setPaper('A4', 'portrait');
-            $dompdf->render();
-            $output = $dompdf->output();
-            $filename = __DIR__ . '/facturas/factura_' . $idCompra . '_' . time() . '.pdf';
-            file_put_contents($filename, $output);
-
-            // Email
-            $mail = new PHPMailer(true);
+            // === RENDERIZAR PDF con opciones (soporte utf8 y remote images) ===
             try {
+                $options = new Options();
+                $options->set('isRemoteEnabled', true);
+                $options->set('defaultFont', 'DejaVu Sans'); // fuente con soporte Unicode
+                $dompdf = new Dompdf($options);
+                $dompdf->loadHtml($html);
+                $dompdf->setPaper('A4', 'portrait');
+                $dompdf->render();
+                $output = $dompdf->output();
+                $filename = $facturasDir . '/factura_' . $idCompra . '_' . time() . '.pdf';
+                file_put_contents($filename, $output);
+            } catch (\Throwable $pdfEx) {
+                // no dejamos que un error en PDF rompa todo; lo logeamos
+                file_put_contents($logFile, date('Y-m-d H:i:s') . " - Error generando PDF: " . $pdfEx->getMessage() . PHP_EOL, FILE_APPEND);
+                $filename = null;
+            }
+
+            // === ENVIAR EMAIL (si tenemos archivo) ===
+            try {
+                $mail = new PHPMailer(true);
                 $mail->isSMTP();
                 $mail->Host = $_ENV['SMTP_HOST'] ?? getenv('SMTP_HOST');
                 $mail->SMTPAuth = true;
@@ -228,15 +294,16 @@ try {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = intval($_ENV['SMTP_PORT'] ?? getenv('SMTP_PORT') ?: 587);
                 $mail->CharSet = 'UTF-8';
-
                 $from = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER');
                 $mail->setFrom($from, 'Tienda Kuday Online');
                 $mail->addAddress($email_cliente, $nombre_cliente . ' ' . $apellido_cliente);
-
+                $mail->isHTML(true);
                 $mail->Subject = "Comprobante de compra #{$idCompra} - Kuday Artesanías";
-                $mail->Body = "Hola {$nombre_cliente}, adjuntamos tu comprobante de pago. ¡Gracias por tu compra!";
-                $mail->addAttachment($filename);
-
+                $mail->Body = "<p>Hola " . htmlspecialchars($nombre_cliente) . ",</p><p>Adjuntamos tu comprobante de pago. ¡Gracias por tu compra!</p>";
+                $mail->AltBody = "Hola " . $nombre_cliente . ", adjuntamos tu comprobante de pago. Gracias.";
+                if (!empty($filename) && file_exists($filename)) {
+                    $mail->addAttachment($filename);
+                }
                 $mail->send();
                 file_put_contents($logFile, date('Y-m-d H:i:s') . " - comprobante enviado a {$email_cliente} para compra {$idCompra}\n", FILE_APPEND);
             } catch (\Throwable $mailEx) {
