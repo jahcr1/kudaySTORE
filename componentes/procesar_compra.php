@@ -141,6 +141,7 @@ try {
         $items[] = [
             'title' => 'Costo de envío',
             'quantity' => 1,
+            'currency_id' => 'ARS',
             'unit_price' => $costoEnvio,
             'id' => 'envio_' . $idCompra
         ];
@@ -160,6 +161,10 @@ try {
             'pending' => $baseUrl . '/carrito.php?mp_status=pending&id=' . $idCompra
         ],
         'auto_return' => 'approved',
+        'payment_methods' => [
+            'installments' => 3,
+            "default_installments" => 1
+        ],
         'notification_url' => $baseUrl . '/webhook.php',
         'statement_descriptor' => "Tienda Kuday",
         'external_reference' => (string)$idCompra
