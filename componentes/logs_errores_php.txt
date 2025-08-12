@@ -81,3 +81,68 @@
 2025-08-10 22:56:30 - Intentando descontar producto 999 cantidad 1
 2025-08-10 22:56:30 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
 2025-08-10 22:56:30 - compra 14 ya procesada
+2025-08-12 13:03:01 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33114407529","topic":"merchant_order"}
+2025-08-12 13:03:01 - Notificación merchant_order ignorada
+2025-08-12 13:03:03 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122004037786"},"date_created":"2025-08-12T16:03:01Z","id":123773333104,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 13:03:03 - Webhook recibido: {"resource":"122004037786","topic":"payment"}
+2025-08-12 13:03:03 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33114407529","topic":"merchant_order"}
+2025-08-12 13:03:03 - Notificación merchant_order ignorada
+2025-08-12 13:03:03 - Procesando compra 15 con productos: [{"id":"897","name":"Neceser tirprrre","cantidad":2,"price":8922},{"id":"999","name":"cartuchera flash","cantidad":1,"price":7500}]
+2025-08-12 13:03:03 - Intentando descontar producto 897 cantidad 2
+2025-08-12 13:03:03 - Intentando descontar producto 999 cantidad 1
+2025-08-12 13:03:03 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-12 13:03:03 - compra 15 ya procesada
+2025-08-12 13:03:04 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33114407529","topic":"merchant_order"}
+2025-08-12 13:03:04 - Notificación merchant_order ignorada
+2025-08-12 13:28:39 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138048830","topic":"merchant_order"}
+2025-08-12 13:28:39 - Notificación merchant_order ignorada
+2025-08-12 13:28:40 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122007192766"},"date_created":"2025-08-12T16:28:38Z","id":123773983214,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 13:28:40 - Webhook recibido: {"resource":"122007192766","topic":"payment"}
+2025-08-12 13:28:40 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138048830","topic":"merchant_order"}
+2025-08-12 13:28:40 - Notificación merchant_order ignorada
+2025-08-12 13:28:40 - Procesando compra 16 con productos: [{"id":"999","name":"cartuchera flash","cantidad":1,"price":7500}]
+2025-08-12 13:28:40 - Intentando descontar producto 999 cantidad 1
+2025-08-12 13:28:40 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-12 13:28:40 - compra 16 ya procesada
+2025-08-12 13:31:57 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33115187081","topic":"merchant_order"}
+2025-08-12 13:31:57 - Notificación merchant_order ignorada
+2025-08-12 13:31:58 - Webhook recibido: {"resource":"122007511260","topic":"payment"}
+2025-08-12 13:31:58 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122007511260"},"date_created":"2025-08-12T16:31:56Z","id":123774021870,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 13:31:59 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33115187081","topic":"merchant_order"}
+2025-08-12 13:31:59 - Notificación merchant_order ignorada
+2025-08-12 13:37:09 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"121484015241"},"date_created":"2025-08-12T16:37:07Z","id":123774151574,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 13:37:09 - Webhook recibido: {"resource":"121484015241","topic":"payment"}
+2025-08-12 13:37:10 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138261770","topic":"merchant_order"}
+2025-08-12 13:37:10 - Notificación merchant_order ignorada
+2025-08-12 13:37:24 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122008147072"},"date_created":"2025-08-12T16:37:22Z","id":123691394951,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 13:37:24 - Webhook recibido: {"resource":"122008147072","topic":"payment"}
+2025-08-12 13:37:25 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138261770","topic":"merchant_order"}
+2025-08-12 13:37:25 - Notificación merchant_order ignorada
+2025-08-12 14:00:50 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138842754","topic":"merchant_order"}
+2025-08-12 14:00:50 - Notificación merchant_order ignorada
+2025-08-12 14:00:51 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"121486592739"},"date_created":"2025-08-12T17:00:49Z","id":123692028239,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 14:00:51 - Webhook recibido: {"resource":"121486592739","topic":"payment"}
+2025-08-12 14:00:51 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33138842754","topic":"merchant_order"}
+2025-08-12 14:00:51 - Notificación merchant_order ignorada
+2025-08-12 14:15:08 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33116239801","topic":"merchant_order"}
+2025-08-12 14:15:08 - Notificación merchant_order ignorada
+2025-08-12 14:15:09 - Webhook recibido: {"resource":"122012294542","topic":"payment"}
+2025-08-12 14:15:09 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122012294542"},"date_created":"2025-08-12T17:15:07Z","id":123692384179,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 14:15:09 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33116239801","topic":"merchant_order"}
+2025-08-12 14:15:09 - Notificación merchant_order ignorada
+2025-08-12 14:15:09 - Procesando compra 20 con productos: [{"id":"955","name":"Porta chuchu","cantidad":1,"price":7841}]
+2025-08-12 14:15:09 - Intentando descontar producto 955 cantidad 1
+2025-08-12 14:15:09 - Procesando compra 20 con productos: [{"id":"955","name":"Porta chuchu","cantidad":1,"price":7841}]
+2025-08-12 14:15:09 - Intentando descontar producto 955 cantidad 1
+2025-08-12 14:15:09 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-12 14:15:09 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-12 14:20:28 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33116363573","topic":"merchant_order"}
+2025-08-12 14:20:28 - Notificación merchant_order ignorada
+2025-08-12 14:20:29 - Webhook recibido: {"resource":"122012800932","topic":"payment"}
+2025-08-12 14:20:29 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"122012800932"},"date_created":"2025-08-12T17:20:27Z","id":123775310598,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-12 14:20:29 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33116363573","topic":"merchant_order"}
+2025-08-12 14:20:29 - Notificación merchant_order ignorada
+2025-08-12 14:20:30 - Procesando compra 21 con productos: [{"id":"955","name":"Porta chuchu","cantidad":1,"price":7841}]
+2025-08-12 14:20:30 - Intentando descontar producto 955 cantidad 1
+2025-08-12 14:20:30 - webhook ERROR: number_format(): Argument #1 ($num) must be of type float, string given
+2025-08-12 14:20:30 - compra 21 ya procesada
