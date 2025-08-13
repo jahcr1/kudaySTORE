@@ -1784,3 +1784,13 @@
 2025-08-12 16:59:06 - SMTP Debug: SERVER -> CLIENT: 221 2.0.0 closing connection d2e1a72fcca58-76c5f493178sm9565064b3a.49 - gsmtp
 
 2025-08-12 16:59:06 - comprobante enviado a martin.contreras.dev@gmail.com para compra 23
+2025-08-13 18:50:09 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33170833986","topic":"merchant_order"}
+2025-08-13 18:50:09 - Notificación merchant_order ignorada
+2025-08-13 18:50:10 - Webhook recibido: {"action":"payment.created","api_version":"v1","data":{"id":"121646980033"},"date_created":"2025-08-13T21:50:09Z","id":123810331826,"live_mode":true,"type":"payment","user_id":"2611946500"}
+2025-08-13 18:50:10 - Webhook recibido: {"resource":"121646980033","topic":"payment"}
+2025-08-13 18:50:10 - Webhook recibido: {"resource":"https://api.mercadolibre.com/merchant_orders/33170833986","topic":"merchant_order"}
+2025-08-13 18:50:10 - Notificación merchant_order ignorada
+2025-08-13 18:50:10 - Procesando compra 24 con productos: [{"id":"999","name":"cartuchera flash","cantidad":1,"price":7500}]
+2025-08-13 18:50:10 - Intentando descontar producto 999 cantidad 1
+2025-08-13 18:50:10 - compra 24 ya procesada (detectado en lock)
+2025-08-13 18:50:15 - comprobante enviado a martin.contreras.dev@gmail.com para compra 24
