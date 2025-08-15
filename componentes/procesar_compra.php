@@ -106,7 +106,7 @@ try {
     if (!$mpAccessToken) {
         throw new Exception('Token de Mercado Pago no encontrado en variables de entorno.');
     }
-    MercadoPagoConfig::setAccessToken($mpAccessToken);
+    MercadoPagoConfig::setAccessToken((string)$mpAccessToken);
 
     // Detectar entorno y definir baseUrl
     $appEnv = $_ENV['APP_ENV'] ?? getenv('APP_ENV') ?? 'production';

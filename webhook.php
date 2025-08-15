@@ -62,7 +62,7 @@ try {
     // 1. Configurar Mercado Pago
     $mpAccessToken = $_ENV['MP_ACCESS_TOKEN'] ?? getenv('MP_ACCESS_TOKEN') ?: null;
     if (!$mpAccessToken) throw new Exception('MP access token no definido');
-    MercadoPagoConfig::setAccessToken($mpAccessToken);
+    MercadoPagoConfig::setAccessToken((string)$mpAccessToken);
 
     // 2. Leer body crudo y logearlo para debug
     $raw = file_get_contents('php://input');
